@@ -18,4 +18,6 @@ Trường Đại học Công Nghệ Thông Tin
 #### b) Các công nghệ sử dụng
 - Database: realtime database của firebase
 - Deeplearning: Sử dụng framework keras và tensorflow
-
+### 4. Nguyên lý hoạt động
+## III. Quá trình thực hiện đề tài
+[Timeline công việc](https://docs.google.com/spreadsheets/d/16j22HNcVdV6S61sWJEH8DkvKuc123T_IAtb3bWZs8-M/)
