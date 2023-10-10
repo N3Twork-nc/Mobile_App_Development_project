@@ -8,8 +8,8 @@ Trường Đại học Công Nghệ Thông Tin
 4. 21522648 - Thái Nhật Thư 
 ## II. Giới thiệu đề tài.
 ### 1. Mô tả
-Đây là đồ án môn học Phát triển ứng dụng trên thiết bị di động
-Chúng tôi xây dựng một ứng dụng di động để quản lý cây trồng, áp dụng deep learning để nhận cây trồng
+- Đây là đồ án môn học Phát triển ứng dụng trên thiết bị di động
+- Chúng tôi xây dựng một ứng dụng di động để quản lý cây trồng, áp dụng deep learning để nhận cây trồng
 ### 2. Sơ đồ hoạt động
 ### 3. Các ngôn ngữ lập trình và công nghệ sử dụng
 #### a) Các ngôn ngữ lập trình
