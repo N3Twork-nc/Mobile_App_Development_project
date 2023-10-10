@@ -116,6 +116,3 @@ export const OthersCheckbox = styled(CheckBox)`
 export const CheckboxText = styled.Text`
   font-weight: 500;
 `;
-
-// Sign up 
-
