@@ -28,11 +28,12 @@ export const InnerContainer = styled.View`
  width: 100%;
  align-items: center;
  justify-content: center;
+
 `;
- 
+
 //slogan
 export const Slogan = styled.Text`
-  font-size: 27%;
+  fontSize: 27px;
   margin-top: 10%;
   margin-bottom: 8%;
   color: ${black};
@@ -40,8 +41,8 @@ export const Slogan = styled.Text`
   text-align: center;
 `;
 
-//button login
-export const ButtonLoginwFB = styled.TouchableOpacity`
+//button Signin
+export const ButtonSigninwFB = styled.TouchableOpacity`
   background-color: ${black};
   border-radius: 30px;
   width: 85%;
@@ -50,8 +51,14 @@ export const ButtonLoginwFB = styled.TouchableOpacity`
   justify-content: center;
   height: 60px; /* hoặc sử dụng padding-top */
 `;
-
-export const ButtonLoginwGG = styled.TouchableOpacity`
+export const titleInputText = styled.Text`
+  fontSize: 15px;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  color: ${black};
+  font-weight: bold;
+`;
+export const ButtonSigninwGG = styled.TouchableOpacity`
   background-color: ${black};
   border-radius: 30px;
   width: 85%;
@@ -61,58 +68,69 @@ export const ButtonLoginwGG = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-export const ButtonCreateAccount = styled.TouchableOpacity`
+export const ButtonText = styled.Text`
+  fontSize: 16px;
+  color: ${white};
+  font-weight: bold;
+  text-align: center;
+`;
+export const OthersText1 = styled.Text`
+  fontSize: 15px;
+  margin-bottom: 2%;
+  color: ${black};
+  font-weight: bold;
+  textAlign: center; 
+`;
+
+
+// input box ------------------------------------
+export const InputContainer = styled.View`
+  margin:auto;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 10%;
+`;
+
+export const OthersText2 = styled.Text`
+  font-size: 15px;
+  margin-top: 5%;
+  color: ${black};
+  font-weight: bold;
+  text-align: left;
+  align-self: flex-start; /* Căn lề trái */
+`;
+export const OthersText3 = styled.Text`
+  font-size: 15px;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  color: ${black};
+  font-weight: bold;
+  text-align: right;  
+  font-style:italic;
+  align-self: flex-end; /* Căn lề trái */
+`;
+
+export const InputText = styled.TextInput`
+  background-color: ${white};
+  border-radius: 30px;
+  width: 100%;
+  margin-top: 4%;
+  height: 13%;
+  align-self: center; 
+  justify-content: center;
+  padding: 5px 15px;
+  font-weight: 500;
+  box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.2);
+`;
+export const ButtonSignin = styled.TouchableOpacity`
   background-color: ${black};
   border-radius: 30px;
+  margin-top: 5%;
+  margin-bottom:5%;
   width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 60px; /* hoặc sử dụng padding-top */
-`;
-export const ButtonText = styled.Text`
-  font-size: 15%;
-  color: ${white};
-  font-weight: bold;
-  text-align: center;
-`;
-export const OthersText = styled.Text`
-  font-size: 15%;
-  margin-top: 5%;
-  margin-bottom: 3%;
-  color: ${black};
-  font-weight: bold;
-  text-align: center;
-`;
-
-// input box ------------------------------------
-export const InputText = styled.TextInput`
-  background-color: ${white};
-  border-radius: 30px;
-  width: 85%;
-  margin-top: 3%;
-  height: 7%; /* hoặc sử dụng padding-top */  
-  align-content: center;
-  justify-content: center;
-  padding: 5px 15px;
-  font-weight: 500;
-  box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.1);
-`;
-
-// Privacy checkbox ------------------
-export const CheckboxContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-top: 5%;
-  justify-content: center;
-  width: 90%; /* Điều chỉnh độ rộng của CheckboxContainer */
-  margin-left: auto;
-  margin-right: 7%;;
-`;
-export const OthersCheckbox = styled(CheckBox)`
-   margin-right:10px;
-`;
-
-export const CheckboxText = styled.Text`
-  font-weight: 500;
 `;
