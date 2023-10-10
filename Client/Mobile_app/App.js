@@ -1,15 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/components/Login/login'
+import Signin from './src/components/Sign in/signin';
+import Signup from './src/components/Sign up/signup'
+
+
 
 export default function App() {
-  return <Login />
+  return <Signin />
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
