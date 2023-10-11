@@ -4,60 +4,55 @@ import threading
 
 class Account(BaseModel):
     username: str
-    password: str
+    password: str=None
     email: str=None
-    OTP:str=None
+    OTP: str=None
 
-    def checkAccount(sefl):
-        ref=db.reference(f"Accounts/{sefl.username}")
-        userData=ref.get()
-        if userData==None:
-            return False
-        if userData['password']!=sefl.password:
+
+    def insertAccout(self):
+        ref=db.reference('Accounts')
+        user=ref.child(self.username)
+        user.set({
+            'username':f'{self.username}',
+            'passord':f'{self.password}',
+            'email':f'{self.email}'
+        })
+
+    def checkAccount(self):
+        account=db.reference(f'Accounts/{self.username}').get()
+        if account==None or account['password']!=self.password:
             return False
         return True
 
-    def insertAccout(sefl):
-        ref=db.reference('Accounts')
-        checkUsername=sefl.existenceUsername()
-        if checkUsername==None:
-            new_user_ref = ref.child(sefl.username)
-            new_user_ref.set({
-                'username': sefl.username,
-                'password': sefl.password,
-                'email':sefl.email
-            })
-            return True
-        else: 
-            return False
-        
-    def addOTP(sefl,OTP):
-        ref=db.reference("OTP_email").child(sefl.username)
-        ref.set(f"{OTP}")
-        def deleteOTP():
-            ref=db.reference(f'OTP_email/{sefl.username}')
-            ref.delete()
-        # Hẹn giờ tác vụ sau 2 phút để xóa OTP
-        timer = threading.Timer(2*60,deleteOTP)
+    def insertOTP(self):
+        ref=db.reference('OPT')
+        user=ref.child(self.username)
+        user.set({
+            'username':self.username,
+            'password':f'{self.password}',
+            'email':self.email,
+            'otp':f'{self.OTP}'
+        })
+        def task():
+            ref=db.reference(f'OTP/{self.username}').delete()
+
+        # Hẹn giờ để thực hiện tác vụ sau 2 phút
+        timer = threading.Timer(2*60, task)
+        # Bắt đầu đếm ngược
         timer.start()
 
-    def checkOTP(sefl):
-        ref=db.reference(f"OTP_email/{sefl.username}")
-        OTP=ref.get()
-        if OTP==None or OTP!=f"{sefl.OTP}":
-            return False
-        return True
-    
-    def existenceUsername(sefl):
+    def verifyEmail(self):
+        OTP=db.reference(f'OTP/{self.username}').get()['otp']
+        if OTP==self.OTP:
+            return True
+        return False
+
+    def existenceUsername(self):
         ref=ref=db.reference('Accounts')
-        user=ref.child(sefl.username).get()
-        if user==None:
-            return False
-        return True
+        result=ref.child(self.username).get()
+        return result
     
-    def existenceEmail(sefl):
-        ref=ref=db.reference('Accounts')
-        user=ref.order_by_child('email').equal_to(sefl.email)
-        if user==None:
-            return False
-        return True
+    def existenceEmail(self):
+        ref=db.reference('OPT')
+        email=ref.order_by_child('email').equal_to(self.email)
+        return email
