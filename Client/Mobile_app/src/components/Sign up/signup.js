@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import { StyledContainer, InnerContainer, Slogan, ButtonLoginwFB,ButtonLoginwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText } from './styleLogin'
+import { StyledContainer, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText } from './styleSignup'
 
-const Login = () => {
+const Signup = () => {
     const [isChecked, setIsChecked] = useState(false);
 
     const toggleCheckbox = () => {
@@ -12,12 +12,12 @@ const Login = () => {
                 <Slogan>
                     Sign up to Plantaholic!
                 </Slogan>
-                <ButtonLoginwFB>
+                <ButtonSignupwFB>
                     <ButtonText>Sign up with Facebook</ButtonText>
-                </ButtonLoginwFB>
-                <ButtonLoginwGG>                    
+                </ButtonSignupwFB>
+                <ButtonSignupwGG>                    
                     <ButtonText>Sign up with Google</ButtonText>
-                </ButtonLoginwGG>    
+                </ButtonSignupwGG>    
                 <OthersText>Or continue with Email</OthersText>                
                 <InputText placeholder="Enter your full name"></InputText>
                 <InputText placeholder="Enter username"></InputText>
@@ -35,10 +35,10 @@ const Login = () => {
                 <ButtonCreateAccount>
                     <ButtonText>Create Account</ButtonText>
                 </ButtonCreateAccount>
-                <OthersText>Already have an account? Login</OthersText>  
+                <OthersText>Already have an account? Signup</OthersText>  
             </InnerContainer>
         </StyledContainer>
     )
     }
 
-export default Login;
+export default Signup;
