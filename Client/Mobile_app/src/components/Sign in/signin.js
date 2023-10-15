@@ -10,26 +10,27 @@ const Signin = () => {
         <StyledContainer>
             <InnerContainer>
                 <Slogan>
-                    Sign in to Plantaholic!
+                    ĐĂNG NHẬP
                 </Slogan>
                 <ButtonSigninwFB>
-                    <ButtonText>Sign in with Facebook</ButtonText>
+                    <ButtonText>Đăng nhập với Facebook</ButtonText>
                 </ButtonSigninwFB>
                 <ButtonSigninwGG>                    
-                    <ButtonText>Sign in with Google</ButtonText>
+                    <ButtonText>Đăng nhập với Google</ButtonText>
+                    
                 </ButtonSigninwGG> 
             </InnerContainer>
             <InputContainer>            
-                <OthersText1>Or sign in with Email</OthersText1>   
-                <OthersText2>Username or Email</OthersText2>
-                <InputText placeholder="Enter Email"></InputText>
-                <OthersText2>Password</OthersText2>
-                <InputText placeholder="Enter password"></InputText>     
-                <OthersText3>Forgot password?</OthersText3>           
+                <OthersText1>Hoặc đăng nhập với Email</OthersText1>   
+                <OthersText2>Tên tài khoản hoặc Email</OthersText2>
+                <InputText></InputText>
+                <OthersText2>Mật khẩu</OthersText2>
+                <InputText></InputText>     
+                <OthersText3>Quên mật khẩu?</OthersText3>           
                 <ButtonSignin>
-                    <ButtonText>Sign in</ButtonText>
+                    <ButtonText>Đăng nhập</ButtonText>
                 </ButtonSignin>   
-                <OthersText1>Don’t have an account? Signup</OthersText1>
+                <OthersText1>Chưa có tài khoản? Đăng ký</OthersText1>
             </InputContainer>
         </StyledContainer>
     )
