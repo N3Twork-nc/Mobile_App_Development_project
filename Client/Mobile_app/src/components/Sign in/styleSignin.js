@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import Constants from 'expo-constants';
 import { CheckBox } from 'react-native-elements';
 
@@ -68,12 +68,7 @@ export const ButtonSigninwGG = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-export const ButtonText = styled.Text`
-  fontSize: 16px;
-  color: ${white};
-  font-weight: bold;
-  text-align: center;
-`;
+
 export const OthersText1 = styled.Text`
   fontSize: 15px;
   margin-bottom: 2%;
@@ -81,10 +76,19 @@ export const OthersText1 = styled.Text`
   font-weight: bold;
   textAlign: center; 
 `;
-export const icon = styled.View`
-  left: 15px;
+
+export const ButtonText = styled.Text`
+  fontSize: 16px;
+  color: ${white};
+  font-weight: bold;
+  text-align: center;
+`;
+export const IconButton = styled.Image`
+  left: 25px;
   position: absolute;
   z-index: 1;
+  flex-shrink: 0;
+  aspect-ratio: 1;
 `;
 
 
