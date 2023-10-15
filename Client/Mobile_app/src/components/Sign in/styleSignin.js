@@ -81,6 +81,11 @@ export const OthersText1 = styled.Text`
   font-weight: bold;
   textAlign: center; 
 `;
+export const icon = styled.View`
+  left: 15px;
+  position: absolute;
+  z-index: 1;
+`;
 
 
 // input box ------------------------------------
