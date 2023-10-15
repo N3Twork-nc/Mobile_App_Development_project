@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
+import {Image} from 'react-native'
 import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText, ButtonSignup,ImgPlant} from './styleWelcome'
 
 const Welcome = () => {
     const [isChecked, setIsChecked] = useState(false);
 
-    const toggleCheckbox = () => {
-      setIsChecked(!isChecked);}
     return(
         <StyledContainer>
             <InnerContainer>
@@ -13,6 +12,7 @@ const Welcome = () => {
                     Welcome to
                     PLANTAHOLIC!
                 </Slogan>  
+                <ImgPlant resizeMode="cover" source={require('../../assets/welcome.png')} />                
                 <ButtonSignup>
                     <ButtonText>Sign up</ButtonText>
                 </ButtonSignup>

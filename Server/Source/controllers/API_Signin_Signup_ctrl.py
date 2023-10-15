@@ -1,7 +1,7 @@
 from Source import app
 from Source.models_mvc.accoout_model import Account
 import random
-from Source.controllers.sendMail_class import Maill
+from Source.controllers.mail_class import Mail
 
 
 
@@ -12,25 +12,28 @@ async def signin(body: Account):
         return "Login successfull"
     else: 
         return "Incorrect username or password!"
-    
-@app.post('/signup')
+
+
+#Create account   
+@app.put('/APIsignup')
 def signup(body:Account):
     user=body.existenceUsername()
-    if user==True:
+    if user!=None:
         return "Username already exists"
     email=body.existenceEmail()
-    if email==True:
-        return "Username already exists"
-    OTP=random.randint(100000,999999)
-    sendMail=Maill()
+    if email!=None:
+        return "Email already exists"
+    OTP=random.randint(1000,9999)
+    sendMail=Mail()
     sendMail.sendOTP(body.email,OTP)
-    body.addOTP(OTP)
+    body.insertOTP(OTP)
     return "Enter OTP"
 
-    
-@app.post('/signup/verify')
+
+#verify  
+@app.post('/APIsignup')
 def verify(body:Account):
-    result=body.checkOTP()
+    result=body.verifyEmail()
     if result==True:
         body.insertAccout()
         return "Signup successfull"
