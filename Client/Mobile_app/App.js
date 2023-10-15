@@ -1,8 +1,7 @@
-
 import { StyleSheet, Text, View} from 'react-native';
-import Welcome from './src/components/Welcome/welcome'
+import Welcome from './src/components/Welcome/welcome';
 
 export default function App() {
-  return <Welcome />
+  return <Welcome r/>
 }
 

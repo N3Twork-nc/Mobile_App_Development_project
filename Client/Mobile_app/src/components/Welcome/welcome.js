@@ -13,7 +13,6 @@ const Welcome = () => {
                     Welcome to
                     PLANTAHOLIC!
                 </Slogan>  
-                <ImgPlant resizeMode="cover" source={require('C:/Mobile_App_Development_project/Client/Mobile_app/src/assets/welcome.png')} />                
                 <ButtonSignup>
                     <ButtonText>Sign up</ButtonText>
                 </ButtonSignup>
