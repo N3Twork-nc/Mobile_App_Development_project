@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/components/Login/login'
+import { StyleSheet, Text, View} from 'react-native';
+import Welcome from './src/components/Welcome/welcome'
 
 export default function App() {
-  return <Login />
+  return <Welcome />
 }
 
 const styles = StyleSheet.create({
