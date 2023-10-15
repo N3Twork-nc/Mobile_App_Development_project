@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import Constants from 'expo-constants';
 import { CheckBox } from 'react-native-elements';
 
@@ -32,9 +32,9 @@ export const InnerContainer = styled.View`
  
 //slogan
 export const Slogan = styled.Text`
-  fontSize: 27;
+  fontSize: 27px;
   margin-top: 10%;
-  margin-bottom: 8%;
+  margin-bottom: 5%;
   color: ${black};
   font-weight: bold;
   text-align: center;
@@ -71,18 +71,25 @@ export const ButtonCreateAccount = styled.TouchableOpacity`
   height: 60px; /* hoặc sử dụng padding-top */
 `;
 export const ButtonText = styled.Text`
-  fontSize: 15;
+  fontSize: 15px;
   color: ${white};
   font-weight: bold;
   text-align: center;
 `;
 export const OthersText = styled.Text`
-  fontSize: 15;
+  fontSize: 15px;
   margin-top: 5%;
   margin-bottom: 3%;
   color: ${black};
   font-weight: bold;
   text-align: center;
+`;
+export const IconButton = styled.Image`
+  left: 25px;
+  position: absolute;
+  z-index: 1;
+  flex-shrink: 0;
+  aspect-ratio: 1;
 `;
 
 // input box ------------------------------------
@@ -117,5 +124,5 @@ export const OthersCheckbox = styled(CheckBox)`
 
 export const CheckboxText = styled.Text`
   font-weight: 500;
-  fontSize: 14;
+  fontSize: 14px;
 `;

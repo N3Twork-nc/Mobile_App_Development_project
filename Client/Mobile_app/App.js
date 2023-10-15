@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View} from 'react-native';
-import Welcome from './src/components/Welcome/welcome';
+import React from 'react';
+import AppNavigator from './src/navigators/AppNavigator';
 
-export default function App() {
-  return <Welcome/>
-}
+const App = () => {
+  return <AppNavigator />;
+};
 
+
+export default App;
