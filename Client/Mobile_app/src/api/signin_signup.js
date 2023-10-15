@@ -1,22 +1,20 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 // Gọi API đăng nhập
-const signin = async () => {
-  try {
-    const response = await axios.post('https://26.242.101.156/signin', {
-      // Gửi dữ liệu tài khoản
-      username,
-      password,
-    });
 
-    // Xử lý kết quả đăng nhập
-    console.log(response.data);
-  } catch (error) {
-    // Xử lý lỗi đăng nhập
-    console.error(error);
-  }
-};
-
+const sigin = () => { 
+  console.log("test")
+    fetch(' http://localhost:8000/APIsignin', {  
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'username': 'caothi',
+        'password': '1234'})
+      })
+}
 // Gọi API đăng ký
 const signup = async () => {
   try {
@@ -53,6 +51,5 @@ const verify = async () => {
 };
 
 // Gọi các hàm tương ứng với các API
-signin();
-signup();
-verify();
+// signin('caothi','1234');
+export default sigin
