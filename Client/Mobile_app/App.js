@@ -1,10 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
-import Signin from './src/components/Sign in/signin';
-import Signup from './src/components/Sign up/signup'
+import React from 'react';
+import AppNavigator from './src/navigators/AppNavigator';
 
+const App = () => {
+  return <AppNavigator />;
+};
 
-
-export default function App() {
-  return <Signin />
-}
-
+export default App;
