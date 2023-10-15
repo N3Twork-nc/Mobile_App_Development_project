@@ -57,7 +57,7 @@ export const ButtonText = styled.Text`
   text-align: center;
 `;
 export const OthersText = styled.Text`
-  font-size: 20;
+  font-size: 30px;
   margin-top: 5%;
   margin-bottom: 3%;
   color: ${black};
@@ -66,9 +66,22 @@ export const OthersText = styled.Text`
 `;
 
 export const ImgPlant=styled.Image`
-  margin-top: 20%;
   width: 280px;
   height: 291px;
   flex-shrink: 0;
 `;
 
+// export const StyledBox = styled.div`
+// height: 93px;
+// width: 212px;
+
+// & .rectangle {
+//   background-color: #ffffff;
+//   border-radius: 91.5px;
+//   height: 93px;
+//   left: 0;
+//   position: fixed;
+//   top: 0;
+//   width: 212px;
+// }
+// `;

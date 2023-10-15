@@ -6,7 +6,7 @@ class Account(BaseModel):
     username: str
     password: str=None
     email: str=None
-    OTP: str=None
+    OTP:str=None
 
 
     def insertAccout(self):
@@ -24,14 +24,14 @@ class Account(BaseModel):
             return False
         return True
 
-    def insertOTP(self):
-        ref=db.reference('OPT')
+    def insertOTP(self,OTP):
+        ref=db.reference('OTP')
         user=ref.child(self.username)
         user.set({
             'username':self.username,
             'password':f'{self.password}',
             'email':self.email,
-            'otp':f'{self.OTP}'
+            'otp':f'{OTP}'
         })
         def task():
             ref=db.reference(f'OTP/{self.username}').delete()
@@ -53,6 +53,9 @@ class Account(BaseModel):
         return result
     
     def existenceEmail(self):
-        ref=db.reference('OPT')
-        email=ref.order_by_child('email').equal_to(self.email)
-        return email
+        ref=db.reference('Accounts')
+        try:
+            email=ref.order_by_child('email').equal_to(self.email)['username']
+            return email
+        except:
+            return None

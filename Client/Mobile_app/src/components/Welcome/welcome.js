@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Image} from 'react-native'
 import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText, ButtonSignup,ImgPlant} from './styleWelcome'
 
 const Welcome = () => {
