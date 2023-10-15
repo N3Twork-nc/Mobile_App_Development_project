@@ -4,8 +4,6 @@ import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText, Butto
 const Welcome = () => {
     const [isChecked, setIsChecked] = useState(false);
 
-    const toggleCheckbox = () => {
-      setIsChecked(!isChecked);}
     return(
         <StyledContainer>
             <InnerContainer>
@@ -13,10 +11,11 @@ const Welcome = () => {
                     Welcome to
                     PLANTAHOLIC!
                 </Slogan>  
+                <ImgPlant resizeMode="cover" source={require('../../assets/welcome.png')} />                
                 <ButtonSignup>
-                    <ButtonText>Sign up</ButtonText>
+                    <ButtonText>Đăng ký</ButtonText>
                 </ButtonSignup>
-                <OthersText>Already have an account? Login</OthersText>  
+                <OthersText>Bạn đã có tài khoản? Đăng nhập ngay</OthersText>  
             </InnerContainer>
         </StyledContainer>
     )
