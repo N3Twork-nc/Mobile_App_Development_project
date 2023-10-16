@@ -5,7 +5,7 @@ from Source.controllers.mail_class import Mail
 
 
 
-@app.post('/signin')
+@app.post('/APIsignin')
 async def signin(body: Account):
     result=body.checkAccount()
     if result==True:
