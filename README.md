@@ -11,7 +11,7 @@ Trường Đại học Công Nghệ Thông Tin
 - Đây là đồ án môn học Phát triển ứng dụng trên thiết bị di động
 - Chúng tôi xây dựng một ứng dụng di động để quản lý cây trồng, áp dụng deep learning để nhận cây trồng
 ### 2. Sơ đồ hoạt động
-![diagram](http://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/System%20structure%20diagram.png)
+![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/System%20structure%20diagram.png?raw=true)
 ### 3. Các ngôn ngữ lập trình và công nghệ sử dụng
 #### a) Các ngôn ngữ lập trình
 - Trên thiết bị di động: react native
