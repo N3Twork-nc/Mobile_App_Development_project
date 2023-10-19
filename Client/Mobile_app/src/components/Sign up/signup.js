@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { StyledContainer, InnerContainer, IconButton, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText } from './styleSignup'
+import { StyledContainer, InnerContainer, IconButton, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1 } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -16,8 +16,8 @@ const Signup = () => {
           navigation.navigate('SignIn');
         };
       
-    const handleSignUp = () => {
-        navigation.navigate('SignUp');
+    const handleVerify  = () => {
+        navigation.navigate('VerifyCode');
       };
     return(
         <KeyboardAwareScrollView
@@ -27,7 +27,7 @@ const Signup = () => {
         <StyledContainer>
             <InnerContainer>
                 <Slogan>
-                    ĐĂNG KÝ
+                    ĐĂNG KÝ 
                 </Slogan>
                 <ButtonSignupwFB>
                     <IconButton resizeMode="contain" source={require('../../assets/facebook.png')}/>
@@ -52,7 +52,7 @@ const Signup = () => {
                     <CheckboxText>Tôi đã đọc và đồng ý với các điều khoản của ứng dụng.</CheckboxText>
                 </CheckboxContainer>                
                 <ButtonCreateAccount>
-                    <ButtonText onPress={handleSignUp} >Đăng ký</ButtonText>
+                    <ButtonText1 onPress={handleVerify} >Đăng ký</ButtonText1>
                 </ButtonCreateAccount>
                 <OthersText onPress={handleSignIn} >Đã có tài khoản? Đăng nhập</OthersText>  
             </InnerContainer>

@@ -33,11 +33,9 @@ export const InnerContainer = styled.View`
 export const Slogan = styled.Text`
 color: #0B4F06;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-font-family: Inter;
-font-size: 40px;
+fontSize: 40px;
 font-style: normal;
 font-weight: bold;
-line-height: normal;
 `;
 
 
@@ -49,22 +47,22 @@ export const ButtonSignup = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px; /* hoặc sử dụng padding-top */
+  height: 60px; 
 `;
 export const ButtonText = styled.Text`
   
-  font-size: 25px;
+  fontSize: 25px;
   color: ${white};
   font-weight: bold;
   text-align: center;
 `;
 export const OthersText = styled.Text`
-  font-size: 20px;
+  fontSize: 20px;
   margin-top: 5%;
   margin-bottom: 3%;
   color: ${black};
   font-weight: bold;
-  text-align: center;
+  align-self: center;
 `;
 
 export const ImgPlant=styled.Image`

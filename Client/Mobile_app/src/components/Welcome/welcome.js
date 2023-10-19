@@ -1,9 +1,18 @@
 import React, {useState} from 'react'
 import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText, ButtonSignup,ImgPlant} from './styleWelcome'
+import { useNavigation } from '@react-navigation/native';
 
 const Welcome = () => {
     const [isChecked, setIsChecked] = useState(false);
+  const navigation = useNavigation();
 
+  const handleSignIn = () => {
+    navigation.navigate('SignIn');
+  };
+  
+  const handleSignUp = () => {
+    navigation.navigate('SignUp');
+  };
     return(
         <StyledContainer>
             <InnerContainer>
@@ -13,9 +22,9 @@ const Welcome = () => {
                 </Slogan>  
                 <ImgPlant resizeMode="cover" source={require('../../assets/welcome.png')} />                
                 <ButtonSignup>
-                    <ButtonText>Đăng ký</ButtonText>
+                    <ButtonText onPress={handleSignUp}>Đăng ký</ButtonText>
                 </ButtonSignup>
-                <OthersText>Bạn đã có tài khoản? Đăng nhập ngay</OthersText>  
+                <OthersText onPress={handleSignIn}>Bạn đã có tài khoản? Đăng nhập ngay</OthersText>  
             </InnerContainer>
         </StyledContainer>
     )

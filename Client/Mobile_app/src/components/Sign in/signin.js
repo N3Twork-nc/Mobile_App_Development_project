@@ -8,6 +8,7 @@ import {
   ButtonSigninwFB,
   ButtonSigninwGG, 
   ButtonText, 
+  ButtonText1,
   OthersText1, 
   OthersText2, 
   OthersText3, 
@@ -53,7 +54,7 @@ const Signin = () => {
                 <ButtonText>Đăng nhập với Google</ButtonText>
               </ButtonSigninwGG>
             </InnerContainer>
-            <InputContainer>              
+            <InputContainer>  
               <OthersText1>Hoặc đăng nhập với Email</OthersText1>                           
               <OthersText2>Tên tài khoản hoặc Email</OthersText2>
               <InputText></InputText>
@@ -61,7 +62,7 @@ const Signin = () => {
               <InputText></InputText>     
               <OthersText3 onPress={handleForgotPassword}>Quên mật khẩu?</OthersText3>           
               <ButtonSignin>
-                <ButtonText onPress={handleSignIn}>Đăng nhập</ButtonText>
+                <ButtonText1 onPress={handleSignIn}>Đăng nhập</ButtonText1>
               </ButtonSignin>   
               <OthersText1 onPress={handleSignUp}>Chưa có tài khoản? Đăng ký</OthersText1>
             </InputContainer>
