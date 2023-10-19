@@ -3,19 +3,21 @@ from firebase_admin import db
 import threading
 
 class Account(BaseModel):
+    fullname: str=None
     username: str
     password: str=None
     email: str=None
     OTP:str=None
 
 
-    def insertAccout(self):
+    def insertAccount(self):
         ref=db.reference('Accounts')
         user=ref.child(self.username)
         user.set({
+            'fullname':f'{self.fullname}',
             'username':f'{self.username}',
-            'passord':f'{self.password}',
-            'email':f'{self.email}'
+            'email':f'{self.email}',
+            'password':f'{self.password}'
         })
 
     def checkAccount(self):
@@ -28,6 +30,7 @@ class Account(BaseModel):
         ref=db.reference('OTP')
         user=ref.child(self.username)
         user.set({
+            'fullname':f'{self.fullname}',
             'username':self.username,
             'password':f'{self.password}',
             'email':self.email,

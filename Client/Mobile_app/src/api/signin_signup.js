@@ -1,20 +1,52 @@
-import axios from "axios"; 
+import axios from "axios";
 
+export const signin = (username, password) => {
+  const data = {
+    "username": `${username}`,
+    "password": `${password}`
+  };
 
-// Gọi API đăng ký
-export const siginin = (username,password) => {
-  const data={
-    "username":`${username}`,
-    "password":`${password}`
-  }
-  axios.post('http://192.168.137.1:8080/APIsignin',data)
-  .then(response => {
-    console.log(response.data); // Xử lý phản hồi từ API
-  })
-  .catch(error => {
-    console.error(error);
-  });
-}
+  axios.post('http://10.0.133.77:8080/APIsignin', data)
+    .then(response => {
+      console.log(response.data); // Xử lý phản hồi từ API
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+
+export const signup = (fullname, username, password, email) => {
+  const data = {
+    "fullname": `${fullname}`,
+    "username": `${username}`,
+    "password": `${password}`,
+    "email": `${email}`
+  };
+  axios.put('http://10.0.133.77:8080/APIsignup', data)
+    .then(response => {
+      console.log(response.data); // Xử lý phản hồi từ API
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+
+export const verify = (fullname, username, password, email, otp) => {
+  const data = {
+    "fullname": `${fullname}`,
+    "username": `${username}`,
+    "password": `${password}`,
+    "email": `${email}`,
+    "OTP": `${otp}`
+  };
+  axios.post('http://10.0.133.77:8080/APIsignup', data)
+    .then(response => {
+      console.log(response.data); // Xử lý phản hồi từ API
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
 
 // Gọi API xác minh
 // const verify = async () => {
