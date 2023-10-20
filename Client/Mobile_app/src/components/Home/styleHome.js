@@ -40,7 +40,6 @@ export const HeaderContainer = styled.View`
   position: relative;
   align-items: center;
   justify-content: center;
-  margin-top: -10px;
 `;
 export const MainTitle = styled.Text`
   font-size: 25px;
@@ -139,36 +138,37 @@ export const RecentlyPlantContainer = styled.View`
 `;
 
 export const Plant1Container = styled.TouchableOpacity`
-  height: 150px;
+  height: 170px;
   width: 48%;
   border-radius: 13px;
   background-color: ${white_gray};
   align-self: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Plant2Container = styled.TouchableOpacity`
-  height: 150px;
+  height: 170px;
   width: 48%;
   border-radius: 13px;
   background-color: ${white_gray};
   align-self: flex-start;
+  justify-content: center; 
+  align-items: center;
 `;
 
 export const ImageFrame = styled.Image`
-  position: absolute;
-  align-self: center;
-  top: 10%;
   width: 70%;
-  height: 100px;
+  height: 65%;
   border-radius: 13px;
 `;
 
 export const PlantName = styled.Text`
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: ${black};
-  margin-top: 78%;
   align-self: center;
+  margin-top:5%;
 `
 
 // Category
@@ -192,6 +192,7 @@ export const LeftRoomContainer = styled.TouchableOpacity`
   justify-content: space-between;
   position: relative;
   align-items: center;
+  margin-bottom: 5px;  
 `;
 export const RightRoomContainer = styled.TouchableOpacity`
   height: 65px;
@@ -266,13 +267,26 @@ export const BackyardContainer = styled.TouchableOpacity`
   align-self: flex-start;
 `;
 
-export const CategoryButtonText = styled.Text`
-font-size: 14px;
-color: ${black};
-align-self: flex-end;
-font-weight: bold;
-align-self: center;
-left: 15%;
+export const CategoryDetailText = styled.View`
+  flex-direction: column;
+  justify-content: center;
+  left: 17%;
+`;
+
+export const RoomName = styled.Text`
+  font-size: 14px;
+  color: ${black};
+  font-weight: 500;
+  align-self: flex-start;
+  margin-bottom: 4px; /* Add margin-bottom to create space between RoomName and TotalPlant */
+`;
+
+export const TotalPlant = styled.Text`
+  font-size: 11px;
+  font-weight: 400;
+  margin-bottom:1px;
+  color: ${gray_subtype};
+  align-self: flex-start;
 `;
 
 export const Icon = styled.Image`
@@ -293,7 +307,7 @@ export const NotificationContainer = styled.TouchableOpacity`
     align-items: center;
     justify-content: space-between;
     padding-horizontal: 10px;
-    margin-bottom: 5px;
+    margin-top: 7px;
 `;
 
 export const NotificationImageContainer = styled.Image`
@@ -326,18 +340,40 @@ export const MoreNotifyContainer = styled.Image`
 
 
 // Taskbar
-export const AppContainer = styled.View`
-  flex: 1;
-  position: relative;
-`;
 
 export const Taskbar = styled.View`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px;
+  height: 55px;
   background-color: ${white};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5px;
   /* Các thuộc tính CSS khác cho thanh taskbar */
 `;
 
+export const ContainerButtonExplore = styled.TouchableOpacity`
+  height: 100%;
+  width: 18%;
+  border-radius: 13px;
+  align-self: flex-start;
+  justify-content: center; /* Add justify-content property to vertically center the content */
+  align-items: center; /* Add align-items property to horizontally center the content */
+`;
+
+export const ExploreIcon = styled.Image`
+  width: 65%;
+  height: 45%;
+`;
+
+export const TaskbarButtonText = styled.Text`
+  font-size: 10px;
+  font-weight: 600;
+  color: ${black};
+  margin-top: 5px; /* Adjust the margin-top value to create space between the image and text */
+  align-self: center;
+`;

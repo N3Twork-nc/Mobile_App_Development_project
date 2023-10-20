@@ -9,9 +9,11 @@ import {
   ImageFrame,
   FirstRooms, SecondRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
   KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer,
-  CategoryPlantRoom, CategoryButtonText,
+  CategoryPlantRoom, RoomName,
   Taskbar,
-  NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify
+  NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify, TotalPlant, CategoryDetailText,
+  ContainerButtonExplore,ContainerMyGarden,ContainerProfile,ContainerSaved, ExploreIcon, TaskbarButtonText,
+
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
 import { Image } from 'react-native';
@@ -70,8 +72,11 @@ const Home = () => {
                   <RoomContainer>
                     <LivingroomContainer>
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
-                    </LivingroomContainer>  
-                    <CategoryButtonText>Phòng khách</CategoryButtonText>  
+                    </LivingroomContainer> 
+                    <CategoryDetailText>
+                      <TotalPlant>5 plants</TotalPlant>
+                      <RoomName>Phòng khách</RoomName> 
+                    </CategoryDetailText>                      
                   </RoomContainer>                    
                 </LeftRoomContainer>
                 <RightRoomContainer>
@@ -79,7 +84,10 @@ const Home = () => {
                     <KitchenContainer>
                       <Icon resizeMode="contain" source={require('../../assets/kitchen.png')}/>
                     </KitchenContainer> 
-                    <CategoryButtonText>Nhà bếp</CategoryButtonText>  
+                    <CategoryDetailText>
+                      <TotalPlant>5 plants</TotalPlant>
+                      <RoomName>Nhà bếp</RoomName> 
+                    </CategoryDetailText> 
                   </RoomContainer>          
                 </RightRoomContainer>
               </FirstRooms>
@@ -89,7 +97,10 @@ const Home = () => {
                     <BedroomContainer>
                       <Icon resizeMode="contain" source={require('../../assets/bedroom.png')}/>
                     </BedroomContainer>
-                    <CategoryButtonText>Phòng ngủ</CategoryButtonText> 
+                    <CategoryDetailText>
+                      <TotalPlant>5 plants</TotalPlant>                      
+                      <RoomName>Phòng ngủ</RoomName> 
+                    </CategoryDetailText>
                   </RoomContainer>
                 </LeftRoomContainer>
                 <RightRoomContainer>
@@ -97,7 +108,10 @@ const Home = () => {
                     <BackyardContainer>
                       <Icon resizeMode="contain" source={require('../../assets/backyard.png')}/>
                     </BackyardContainer>
-                    <CategoryButtonText>Sân vườn</CategoryButtonText> 
+                    <CategoryDetailText>
+                      <TotalPlant>5 plants</TotalPlant>
+                      <RoomName>Sân vườn</RoomName> 
+                    </CategoryDetailText>
                   </RoomContainer>          
                 </RightRoomContainer>
               </SecondRooms>
@@ -114,7 +128,7 @@ const Home = () => {
 
           {/* Thông báo 1 */}
           <NotificationContainer>
-            <NotificationImageContainer resizeMode="conver" source={require('../../assets/welcome.png')}/>
+            <NotificationImageContainer resizeMode="cover" source={require('../../assets/welcome.png')}/>
             <TextNotification>
               <MainTextNotify numberOfLines={1} ellipsizeMode="tail">Khát nước quá Ngân ơi cho xin mín nước</MainTextNotify>
               <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Ngồi hút trà sữa rột rột mà không thấy áy náy hả</SubTextNotify>
@@ -127,7 +141,7 @@ const Home = () => {
             <NotificationImageContainer resizeMode="cover" source={require('../../assets/plant.jpg')}/>
             <TextNotification>
               <MainTextNotify numberOfLines={1} ellipsizeMode="tail">Khát nước quá Ngân ơi cho xin mín nước</MainTextNotify>
-              <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Tưới nước cho tao đi cddddđ</SubTextNotify>
+              <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Đã 2 tuần rồi bạn không tưới nước</SubTextNotify>
             </TextNotification>
             <MoreNotifyContainer resizeMode="contain" source={require('../../assets/more.png')}/>
           </NotificationContainer>
@@ -137,14 +151,35 @@ const Home = () => {
             <NotificationImageContainer resizeMode="cover" source={require('../../assets/plant2.jpg')}/>
             <TextNotification>
               <MainTextNotify numberOfLines={1} ellipsizeMode="tail">Khát nước quá Ngân ơi cho xin mín nước</MainTextNotify>
-              <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Tưới nước cho tao đi cddddđ</SubTextNotify>
+              <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Đã 2 tuần rồi bạn không tưới nước</SubTextNotify>
             </TextNotification>
             <MoreNotifyContainer resizeMode="contain" source={require('../../assets/more.png')}/>
           </NotificationContainer>
         </StyledContainer>        
       </ScrollView>
+
+      {/* Taskbar */}
       <Taskbar>
-          {/* Các thành phần trong thanh taskbar */}
+         <ContainerButtonExplore>
+          <ExploreIcon resizeMode="contain" source={require('../../assets/explore.png')}/>
+          <TaskbarButtonText>Khám phá</TaskbarButtonText>
+         </ContainerButtonExplore>
+         <ContainerButtonExplore>
+           <ExploreIcon resizeMode="contain" source={require('../../assets/mygarden.png')}/>
+           <TaskbarButtonText>Vườn của tôi</TaskbarButtonText>
+         </ContainerButtonExplore>
+         <ContainerButtonExplore>
+          <ExploreIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
+          <TaskbarButtonText>Scan</TaskbarButtonText>
+         </ContainerButtonExplore>
+         <ContainerButtonExplore>
+          <ExploreIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
+          <TaskbarButtonText>Đã lưu</TaskbarButtonText>
+         </ContainerButtonExplore>
+         <ContainerButtonExplore>
+          <ExploreIcon resizeMode="contain" source={require('../../assets/profile.png')}/>
+          <TaskbarButtonText>Cá nhân</TaskbarButtonText>
+         </ContainerButtonExplore>
       </Taskbar>
     </SafeAreaView>
   );
