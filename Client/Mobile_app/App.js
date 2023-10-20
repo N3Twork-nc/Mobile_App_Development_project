@@ -1,8 +1,10 @@
 import React from 'react';
-import AppNavigator from './src/navigators/AppNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+import Home from './src/components/Home/home';
+import Signin from './src/components/Sign in/signin'
 
-const App = () => {
-  return <AppNavigator />;
+export default function App() {
+  return <NavigationContainer>
+          <Home/>
+         </NavigationContainer>
 };
-
-export default App;
