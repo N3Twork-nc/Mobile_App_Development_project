@@ -41,7 +41,7 @@ const Verifycode = () => {
                     NHẬP MÃ XÁC NHẬN 
             </Slogan>
             <ImgPo resizeMode="cover" source={require('C:/Mobile_App_Development_project/Client/Mobile_app/src/assets/Polygon.png')} />
-            <ImgLeaf resizeMode="cover" source={require('C:/Mobile_App_Development_project/Client/Mobile_app/src/assets/leaf.png')} />
+            <ImgLeaf resizeMode="cover" source={require('C:/Mobile_App_Development_project/Client/Mobile_app/src/assets/logo.png')} />
 
             <InnerContainer>
             <Text1 >Một mã xác nhận đã được gửi  </Text1> 
