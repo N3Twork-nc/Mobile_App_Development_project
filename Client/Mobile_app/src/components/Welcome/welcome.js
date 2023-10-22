@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
+import {Image} from 'react-native'
 import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText, ButtonSignup,ImgPlant} from './styleWelcome'
 import { useNavigation } from '@react-navigation/native';
 
 const Welcome = () => {
     const [isChecked, setIsChecked] = useState(false);
   const navigation = useNavigation();
-
   const handleSignIn = () => {
     navigation.navigate('SignIn');
   };

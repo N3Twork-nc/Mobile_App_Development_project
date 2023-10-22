@@ -37,8 +37,10 @@ const Signin = () => {
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : null}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+      behavior1={Platform.OS === 'ios' ? 'padding' : null}
+      behavior2={Platform.OS === 'android' ? 'padding' : null}
+      keyboardVerticalOffset1={Platform.OS === 'ios' ? 64 : 0}
+      keyboardVerticalOffset2={Platform.OS === 'android' ? 64 : 0}
     >
       {
         
