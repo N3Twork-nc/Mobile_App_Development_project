@@ -1,5 +1,5 @@
 from Source import app
-from Source.models_mvc.accoout_model import Account
+from Source.models_mvc.account_model import Account
 import random
 from Source.controllers.mail_class import Mail
 
@@ -35,6 +35,6 @@ def signup(body:Account):
 def verify(body:Account):
     result=body.verifyEmail()
     if result==True:
-        body.insertAccout()
+        body.insertAccount()
         return "Signup successfull"
     return "Please re-enter OTP"
