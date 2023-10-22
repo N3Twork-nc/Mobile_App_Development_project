@@ -2,17 +2,22 @@ import axios from "axios";
 
 export const signin = (username, password) => {
   const data = {
-    "username": `${username}`,
-    "password": `${password}`
+    username: username,
+    password: password
   };
 
-  axios.post('http://10.0.133.77:8080/APIsignin', data)
-    .then(response => {
-      console.log(response.data); // Xử lý phản hồi từ API
-    })
-    .catch(error => {
-      console.error(error);
-    });
+  return new Promise((resolve, reject) => {
+    axios
+      .post('http://10.0.128.98:8080/APIsignin', data)
+      .then(response => {
+        console.log(response.data); 
+        resolve(response);
+      })
+      .catch(error => {
+        console.error(error);
+        reject(error);
+      });
+  });
 };
 
 export const signup = (fullname, username, password, email) => {
@@ -22,13 +27,16 @@ export const signup = (fullname, username, password, email) => {
     "password": `${password}`,
     "email": `${email}`
   };
-  axios.put('http://10.0.133.77:8080/APIsignup', data)
+
+  return new Promise((resolve, reject) => {
+  axios.put('http://0.0.0.0:8080/APIsignup', data)
     .then(response => {
       console.log(response.data); // Xử lý phản hồi từ API
     })
     .catch(error => {
       console.error(error);
     });
+  });
 };
 
 export const verify = (fullname, username, password, email, otp) => {
@@ -39,13 +47,15 @@ export const verify = (fullname, username, password, email, otp) => {
     "email": `${email}`,
     "OTP": `${otp}`
   };
-  axios.post('http://10.0.133.77:8080/APIsignup', data)
+  return new Promise((resolve, reject) => {
+  axios.post('http://0.0.0.0:8080/APIsignup', data)
     .then(response => {
       console.log(response.data); // Xử lý phản hồi từ API
     })
     .catch(error => {
       console.error(error);
     });
+  });
 };
 
 // Gọi API xác minh
