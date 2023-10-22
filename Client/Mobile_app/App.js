@@ -1,12 +1,11 @@
 import React from 'react';
-import AppNavigator from './src/navigators/AppNavigator';
-import {signup, signin, verify} from './src/api/signin_signup';
 
-const App = () => {
-  //signup("Lê Huỳnh Anh Thư", "anhthu1", "123456", "lehuynhanhthu7403@gmail.com")
-  //verify("Lê Huỳnh Anh Thư", "anhthu1", "123456", "lehuynhanhthu7403@gmail.com", "2650")
-  //signin("anhthu1","123456")
-  return <AppNavigator />;
+import { NavigationContainer } from '@react-navigation/native';
+import Home from './src/components/Home/home';
+import Signin from './src/components/Sign in/signin'
+
+export default function App() {
+  return <NavigationContainer>
+          <Home/>
+         </NavigationContainer>
 };
-
-export default App;
