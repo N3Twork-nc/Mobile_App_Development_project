@@ -31,57 +31,45 @@ export const InnerContainer = styled.View`
  
 //slogan
 export const Slogan = styled.Text`
-  font-size: 40px;
-  font-style: normal;
-  margin-top: 5%;
-  margin-bottom: 8%;
-  color: ${black};
-  font-weight: bold;
-  text-align: center;
+color: #0B4F06;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+fontSize: 40px;
+font-style: normal;
+font-weight: bold;
 `;
 
 
 export const ButtonSignup = styled.TouchableOpacity`
+  margin-top: 40px;
   background-color: ${black};
   border-radius: 30px;
-  width: 50%;
+  width: 70%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px; /* hoặc sử dụng padding-top */
+  height: 60px; 
 `;
 export const ButtonText = styled.Text`
-  font-size: 30px;
+  
+  fontSize: 25px;
   color: ${white};
   font-weight: bold;
   text-align: center;
 `;
 export const OthersText = styled.Text`
-  font-size: 30px;
+  fontSize: 20px;
   margin-top: 5%;
   margin-bottom: 3%;
   color: ${black};
   font-weight: bold;
-  text-align: center;
+  align-self: center;
 `;
 
 export const ImgPlant=styled.Image`
   width: 280px;
   height: 291px;
   flex-shrink: 0;
+  margin-top:30px;
+  margin-bottom: 60px;
 `;
 
-// export const StyledBox = styled.div`
-// height: 93px;
-// width: 212px;
-
-// & .rectangle {
-//   background-color: #ffffff;
-//   border-radius: 91.5px;
-//   height: 93px;
-//   left: 0;
-//   position: fixed;
-//   top: 0;
-//   width: 212px;
-// }
-// `;

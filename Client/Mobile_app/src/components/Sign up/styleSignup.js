@@ -34,10 +34,11 @@ export const InnerContainer = styled.View`
 export const Slogan = styled.Text`
   fontSize: 27px;
   margin-top: 10%;
-  margin-bottom: 5%;
+  margin-bottom: 8%;
   color: ${black};
   font-weight: bold;
   text-align: center;
+  color: #0B4F06;text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 //button Signup
@@ -68,6 +69,7 @@ export const ButtonCreateAccount = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 30px;
   height: 60px; /* hoặc sử dụng padding-top */
 `;
 export const ButtonText = styled.Text`
@@ -125,4 +127,10 @@ export const OthersCheckbox = styled(CheckBox)`
 export const CheckboxText = styled.Text`
   font-weight: 500;
   fontSize: 14px;
+`;
+export const ButtonText1 = styled.Text`
+  fontSize: 20px;
+  color: ${white};
+  font-weight: bold;
+  text-align: center;
 `;
