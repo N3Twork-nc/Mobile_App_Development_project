@@ -29,12 +29,14 @@ export const signup = (fullname, username, password, email) => {
   };
 
   return new Promise((resolve, reject) => {
-  axios.put('http://0.0.0.0:8080/APIsignup', data)
+  axios.put('http://172.20.10.6:8080/APIsignup', data)
     .then(response => {
-      console.log(response.data); // Xử lý phản hồi từ API
+      console.log(response.data);
+      resolve(response); // Xử lý phản hồi từ API
     })
     .catch(error => {
       console.error(error);
+      reject(error);
     });
   });
 };
@@ -48,7 +50,7 @@ export const verify = (fullname, username, password, email, otp) => {
     "OTP": `${otp}`
   };
   return new Promise((resolve, reject) => {
-  axios.post('http://0.0.0.0:8080/APIsignup', data)
+  axios.post('http://172.20.10.6:8080/APIsignup', data)
     .then(response => {
       console.log(response.data); // Xử lý phản hồi từ API
     })
