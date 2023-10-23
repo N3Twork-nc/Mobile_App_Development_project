@@ -30,7 +30,6 @@ const Signin = () => {
         console.error(error);
       });
   };
-  
 
     const handleForgotPassword = () => {
       navigation.navigate('ForgotPassword');
