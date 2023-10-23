@@ -1,38 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { 
-  StyledContainer, 
-  InnerContainer,
-  InputContainer, 
-  Slogan, 
-  IconButton,
-  ButtonSigninwFB,
-  ButtonSigninwGG, 
-  ButtonText, 
-  ButtonText1,
-  OthersText1, 
-  OthersText2, 
-  OthersText3, 
-  ButtonSignin, 
-  InputText} 
+  StyledContainer, InnerContainer,InputContainer, Slogan, 
+  IconButton,ButtonSigninwFB,ButtonText1, ButtonSigninwGG,ButtonText, 
+  OthersText1, OthersText2, OthersText3, ButtonSignin, InputText} 
 from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {signin } from '../../api/signin_signup'
+import axios from "axios";
 
 const Signin = () => {
   const navigation = useNavigation();
-
-  const handleForgotPassword = () => {
-    navigation.navigate('ForgotPassword');
-  };
+  const [textUsername, setTextUsername] = useState('');
+  const [textPassword, setTextPassword] = useState('');
 
   const handleSignIn = () => {
-    navigation.navigate('SignIn');
+    const username = textUsername;
+    const password = textPassword;
+
+    signin(username, password)
+      .then(response => {
+        console.log(response.data); 
+        if (response.data== "Login successfull") {
+          navigation.navigate('Home');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
   
-  const handleSignUp = () => {
-    navigation.navigate('SignUp');
-  };
+
+    const handleForgotPassword = () => {
+      navigation.navigate('ForgotPassword');
+    };
+    const handleSignUp = () => {
+      navigation.navigate('SignUp');
+    };
+  
+
 
   return (
     <KeyboardAwareScrollView
@@ -40,10 +47,8 @@ const Signin = () => {
       behavior1={Platform.OS === 'ios' ? 'padding' : null}
       behavior2={Platform.OS === 'android' ? 'padding' : null}
       keyboardVerticalOffset1={Platform.OS === 'ios' ? 64 : 0}
-      keyboardVerticalOffset2={Platform.OS === 'android' ? 64 : 0}
-    >
-      {
-        
+      keyboardVerticalOffset2={Platform.OS === 'android' ? 64 : 0}>
+      {        
         <StyledContainer>
             <InnerContainer>
               <Slogan>ĐĂNG NHẬP</Slogan>                
@@ -59,9 +64,9 @@ const Signin = () => {
             <InputContainer>  
               <OthersText1>Hoặc đăng nhập với Email</OthersText1>                           
               <OthersText2>Tên tài khoản hoặc Email</OthersText2>
-              <InputText></InputText>
+              <InputText onChangeText={setTextUsername} />
               <OthersText2>Mật khẩu</OthersText2>
-              <InputText></InputText>     
+              <InputText onChangeText={setTextPassword} />    
               <OthersText3 onPress={handleForgotPassword}>Quên mật khẩu?</OthersText3>           
               <ButtonSignin>
                 <ButtonText1 onPress={handleSignIn}>Đăng nhập</ButtonText1>
