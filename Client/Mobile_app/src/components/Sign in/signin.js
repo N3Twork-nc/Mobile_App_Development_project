@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { 
   StyledContainer, InnerContainer,InputContainer, Slogan, 
-  IconButton,ButtonSigninwFB,ButtonSigninwGG,ButtonText, 
+  IconButton,ButtonSigninwFB,ButtonText1, ButtonSigninwGG,ButtonText, 
   OthersText1, OthersText2, OthersText3, ButtonSignin, InputText} 
 from './styleSignin';
 import { useNavigation } from '@react-navigation/native';

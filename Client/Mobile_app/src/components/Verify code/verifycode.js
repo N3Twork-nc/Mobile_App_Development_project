@@ -36,12 +36,12 @@ const Verifycode = () => {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
         <StyledContainer>
 
-            <ImgHead resizeMode="cover" source={require('C:/Mobile_App_Development_project/Client/Mobile_app/src/assets/Head.png')} />
+            <ImgHead resizeMode="cover" source={require('../../assets/Head.png')} />
             <Slogan>
                     NHẬP MÃ XÁC NHẬN 
             </Slogan>
-            <ImgPo resizeMode="cover" source={require('C:/Mobile_App_Development_project/Client/Mobile_app/src/assets/Polygon.png')} />
-            <ImgLeaf resizeMode="cover" source={require('C:/Mobile_App_Development_project/Client/Mobile_app/src/assets/logo.png')} />
+            <ImgPo resizeMode="cover" source={require('../../assets/Polygon.png')} />
+            <ImgLeaf resizeMode="cover" source={require('../../assets/logo.png')} />
 
             <InnerContainer>
             <Text1 >Một mã xác nhận đã được gửi  </Text1> 
