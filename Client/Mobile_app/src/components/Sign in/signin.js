@@ -30,7 +30,7 @@ const Signin = () => {
       .catch(error => {
         console.error(error);
       });
-  };  
+  };
   
 
     const handleForgotPassword = () => {
