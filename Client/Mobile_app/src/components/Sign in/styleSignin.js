@@ -141,5 +141,11 @@ export const ButtonSignin = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px; /* hoặc sử dụng padding-top */
+  height: 60px; 
+`;
+export const ButtonText1 = styled.Text`
+  fontSize: 20px;
+  color: ${white};
+  font-weight: bold;
+  text-align: center;
 `;

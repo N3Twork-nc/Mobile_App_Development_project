@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import { 
   StyledContainer, InnerContainer,InputContainer, Slogan, 
   IconButton,ButtonSigninwFB,ButtonSigninwGG,ButtonText, 
-  OthersText1, OthersText2, OthersText3, ButtonSignin, 
-  InputText} 
+  OthersText1, OthersText2, OthersText3, ButtonSignin, InputText} 
 from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
@@ -62,7 +61,7 @@ const Signin = () => {
                 <ButtonText>Đăng nhập với Google</ButtonText>
               </ButtonSigninwGG>
             </InnerContainer>
-            <InputContainer>              
+            <InputContainer>  
               <OthersText1>Hoặc đăng nhập với Email</OthersText1>                           
               <OthersText2>Tên tài khoản hoặc Email</OthersText2>
               <InputText onChangeText={setTextUsername} />
@@ -70,7 +69,7 @@ const Signin = () => {
               <InputText onChangeText={setTextPassword} />    
               <OthersText3 onPress={handleForgotPassword}>Quên mật khẩu?</OthersText3>           
               <ButtonSignin>
-                <ButtonText onPress={handleSignIn}>Đăng nhập</ButtonText>
+                <ButtonText1 onPress={handleSignIn}>Đăng nhập</ButtonText1>
               </ButtonSignin>   
               <OthersText1 onPress={handleSignUp}>Chưa có tài khoản? Đăng ký</OthersText1>
             </InputContainer>
