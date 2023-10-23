@@ -71,7 +71,7 @@ const Signup = () => {
                     <CheckboxText>Tôi đã đọc và đồng ý với các điều khoản của ứng dụng.</CheckboxText>
                 </CheckboxContainer>                
                 <ButtonCreateAccount>
-                    <ButtonText1 onPress={handleVerify} >Đăng ký</ButtonText1>
+                    <ButtonText1 onPress={handleSignUp}> Đăng ký</ButtonText1>
                 </ButtonCreateAccount>
                 <OthersText onPress={handleSignIn} >Đã có tài khoản? Đăng nhập</OthersText>  
             </InnerContainer>
