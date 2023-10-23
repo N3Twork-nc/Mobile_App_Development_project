@@ -6,6 +6,7 @@ import Signin from '../components/Sign in/signin';
 import Signup from '../components/Sign up/signup';
 import Home from '../components/Home/home';
 import Verifycode from '../components/Verify code/verifycode';
+import Livingroom from '../components/Livingroom/livingroom';
 
 
 const Stack = createStackNavigator();
@@ -21,6 +22,7 @@ const AppNavigator = () => {
         <Stack.Screen name="SignUp" component={Signup} />
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="VerifyCode" component={Verifycode} />      
+        <Stack.Screen name="Livingroom" component={Livingroom} />
 
       </Stack.Navigator>
     </NavigationContainer>

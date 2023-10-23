@@ -23,7 +23,6 @@ const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple
  export const StyledContainer = styled.View`
  flex: 1;
  padding: 20px;
- paddingTop: 10px;
  background-color: ${white};
 
 `;
@@ -43,7 +42,6 @@ export const HeaderContainer = styled.View`
 `;
 export const MainTitle = styled.Text`
   font-size: 25px;
-  margin-top: 5%;
   margin-bottom: 5%;
   color: ${black};
   font-weight: bold;
@@ -361,8 +359,9 @@ export const ContainerButtonExplore = styled.TouchableOpacity`
   width: 18%;
   border-radius: 13px;
   align-self: flex-start;
-  justify-content: center; /* Add justify-content property to vertically center the content */
-  align-items: center; /* Add align-items property to horizontally center the content */
+  justify-content: center;
+  align-items: center; 
+  margin-bottom: 0;
 `;
 
 export const ExploreIcon = styled.Image`
@@ -374,6 +373,6 @@ export const TaskbarButtonText = styled.Text`
   font-size: 10px;
   font-weight: 600;
   color: ${black};
-  margin-top: 5px; /* Adjust the margin-top value to create space between the image and text */
+  margin-top: 5px;
   align-self: center;
 `;

@@ -16,10 +16,13 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { Image } from 'react-native';
 
 const Home = () => {
   const navigation = useNavigation();
+  const handleLivingroom = () => {
+    navigation.navigate('Livingroom');
+
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -70,10 +73,10 @@ const Home = () => {
               <FirstRooms>
                 <LeftRoomContainer>
                   <RoomContainer>
-                    <LivingroomContainer>
+                    <LivingroomContainer onPress = {handleLivingroom}>
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
-                    <CategoryDetailText>
+                    <CategoryDetailText onPress = {handleLivingroom}>
                       <TotalPlant>5 plants</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
@@ -165,8 +168,8 @@ const Home = () => {
           <TaskbarButtonText>Khám phá</TaskbarButtonText>
          </ContainerButtonExplore>
          <ContainerButtonExplore>
-           <ExploreIcon resizeMode="contain" source={require('../../assets/mygarden.png')}/>
-           <TaskbarButtonText>Vườn của tôi</TaskbarButtonText>
+           <ExploreIcon resizeMode="contain" source={require('../../assets/mygarden.png')} tintColor="green"/>
+           <TaskbarButtonText  style={{ color: 'green' }}>Vườn của tôi</TaskbarButtonText>
          </ContainerButtonExplore>
          <ContainerButtonExplore>
           <ExploreIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
