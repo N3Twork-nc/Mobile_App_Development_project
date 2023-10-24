@@ -8,7 +8,7 @@ export const signin = (username, password) => {
 
   return new Promise((resolve, reject) => {
     axios
-      .post('http://10.0.128.98:8080/APIsignin', data)
+      .post('http://172.16.1.241:8080/APIsignin', data)
       .then(response => {
         console.log(response.data); 
         resolve(response);
@@ -29,7 +29,7 @@ export const signup = (fullname, username, password, email) => {
   };
 
   return new Promise((resolve, reject) => {
-  axios.put('http://172.20.10.6:8080/APIsignup', data)
+  axios.put('http://172.16.1.241:8080/APIsignup', data)
     .then(response => {
       console.log(response.data);
       resolve(response); // Xử lý phản hồi từ API
@@ -49,13 +49,17 @@ export const verify = (fullname, username, password, email, otp) => {
     "email": `${email}`,
     "OTP": `${otp}`
   };
+ // console.log(fullname, username, password, email, otp );
+  
   return new Promise((resolve, reject) => {
-  axios.post('http://172.20.10.6:8080/APIsignup', data)
+  axios.post('http://172.16.1.241:8080/APIsignup', data)
     .then(response => {
       console.log(response.data); // Xử lý phản hồi từ API
+      resolve(response); 
     })
     .catch(error => {
       console.error(error);
+      reject(error);
     });
   });
 };

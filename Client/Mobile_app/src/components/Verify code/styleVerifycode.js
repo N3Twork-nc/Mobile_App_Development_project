@@ -164,3 +164,14 @@ export const BoxContainer = styled.View`
   justify-content: center;
 
 `;
+
+export const TextInput= styled.TextInput`
+  margin-bottom: 10px;
+  width: 50px; 
+  height: 50px; 
+  background-color: #f6f6f6;
+  border: 2px solid #0b4f06; 
+  margin: 5px;
+  text-align: center;
+  border-radius: 50px; 
+`;
