@@ -1,9 +1,11 @@
 import React from 'react';
-import Signin from './src/components/Sign in/signin'
 import AppNavigator from './src/navigators/AppNavigator';
-
+import { Provider } from 'react-redux';
+import store from './src/store';
 const App = () =>
 {
-  return <AppNavigator/>
+  return <Provider store={store}>
+    <AppNavigator/>
+  </Provider> 
 }
 export default App;
