@@ -25,7 +25,7 @@ def signup(body:Account):
         return "Email already exists"
     OTP=random.randint(1000,9999)
     sendMail=Mail()
-    sendMail.sendOTP(body.email,OTP)
+    sendMail.sendOTP(body.email,OTP)    
     body.insertOTP(OTP)
     return "Enter OTP"
 
