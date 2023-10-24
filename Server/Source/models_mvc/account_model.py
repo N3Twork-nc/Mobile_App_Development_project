@@ -40,14 +40,17 @@ class Account(BaseModel):
             ref=db.reference(f'OTP/{self.username}').delete()
 
         # Hẹn giờ để thực hiện tác vụ sau 2 phút
-        timer = threading.Timer(2*60, task)
+        timer = threading.Timer(30*60, task)
         # Bắt đầu đếm ngược
         timer.start()
 
     def verifyEmail(self):
-        OTP=db.reference(f'OTP/{self.username}').get()['otp']
-        if OTP==self.OTP:
-            return True
+        try : 
+            OTP=db.reference(f'OTP/{self.username}').get()['otp']
+            if OTP==self.OTP:
+                return True
+        except: 
+            return False
         return False
 
     def existenceUsername(self):
