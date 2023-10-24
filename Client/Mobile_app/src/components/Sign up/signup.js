@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import { StyledContainer, InnerContainer, IconButton, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText } from './styleSignup'
+import { StyledContainer, InnerContainer, IconButton, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1 } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import { signup } from '../../api/signin_signup'
 const Signup = () => {
     const [isChecked, setIsChecked] = useState(false);
 
@@ -11,13 +11,32 @@ const Signup = () => {
       setIsChecked(!isChecked);}
 
     const navigation = useNavigation();
-
-    const handleSignIn = () => {
-          navigation.navigate('SignIn');
-        };
+    const [textFullname, setTextFullname] = useState('');
+    const [textPassword, setTextPassword] = useState('');
+    const [textUsername, setTextUsername] = useState('');
+    const [textEmail, setEmail] = useState('');   
       
+
     const handleSignUp = () => {
-        navigation.navigate('SignUp');
+        const fullname = textFullname;
+        const username = textUsername;
+        const password = textPassword;
+        const email = textEmail;
+        signup(fullname, username, password, email)
+         .then(response => {
+            console.log(response.data);
+            if (response.data == "Enter OTP") {
+                navigation.navigate('VerifyCode');
+            }
+         })
+         .catch(error => {
+            console.error(error);
+         })        
+      };
+
+      const handleSignIn = () => {
+        navigation.navigate('SignIn');
+
       };
     return(
         <KeyboardAwareScrollView
@@ -27,7 +46,7 @@ const Signup = () => {
         <StyledContainer>
             <InnerContainer>
                 <Slogan>
-                    ĐĂNG KÝ
+                    ĐĂNG KÝ 
                 </Slogan>
                 <ButtonSignupwFB>
                     <IconButton resizeMode="contain" source={require('../../assets/facebook.png')}/>
@@ -38,10 +57,10 @@ const Signup = () => {
                     <ButtonText>Đăng ký bằng Google</ButtonText>
                 </ButtonSignupwGG>    
                 <OthersText>Hoặc đăng ký bằng Email</OthersText>                
-                <InputText placeholder="Nhập họ và tên đầy đủ"></InputText>
-                <InputText placeholder="Nhập tên tài khoản"></InputText>
-                <InputText placeholder="Nhập email"></InputText>
-                <InputText placeholder="Nhập mật khẩu"></InputText>
+                <InputText onChangeText={setTextFullname} placeholder="Nhập họ và tên đầy đủ"></InputText>
+                <InputText onChangeText={setTextUsername} placeholder="Nhập tên tài khoản"></InputText>
+                <InputText onChangeText={setEmail} placeholder="Nhập email"></InputText>
+                <InputText onChangeText={setTextPassword} placeholder="Nhập mật khẩu"></InputText>
                 <CheckboxContainer>
                     <OthersCheckbox
                         checked={isChecked}
@@ -52,7 +71,7 @@ const Signup = () => {
                     <CheckboxText>Tôi đã đọc và đồng ý với các điều khoản của ứng dụng.</CheckboxText>
                 </CheckboxContainer>                
                 <ButtonCreateAccount>
-                    <ButtonText onPress={handleSignUp} >Đăng ký</ButtonText>
+                    <ButtonText1 onPress={handleSignUp}> Đăng ký</ButtonText1>
                 </ButtonCreateAccount>
                 <OthersText onPress={handleSignIn} >Đã có tài khoản? Đăng nhập</OthersText>  
             </InnerContainer>
