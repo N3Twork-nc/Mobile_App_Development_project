@@ -1,8 +1,14 @@
-# from firebase_admin import storage
-# import firebase_admin
+from firebase_admin import storage
+from io import BytesIO
+from keras.models import load_model
+import os
 
 
 # class Storage:
 #     bucket = storage.bucket()
 #     blob = bucket.blob('Model/plants_EfficientNetB4_model256.h5')
-#     model_data =blob.download_as_bytes()
+#     blob.download_to_filename('plants_EfficientNetB4_model256.h5')
+#     model=load_model('plants_EfficientNetB4_model256.h5')
+#     os.remove('plants_EfficientNetB4_model256.h5')
+  
+    
