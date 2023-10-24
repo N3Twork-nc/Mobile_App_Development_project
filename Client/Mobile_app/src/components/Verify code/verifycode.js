@@ -10,7 +10,6 @@ import { Alert } from 'react-native';
 const Verifycode = () => {
     const navigation = useNavigation();
 
-   // const [otp, setOtp] = useState('');
     const [otp1, setOtp1] = useState('');
     const [otp2, setOtp2] = useState('');
     const [otp3, setOtp3] = useState('');
