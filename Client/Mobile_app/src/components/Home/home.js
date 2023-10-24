@@ -10,18 +10,20 @@ import {
   FirstRooms, SecondRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
   KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer,
   CategoryPlantRoom, RoomName,
-  Taskbar,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify, TotalPlant, CategoryDetailText,
-  ContainerButtonExplore,ContainerMyGarden,ContainerProfile,ContainerSaved, ExploreIcon, TaskbarButtonText,
+  
 
 } from './styleHome';
+import Taskbar from '../Taskbar/taskbar.js';
 import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
   const navigation = useNavigation();
   const handleLivingroom = () => {
     navigation.navigate('Livingroom');
-
+  };
+  const handleExplore = () => {
+    navigation.navigate('Explore', { animations: false }, {transitions: false});
   };
 
   return (
@@ -161,29 +163,8 @@ const Home = () => {
         </StyledContainer>        
       </ScrollView>
 
-      {/* Taskbar */}
-      <Taskbar>
-         <ContainerButtonExplore>
-          <ExploreIcon resizeMode="contain" source={require('../../assets/explore.png')}/>
-          <TaskbarButtonText>Khám phá</TaskbarButtonText>
-         </ContainerButtonExplore>
-         <ContainerButtonExplore>
-           <ExploreIcon resizeMode="contain" source={require('../../assets/mygarden.png')} tintColor="green"/>
-           <TaskbarButtonText  style={{ color: 'green' }}>Vườn của tôi</TaskbarButtonText>
-         </ContainerButtonExplore>
-         <ContainerButtonExplore>
-          <ExploreIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
-          <TaskbarButtonText>Scan</TaskbarButtonText>
-         </ContainerButtonExplore>
-         <ContainerButtonExplore>
-          <ExploreIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
-          <TaskbarButtonText>Đã lưu</TaskbarButtonText>
-         </ContainerButtonExplore>
-         <ContainerButtonExplore>
-          <ExploreIcon resizeMode="contain" source={require('../../assets/profile.png')}/>
-          <TaskbarButtonText>Cá nhân</TaskbarButtonText>
-         </ContainerButtonExplore>
-      </Taskbar>
+      <Taskbar/>
+      
     </SafeAreaView>
   );
 }

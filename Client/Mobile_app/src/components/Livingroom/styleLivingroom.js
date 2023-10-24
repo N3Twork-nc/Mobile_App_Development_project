@@ -34,6 +34,7 @@ export const HeaderContainer = styled.View`
   justify-content: center;
   margin-top: 10px;
   margin-bottom: 10px;
+  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 10px;'}
 `;
 export const BackContainer = styled.TouchableOpacity`
   position: absolute;
