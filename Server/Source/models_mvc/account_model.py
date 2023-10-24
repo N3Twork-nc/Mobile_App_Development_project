@@ -19,6 +19,7 @@ class Account(BaseModel):
             'email':f'{self.email}',
             'password':f'{self.password}'
         })
+        ref=db.reference(f'OTP/{self.username}').delete()
 
     def checkAccount(self):
         account=db.reference(f'Accounts/{self.username}').get()
