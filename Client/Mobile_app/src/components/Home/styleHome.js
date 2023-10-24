@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Platform } from 'react-native';
 import Constants from 'expo-constants';
 
 // default color
@@ -23,7 +23,6 @@ const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple
  export const StyledContainer = styled.View`
  flex: 1;
  padding: 20px;
- paddingTop: 10px;
  background-color: ${white};
 
 `;
@@ -39,12 +38,12 @@ export const Line = styled.View`
 export const HeaderContainer = styled.View`
   position: relative;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
+  margin-bottom: 5%;
+  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 5%;'}
 `;
 export const MainTitle = styled.Text`
   font-size: 25px;
-  margin-top: 5%;
-  margin-bottom: 5%;
   color: ${black};
   font-weight: bold;
   align-self: flex-start;
@@ -180,7 +179,7 @@ export const CategoryPlantRoom = styled.View`
   margin-bottom: 10px;
 `;
 export const RoomContainer = styled.View`
-  flex-direction: row; /* Thêm thuộc tính flex-direction: row */
+  flex-direction: row; 
   align-items: center;
 `;
 export const LeftRoomContainer = styled.TouchableOpacity`
@@ -192,13 +191,13 @@ export const LeftRoomContainer = styled.TouchableOpacity`
   justify-content: space-between;
   position: relative;
   align-items: center;
-  margin-bottom: 5px;  
 `;
 export const RightRoomContainer = styled.TouchableOpacity`
   height: 65px;
   width: 48%;
   align-self: flex-start;
   justify-content: center;
+  position: relative;
 `; 
 export const RoomsContainer = styled.View`
   flex-direction: column;
@@ -226,7 +225,7 @@ export const LivingroomContainer = styled.TouchableOpacity`
   justify-content: center;
   background-color: ${livingroom};
   border-radius: 13px;
-  border: 0.2px solid ${green};
+  border: 0.3px solid ${green};
   align-self: flex-start;  
 `;
 
@@ -238,7 +237,7 @@ export const KitchenContainer = styled.TouchableOpacity`
   justify-content: center;
   background-color: ${kitchen};
   border-radius: 13px;
-  border: 0.2px solid ${blue};
+  border: 0.3px solid ${blue};
   align-self: flex-start;
 `;
 
@@ -251,7 +250,7 @@ export const BedroomContainer = styled.TouchableOpacity`
   justify-content: center;
   background-color: ${bedroom};
   border-radius: 13px;
-  border: 0.2px solid ${orange};
+  border: 0.3px solid ${orange};
   align-self: flex-start;
 `;
 
@@ -263,11 +262,11 @@ export const BackyardContainer = styled.TouchableOpacity`
   justify-content: center;
   background-color: ${backyard};
   border-radius: 13px;
-  border: 0.2px solid ${purple};
+  border: 0.3px solid ${purple};
   align-self: flex-start;
 `;
 
-export const CategoryDetailText = styled.View`
+export const CategoryDetailText = styled.TouchableOpacity`
   flex-direction: column;
   justify-content: center;
   left: 17%;
@@ -338,42 +337,3 @@ export const MoreNotifyContainer = styled.Image`
   border-radius: 15px;
 `;
 
-
-// Taskbar
-
-export const Taskbar = styled.View`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 55px;
-  background-color: ${white};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  position: relative;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 5px;
-  /* Các thuộc tính CSS khác cho thanh taskbar */
-`;
-
-export const ContainerButtonExplore = styled.TouchableOpacity`
-  height: 100%;
-  width: 18%;
-  border-radius: 13px;
-  align-self: flex-start;
-  justify-content: center; /* Add justify-content property to vertically center the content */
-  align-items: center; /* Add align-items property to horizontally center the content */
-`;
-
-export const ExploreIcon = styled.Image`
-  width: 65%;
-  height: 45%;
-`;
-
-export const TaskbarButtonText = styled.Text`
-  font-size: 10px;
-  font-weight: 600;
-  color: ${black};
-  margin-top: 5px; /* Adjust the margin-top value to create space between the image and text */
-  align-self: center;
-`;
