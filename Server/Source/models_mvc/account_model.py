@@ -1,6 +1,19 @@
 from pydantic import BaseModel
 from firebase_admin import db
 import threading
+import hashlib
+
+def compute_hash(data):
+    # Tạo một đối tượng băm SHA-256
+    hash_object = hashlib.sha256()
+
+    # Cập nhật dữ liệu đầu vào vào đối tượng băm
+    hash_object.update(data.encode('utf-8'))
+
+    # Lấy giá trị băm cuối cùng dưới dạng chuỗi hex
+    hash_value = hash_object.hexdigest()
+
+    return hash_value
 
 class Account(BaseModel):
     fullname: str=None
@@ -17,13 +30,13 @@ class Account(BaseModel):
             'fullname':f'{self.fullname}',
             'username':f'{self.username}',
             'email':f'{self.email}',
-            'password':f'{self.password}'
+            'password':f'{compute_hash(self.password)}'
         })
         ref=db.reference(f'OTP/{self.username}').delete()
 
     def checkAccount(self):
         account=db.reference(f'Accounts/{self.username}').get()
-        if account==None or account['password']!=self.password:
+        if account==None or account['password']!=compute_hash(self.password):
             return False
         return True
 
@@ -33,7 +46,7 @@ class Account(BaseModel):
         user.set({
             'fullname':f'{self.fullname}',
             'username':self.username,
-            'password':f'{self.password}',
+            'password':f'{compute_hash(self.password)}',
             'email':self.email,
             'otp':f'{OTP}'
         })
@@ -62,7 +75,7 @@ class Account(BaseModel):
     def existenceEmail(self):
         ref=db.reference('Accounts')
         try:
-            email=ref.order_by_child('email').equal_to(self.email)['username']
-            return email
+            email=len(ref.order_by_child('email').equal_to(self.email).get())
+            return None if email==0 else email
         except:
             return None
