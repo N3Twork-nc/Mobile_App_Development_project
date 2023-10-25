@@ -8,35 +8,33 @@ import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {signin } from '../../api/signin_signup'
-import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { updateToken } from '../../reducers/token';
+import { useSelector } from 'react-redux';
 
 const Signin = () => {
+  const dispatch=useDispatch()
   const navigation = useNavigation();
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
 
-  const handleSignIn = () => {
-    const username = textUsername;
-    const password = textPassword;
-
-    signin(username, password)
-      .then(response => {
-        console.log(response.data); 
-        if (response.data== "Login successfull") {
-          navigation.navigate('Home');
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  const handleSignIn = async () => {
+    const response= await signin(textUsername,textPassword)
+    if (response['status']=="200"){
+      const action=updateToken(response['token'])
+      dispatch(action)
+      return navigation.navigate('Home')
+    }
+    else Alert.alert('Tài khoản hoặc mật khẩu không chính xác');
+  };
+  
+  const handleForgotPassword = () => {
+    navigation.navigate('ForgotPassword');
   };
 
-    const handleForgotPassword = () => {
-      navigation.navigate('ForgotPassword');
-    };
-    const handleSignUp = () => {
-      navigation.navigate('SignUp');
-    };
+  const handleSignUp = () => {
+    navigation.navigate('SignUp');
+  };
   
 
 

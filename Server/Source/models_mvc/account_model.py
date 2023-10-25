@@ -18,7 +18,7 @@ def compute_hash(data):
 class Account(BaseModel):
     fullname: str=None
     username: str
-    password: str=None
+    password: str
     email: str=None
     OTP:str=None
 

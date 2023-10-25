@@ -2,7 +2,6 @@ import React, {useState,  useEffect, useRef} from 'react'
 import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText1, ButtonConfirm, ButtonTextEllipse,TextInput,Text0,Text1, Text2,Text3,ImgHead,ImgLeaf,ImgPo,BoxContainer} from './styleVerifycode'
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import axios from 'axios'; // Import axios
 import { verify } from '../../api/signin_signup' 
 import { Alert } from 'react-native';
 import { useSelector } from 'react-redux';
@@ -34,25 +33,16 @@ const Verifycode = () => {
       navigation.navigate('SignIn');
     };
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
       const otp =`${otp1}${otp2}${otp3}${otp4}`;
       const fullname=infoUser.fullname
       const username=infoUser.username
       const password=infoUser.password
       const email=infoUser.email
       // Gọi hàm verify với mã OTP
-      verify(fullname, username, password, email, otp)
-      .then((response) => {
-        if (response.data === 'Signup successfull') {
-          navigation.navigate('SignIn'); // Chuyển đến trang SignIn khi xác nhận thành công
-        } else {
-          Alert.alert('Xác nhận thất bại', 'Mã OTP không chính xác. Vui lòng nhập lại.');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        Alert.alert('Lỗi', 'Đã xảy ra lỗi khi xác nhận đăng ký.');
-      });
+      const response = await verify(fullname, username, password, email, otp)
+      if (response=== 'Signup successfull') navigation.navigate('SignIn'); // Chuyển đến trang SignIn khi xác nhận thành công
+      else Alert.alert('Xác nhận thất bại', 'Mã OTP không chính xác. Vui lòng nhập lại.');
     };
     
     return(

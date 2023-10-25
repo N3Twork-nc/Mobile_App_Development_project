@@ -1,11 +1,13 @@
 from Source import app
-from fastapi import FastAPI, File, UploadFile
+from fastapi import UploadFile
 import numpy as np
 from io import BytesIO
 from PIL import Image
 from model_train.load_model import Model
+from Source.security import Authentication
+from fastapi import Depends
 
-@app.post('/APIPredictPlants')
+@app.post('/APIPredictPlants',dependencies=[Depends(Authentication().validate_token)])
 async def prediectPlants(file: UploadFile):
     #Đọc dữ liệu
     contents = await file.read()

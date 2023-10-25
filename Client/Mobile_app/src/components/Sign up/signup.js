@@ -22,25 +22,19 @@ const Signup = () => {
     const [textEmail, setEmail] = useState('');   
       
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
         const data={
             "username":textFullname,
             "password":textPassword,
             "email":textEmail,
             "fullname":textFullname
         }
-        const action=updateAll(data) 
-        dispatch(action)
-        signup(textFullname, textUsername, textPassword, textEmail)
-         .then(response => {
-            console.log(response.data);
-            if (response.data == "Enter OTP") {
-                navigation.navigate('VerifyCode');
-            }
-         })
-         .catch(error => {
-            console.error(error);
-         })        
+        const response= await signup(textFullname, textUsername, textPassword, textEmail)
+        if (response=="Enter OTP"){
+            const action=updateAll(data) 
+            dispatch(action)
+            return navigation.navigate('VerifyCode')
+        }
       };
 
       const handleSignIn = () => {
