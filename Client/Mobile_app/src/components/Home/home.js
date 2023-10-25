@@ -20,7 +20,6 @@ import { Image } from 'react-native';
 
 const Home = () => {
   const navigation = useNavigation();
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
