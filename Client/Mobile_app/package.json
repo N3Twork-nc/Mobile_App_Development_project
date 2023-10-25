@@ -16,6 +16,7 @@
     "axios": "^1.5.1",
     "axois": "^0.0.1-security",
     "expo": "~49.0.13",
+    "expo-media-library": "^15.6.0",
     "expo-status-bar": "~1.6.0",
     "formik": "^2.4.5",
     "octicons": "^8.5.0",
