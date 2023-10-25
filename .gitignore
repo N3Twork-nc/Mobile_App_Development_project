@@ -1,3 +1,7 @@
 */.expo
 */.vs
 */__pycache__
+*/__pycache__/*
+./Client/Mobile_app/%ProgramData%
+__pypackages__/
+__pycache__/

@@ -1,15 +1,14 @@
 import axios from "axios";
-
-const apiUrl = 'http://10.0.133.77:8080';
+import { IPServer } from ".";
 
 export const signin = (username, password) => {
   const data = {
     username: `${username}`,
     password: `${password}`
   };
-
   return new Promise((resolve, reject) => {
-    axios.post(`${apiUrl}/APIsignin`, data)
+    axios
+      .post(IPServer+'APIsignin', data)
       .then(response => {
         console.log(response.data); 
         resolve(response);
@@ -30,7 +29,7 @@ export const signup = (fullname, username, password, email) => {
   };
 
   return new Promise((resolve, reject) => {
-  axios.put(`${apiUrl}/APIsignup`, data)
+  axios.put(IPServer+'APIsignup', data)
     .then(response => {
       console.log(response.data);
       resolve(response); // Xử lý phản hồi từ API
@@ -50,15 +49,16 @@ export const verify = (fullname, username, password, email, otp) => {
     "email": `${email}`,
     "OTP": `${otp}`
   };
+ // console.log(fullname, username, password, email, otp );
+  
   return new Promise((resolve, reject) => {
-  axios.post(`${apiUrl}/APIsignup`, data)
+  axios.post(IPServer+'APIsignup', data)
     .then(response => {
       console.log(response.data); // Xử lý phản hồi từ API
-      resolve(response);
+      resolve(response); 
     })
     .catch(error => {
       console.error(error);
       reject(error);
     });
   });
-};

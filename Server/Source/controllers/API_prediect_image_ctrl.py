@@ -11,7 +11,7 @@ async def prediectPlants(file: UploadFile):
     contents = await file.read()
     #chuyển binary về numpy
     img = Image.open(BytesIO(contents))
-    img = img.resize((224, 224))
+    img = img.resize((256, 256))
     img_array = np.array(img)
     img_array = np.expand_dims(img_array, axis=0)
     #Dự đoán

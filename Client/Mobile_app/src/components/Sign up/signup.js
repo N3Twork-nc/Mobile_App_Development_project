@@ -4,9 +4,14 @@ import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { signup } from '../../api/signin_signup'
+import { useDispatch } from 'react-redux';
+import { updateAll } from '../../reducers/infoUser';
+import data from 'octicons';
+
+
 const Signup = () => {
     const [isChecked, setIsChecked] = useState(false);
-
+    const dispatch=useDispatch()
     const toggleCheckbox = () => {
       setIsChecked(!isChecked);}
 
@@ -18,11 +23,15 @@ const Signup = () => {
       
 
     const handleSignUp = () => {
-        const fullname = textFullname;
-        const username = textUsername;
-        const password = textPassword;
-        const email = textEmail;
-        signup(fullname, username, password, email)
+        const data={
+            "username":textFullname,
+            "password":textPassword,
+            "email":textEmail,
+            "fullname":textFullname
+        }
+        const action=updateAll(data) 
+        dispatch(action)
+        signup(textFullname, textUsername, textPassword, textEmail)
          .then(response => {
             console.log(response.data);
             if (response.data == "Enter OTP") {
