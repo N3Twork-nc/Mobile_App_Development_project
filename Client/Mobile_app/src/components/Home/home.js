@@ -11,9 +11,9 @@ import {
   KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer,
   CategoryPlantRoom, RoomName,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify, TotalPlant, CategoryDetailText,
-  
+  TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
+
 } from './styleHome';
-import Taskbar from '../Taskbar/taskbar.js';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 
@@ -25,10 +25,17 @@ const Home = () => {
   const handleExplore = () => {
     navigation.navigate('Explore', { animations: false }, {transitions: false});
   };
-
   const handleScan = () => {
-    navigation.navigate('CameraScreen');
-    };
+    navigation.navigate('CameraScan', { animations: false });
+  };
+  const handleSaved = () => {
+    navigation.navigate('Saved', { animations: false });
+  };
+  const handleProfile= () => {
+    navigation.navigate('Profile', { animations: false });
+  };
+
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -171,7 +178,28 @@ const Home = () => {
         </StyledContainer>        
       </ScrollView>
 
-      <Taskbar/>
+      <TaskbarView>
+      <ContainerButton onPress={handleExplore}>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/explore.png')}/>
+        <TaskbarButtonText>Khám phá</TaskbarButtonText>
+      </ContainerButton>
+      <ContainerButton>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/mygarden.png')}  tintColor={'green'} />
+        <TaskbarButtonText style={{ color: 'green' }}>Vườn của tôi</TaskbarButtonText>
+      </ContainerButton>
+      <ContainerButton>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
+        <TaskbarButtonText>Scan</TaskbarButtonText>
+      </ContainerButton>
+      <ContainerButton>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
+        <TaskbarButtonText>Đã lưu</TaskbarButtonText>
+      </ContainerButton>
+      <ContainerButton>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/profile.png')}/>
+        <TaskbarButtonText>Cá nhân</TaskbarButtonText>
+      </ContainerButton>
+    </TaskbarView>
       
     </SafeAreaView>
   );

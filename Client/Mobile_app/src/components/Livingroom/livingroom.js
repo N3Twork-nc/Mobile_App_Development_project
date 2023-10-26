@@ -19,8 +19,7 @@ return (
                 <HeaderContainer>
                     <BackContainer onPress={handleBack}>
                         <ButtonBack  resizeMode="cover" source={require('../../assets/back.png')} />
-                    </BackContainer>
-                    
+                    </BackContainer>                    
                     <MainTitle>Phòng khách</MainTitle>
                 </HeaderContainer>
 

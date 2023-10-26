@@ -5,10 +5,12 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import axios from 'axios'; // Import axios
 import { verify } from '../../api/signin_signup' 
 import { Alert } from 'react-native';
+import { useSelector } from 'react-redux';
 
 
 const Verifycode = () => {
     const navigation = useNavigation();
+    const infoUser=useSelector(state=>state.infoUser)
 
     const [otp1, setOtp1] = useState('');
     const [otp2, setOtp2] = useState('');
@@ -32,7 +34,11 @@ const Verifycode = () => {
     };
 
     const handleConfirm = () => {
-      const otp = otp1 + otp2 + otp3 + otp4;
+      const otp =`${otp1}${otp2}${otp3}${otp4}`;
+      const fullname=infoUser.fullname
+      const username=infoUser.username
+      const password=infoUser.password
+      const email=infoUser.email
       // Gọi hàm verify với mã OTP
       verify(fullname, username, password, email, otp)
       .then((response) => {
