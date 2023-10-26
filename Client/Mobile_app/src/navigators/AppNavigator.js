@@ -24,6 +24,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Livingroom" component={Livingroom} />
         <Stack.Screen name="Home" component={Home} options={{ animationEnabled: false }}/>
         <Stack.Screen name="Explore" component={Explore} options={{ animationEnabled: false }}/>
+        <Stack.Screen name="CameraScreen" component={CameraScreen} options={{ animationEnabled: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
