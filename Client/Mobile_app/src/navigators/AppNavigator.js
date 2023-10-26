@@ -6,8 +6,9 @@ import Signin from '../components/Sign in/signin';
 import Signup from '../components/Sign up/signup';
 import Home from '../components/Home/home';
 import Verifycode from '../components/Verify code/verifycode';
-import Livingroom from '../components/Livingroom/livingroom';
+import Livingroom from '../components/Home/Livingroom/livingroom';
 import Explore from '../components/Explore/explore';
+import Newspaper from '../components/Explore/News/news';
 
 
 const Stack = createStackNavigator();
@@ -24,6 +25,8 @@ const AppNavigator = () => {
         <Stack.Screen name="Livingroom" component={Livingroom} />
         <Stack.Screen name="Home" component={Home} options={{ animationEnabled: false }}/>
         <Stack.Screen name="Explore" component={Explore} options={{ animationEnabled: false }}/>
+        <Stack.Screen name="News" component={Newspaper}/>
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

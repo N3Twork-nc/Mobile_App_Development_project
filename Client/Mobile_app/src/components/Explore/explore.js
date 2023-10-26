@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, FlatList, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView } from 'react-native';
 import {  StyledContainer, HeaderContainer, MainTitle, SearchContainer, ButtonSearch,
   NewspaperContainer, NewspaperImageContainer, MainText, SubText, MoreContainer, TextNewspaper,
 TaskbarButtonText, TaskbarIcon, TaskbarView, ContainerButton
@@ -19,6 +19,9 @@ const Explore = () => {
       const handleProfile= () => {
         navigation.navigate('Profile', { animations: false });
       };
+      const handleRead = () => {
+        navigation.navigate('News',  { animations: false });
+      }
     return  (
         <SafeAreaView style={{ flex: 1 }}>    
         <ScrollView style={{flex: 1}}>
@@ -31,7 +34,7 @@ const Explore = () => {
                     </SearchContainer>
                 </HeaderContainer>
                 {/* 1st */}
-                <NewspaperContainer>
+                <NewspaperContainer onPress={handleRead}>
                     <NewspaperImageContainer resizeMode="cover" source={require('../../assets/welcome.png')}/>
                     <TextNewspaper>
                     <MainText numberOfLines={2} ellipsizeMode="tail">8 CÁCH CHĂM SÓC CÂY TRONG NHÀ LUÔN TƯƠI TỐT</MainText>
