@@ -15,12 +15,20 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Ứng dụng cần truy cập máy ảnh để chụp hình và quét mã QR."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "adaptive" : { 
+        "webBackground": { 
+          "color": "#f0f0f0" 
+        }
       }
     },
     "web": {

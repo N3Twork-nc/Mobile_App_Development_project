@@ -8,7 +8,7 @@ import Home from '../components/Home/home';
 import Verifycode from '../components/Verify code/verifycode';
 import Livingroom from '../components/Livingroom/livingroom';
 import Explore from '../components/Explore/explore';
-
+import CameraScreen from '../components/Camera/camera';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +25,7 @@ const AppNavigator = () => {
         <Stack.Screen name="VerifyCode" component={Verifycode} />      
         <Stack.Screen name="Livingroom" component={Livingroom} />
         <Stack.Screen name="Explore" component={Explore}/>
+        <Stack.Screen name="CameraScreen" component={CameraScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

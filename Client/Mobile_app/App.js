@@ -1,9 +1,12 @@
 import React from 'react';
-import Signin from './src/components/Sign in/signin'
-import AppNavigator from './src/navigators/AppNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+import Home from './src/components/Home/home';
+import { Camera, CameraType } from 'expo-camera';
+import * as MediaLibrary from 'expo-media-library';
+import CameraScreen from './src/components/Camera/camera';
 
-const App = () =>
-{
-  return <AppNavigator/>
-}
-export default App;
+export default function App(){
+  return <NavigationContainer>
+         <CameraScreen/>
+        </NavigationContainer>
+};

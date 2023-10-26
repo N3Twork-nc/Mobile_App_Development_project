@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView,TouchableOpacity,View,Text } from 'react-native';
 import { 
   StyledContainer, 
   MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
@@ -12,10 +12,10 @@ import {
   CategoryPlantRoom, RoomName,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify, TotalPlant, CategoryDetailText,
   
-
 } from './styleHome';
 import Taskbar from '../Taskbar/taskbar.js';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -25,6 +25,10 @@ const Home = () => {
   const handleExplore = () => {
     navigation.navigate('Explore', { animations: false }, {transitions: false});
   };
+
+  const handleScan = () => {
+    navigation.navigate('CameraScreen');
+    };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -40,13 +44,17 @@ const Home = () => {
             <ButtonAdd resizeMode="cover" source={require('../../assets/add.png')}/>
           </HeaderContainer>   
         {/* Scan */}
-          <ScanButton>
-            <ScanContainer>
-              <Scan resizeMode="cover" source={require('../../assets/scan.png')}/>
-              <ScanButtonText>Quét và nhận diện cây</ScanButtonText>
-            </ScanContainer>                    
-          </ScanButton>
-        {/* Gần đây */}
+        <ScanButton>
+          <ScanContainer>
+            <Scan resizeMode="cover" source={require('../../assets/scan.png')}/>
+            <TouchableOpacity onPress={handleScan}>
+              <View>
+                <Text>Quét và nhận diện cây</Text>
+              </View>
+            </TouchableOpacity>
+          </ScanContainer>
+        </ScanButton>
+           {/* Gần đây */}
           <TitleforContainers>
             <Title1>Gần đây</Title1>
             <Title2>Xem tất cả</Title2>
