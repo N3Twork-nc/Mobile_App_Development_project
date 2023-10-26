@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IPServer } from ".";
 
 export const signin = (username, password) => {
   const data = {
@@ -8,7 +9,7 @@ export const signin = (username, password) => {
 
   return new Promise((resolve, reject) => {
     axios
-      .post('http://192.168.137.1:8080/APIsignin', data)
+      .post(IPServer+'APIsignin', data)
       .then(response => {
         console.log(response.data); 
         resolve(response);
@@ -29,7 +30,7 @@ export const signup = (fullname, username, password, email) => {
   };
 
   return new Promise((resolve, reject) => {
-  axios.put('http://192.168.137.1:8080/APIsignup', data)
+  axios.put(IPServer+'APIsignup', data)
     .then(response => {
       console.log(response.data);
       resolve(response); // Xử lý phản hồi từ API
@@ -52,7 +53,7 @@ export const verify = (fullname, username, password, email, otp) => {
  // console.log(fullname, username, password, email, otp );
   
   return new Promise((resolve, reject) => {
-  axios.post('http://192.168.137.1:8080/APIsignup', data)
+  axios.post(IPServer+'APIsignup', data)
     .then(response => {
       console.log(response.data); // Xử lý phản hồi từ API
       resolve(response); 
@@ -64,22 +65,4 @@ export const verify = (fullname, username, password, email, otp) => {
   });
 };
 
-// Gọi API xác minh
-// const verify = async () => {
-//   try {
-//     const response = await axios.post('https://26.242.101.156/APIsignup', {
-//       // Gửi dữ liệu tài khoản
-//       email,
-//     });
-
-//     // Xử lý kết quả xác minh
-//     console.log(response.data);
-//   } catch (error) {
-//     // Xử lý lỗi xác minh
-//     console.error(error);
-//   }
-// };
-
-// Gọi các hàm tương ứng với các API
-// signin('caothi','1234');
 
