@@ -2,18 +2,22 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome5 } from 'react-native-vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,
-        HeaderContainer,FlashButton,ImageFlash,RetakeSaveButtons,StyleContainer
+        HeaderContainer,FlashButton,ImageFlash,RetakeSaveButtons,StyleContainer,ButtonClose
 } from './styleCamera'
 
   const CameraScreen = () => {
+  const navigation = useNavigation();
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const [isModalVisible, setIsModalVisible] = useState(false); 
   const cameraRef = useRef(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
-
+  const handleHome = () => {
+    navigation.navigate('Home', { animations: false });
+  };
   //Yêu cầu quyền truy cập camera
   useEffect(() => {
     (async () => {
@@ -82,6 +86,9 @@ import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,
             )}
         </FlashButton>
         <Text1> Nhận diện cây </Text1>   
+        <ButtonClose onPress={handleHome}>
+        <FontAwesome5 name="times" size={24} color="white" /> 
+        </ButtonClose>
         </HeaderContainer>
         <Container >
           <TakePhotoButton onPress={handleTakePhoto}>

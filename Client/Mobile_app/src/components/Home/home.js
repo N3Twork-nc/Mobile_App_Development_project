@@ -26,7 +26,7 @@ const Home = () => {
     navigation.navigate('Explore', { animations: false }, {transitions: false});
   };
   const handleScan = () => {
-    navigation.navigate('CameraScan', { animations: false });
+    navigation.navigate('CameraScreen', { animations: false });
   };
   const handleSaved = () => {
     navigation.navigate('Saved', { animations: false });

@@ -15,6 +15,7 @@ export const StyleContainer=styled.View`
 `
 export const HeaderContainer=styled.View`
     justify-content: flex-top; 
+    ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 5%;'}
 `
 export const Text1=styled.Text`
     font-size: 22px;
@@ -72,4 +73,7 @@ export const Text3=styled.Text`
     color: #ffffff;
     margin-bottom: 10px;
 `
-
+export const ButtonClose=styled.TouchableOpacity`
+    left: 350px;
+    bottom: 20px;
+`
