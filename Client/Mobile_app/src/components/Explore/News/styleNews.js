@@ -72,7 +72,7 @@ export const MainTitleContainer = styled.View`
 `;
 
 export const MainTitle = styled.Text`
-  font-size: 25px;
+  fontSize: 25px;
   color: ${black};
   font-weight: bold;
   text-align: center;
@@ -81,7 +81,7 @@ export const MainTitle = styled.Text`
 
 // Newspaper
 export const NewspaperMaintitle = styled.Text`
-  font-size: 20px;
+  fontSize: 20px;
   font-weight: bold;
   color: ${maintitle};
   align-self: center;
@@ -112,7 +112,7 @@ export const TextNewspaper = styled.View`
 `;
 
 export const SubText = styled.Text`
-  font-size: 12px;
+  fontSize: 12px;
   font-style: italic;
   font-weight: 500;
   color: ${maintitle};
@@ -128,7 +128,7 @@ export const Line = styled.View`
 `
 // main content
  export const MainContent = styled.Text`
-  font-size: 14x;
+  fontSize: 14x;
   font-weight: 400;
   color: ${black};
  `

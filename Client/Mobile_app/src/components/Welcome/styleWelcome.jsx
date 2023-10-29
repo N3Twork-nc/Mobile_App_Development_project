@@ -1,7 +1,14 @@
 import styled from 'styled-components';
-import Constants from 'expo-constants';
-import { View, Text,Image } from 'react-native';
+import { Dimensions } from 'react-native';
 
+// Lấy kích thước màn hình
+const { width, height } = Dimensions.get('window');
+
+// Chuyển đổi giá trị vh sang giá trị số
+const vh = percent => (percent * height) / 100;
+
+// Chuyển đổi giá trị vw sang giá trị số
+const vw = percent => (percent * width) / 100;
 // default color
 export const Colors = {
   maincolor: "#CEF1CF",
@@ -33,9 +40,11 @@ export const InnerContainer = styled.View`
 export const Slogan = styled.Text`
 color: #0B4F06;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-fontSize: 40px;
+fontSize: ${vh(5.5)}px;
 font-style: normal;
 font-weight: bold;
+margin-top: ${vh(1)}px;
+width: ${vw(80)}px;
 `;
 
 
@@ -47,17 +56,16 @@ export const ButtonSignup = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px; 
+  height: ${vh(8)}px;
 `;
-export const ButtonText = styled.Text`
-  
+export const ButtonText = styled.Text`  
   fontSize: 25px;
   color: ${white};
   font-weight: bold;
   text-align: center;
 `;
 export const OthersText = styled.Text`
-  fontSize: 20px;
+  fontSize: ${vh(2.5)}px;
   margin-top: 5%;
   margin-bottom: 3%;
   color: ${black};
@@ -67,9 +75,9 @@ export const OthersText = styled.Text`
 
 export const ImgPlant=styled.Image`
   width: 280px;
-  height: 291px;
+  height: ${vh(40)}px;
   flex-shrink: 0;
-  margin-top:30px;
-  margin-bottom: 60px;
-`;
+  margin-top:${vh(5)}px;
+  margin-bottom: ${vh(5)}px;
+  `;
 
