@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView,TouchableOpacity,View,Text } from 'react-native';
 import { 
   StyledContainer, 
   MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
@@ -15,6 +15,7 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -25,7 +26,7 @@ const Home = () => {
     navigation.navigate('Explore', { animations: false }, {transitions: false});
   };
   const handleScan = () => {
-    navigation.navigate('Scan', { animations: false });
+    navigation.navigate('CameraScreen', { animations: false });
   };
   const handleSaved = () => {
     navigation.navigate('Saved', { animations: false });
@@ -33,6 +34,8 @@ const Home = () => {
   const handleProfile= () => {
     navigation.navigate('Profile', { animations: false });
   };
+
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -48,13 +51,17 @@ const Home = () => {
             <ButtonAdd resizeMode="cover" source={require('../../assets/add.png')}/>
           </HeaderContainer>   
         {/* Scan */}
-          <ScanButton>
-            <ScanContainer>
-              <Scan resizeMode="cover" source={require('../../assets/scan.png')}/>
-              <ScanButtonText>Quét và nhận diện cây</ScanButtonText>
-            </ScanContainer>                    
-          </ScanButton>
-        {/* Gần đây */}
+        <ScanButton>
+          <ScanContainer>
+            <Scan resizeMode="cover" source={require('../../assets/scan.png')}/>
+            <TouchableOpacity onPress={handleScan}>
+              <View>
+                <Text>Quét và nhận diện cây</Text>
+              </View>
+            </TouchableOpacity>
+          </ScanContainer>
+        </ScanButton>
+           {/* Gần đây */}
           <TitleforContainers>
             <Title1>Gần đây</Title1>
             <Title2>Xem tất cả</Title2>
@@ -180,7 +187,7 @@ const Home = () => {
         <TaskbarIcon resizeMode="contain" source={require('../../assets/mygarden.png')}  tintColor={'green'} />
         <TaskbarButtonText style={{ color: 'green' }}>Vườn của tôi</TaskbarButtonText>
       </ContainerButton>
-      <ContainerButton>
+      <ContainerButton onPress={handleScan}>
         <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
         <TaskbarButtonText>Scan</TaskbarButtonText>
       </ContainerButton>
