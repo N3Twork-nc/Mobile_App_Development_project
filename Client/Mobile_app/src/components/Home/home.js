@@ -34,9 +34,7 @@ const Home = () => {
   const handleProfile= () => {
     navigation.navigate('Profile', { animations: false });
   };
-
-
-
+  
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>

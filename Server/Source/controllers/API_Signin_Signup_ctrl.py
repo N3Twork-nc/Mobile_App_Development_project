@@ -2,16 +2,21 @@ from Source import app
 from Source.models_mvc.account_model import Account
 import random
 from Source.controllers.mail_class import Mail
-
+from fastapi import HTTPException
+from Source.security import Authentication 
 
 
 @app.post('/APIsignin')
-async def signin(body: Account):
-    result=body.checkAccount()
+async def signin(request: Account):
+    result=request.checkAccount()
     if result==True:
-        return "Login successfull"
-    else: 
-        return "Incorrect username or password!"
+        print(f'[x] request_data: {request.__dict__}')
+        token = Authentication().generate_token(request.username)
+        return {
+            'token': token
+        }
+    else:
+        raise HTTPException(status_code=404, detail="User not found")
 
 
 #Create account   
