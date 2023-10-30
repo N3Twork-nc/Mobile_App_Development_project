@@ -1,1 +1,1 @@
-export const IPServer="http://172.20.10.2:8080/"
+export const IPServer="http://10.0.133.77:8080/"

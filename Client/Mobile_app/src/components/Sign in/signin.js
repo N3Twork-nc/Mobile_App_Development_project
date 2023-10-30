@@ -11,6 +11,12 @@ const Signin = () => {
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
+
   const handleSignIn = () => {
     const username = textUsername;
     const password = textPassword;
