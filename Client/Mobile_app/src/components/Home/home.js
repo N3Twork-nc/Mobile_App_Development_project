@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView,TouchableOpacity,View,Text } from 'react-native';
 import { 
   StyledContainer, 
   MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
@@ -10,16 +10,31 @@ import {
   FirstRooms, SecondRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
   KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer,
   CategoryPlantRoom, RoomName,
-  Taskbar,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify, TotalPlant, CategoryDetailText,
-  ContainerButtonExplore,ContainerMyGarden,ContainerProfile,ContainerSaved, ExploreIcon, TaskbarButtonText,
+  TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { Image } from 'react-native';
+import { useState } from 'react';
 
 const Home = () => {
   const navigation = useNavigation();
+  const handleLivingroom = () => {
+    navigation.navigate('Livingroom');
+  };
+  const handleExplore = () => {
+    navigation.navigate('Explore', { animations: false }, {transitions: false});
+  };
+  const handleScan = () => {
+    navigation.navigate('CameraScreen', { animations: false });
+  };
+  const handleSaved = () => {
+    navigation.navigate('Saved', { animations: false });
+  };
+  const handleProfile= () => {
+    navigation.navigate('Profile', { animations: false });
+  };
+  
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
@@ -34,13 +49,17 @@ const Home = () => {
             <ButtonAdd resizeMode="cover" source={require('../../assets/add.png')}/>
           </HeaderContainer>   
         {/* Scan */}
-          <ScanButton>
-            <ScanContainer>
-              <Scan resizeMode="cover" source={require('../../assets/scan.png')}/>
-              <ScanButtonText>Quét và nhận diện cây</ScanButtonText>
-            </ScanContainer>                    
-          </ScanButton>
-        {/* Gần đây */}
+        <ScanButton>
+          <ScanContainer>
+            <Scan resizeMode="cover" source={require('../../assets/scan.png')}/>
+            <TouchableOpacity onPress={handleScan}>
+              <View>
+                <Text>Quét và nhận diện cây</Text>
+              </View>
+            </TouchableOpacity>
+          </ScanContainer>
+        </ScanButton>
+           {/* Gần đây */}
           <TitleforContainers>
             <Title1>Gần đây</Title1>
             <Title2>Xem tất cả</Title2>
@@ -69,10 +88,10 @@ const Home = () => {
               <FirstRooms>
                 <LeftRoomContainer>
                   <RoomContainer>
-                    <LivingroomContainer>
+                    <LivingroomContainer onPress = {handleLivingroom}>
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
-                    <CategoryDetailText>
+                    <CategoryDetailText onPress = {handleLivingroom}>
                       <TotalPlant>5 plants</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
@@ -157,29 +176,29 @@ const Home = () => {
         </StyledContainer>        
       </ScrollView>
 
-      {/* Taskbar */}
-      <Taskbar>
-         <ContainerButtonExplore>
-          <ExploreIcon resizeMode="contain" source={require('../../assets/explore.png')}/>
-          <TaskbarButtonText>Khám phá</TaskbarButtonText>
-         </ContainerButtonExplore>
-         <ContainerButtonExplore>
-           <ExploreIcon resizeMode="contain" source={require('../../assets/mygarden.png')}/>
-           <TaskbarButtonText>Vườn của tôi</TaskbarButtonText>
-         </ContainerButtonExplore>
-         <ContainerButtonExplore>
-          <ExploreIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
-          <TaskbarButtonText>Scan</TaskbarButtonText>
-         </ContainerButtonExplore>
-         <ContainerButtonExplore>
-          <ExploreIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
-          <TaskbarButtonText>Đã lưu</TaskbarButtonText>
-         </ContainerButtonExplore>
-         <ContainerButtonExplore>
-          <ExploreIcon resizeMode="contain" source={require('../../assets/profile.png')}/>
-          <TaskbarButtonText>Cá nhân</TaskbarButtonText>
-         </ContainerButtonExplore>
-      </Taskbar>
+      <TaskbarView>
+      <ContainerButton onPress={handleExplore}>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/explore.png')}/>
+        <TaskbarButtonText>Khám phá</TaskbarButtonText>
+      </ContainerButton>
+      <ContainerButton>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/mygarden.png')}  tintColor={'green'} />
+        <TaskbarButtonText style={{ color: 'green' }}>Vườn của tôi</TaskbarButtonText>
+      </ContainerButton>
+      <ContainerButton onPress={handleScan}>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
+        <TaskbarButtonText>Scan</TaskbarButtonText>
+      </ContainerButton>
+      <ContainerButton>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
+        <TaskbarButtonText>Đã lưu</TaskbarButtonText>
+      </ContainerButton>
+      <ContainerButton>
+        <TaskbarIcon resizeMode="contain" source={require('../../assets/profile.png')}/>
+        <TaskbarButtonText>Cá nhân</TaskbarButtonText>
+      </ContainerButton>
+    </TaskbarView>
+      
     </SafeAreaView>
   );
 }
