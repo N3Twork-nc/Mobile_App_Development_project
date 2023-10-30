@@ -187,7 +187,7 @@ const Home = () => {
         <TaskbarIcon resizeMode="contain" source={require('../../assets/mygarden.png')}  tintColor={'green'} />
         <TaskbarButtonText style={{ color: 'green' }}>Vườn của tôi</TaskbarButtonText>
       </ContainerButton>
-      <ContainerButton>
+      <ContainerButton onPress={handleScan}>
         <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
         <TaskbarButtonText>Scan</TaskbarButtonText>
       </ContainerButton>
