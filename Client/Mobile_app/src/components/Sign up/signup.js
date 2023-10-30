@@ -1,23 +1,54 @@
 import React, {useState} from 'react'
-import { StyledContainer, InnerContainer, IconButton, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText } from './styleSignup'
+import { StyledContainer,ButtonTextGG, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1, IconButtonFB, ButtonTextFB, IconButtonGG, InputTextpw, EyeIcon } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
-import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { Platform, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { signup } from '../../api/signin_signup'
+import { useDispatch } from 'react-redux';
+import { updateAll } from '../../reducers/infoUser';
+
 
 const Signup = () => {
     const [isChecked, setIsChecked] = useState(false);
-
+    const dispatch=useDispatch()
     const toggleCheckbox = () => {
       setIsChecked(!isChecked);}
-
+    const [showPassword, setShowPassword] = useState(false);
+    
+      const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+      }
     const navigation = useNavigation();
-
-    const handleSignIn = () => {
-          navigation.navigate('SignIn');
-        };
+    const [textFullname, setTextFullname] = useState('');
+    const [textPassword, setTextPassword] = useState('');
+    const [textUsername, setTextUsername] = useState('');
+    const [textEmail, setEmail] = useState('');   
       
+
     const handleSignUp = () => {
-        navigation.navigate('SignUp');
+        const data={
+            "username":textUsername,
+            "password":textPassword,
+            "email":textEmail,
+            "fullname":textFullname
+        }
+        const action=updateAll(data) 
+        dispatch(action)
+        signup(textFullname, textUsername, textPassword, textEmail)
+         .then(response => {
+            console.log(response.data);
+            if (response.data == "Enter OTP") {
+                navigation.navigate('VerifyCode');
+            }
+         })
+         .catch(error => {
+            console.error(error);
+         })        
+      };
+
+      const handleSignIn = () => {
+        navigation.navigate('SignIn');
+
       };
     return(
         <KeyboardAwareScrollView
@@ -27,21 +58,34 @@ const Signup = () => {
         <StyledContainer>
             <InnerContainer>
                 <Slogan>
-                    ĐĂNG KÝ
+                    ĐĂNG KÝ 
                 </Slogan>
                 <ButtonSignupwFB>
-                    <IconButton resizeMode="contain" source={require('../../assets/facebook.png')}/>
-                    <ButtonText>Đăng ký bằng Facebook</ButtonText>
+                    <IconButtonFB resizeMode="contain" source={require('../../assets/facebook.png')}/>
+                    <ButtonTextFB>Đăng ký bằng Facebook</ButtonTextFB>
                 </ButtonSignupwFB>
                 <ButtonSignupwGG>   
-                    <IconButton resizeMode="contain" source={require('../../assets/google.png')}/>                 
-                    <ButtonText>Đăng ký bằng Google</ButtonText>
+                    <IconButtonGG resizeMode="contain" source={require('../../assets/google.png')}/>                 
+                    <ButtonTextGG>Đăng ký bằng Google</ButtonTextGG>
                 </ButtonSignupwGG>    
                 <OthersText>Hoặc đăng ký bằng Email</OthersText>                
-                <InputText placeholder="Nhập họ và tên đầy đủ"></InputText>
-                <InputText placeholder="Nhập tên tài khoản"></InputText>
-                <InputText placeholder="Nhập email"></InputText>
-                <InputText placeholder="Nhập mật khẩu"></InputText>
+                <InputText onChangeText={setTextFullname} placeholder="Nhập họ và tên đầy đủ"></InputText>
+                <InputText onChangeText={setTextUsername} placeholder="Nhập tên tài khoản"></InputText>
+                <InputText onChangeText={setEmail} placeholder="Nhập email"></InputText>
+                <InputTextpw
+                    onChangeText={setTextPassword}
+                    secureTextEntry={!showPassword}
+                    placeholder="Nhập mật khẩu"
+                />
+                <TouchableOpacity onPress={togglePasswordVisibility}>
+                    <EyeIcon
+                    source={
+                        showPassword
+                        ? require('../../assets/open-eye.png')
+                        : require('../../assets/close-eye.png')
+                    }
+                    />
+                </TouchableOpacity>  
                 <CheckboxContainer>
                     <OthersCheckbox
                         checked={isChecked}
@@ -52,7 +96,7 @@ const Signup = () => {
                     <CheckboxText>Tôi đã đọc và đồng ý với các điều khoản của ứng dụng.</CheckboxText>
                 </CheckboxContainer>                
                 <ButtonCreateAccount>
-                    <ButtonText onPress={handleSignUp} >Đăng ký</ButtonText>
+                    <ButtonText1 onPress={handleSignUp}> Đăng ký</ButtonText1>
                 </ButtonCreateAccount>
                 <OthersText onPress={handleSignIn} >Đã có tài khoản? Đăng nhập</OthersText>  
             </InnerContainer>
