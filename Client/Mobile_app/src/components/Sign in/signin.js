@@ -14,6 +14,11 @@ const Signin = () => {
   const [textPassword, setTextPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
+
   const handleSignIn = async () => {
     const response= await signin(textUsername,textPassword)
     if (response['status']=="200"){

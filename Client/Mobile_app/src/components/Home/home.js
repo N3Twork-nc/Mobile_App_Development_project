@@ -19,8 +19,6 @@ import { useState } from 'react';
 
 const Home = () => {
   const navigation = useNavigation();
-<<<<<<< HEAD
-=======
   const handleLivingroom = () => {
     navigation.navigate('Livingroom');
   };
@@ -36,10 +34,7 @@ const Home = () => {
   const handleProfile= () => {
     navigation.navigate('Profile', { animations: false });
   };
-
-
-
->>>>>>> BaoNgan
+  
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
