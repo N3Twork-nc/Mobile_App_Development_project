@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
-import { StyledContainer, InnerContainer, IconButton, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1 } from './styleSignup'
+import { StyledContainer,ButtonTextGG, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1, IconButtonFB, ButtonTextFB, IconButtonGG, InputTextpw, EyeIcon } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
-import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { Platform, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import data from 'octicons';
 
 
 const Signup = () => {
@@ -14,7 +13,11 @@ const Signup = () => {
     const dispatch=useDispatch()
     const toggleCheckbox = () => {
       setIsChecked(!isChecked);}
-
+    const [showPassword, setShowPassword] = useState(false);
+    
+      const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+      }
     const navigation = useNavigation();
     const [textFullname, setTextFullname] = useState('');
     const [textPassword, setTextPassword] = useState('');
@@ -24,7 +27,7 @@ const Signup = () => {
 
     const handleSignUp = async () => {
         const data={
-            "username":textFullname,
+            "username":textUsername,
             "password":textPassword,
             "email":textEmail,
             "fullname":textFullname
@@ -52,18 +55,31 @@ const Signup = () => {
                     ĐĂNG KÝ 
                 </Slogan>
                 <ButtonSignupwFB>
-                    <IconButton resizeMode="contain" source={require('../../assets/facebook.png')}/>
-                    <ButtonText>Đăng ký bằng Facebook</ButtonText>
+                    <IconButtonFB resizeMode="contain" source={require('../../assets/facebook.png')}/>
+                    <ButtonTextFB>Đăng ký bằng Facebook</ButtonTextFB>
                 </ButtonSignupwFB>
                 <ButtonSignupwGG>   
-                    <IconButton resizeMode="contain" source={require('../../assets/google.png')}/>                 
-                    <ButtonText>Đăng ký bằng Google</ButtonText>
+                    <IconButtonGG resizeMode="contain" source={require('../../assets/google.png')}/>                 
+                    <ButtonTextGG>Đăng ký bằng Google</ButtonTextGG>
                 </ButtonSignupwGG>    
                 <OthersText>Hoặc đăng ký bằng Email</OthersText>                
                 <InputText onChangeText={setTextFullname} placeholder="Nhập họ và tên đầy đủ"></InputText>
                 <InputText onChangeText={setTextUsername} placeholder="Nhập tên tài khoản"></InputText>
                 <InputText onChangeText={setEmail} placeholder="Nhập email"></InputText>
-                <InputText onChangeText={setTextPassword} placeholder="Nhập mật khẩu"></InputText>
+                <InputTextpw
+                    onChangeText={setTextPassword}
+                    secureTextEntry={!showPassword}
+                    placeholder="Nhập mật khẩu"
+                />
+                <TouchableOpacity onPress={togglePasswordVisibility}>
+                    <EyeIcon
+                    source={
+                        showPassword
+                        ? require('../../assets/open-eye.png')
+                        : require('../../assets/close-eye.png')
+                    }
+                    />
+                </TouchableOpacity>  
                 <CheckboxContainer>
                     <OthersCheckbox
                         checked={isChecked}

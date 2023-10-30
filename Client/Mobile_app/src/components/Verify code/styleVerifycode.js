@@ -33,8 +33,9 @@ z-index: 1;
  
 //slogan
 export const Slogan = styled.Text`
+  font-size: ${Platform.OS === 'ios' ? '30px' : 24};
   fontSize: 30px;
-  margin-bottom: 25%;
+  margin-bottom: 2%;
   color: ${black};
   font-weight: bold;
   text-align: center;
@@ -67,7 +68,7 @@ export const Text1 = styled.Text`
   left: 0;
   letter-spacing: 0;
   opacity: 1; 
-  position: fixed;
+  position: relative;
   text-align: center;
   top: 0;
 `;
@@ -78,7 +79,7 @@ export const Text0 = styled.Text`
   left: 0;
   letter-spacing: 0;
   opacity: 1; 
-  position: fixed;
+  position: relative;
   text-align: center;
   top: 0;
 `;
@@ -89,7 +90,7 @@ export const Text2 = styled.Text`
   left: 0;
   letter-spacing: 0;
   opacity: 1; 
-  position: fixed;
+  position: relative;
   text-align: center;
   top: 0;
   margin-bottom: 50px;
@@ -101,7 +102,7 @@ export const OthersText1 = styled.Text`
   left: 0;
   letter-spacing: 0;
   opacity: 0.5; 
-  position: fixed;
+  position: relative;
   text-align: center;
   top: 0;
   margin-top: 30px;
@@ -114,7 +115,7 @@ export const Text3 = styled.Text`
   left: 0;
   letter-spacing: 0;
   opacity: 0.5; 
-  position: fixed;
+  position: relative;
   text-align: center;
   top: 0;
   margin-top: 20px;
@@ -132,24 +133,22 @@ export const ButtonTextEllipse= styled.TextInput`
 export const ImgHead=styled.Image`
   border-radius: 0px;
   height: 350px;
-  left: 0;
   position: absolute;
   top: 0;
   width: 430px;
 `;
 export const ImgPo=styled.Image`
   height: 195px;
-  left: 0;
-  position: fixed;
-  top: 0;
+  position: relative;
   margin-bottom: 25px;
+  margin-top: 100px;
   width: 168px;
   align-self: center;
 `;
 export const ImgLeaf=styled.Image`
-  height: 127px;
-  left: 150;
-  top: 245;
+  height: 120px;
+  left: 150px;
+  top: 245px;
   object-fit: cover;
   position: absolute;
   align-self: center;
