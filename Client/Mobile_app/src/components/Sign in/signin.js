@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { updateToken } from '../../reducers/token';
 
 const Signin = () => {
+  const dispatch=useDispatch()
   const navigation = useNavigation();
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
