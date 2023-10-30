@@ -7,7 +7,6 @@ import {signin } from '../../api/signin_signup'
 import axios from "axios";
 
 const Signin = () => {
-  const dispatch=useDispatch()
   const navigation = useNavigation();
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
