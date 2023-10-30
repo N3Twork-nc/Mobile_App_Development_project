@@ -7,10 +7,16 @@ import {signin } from '../../api/signin_signup'
 import axios from "axios";
 
 const Signin = () => {
-  const dispatch=useDispatch()
+  //const dispatch=useDispatch()
   const navigation = useNavigation();
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
 
   const handleSignIn = () => {
     const username = textUsername;
