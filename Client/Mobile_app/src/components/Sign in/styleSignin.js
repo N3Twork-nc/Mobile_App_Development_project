@@ -1,7 +1,14 @@
 import styled from 'styled-components';
-import { View, Text, Image } from 'react-native';
-import Constants from 'expo-constants';
-import { CheckBox } from 'react-native-elements';
+import { Dimensions } from 'react-native';
+
+// Lấy kích thước màn hình
+const { width, height } = Dimensions.get('window');
+
+// Chuyển đổi giá trị vh sang giá trị số
+const vh = percent => (percent * height) / 100;
+
+// Chuyển đổi giá trị vw sang giá trị số
+const vw = percent => (percent * width) / 100;
 
 // default color
 export const Colors = {
@@ -33,7 +40,7 @@ export const InnerContainer = styled.View`
 
 //slogan
 export const Slogan = styled.Text`
-  fontSize: 27px;
+  fontSize: ${vh(4)}px;
   margin-top: 10%;
   margin-bottom: 8%;
   color: ${black};
@@ -47,10 +54,36 @@ export const ButtonSigninwFB = styled.TouchableOpacity`
   border-radius: 30px;
   width: 85%;
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   height: 60px; /* hoặc sử dụng padding-top */
 `;
+export const ButtonTextFB = styled.Text`
+  fontSize: 16px;
+  color: ${white};
+  font-weight: bold;
+  align-self: flex-end;
+  position: absolute;
+  right: 29px;
+`;
+export const IconButtonFB = styled.Image`
+  align-self: flex-start;
+  left: 30px;
+  height: 30px;
+  width:30px;
+`;
+
+export const OthersText1 = styled.Text`
+  fontSize: 15px;
+  margin-top:2%;
+  margin-bottom: 2%;
+  color: ${black};
+  font-weight: bold;
+  textAlign: center; 
+`;
+
+
 export const titleInputText = styled.Text`
   fontSize: 15px;
   margin-top: 5%;
@@ -68,37 +101,33 @@ export const ButtonSigninwGG = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-
-export const OthersText1 = styled.Text`
-  fontSize: 15px;
-  margin-bottom: 2%;
-  color: ${black};
-  font-weight: bold;
-  textAlign: center; 
-`;
-
-export const ButtonText = styled.Text`
+export const ButtonTextGG = styled.Text`
   fontSize: 16px;
   color: ${white};
   font-weight: bold;
-  text-align: center;
-`;
-export const IconButton = styled.Image`
-  left: 25px;
+  align-self: flex-end;
   position: absolute;
-  z-index: 1;
-  flex-shrink: 0;
-  aspect-ratio: 1;
+  right: 41px;
 `;
+export const IconButtonGG = styled.Image`
+  align-self: flex-start;
+  left: 41px;
+  height: 27px;
+  width:27px;
+`;
+
+
+
 
 
 // input box ------------------------------------
 export const InputContainer = styled.View`
-  margin:auto;
+  margin: auto;
   width: 100%;
   align-items: center;
   justify-content: center;
   padding: 10%;
+  position: relative;
 `;
 
 export const OthersText2 = styled.Text`
@@ -111,7 +140,6 @@ export const OthersText2 = styled.Text`
 `;
 export const OthersText3 = styled.Text`
   font-size: 15px;
-  margin-top: 4%;
   margin-bottom: 4%;
   color: ${black};
   font-weight: bold;
@@ -120,7 +148,7 @@ export const OthersText3 = styled.Text`
   align-self: flex-end; /* Căn lề trái */
 `;
 
-export const InputText = styled.TextInput`
+export const InputTextusername = styled.TextInput`
   background-color: ${white};
   border-radius: 30px;
   width: 100%;
@@ -132,19 +160,40 @@ export const InputText = styled.TextInput`
   font-weight: 500;
   box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.2);
 `;
+export const InputTextpw = styled.TextInput`
+   background-color: ${white};
+   border-radius: 30px;
+   width: 100%;
+   height:13%;
+   margin-top: 4%;
+   align-self: center; 
+   justify-content: center;
+   padding: 5px 15px;
+   font-weight: 500;
+   box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.2);
+   z-index:-1;
+`;
+export const EyeIcon = styled.Image`
+  position: relative;
+  height: 20px;
+  width: 20px;
+  left: 105px;
+  z-index:1;
+  top: -180%;
+`;
 export const ButtonSignin = styled.TouchableOpacity`
   background-color: ${black};
   border-radius: 30px;
   margin-top: 5%;
   margin-bottom:5%;
-  width: 50%;
+  width: ${vw(60)}px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 60px; 
 `;
 export const ButtonText1 = styled.Text`
-  fontSize: 20px;
+  fontSize: ${vh(3.5)}px;
   color: ${white};
   font-weight: bold;
   text-align: center;

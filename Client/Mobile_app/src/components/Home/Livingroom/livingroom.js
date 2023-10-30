@@ -9,6 +9,7 @@ const Livingroom = () => {
 const navigation = useNavigation();
   const handleBack = () => {
     navigation.navigate('Home');
+    
   };
 return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -18,7 +19,7 @@ return (
                 {/*Header*/}
                 <HeaderContainer>
                     <BackContainer onPress={handleBack}>
-                        <ButtonBack  resizeMode="cover" source={require('../../assets/back.png')} />
+                        <ButtonBack  resizeMode="cover" source={require('../../../assets/back.png')} />
                     </BackContainer>                    
                     <MainTitle>Phòng khách</MainTitle>
                 </HeaderContainer>
@@ -26,40 +27,40 @@ return (
                 {/* Plants */}
                 <PlantContainer>
                     <Plant1Container>
-                        <ImageFrame  resizeMode="cover" source={require('../../assets/plant.jpg')}/>
+                        <ImageFrame  resizeMode="cover" source={require('../../../assets/plant.jpg')}/>
                         <PlantName> Cây chó đẻ </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
-                                <Icon source={require('../../assets/info.png')} />
+                                <Icon source={require('../../../assets/info.png')} />
                                 <ButtonText>Chi tiết</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/water.png')} />
+                                <Icon source={require('../../../assets/water.png')} />
                                 <ButtonText>Đặt lịch</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/move.png')} />
+                                <Icon source={require('../../../assets/move.png')} />
                                 <ButtonText>Di chuyển</ButtonText>
                             </IconButton>
                             </ButtonContainer>
                         </ButtonContainerWrapper>                        
                     </Plant1Container> 
                     <Plant2Container>
-                        <ImageFrame resizeMode="cover" source={require('../../assets/welcome.png')}/>
+                        <ImageFrame resizeMode="cover" source={require('../../../assets/welcome.png')}/>
                         <PlantName> Cây thúi địch </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
-                                <Icon source={require('../../assets/info.png')} />
+                                <Icon source={require('../../../assets/info.png')} />
                                 <ButtonText>Chi tiết</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/water.png')} />
+                                <Icon source={require('../../../assets/water.png')} />
                                 <ButtonText>Đặt lịch</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/move.png')} />
+                                <Icon source={require('../../../assets/move.png')} />
                                 <ButtonText>Di chuyển</ButtonText>
                             </IconButton>
                             </ButtonContainer>
@@ -70,40 +71,40 @@ return (
                 {/* Plants */}
                 <PlantContainer>
                     <Plant1Container>
-                        <ImageFrame  resizeMode="cover" source={require('../../assets/plant.jpg')}/>
+                        <ImageFrame  resizeMode="cover" source={require('../../../assets/plant.jpg')}/>
                         <PlantName> Cây chó đẻ </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
-                                <Icon source={require('../../assets/info.png')} />
+                                <Icon source={require('../../../assets/info.png')} />
                                 <ButtonText>Chi tiết</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/water.png')} />
+                                <Icon source={require('../../../assets/water.png')} />
                                 <ButtonText>Đặt lịch</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/move.png')} />
+                                <Icon source={require('../../../assets/move.png')} />
                                 <ButtonText>Di chuyển</ButtonText>
                             </IconButton>
                             </ButtonContainer>
                         </ButtonContainerWrapper>                        
                     </Plant1Container> 
                     <Plant2Container>
-                        <ImageFrame resizeMode="cover" source={require('../../assets/welcome.png')}/>
+                        <ImageFrame resizeMode="cover" source={require('../../../assets/welcome.png')}/>
                         <PlantName> Cây thúi địch </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
-                                <Icon source={require('../../assets/info.png')} />
+                                <Icon source={require('../../../assets/info.png')} />
                                 <ButtonText>Chi tiết</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/water.png')} />
+                                <Icon source={require('../../../assets/water.png')} />
                                 <ButtonText>Đặt lịch</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/move.png')} />
+                                <Icon source={require('../../../assets/move.png')} />
                                 <ButtonText>Di chuyển</ButtonText>
                             </IconButton>
                             </ButtonContainer>
@@ -114,40 +115,40 @@ return (
                 {/* Plants */}
                 <PlantContainer>
                     <Plant1Container>
-                        <ImageFrame  resizeMode="cover" source={require('../../assets/plant.jpg')}/>
+                        <ImageFrame  resizeMode="cover" source={require('../../../assets/plant.jpg')}/>
                         <PlantName> Cây chó đẻ </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
-                                <Icon source={require('../../assets/info.png')} />
+                                <Icon source={require('../../../assets/info.png')} />
                                 <ButtonText>Chi tiết</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/water.png')} />
+                                <Icon source={require('../../../assets/water.png')} />
                                 <ButtonText>Đặt lịch</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/move.png')} />
+                                <Icon source={require('../../../assets/move.png')} />
                                 <ButtonText>Di chuyển</ButtonText>
                             </IconButton>
                             </ButtonContainer>
                         </ButtonContainerWrapper>                        
                     </Plant1Container> 
                     <Plant2Container>
-                        <ImageFrame resizeMode="cover" source={require('../../assets/welcome.png')}/>
+                        <ImageFrame resizeMode="cover" source={require('../../../assets/welcome.png')}/>
                         <PlantName> Cây thúi địch </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
-                                <Icon source={require('../../assets/info.png')} />
+                                <Icon source={require('../../../assets/info.png')} />
                                 <ButtonText>Chi tiết</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/water.png')} />
+                                <Icon source={require('../../../assets/water.png')} />
                                 <ButtonText>Đặt lịch</ButtonText>
                             </IconButton>
                             <IconButton>
-                                <Icon source={require('../../assets/move.png')} />
+                                <Icon source={require('../../../assets/move.png')} />
                                 <ButtonText>Di chuyển</ButtonText>
                             </IconButton>
                             </ButtonContainer>
