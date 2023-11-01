@@ -1,8 +1,10 @@
 import { configureStore} from "@reduxjs/toolkit"
 import infoUserReducer from "../reducers/infoUser"
+import tokenReducer from "../reducers/token"
 
 const rootReducer={
-    infoUser: infoUserReducer
+    infoUser: infoUserReducer,
+    token: tokenReducer
 }
 
 const store=configureStore({
