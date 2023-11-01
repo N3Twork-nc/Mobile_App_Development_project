@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, SafeAreaView } from 'react-native';
 import {  StyledContainer, HeaderContainer, MainTitle, SearchContainer, ButtonSearch,
   NewspaperContainer, NewspaperImageContainer, MainText, SubText, MoreContainer, TextNewspaper,
 TaskbarButtonText, TaskbarIcon, TaskbarView, ContainerButton
 } from './styleExplore.js';
 import { useNavigation } from '@react-navigation/native';
+import { title, introduction, caption, text } from '../../api/getNews';
+
 const Explore = () => {
     const navigation = useNavigation();
+    
+    const [titleResult, setTitleResult] = useState('');
+    const [introductionResult, setIntroductionResult] = useState('');
+
+    useEffect(() => {
+        newsData();
+    }, []);
+
+    const newsData = async () => {
+        try {
+            const titleResults = [];
+            const introductionResults = [];
+        
+            for (let i = 0; i < 5; i++) {
+              const titleResult = await title(i);
+              const introductionResult = await introduction(i);
+              titleResults.push(titleResult);
+              introductionResults.push(introductionResult);
+            }
+        
+            setTitleResult(titleResults);
+            setIntroductionResult(introductionResults);
+          } catch (error) {
+            console.log(error);
+          }
+    };
+
     const handleHome = () => {
         navigation.navigate('Home', { animations: false });
       };
@@ -37,38 +66,47 @@ const Explore = () => {
                 <NewspaperContainer onPress={handleRead}>
                     <NewspaperImageContainer resizeMode="cover" source={require('../../assets/welcome.png')}/>
                     <TextNewspaper>
-                    <MainText numberOfLines={2} ellipsizeMode="tail">8 CÁCH CHĂM SÓC CÂY TRONG NHÀ LUÔN TƯƠI TỐT</MainText>
-                    <SubText numberOfLines={5} ellipsizeMode="tail">Khi bạn mang cây xanh vào nhà, có nhiều điều cần lưu ý để giữ chúng phát triển tốt và trở thành một vật trang trí nội thất lâu dài</SubText>
+                    <MainText numberOfLines={2} ellipsizeMode="tail">{titleResult[0]}</MainText>
+                    <SubText numberOfLines={5} ellipsizeMode="tail">{introductionResult[0]}</SubText>
                     </TextNewspaper>
                     <MoreContainer resizeMode="contain" source={require('../../assets/more.png')}/>
                 </NewspaperContainer>    
-                {/* 1st */}
+                {/* 2nd */}
                 <NewspaperContainer>
                     <NewspaperImageContainer resizeMode="cover" source={require('../../assets/welcome.png')}/>
                     <TextNewspaper>
-                    <MainText numberOfLines={2} ellipsizeMode="tail">8 CÁCH CHĂM SÓC CÂY TRONG NHÀ LUÔN TƯƠI TỐT</MainText>
-                    <SubText numberOfLines={5} ellipsizeMode="tail">Khi bạn mang cây xanh vào nhà, có nhiều điều cần lưu ý để giữ chúng phát triển tốt và trở thành một vật trang trí nội thất lâu dài</SubText>
+                    <MainText numberOfLines={2} ellipsizeMode="tail">{titleResult[1]}</MainText>
+                    <SubText numberOfLines={5} ellipsizeMode="tail">{introductionResult[1]}</SubText>
                     </TextNewspaper>
                     <MoreContainer resizeMode="contain" source={require('../../assets/more.png')}/>
                 </NewspaperContainer> 
-                {/* 1st */}
+                {/* 3rd */}
                 <NewspaperContainer>
                     <NewspaperImageContainer resizeMode="cover" source={require('../../assets/welcome.png')}/>
                     <TextNewspaper>
-                    <MainText numberOfLines={2} ellipsizeMode="tail">8 CÁCH CHĂM SÓC CÂY TRONG NHÀ LUÔN TƯƠI TỐT</MainText>
-                    <SubText numberOfLines={5} ellipsizeMode="tail">Khi bạn mang cây xanh vào nhà, có nhiều điều cần lưu ý để giữ chúng phát triển tốt và trở thành một vật trang trí nội thất lâu dài</SubText>
+                    <MainText numberOfLines={2} ellipsizeMode="tail">{titleResult[2]}</MainText>
+                    <SubText numberOfLines={5} ellipsizeMode="tail">{introductionResult[2]}</SubText>
                     </TextNewspaper>
                     <MoreContainer resizeMode="contain" source={require('../../assets/more.png')}/>
                 </NewspaperContainer> 
-                {/* 1st */}
+                {/* 4th */}
                 <NewspaperContainer>
                     <NewspaperImageContainer resizeMode="cover" source={require('../../assets/welcome.png')}/>
                     <TextNewspaper>
-                    <MainText numberOfLines={2} ellipsizeMode="tail">8 CÁCH CHĂM SÓC CÂY TRONG NHÀ LUÔN TƯƠI TỐT</MainText>
-                    <SubText numberOfLines={5} ellipsizeMode="tail">Khi bạn mang cây xanh vào nhà, có nhiều điều cần lưu ý để giữ chúng phát triển tốt và trở thành một vật trang trí nội thất lâu dài</SubText>
+                    <MainText numberOfLines={2} ellipsizeMode="tail">{titleResult[3]}</MainText>
+                    <SubText numberOfLines={5} ellipsizeMode="tail">{introductionResult[3]}</SubText>
                     </TextNewspaper>
                     <MoreContainer resizeMode="contain" source={require('../../assets/more.png')}/>
-                </NewspaperContainer>          
+                </NewspaperContainer>
+                {/* 5th */}
+                <NewspaperContainer>
+                    <NewspaperImageContainer resizeMode="cover" source={require('../../assets/welcome.png')}/>
+                    <TextNewspaper>
+                    <MainText numberOfLines={2} ellipsizeMode="tail">{titleResult[4]}</MainText>
+                    <SubText numberOfLines={5} ellipsizeMode="tail">{introductionResult[4]}</SubText>
+                    </TextNewspaper>
+                    <MoreContainer resizeMode="contain" source={require('../../assets/more.png')}/>
+                </NewspaperContainer>           
 
 
             </StyledContainer>
