@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { StyledContainer, InnerContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
+import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
-import { Platform, TouchableOpacity } from 'react-native';
+import { Platform, TouchableOpacity, Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import {signin } from '../../api/signin_signup'
+import { signin } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateToken } from '../../reducers/token';
-
 const Signin = () => {
   const dispatch=useDispatch()
   const navigation = useNavigation();
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   }
@@ -47,12 +44,16 @@ const Signin = () => {
           <InnerContainer>
             <Slogan>ĐĂNG NHẬP</Slogan>
             <ButtonSigninwFB>
-              <IconButtonFB resizeMode="contain" source={require('../../assets/facebook.png')} />
-              <ButtonTextFB>Đăng nhập với Facebook</ButtonTextFB>
+              <ButtonTextContainer>
+                <IconButtonFB resizeMode="contain" source={require('../../assets/facebook.png')} />
+                <ButtonTextFB>Đăng nhập với Facebook</ButtonTextFB>
+              </ButtonTextContainer>              
             </ButtonSigninwFB>
             <ButtonSigninwGG>
-              <IconButtonGG resizeMode="contain" source={require('../../assets/google.png')} />
-              <ButtonTextGG>Đăng nhập với Google</ButtonTextGG>
+              <ButtonTextContainer>
+                <IconButtonGG resizeMode="contain" source={require('../../assets/google.png')} />
+                <ButtonTextGG>Đăng nhập với Google</ButtonTextGG>
+              </ButtonTextContainer>              
             </ButtonSigninwGG>
           </InnerContainer>
           <InputContainer>
@@ -75,7 +76,7 @@ const Signin = () => {
               </TouchableOpacity>           
             <OthersText3 onPress={handleForgotPassword}>Quên mật khẩu?</OthersText3>
             <ButtonSignin onPress={handleSignIn}>
-              <ButtonText1 onPress={handleSignIn}>Đăng nhập</ButtonText1>
+              <ButtonText1>Đăng nhập</ButtonText1>
             </ButtonSignin>
             <OthersText1 onPress={handleSignUp}>Chưa có tài khoản? Đăng ký</OthersText1>
           </InputContainer>
