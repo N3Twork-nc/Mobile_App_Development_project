@@ -128,7 +128,7 @@ export const Line = styled.View`
 `
 // main content
  export const MainContent = styled.Text`
-  fontSize: 14x;
+  fontSize: 14px;
   font-weight: 400;
   color: ${black};
  `

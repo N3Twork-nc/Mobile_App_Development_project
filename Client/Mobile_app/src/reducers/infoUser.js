@@ -11,7 +11,6 @@ infoUser=createSlice({
     reducers:{
         updateAll(state,data){
             state=data.payload
-            console.log(state)
             return state
         }
     }

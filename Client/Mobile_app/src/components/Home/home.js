@@ -15,7 +15,6 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -34,9 +33,7 @@ const Home = () => {
   const handleProfile= () => {
     navigation.navigate('Profile', { animations: false });
   };
-
-
-
+  
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
@@ -51,14 +48,10 @@ const Home = () => {
             <ButtonAdd resizeMode="cover" source={require('../../assets/add.png')}/>
           </HeaderContainer>   
         {/* Scan */}
-        <ScanButton>
+        <ScanButton onPress={handleScan}>
           <ScanContainer>
             <Scan resizeMode="cover" source={require('../../assets/scan.png')}/>
-            <TouchableOpacity onPress={handleScan}>
-              <View>
-                <Text>Quét và nhận diện cây</Text>
-              </View>
-            </TouchableOpacity>
+                <ScanButtonText>Quét và nhận diện cây</ScanButtonText>
           </ScanContainer>
         </ScanButton>
            {/* Gần đây */}
