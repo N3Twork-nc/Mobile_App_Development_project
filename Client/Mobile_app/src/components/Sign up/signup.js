@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
 import { StyledContainer,ButtonTextGG, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1, IconButtonFB, ButtonTextFB, IconButtonGG, InputTextpw, EyeIcon, ButtonTextContainer } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
-import { Platform, TouchableOpacity, } from 'react-native';
+import { Platform, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const Signup = () => {
@@ -49,6 +50,7 @@ const Signup = () => {
         contentContainerStyle={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
+        <ScrollView contentContainerStyle={{ flex: 1 }}>
         <StyledContainer>
             <InnerContainer>
                 <Slogan>
@@ -99,8 +101,9 @@ const Signup = () => {
                 <OthersText onPress={handleSignIn} >Đã có tài khoản? Đăng nhập</OthersText>  
             </InnerContainer>
         </StyledContainer>
+        </ScrollView>
         </KeyboardAwareScrollView>
-    )
-    }
+    );
+    };
 
 export default Signup;

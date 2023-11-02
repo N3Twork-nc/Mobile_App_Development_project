@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Dimensions } from 'react-native';
+import { Dimensions, KeyboardAvoidingView } from 'react-native';
 
 // Lấy kích thước màn hìnhr
 const { width, height } = Dimensions.get('window');
@@ -22,10 +22,10 @@ const { maincolor, white, black, } = Colors;
  //screen
  export const StyledContainer = styled.View`
  flex: 1;
- padding: ${vh(5)}px;
+ padding: ${vh(8)}px;
  background-color: ${maincolor};
  justify-content: center;
- 
+ align-items: center;
 `;
 
 // all items
@@ -33,7 +33,7 @@ export const InnerContainer = styled.View`
  width: 100%;
  align-items: center;
  justify-content: center;
-
+ display: flex;
 `;
 
 //slogan
@@ -68,7 +68,7 @@ export const IconButtonFB = styled.Image`
 `;
 
 export const ButtonTextFB = styled.Text`
-  fontSize: 16px;
+  fontSize: ${vh(2.3)}px;
   color: ${white};
   font-weight: bold;
 `;
@@ -76,7 +76,7 @@ export const ButtonTextFB = styled.Text`
 
 export const OthersText1 = styled.Text`
   fontSize: 15px;
-  margin-top: ${vh(2)}px;
+  margin-top: ${vh(2.3)}px;
   margin-bottom:  ${vh(2)}px;
   color: ${black};
   font-weight: bold;
@@ -109,7 +109,7 @@ export const IconButtonGG = styled.Image`
 `;
 
 export const ButtonTextGG = styled.Text`
-  fontSize: 16px;
+  fontSize: ${vh(2.3)}px;
   color: ${white};
   font-weight: bold;
 `;
@@ -118,18 +118,10 @@ export const ButtonTextGG = styled.Text`
 
 
 // input box ------------------------------------
-export const InputContainer = styled.View`
-  margin: auto;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  padding: ${vh(5)}px;
-  position: relative;
-`;
 
 export const OthersText2 = styled.Text`
   fontSize:  ${vh(2.1)}px;
-  margin-top: ${vh(2)}px;
+  margin-top: ${vh(1.5)}px;
   color: ${black};
   font-weight: bold;
   text-align: left;

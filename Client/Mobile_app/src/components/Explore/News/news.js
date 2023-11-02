@@ -4,7 +4,7 @@ import {  StyledContainer, HeaderContainer, MainTitle, BackContainer, ButtonBack
  
 } from './styleNews.js';
 import { useNavigation } from '@react-navigation/native';
-import { title, introduction, caption, text} from '../../../api/getNews';
+import { title, introduction} from '../../../api/getNews';
 
 
 const Newspaper = () => {
