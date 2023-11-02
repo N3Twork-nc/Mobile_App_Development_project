@@ -11,7 +11,7 @@ import Verifycode from './src/components/Verify code/verifycode';
 
 //import { plant } from './src/api/uploadPlant';
 
-const App = () =>
+/*const App = () =>
 {
   //plant("caothi", "Phòng ngủ", "Cây lưỡi hổ")
   return <Provider store={store}>
@@ -19,14 +19,14 @@ const App = () =>
   </Provider> 
 }
 export default App;
+*/
 
-
-/*export default function App() {
+export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Verifycode />
+        <CameraScreen />
       </NavigationContainer>
     </Provider>
   );
-}*/
+}

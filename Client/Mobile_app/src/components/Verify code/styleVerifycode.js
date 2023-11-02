@@ -1,6 +1,13 @@
 import styled from 'styled-components';
-import Constants from 'expo-constants';
-import { View, Text,Image } from 'react-native';
+import { Dimensions } from 'react-native';
+
+
+// Lấy kích thước màn hình
+const { width, height } = Dimensions.get('window');
+// Chuyển đổi giá trị vh sang giá trị số
+const vh = percent => (percent * height) / 100;
+// Chuyển đổi giá trị vw sang giá trị số
+const vw = percent => (percent * width) / 100;
 
 // default color
 export const Colors = {
@@ -22,39 +29,43 @@ const { maincolor, white, black, gray, green } = Colors;
  position: fixed;
  
 `;
+//header
+export const HeaderContainer = styled.View` 
+  flexDirection: 'row';
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`;
 
 // all items
 export const InnerContainer = styled.View`
-z-index: 1;
- width: 100%;
- align-items: center;
+ z-index: 1;
  justify-content: center;
+ top: ${vh(5)}px;
 `;
  
 //slogan
 export const Slogan = styled.Text`
-  font-size: ${Platform.OS === 'ios' ? '30px' : 24};
-  fontSize: 30px;
-  margin-bottom: 2%;
+  flex: 0.5;
+  fontSize: ${vh(3.5)}px;
+  margin-top: ${vh(1)}px;
   color: ${black};
   font-weight: bold;
-  text-align: center;
   color: #0B4F06;text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-weight: bold;
+  align-items: flex-end;
 `;
 
 export const ButtonConfirm = styled.TouchableOpacity`
-  margin-top: 40px;
+  margin-top:  ${vh(0.5)}px;
   background-color: ${black};
+  width: ${vw(70)}px;
+  height: ${vh(8)}px;
+  margin-top:  ${vh(2)}px;
   border-radius: 30px;
-  width: 70%;
-  display: flex;
-  align-items: center;
+  align-self: center;
   justify-content: center;
-  height: 60px; 
 `;
 export const ButtonText = styled.Text`
-  
   fontSize: 25px;
   color: ${white};
   font-weight: bold;
@@ -63,62 +74,43 @@ export const ButtonText = styled.Text`
 
 export const Text1 = styled.Text`
   color: #000000;
-  font-size: 16px;
-  font-weight: 400;
-  left: 0;
-  letter-spacing: 0;
-  opacity: 1; 
-  position: relative;
+  fontSize: ${vh(2)}px;
   text-align: center;
-  top: 0;
+  margin-top:  ${vh(0.5)}px;
+  top: ${vh(3)}px;
 `;
 export const Text0 = styled.Text`
   color: #000000;
-  font-size: 16px;
-  font-weight: 400;
-  left: 0;
-  letter-spacing: 0;
-  opacity: 1; 
-  position: relative;
+  fontSize: ${vh(2)}px;
   text-align: center;
-  top: 0;
+  top:  ${vh(4)}px;
 `;
 export const Text2 = styled.Text`
   color: #000000;
-  font-size: 16px;
+  font-size: ${vh(2)}px;
   font-weight: 600;
-  left: 0;
-  letter-spacing: 0;
-  opacity: 1; 
   position: relative;
   text-align: center;
-  top: 0;
-  margin-bottom: 50px;
+  top:  ${vh(5)}px;
+
 `;
 export const OthersText1 = styled.Text`
   color: #000000;
-  font-size: 16px;
+  font-size: ${vh(2)}px;
   font-weight: 400;
-  left: 0;
-  letter-spacing: 0;
   opacity: 0.5; 
   position: relative;
   text-align: center;
-  top: 0;
   margin-top: 30px;
 `;
 
 export const Text3 = styled.Text`
   color: #000000;
-  font-size: 16px;
+  font-size: ${vh(2)}px;
   font-weight: 400;
-  left: 0;
-  letter-spacing: 0;
   opacity: 0.5; 
   position: relative;
   text-align: center;
-  top: 0;
-  margin-top: 20px;
 `;
 export const ButtonTextEllipse= styled.TextInput`
   margin-bottom: 10px;
@@ -131,32 +123,22 @@ export const ButtonTextEllipse= styled.TextInput`
   border-radius: 50px; 
 `;
 export const ImgHead=styled.Image`
-  border-radius: 0px;
-  height: 350px;
+  width: ${vw(100)}px;
+  height: ${vh(50)}px;
   position: absolute;
   top: 0;
-  width: 430px;
-`;
-export const ImgPo=styled.Image`
-  height: 195px;
-  position: relative;
-  margin-bottom: 25px;
-  margin-top: 100px;
-  width: 168px;
-  align-self: center;
-`;
-export const ImgLeaf=styled.Image`
-  height: 120px;
-  left: 150px;
-  top: 245px;
-  object-fit: cover;
-  position: absolute;
-  align-self: center;
-  width: 111px;
 
+`;
+
+export const ImgLeaf=styled.Image`
+  width: ${vw(22)}px;
+  height: ${vh(14)}px;
+  top: ${vh(35)}px;
+  position: absolute;
+  align-items: flex-end;
 `;
 export const BoxContainer = styled.View`
-
+  margin-top: ${vh(12)}px;
   flexDirection: row;
   align-items: center;
   margin-right: 10px;

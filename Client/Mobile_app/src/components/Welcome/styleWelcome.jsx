@@ -40,7 +40,7 @@ export const InnerContainer = styled.View`
 export const Slogan = styled.Text`
 color: #0B4F06;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-fontSize: ${vh(5.5)}px;
+fontSize: ${vh(5.3)}px;
 font-style: normal;
 font-weight: bold;
 margin-top: ${vh(1)}px;
@@ -66,7 +66,7 @@ export const ButtonText = styled.Text`
   text-align: center;
 `;
 export const OthersText = styled.Text`
-  fontSize: ${vh(2.5)}px;
+  fontSize: ${vh(2.4)}px;
   margin-top: ${vh(3)}px;
   color: ${black};
   font-weight: bold;

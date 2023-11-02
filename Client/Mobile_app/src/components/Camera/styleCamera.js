@@ -49,7 +49,16 @@ export const TakePhotoButton= styled.TouchableOpacity`
     align-items: center;
     margin-bottom: 30px;
 `;
-
+export const GalleryButton= styled.TouchableOpacity`
+    right: 10px;
+    bottom: 0px;
+`;
+export const ImageGallery=styled.Image`
+    top: 80px;
+    right: 130px;
+    width: 50px;
+    height: 50px;
+`
 export const ImageCircle=styled.Image`
     width: 70px;
     height: 150px;
