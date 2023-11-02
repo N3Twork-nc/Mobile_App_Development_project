@@ -1,5 +1,5 @@
 {
-    "News_1": {
+    "News_01": {
         "title": "8 CÁCH CHĂM SÓC CÂY TRONG NHÀ LUÔN TƯƠI TỐT",
         "introduction": "Khi bạn mang cây xanh vào nhà, có nhiều điều cần lưu ý để giữ chúng phát triển tốt và trở thành một vật trang trí nội thất lâu dài. Dưới đây sẽ là 8 cách chăm sóc cây cảnh trong nhà đơn giản mà ai cũng có thể thực hiện được. Cùng tham khảo nhé!",
         "content": [
@@ -38,7 +38,7 @@
         ]
     },
     
-    "News_2": {
+    "News_02": {
         "title": "5 BƯỚC CƠ BẢN CHĂM SÓC CÂY CẢNH TRONG VƯỜN LUÔN XANH TỐT",
         "introduction": "Cây cảnh sân vườn không chỉ mang lại vẻ đẹp tự nhiên cho ngôi nhà mà còn giúp không gian sống của bạn thêm trong lành, thư thái. Bên cạnh việc thiết kế sân vườn đẹp, chăm sóc cây cảnh cũng là việc làm vô cùng cần thiết. Tuy nhiên, việc chăm sóc cây cảnh giữ chúng luôn xanh tươi và sân vườn sạch sẽ không phải là điều đơn giản. Dưới đây là một vài gợi ý cho bạn chăm sóc cây cảnh trong vườn đạt hiệu quả.",
         "content": [
@@ -65,7 +65,7 @@
         ]
     },
 
-    "News_3": {
+    "News_03": {
         "title": "TẤT CẢ KIẾN THỨC BẠN CẦN VỀ CÂY TRONG NHÀ",
         "introduction": "Cây trong nhà bắt đầu từ nhu cầu trồng cây bên trong ngôi nhà, để giúp không gian ngôi nhà mát mẻ và trong lành hơn. Bản chất của cây trong nhà là những cây sống được ở trong bóng râm, thiếu nắng. Trong tự nhiên những cây này có thể sống ở tầng thấp của hệ sinh thái, bên dưới các tán cây lớn trong điều kiện không có ánh nắng.",
         "content": [
@@ -88,7 +88,7 @@
         ]
     },
 
-    "News_4": {
+    "News_04": {
         "title": "TOP 10 CÂY CHỊU NẮNG TỐT, GIÚP LỌC KHÔNG KHÍ",
         "introduction": "Dưới đây là 10 loại cây cảnh chịu nắng tốt, giúp lọc không khí cho ngôi nhà thân yêu của bạn!",
         "content": [
@@ -135,7 +135,7 @@
         ]
     },
 
-    "News_5": {
+    "News_05": {
         "title": "TOP 15 LOẠI CÂY PHONG THỦY TRONG NHÀ MANG TÀI LỘC, MAY MẮN",
         "introduction": "Hiện nay, trồng cây phong thuỷ trong nhà chính là phương pháp được nhiều người lựa chọn để điều hòa không khí và cải thiện không gian sống và hy vọng chúng sẽ mang đến tài lộc, may mắn, sức khỏe cho cả gia đình. Bài viết sau sẽ điểm qua các loại cây trồng trong nhà theo phong thuỷ phổ biến nhất.",
         "content": [
@@ -198,6 +198,248 @@
             {
                 "caption": "Cây Ngọc Ngân",
                 "text": "Cây Ngọc Ngân còn được gọi với cái tên khác là cây Valentine, tượng trưng cho một tình yêu đẹp, thể hiện tâm ý chân thành của người tặng dành cho đối phương. Ngoài ra, Ngọc Ngân còn được mệnh danh là cây trồng mang đến tài lộc, may mắn và hưng vượng cho chủ sở hữu.\n\nCây Ngọc Ngân được dùng để trang trí, tạo khoảng xanh cho không gian và thanh lọc không khí. Đây là một trong các loại cây trồng theo phong thuỷ trong nhà tốt cho sức khỏe. Cây phù hợp nhất với người mệnh Kim, giúp tạo ra nhiều năng lượng tích cực và mang đến vận khí tốt cho gia chủ"
+            }
+        ]
+    },
+
+    "News_06": {
+        "title": "6 BƯỚC CƠ BẢN LÀM PHÂN BÓN HỮU CƠ TẠI NHÀ",
+        "introduction": "Phân bón hữu cơ là phân chứa hợp chất dinh dưỡng mà thành phần chủ yếu là chất hữu cơ. Phân hữu cơ thường được hình thành từ phân động vật (phân chuồng), than bùn, phế phẩm nông nghiệp (tro, lá, cành,…) hoặc từ rác thải. Phân hữu cơ là một loại phân bón cho rau sạch thường được dùng trong nông nghiệp, trong phân có chứa chất dinh dưỡng dễ hấp thu cho cây và thân thiện với môi trường.\n\nDù cùng có nguồn gốc từ thiên nhiên nhưng phân hữu cơ được ủ từ vô số các loại nguyên liệu khác nhau, chất thải trong quá trình trồng trọt, chăn nuôi. Chẳng hạn như lá cây, vụn thân cây, than bùn, chất thải từ gia súc… Trong khi đó, mùn lá chỉ được làm từ duy nhất lá cây mà thôi. Sau khi ủ, lớp mùn lá sẽ không nhiều bằng phân trộn nhưng mùn lá sẽ cực kỳ tiện dụng, hiệu quả khi cần giữ độ ấm cho cây trồng.",
+        "content": [
+            {
+                "caption": "Bước 1: Cách chọn thùng chứa đựng phân bón hữu cơ tại nhà",
+                "text": "Có rất nhiều loại thùng chứa được làm vật liệu đựng phân hữu cơ trong đó như: thùng kín (tuy nhiên sẽ kéo dài thời gian ủ), thùng gỗ, thùng nhựa, thùng có dung lượng từ 20-120 lít (tùy vào lượng rác thải của mỗi gia đình).\n\nLưu ý: Các bạn lưu ý một chút đối với các thùng nhựa bị bịt kín bạn nên khoan thêm vài lỗ nhỏ trên thân thùng nhựa để có chỗ thoát nước."    
+            },
+            {
+                "caption": "Bước 2: Chọn vị trí đặt thùng phân hữu cơ tại nhà bạn phù hợp",
+                "text": "Để thùng chứa những nơi thoát nước, đặt những nơi có đất trống thay vì gạch bê tông vì để đảm bảo rằng giun và vi sinh vật có lợi khác có thể xâm nhập thùng rác hoặc bạn có thể để trên sân thượng. Vì những thùng này sẽ có mùi nên để nơi xa bạn sinh hoạt và nơi có nắng nhiều để đẩy nhanh quá trình phân hủy."
+            },
+            {
+                "caption": "Bước 3: Phân loại các loại rác để làm phân hữu cơ tại nhà hiệu quả",
+                "text": "Để cây xanh có thể phát triển nhanh và khỏe mạnh bạn cần cung cấp cho cây những chất dinh dưỡng cần thiết trong đó cacbon và đạm nitơ là 2 chất không thể thiếu, những chất này có nhiều trong rác hữu cơ. Tuy nhiên trước khi tiến hành tự làm phân bón hữu cơ tại nhà bạn cần phân loại các loại rác hữu cơ này ra làm 2 loại đó là rác hữu cơ xanh và rác hữu cơ nâu.\n- Phân xanh cung cấp Nitơ cho cây bao gồm các loại rác thải như: rau quả thừa, lá cây tươi, tóc, cỏ vụn xén, cỏ tươi, bã cà phê, bã đậu, vỏ đậu phộng\n- Phân nâu cung cấp Carbon cho cây bao gồm: Mùn cưa, cỏ khô, rơm rạ, giấy, lá khô, vỏ trứng, túi trà.\n\nCần lưu ý: Để thúc đẩy quá trình ủ phân hữu cơ, đồng thời ức chế mầm bệnh trong phân ủ vì vậy bạn có thể dùng phân trùn quế hoặc men vi sinh trichoderma để trộn chung với phân hữu cơ của bạn."
+            },
+            {
+                "caption": "Bước 4: Tránh dùng những loại rác thải sau để làm phân hữu cơ tại nhà",
+                "text": "Mặc dù chúng ta nên tận dụng các loại rác thải làm phân hữu cơ tại nhà. Tuy nhiên không phải thực phẩm, rác thải nào bạn cũng có thể dùng làm phân được. Chúng ta cần tránh dùng những loại thực phẩm dưới đây làm phân hữu cơ:\n- Xương động vật (gà, lợn,bò,cá)\n- Gia cầm và cá, chất béo từ thực vật và sữa, cá trứng\n- Phân người và vật nuôi chưa qua xử lý, cỏ dại có hại\n- Gỗ đã qua chế biến, vỏ sò,vỏ hến\n- Đặc biệt không sử dụng lá tràm, vỏ cam, vỏ quýt, lá bạch đàn, lá sả tươi, vì những loại này có tinh dầu làm hại đến sự phát triển của vi sinh vật có ích\n- Các chất béo từ sữa sẽ làm chậm quá trình phân hủy phân hữu cơ tại nhà thông qua việc loại trừ oxi mà các vi sinh vật có ích cần để sinh sống.\n- Cá hoặc gia cầm có thể làm phân hữu cơ tuy nhiên do để đảm bảo phân không có mầm bệnh và hạn chế mùi hôi thối thì chúng ta không nên cho vào."
+            },
+            {
+                "caption": "Bước 5: Cách trộn các loại rác khi làm phân hữu cơ tại nhà",
+                "text": "Sau khi phân loại được các loại phân xanh, phân nâu và các thành phần cần tránh khi bạn làm phân hữu cơ tại nhà. Chúng ta tiến hành trộn phân xanh và phân nâu theo tỉ lệ như sau:\n\nThực hiện:\n1. Thêm 10cm phân nâu tiếp đến 1 lớp phân xanh mỏng rồi 10cm phân nâu. Trộn đều hỗn hợp, ủ sau 2 tuần thì bắt đầu tưới nước vào phân. Nhưng cần chú ý đừng làm ướt quá nhiều. Rồi trộn đều phân ủ lên.\n2. Tiếp tục thêm 1 lớp phân nâu vào cho đầy thùng chứa.\n\nLưu ý:\nKhông cần cắt nhỏ phân ra vì chúng ta cần tạo khoảng không giúp không khí lọt vào tạo điều kiện vi sinh vật có lợi sinh sôi, nảy nở.\nViệc trộn phân xanh vào phân nâu vì để phân xanh cung cấp nitơ giúp vi sinh vật có thể phát triển và sinh sản tốt nhằm oxi hóa nguồn carbon.Tuy nhiên quá nhiều nitơ cũng không tốt cho quá trình ủ phân hữu cơ tại nhà.\nKiểm tra nhiệt độ bằng cách dùng một cành tươi cắm vào giữa khối phân ủ. Sau 5 hoặc 6 ngày rút cành cây ra khỏi đống phân và sờ vào phần cắm trong khối phân ủ, nếu thấy cành cây nóng mạnh là đạt yêu cầu."
+            },
+            {
+                "caption": "Bước 6: Cách sử dụng phân hữu cơ tại nhà của bạn",
+                "text": "Sau 30 ngày bạn thấy phân hữu cơ của mình có những đặc điểm sau thì có nghĩa phân ủ của bạn đã phân hủy hoàn toàn. Phân hữu cơ tự ủ có những đặc điểm như:\n- Phân hữu cơ nhìn thấy chuyển sang màu nâu\n- Phân hữu cơ vụn ra và trông giống như mùn. Trong trường hợp nếu là mùn cưa, gỗ thì sẽ thành dạng hình sợi\n- Phân hữu cơ có mùi đất\n- Khi phân ủ đã được phân hủy hoàn toàn tạo thành mùn, bạn bắt đầu đem đi bón cho cây.\n- Bón phân hữu cơ mà bạn đã ủ xung quanh gốc cây trong quá trình trồng cây\n- Bạn có thể trộn phân hữu cơ với đất trước khi gieo trồng.\nĐặc biệt, bạn có thể ép phân hữu cơ đã ủ thành dạng viên phân. Viên phân hữu cơ với đặc tính chậm tan, giúp cây trồng hấp thu chất dinh dưỡng tốt hơn. Tránh bị rửa trôi, có hiệu quả sử dụng cao hơn so với phân bón thông thường.\n\nChúng tôi vừa chia sẻ 6 bước làm phân hữu cơ tại nhà cho người mới bắt đầu. Có thể tận dụng rác thải nhà bạn làm nên phân hữu cơ có lợi cho cây và đất trồng. Tự làm phân hữu cơ tại nhà có thể giúp bạn thay thế bón phân vô cơ. Đảm bảo an toàn cho sức khỏe và còn giúp đảm bảo được môi trường sinh thái."
+            }
+        ]
+    },
+
+    "News_07": {
+        "title": "MẸO TRỒNG CÂY DÂY LEO BAN CÔNG ĐẸP, ĐƠN GIẢN",
+        "introduction": "Dưới đây sẽ là một số meoj trồng cây dây leo ban công đẹp mà vô cùng đơn giản!",
+        "content": [
+            {
+                "caption": "Đặc điểm của dây leo ban công",
+                "text": "Cây leo ban công thường là những loại cây dễ trồng. Chúng hoàn toàn có thể sinh trưởng và phát triển tốt khi bạn trồng trong chậu và đặt trên ban công. Khi  leo giàn, chúng sẽ tạo thành một lá chắn vững chắc giúp cản bụi bẩn và côn trùng. Ngoài ra, đây còn là một phương án tạo ra bóng mát tối ưu cho ban công nhà bạn.\n\nNgoài khả năng tạo bóng mát, chúng còn là nhân tố quan trọng trong việc trang trí cho ngôi nhà của bạn, biến ban công trở nên đẹp mắt hơn, thơ mộng hơn. Đây sẽ là một chiếc “view” xinh xắn cho những ai yêu thích chụp ảnh."    
+            },
+            {
+                "caption": "Mẹo chọn dây leo ban công dễ trồng",
+                "text": "Bạn đã biết làm thế nào để trồng cây leo ban công dễ dàng hơn không. Hãy thử áp dụng một số mẹo chọn giống cây dưới đâu để hiệu quả đạt được tốt hơn nhé:\n\nChọn những giống cây có hoa và có tán cây phủ kín giàn. Điều này giúp cho ban công vừa có bóng mát vừa cho ra hoa để trang trí;\n\nChọn loại cây có thể trồng trong chậu nhưng vẫn phát triển tốt như: hoa hồng leo, hoa giấy…\n\nLựa chọn những giống cây có khả năng chịu hạn tốt, có thân mọng nước, vì ban công là nơi tiếp xúc trực tiếp với ánh nắng. Đặc biệt là ban công hướng tây."
+            },
+            {
+                "caption": "Cách trồng",
+                "text": "Đầu mùa xuân là thời điểm thích hợp nhất cho việc trồng cây. Bởi lẽ, lúc này thời tiết có phần mát mẻ và dễ chịu hơn, tạo điều kiện cho cây sinh trưởng và phát triển. Điều này không đồng nghĩa rằng bạn không thể trồng vào những mùa khác trong năm. Tuy nhiên, vào những thời điểm khác, bạn cần phải tốn thời gian và công sức tưới nước và chăm sóc kỹ lưỡng hơn.\n\nTiếp theo, bạn cần phải chuẩn bị giống cây, đất, chậu trồng và những dụng cụ chăm sóc và tưới nước. Nếu có điều kiện hơn, hãy làm một giàn mái che bên trên để làm giảm tiếp xúc của ánh nắng mắt trời.\n\nBạn có thể trồng cây leo ban công bằng cây con, bằng hạt hoặc bằng phương pháp giâm cành. Với cách trồng bằng cây con hoặc giâm cành, thời gian cây lớn lên và bắt đầu leo gian sẽ nhanh hơn. Với phương pháp gieo hạt, tỷ lệ hạt nảy mầm và phát triển không cao.\n\nSau khi gieo giống, cần tưới nước thường xuyên. Sau 2 tuần, khi cây đã đạt độ cao từ 20 - 30 cm, cần dùng cây gỗ hoặc sắt nẹp để giữ cố định cây con, tránh việc gió làm gãy ngọn."
+            },
+            {
+                "caption": "Cách chăm sóc",
+                "text": "Một quy trình chăm sóc cây leo ban công bao gồm việc tưới nước, bón phân và cắt tỉa. Tuy không quá khó và không đòi hỏi kỹ thuật nhưng bạn cần chú ý những điểm sau để việc chăm sóc đạt được hiệu quả.\n- Tưới nước: Cần tưới nước thường xuyên, đều đặn cho cây. Mật độ tưới không cần quá dày, vào mùa khô, cách 1 - 2 ngày cần tưới một lần, mùa đông có thể từ 3 - 5 ngày. Lượng nước không cần quá nhiều, vừa ngập chậu cây là đủ.\n- Bón phân: Việc bón phân cho cây cũng cần thực hiện theo từng thời điểm nhất định. Khi cây được 1 tháng tuổi, bón 1 nắm phân hữu cơ để cây có đủ dưỡng chất cho việc phát triển. Từ đó về sau, cách 3 tháng cần bổ sung phân chuồng một lần. Nếu là cây leo có hoa, đầu tháng 1 cây cần có kali, photpho để kịp cho ra hoa vào mùa xuân. Vào tháng 9 cây cần kali để tạo thân gỗ, giúp cây chắc hơn.\n- Cắt tỉa: Cây cũng cần được cắt tỉa thường xuyên. Chú ý loại bỏ những cành già, lá sâu hoặc những bông hoa đã tàn để loại bỏ môi trường hình thành sâu bệnh."
+            }
+        ]
+    },
+
+    "News_08": {
+        "title": "TOP 5 LOẠI DÂY HOA LEO BAN CÔNG ĐẸP, DỄ TRỒNG ",
+        "introduction": "Giữa hàng ngàn giống cây leo ban công, bạn không biết đâu là loại cây phù hợp với gia đình mình. Chúng tôi sẽ giới thiệu đến bạn 5 loại cây leo ban công đẹp và dễ trồng nhất.",
+        "content": [
+            {
+                "caption": "1. Hoa giấy leo ban công",
+                "text": "Có lẽ nhiều người đã không còn xa lạ với hoa giấy. Chúng ta có thể dễ dàng nhìn thấy những bông hoa giấy tỏa sắc thắm nhiều nơi. Vậy tại sao không mang vẻ đẹp ấy về góc nhỏ của ban công nhà bạn?\n\nHoa giấy rất dễ trồng, chỉ cần một đoạn cành già của cây là đã có thể ươm thành công. Cây hoa giấy có thân gỗ nhỏ, dẻo dai nên người trồng dễ dàng uốn và tạo hình phù hợp với khuôn viên ban công.\n\nLá của loài cây này cũng khá nhiều, có thể tạo bóng mát. Mùa ra hoa, những chùm hoa mỏng manh, đầy màu sắc có phần lấn át những chiếc lá, tạo nên nét đẹp thật đặc biệt."    
+            },
+            {
+                "caption": "2. Hoa sử quân tử",
+                "text": "Sử quân tử mọc thành từng chùm và chứa rất nhiều bông hoa nhỏ xinh, màu sắc tươi thắm, chắc chắn sẽ tạo nên một khung cảnh rất đẹp. Loài hoa này không những đẹp ở vẻ bề ngoài mà còn có mùi hương rất thơm, tạo cảm giác dễ chịu.\n\nSử quân tử có khả năng chịu nắng rất tốt, chính vì vậy thường được nhiều người trồng để tạo cảnh quan cho ban công. Cây còn tượng trưng cho sức sống mãnh liệt, mang lại tài lộc và sự thăng tiến cho gia chủ."
+            },
+            {
+                "caption": "3. Hoa hồng leo",
+                "text": "Hoa hồng - một loài hoa tượng trưng cho tình yêu mãnh liệt đã không còn gì xa lạ với chúng ta. Tuy nhiên, nếu trước đây chúng ta chỉ có giống hồng truyền thống, khá khó trồng, thì giờ đây đã có hồng leo giàn. \n\nGiống này rất dễ trồng, chỉ cần tưới nước đều đặn là đã có một giàn hoa tuyệt phẩm. Hơn nữa, hoa hồng leo cho rất nhiều bông, đặc biệt là vào mùa xuân"
+            },
+            {
+                "caption": "4. Hoa hồng anh leo",
+                "text": "Cây hoa hồng anh leo có dạng thân quấn, lá màu xanh đậm và hoa màu hồng tươi. Sự kết hợp này tạo nên một bức tranh hài hòa. Bởi đặc tính dễ trồng, chịu được nắng nên thường được trồng tại ban công. Hoa hồng anh leo tượng trưng cho niềm tin và hy vọng."
+            },
+            {
+                "caption": "5. Cây cát đằng leo",
+                "text": "Cát đằng là giống cây leo ban công thân gỗ, nhiều nhánh mềm và có tuổi thọ cao. Cây phát triển rất nhanh, dây leo dài, lá mọc dày. Hoa cát đằng hình quả chuông, có màu xanh tím, ở giữa có sắc vàng.\n\nCây cát đằng leo phủ tán rất dày, phù hợp leo ban công nhà hướng Tây nắng gắt. Tuy nhiên cây lại chịu lạnh khá kém, chỉ thích hợp trồng mùa hè. Cây không cần nhiều nước, bạn chỉ cần tưới khoảng 1 – 2 lần mỗi tuần vào mùa hè, giảm tần suất vào mùa đông là đủ để cây sinh trưởng khỏe mạnh."
+            }
+        ]
+    },
+
+    "News_09": {
+        "title": "7 LOẠI TRẦU BÀ ĐỘC ĐÁO, ĐƯỢC DÂN CHƠI KIỂNG SĂN LÙNG",
+        "introduction": "Dưới đây là 7 loại trầu bà độc đáo được dân chơi kiểng săn lùng. Cùng tham khảo nhé!",
+        "content": [
+            {
+                "caption": "Trầu bà lá xẻ",
+                "text": "Cây trầu bà lá xẻ hay còn được gọi là cây trầu bà chân vịt hay trầu bà khía, trầu bà lá xẻ Nam Mỹ. Loài cây này là thuộc thân thảo, mọc thành bụi nhỏ, tỏa đều xung quanh, có chiều cao trung bình từ 0,8 – 1,2m. Cây trầu bà lá xẻ có hình dạng độc đáo bởi phiến lá chia thùy hình lông chim, lá màu xanh lục với cuống dài.\n\nCây trầu bà lá xẻ không chỉ làm đẹp không gian sống mà còn giúp thanh lọc không khí, đồng thời nó còn mang ý nghĩa phong thủy, cực hợp với những ai tuổi Ngọ và mệnh Mộc.\n\nCây trầu bà lá xẻ còn là biểu tượng cho sự kiên cường, bất khuất. Màu xanh thuộc tính Mộc được xem như sự trường tồn, trường sinh, bình an, may mắn, vạn sự nên rất được nhiều người ưa chuộng"    
+            },
+            {
+                "caption": "Trầu bà đế vương",
+                "text": "Trầu bà đế vương cũng là một trong những loại trầu bà được nhiều người ưa thích. Loài cây nguồn gốc từ đảo Solomon, có 2 màu chính đó là xanh, vàng và đỏ, nó là biểu tượng của sự may mắn về tiền tài và quyền lực cho gia đình gia chủ.\n\nNgoài ra, cây trầu bà đế vương theo phong thủy, loài cây này phù hợp với những phù hợp với người mang mệnh Mộc, nó giúp gia chủ gặp nhiều thuận lợi trong công việc làm ăn, may mắn và thịnh vượng.\n\nTheo quan niệm người xưa, cây trầu bà đế vương sinh trưởng tốt thì thu hút vận tài, nếu cây héo rũ thì vận hạn không thuận lợi, may mắn.\n\nĐồng thời, cây trầu bà đế vương giúp thanh lọc không khí, giảm nhiệt trường được phát ra từ các thiết bị điện tử trong phòng và làm đẹp cảnh quan."
+            },
+            {
+                "caption": "Trầu bà thanh xuân",
+                "text": "Cây trầu bà thanh xuân có hình dạng tương tự trầu bà lá xẻ, đây là loài cây thân thảo, mọc thành bụi nhỏ, chia nhiều nhánh. Lá cây có bản to, màu xanh thẫm. Bề mặt lá không nguyên vẹn mà có nhiều đường xẻ hơi nhăn nheo, phần cuống lá dài với thành bẹ ôm vào thân cây. Chiều cao trung bình khoảng 40 - 50 cm.\n\nDo lợi thế nhỏ, xanh quanh năm nếu được tưới nước đầy đủ, có khả năng thanh lọc không khí, bụi bẩn và giảm thiểu tia nhiệt từ các thiết bị điện tử nên được nhiều người trồng để trang trí nhà cửa, góc bàn làm việc,...\n\nNgoài ra, nó còn có ý nghĩa phong thủy, cây đại diện cho người có chí tiến thủ, sẵn sàng đương đầu vượt qua khó khăn, hướng tới thành công và cực hợp với những ai mệnh Mộc và mệnh Thủy."
+            },
+            {
+                "caption": "Trầu bà cẩm thạch",
+                "text": "Cây trầu bà cẩm thạch là loại cây kiểng có hình dạng độc đáo, xuất xứ của nó từ Malaysia và Bắc Australia. Nó là loại cây thân leo, có tuổi thọ lâu năm, lá hình trái tim, trên lá có các đường vân trắng sữa trông rất bắt mắt.\n\nNhư bao loại cây trầu bà khác, nó cũng có khả năng thanh lọc không khí, loại bỏ các khí độc như formaldehydes, các tia nhiệt từ các thiết bị điện tử. Ngoài ra, cây trầu bà cẩm thạch còn ẩn chứa ý nghĩa phong thủy tốt đẹp, nó rất hợp với mệnh Kim và tượng trưng trường sinh, may mắn, kiên cường và quyền lực"
+            },
+            {
+                "caption": "Cây trầu bà cửa sổ",
+                "text": "Cây trầu bà cửa sổ hay còn gọi là cây trầu bà lỗ, đây là loài cây thân thảo, có hình dạng kỳ lạ, lá cây có hình bầu dục, có nhiều lỗ to nhỏ khác nhau, cây ưa bóng và ưa ẩm nên thích hợp trồng trồng trong nhà.\n\nCây trầu bà cửa sổ có khả năng thanh lọc không khí, bụi bẩn, Hơn nữa, nó cũng mang ý nghĩa phong thủy, giúp gia chủ tài lộc và phú quý, kích thích vận may, đem lại vượng khí trong nhà."
+            },
+            {
+                "caption": "Cây trầu bà tỷ phú",
+                "text": "Cây trầu bà tỷ phủ là dạng cây mọc bụi, hướng rũ xuống, chiều cao trung bình chừng 20 - 30 cm, lá cây có màu xanh đậm, hình trái xoan và nhọn ở đỉnh, xòe ra và rũ xuống như lòng bàn tay mở. Trên phiến lá có đường gân nổi rõ, cuốn lá dài.\n\nCây này hầu như không có hoa và có thân hơi ngắn và mềm, thân màu xanh dạng cọng tròn, thường bị các lá che phủ nên ít nhìn thấy. Cây trầu bà tỷ phú có khả năng hút mọi khí độc như khói thuốc, xăng xe, bức xạ các thiết bị điện tử, … giúp không khí luôn trong lành.\n\nCây trầu bà tỷ phú còn có ý nghĩa phong thủy, mang nhiều tài lộc, thịnh vượng, may mắn cho gia chủ, thu hút vận khí, tránh được những vận xui hay điều thị phi."
+            },
+            {
+                "caption": "Cây trầu bà chân rít lá đốm",
+                "text": "Cây trầu bà chân rít lá đốm hay còn là trầu bà chân rết cũng một trong loại trầu bà được nhiều người ưa trồng. Cây cao trung bình khoảng 30cm, cành lá dài và thuôn mọc trực tiếp từ gốc. Lá cây trầu bà chân rít lá đốm rộng, có màu xanh thẳm hoặc xanh non, có vân vàng chính giữa như bị cháy đặc trưng.\n\nCây cũng có khả năng thanh lọc không khí và cũng mang ý nghĩa phong thủy riêng biệt. Loài cây này hợp những ai mệnh Mộc và Thủy, giúp gia chủ may mắn và thành công trong công việc"
+            }
+        ]
+    },
+
+    "News_10": {
+        "title": "CHẬU NHỰA CÂY TRỒNG, ƯU VÀ NHƯỢC ĐIỂM CẦN LƯU Ý",
+        "introduction": "Chậu nhựa trồng cây được nhiều người yêu thích bởi giá thành rẻ, tiện lợi. Cùng tìm hiểu ưu và nhược điểm của chậu nhựa trồng cây nhé! Bạn đang phân vân có nên mua chậu nhựa để trồng cây hay không thì bài viết này sẽ giúp bạn hiểu rõ được ưu và nhược điểm của chậu nhựa trồng cây. Từ đó, bạn có thể quyết định có nên mua không nhé!",
+        "content": [
+            {
+                "caption": "1. Ưu điểm của chậu nhựa trồng cây",
+                "text": "Độ bền cao: chậu nhựa trồng cây được làm từ chất liệu nhựa chất lượng, chịu được va đập tốt, không sợ ngã đổ làm hư chậu. Một số chậu nhựa cao cấp có kết cấu là hàng ngàn các liên kết cacbon vững chắc, đáp ứng được khí hậu khắc nghiệt, hạn chế bào mòn.\n\nGiá rẻ, phải chăng: so với các loại chậu trồng cây khác, chậu nhựa có giá bán rẻ hơn, lại đa dạng mẫu mã cho bạn dễ dàng lựa chọn.\n\nĐa dạng về kiểu dáng, kích thước: chậu nhựa trồng cây có nhiều kiểu dáng đa dạng, từ hiện đại đến cổ điển và nhiều kích thước khác nhau, đáp ứng mọi nhu cầu của người tiêu dùng.\n\nDễ dàng vệ sinh, thay chậu: bạn có thể vệ sinh chậu nhựa dễ dàng chỉ với một chiếc khăn lau. Bên cạnh đó, chậu có trọng lượng nhẹ nên bạn cũng có thể thay chậu, thay đất cho cây một cách dễ dàng hơn."    
+            },
+            {
+                "caption": "2. Nhược điểm của chậu nhựa trồng cây",
+                "text": "Bị tích nhiệt, giữ nhiệt: chậu nhựa không thể thoát nhiệt như chậu đất nung hay đá mài. Khi để chậu nhựa ngoài nắng trong thời gian dài, cây dễ bị tích nhiệt.\n\nDễ bị đổ ngã khi chọn kích thước chậu không phù hợp: nếu bạn chọn chậu quá nhỏ so với cây thì sẽ khiến cây dễ bị ngã nếu gặp trời gió hoặc va chạm.\n\nKhông thân thiện với môi trường: chậu nhựa sẽ không thân thiện với môi trường, vì nhựa có thời gian phân hủy rất lâu, gây tác hại xấu đối với môi trường."
+            }
+        ]
+    },
+
+    "News_11": {
+        "title": "7 LOẠI CÂY CẢNH KHÔNG NÊN TRỒNG TRONG NHÀ, ĐẶC BIỆT LÀ NHÀ CÓ CON NHỎ",
+        "introduction": "Xu hướng nội thất xanh được nhiều người yêu thích. Đặt cây cảnh trong nhà mang đến sự trong lành, tươi mát cho không gian sống. Tuy vậy, không phải loại cây nào cũng được trưng bày trong nhà, nhất là nhà có con nhỏ.",
+        "content": [
+            {
+                "caption": "Cây hoa huệ lily",
+                "text": "Hoa huệ lily nghe rất thanh lịch và trang nhã, nhưng bạn có biết chúng lại chứa tinh thể calcium oxalate, có thể tạo ra các triệu chứng khó chịu nếu trẻ vô tình ăn vào hoặc nếu chất lỏng từ hoa tiếp xúc với da."    
+            },
+            {
+                "caption": "Cây dạ lan hương",
+                "text": "Theo Báo Lao động, phòng ngủ không thích hợp đặt dạ lan hương cũng như các loại cây tỏa hương vào buổi tối. Loài cây này sẽ tạo ra những hạt mùi kích thích xúc giác mãnh liệt, vô cùng nguy hiểm đối với những người mắc bệnh cao huyết áp và tim."
+            },
+            {
+                "caption": "Cây xương rồng ba cạnh",
+                "text": "Theo như nhiều công trình y học ở nước ta như: Những cây thuốc và vị thuốc Việt Nam, Cây thuốc và động vật làm thuốc ở Việt Nam... cây xương rồng ba cạnh có độc (đặc biệt là nhựa trắng có trong thân cây). Chất nhựa có trong cây xương rồng ba cạnh cũng có thể gây kích ứng, làm tổn hại lớp niêm mạc da (đối với trường hợp da mỏng, da bị trầy xước...) và gây rát, phồng rộp, đỏ... Nếu không may để rơi vào mắt, nhựa cây cũng có thể gây mù mắt."
+            },
+            {
+                "caption": "Xương rồng bát tiên",
+                "text": "Cây xương rồng bát tiên hay còn gọi là cây hoa bát tiên, cây hoa mão gai. Xương rồng bát tiên có tên khoa học là Euphorbia milii, là loài thực vật có hoa thuộc họ Đại kích – Euphorbiaceae, nguồn gốc từ Madagascar.\n\nLoại cây này có nhiều giống loài, màu sắc (xanh, nâu đỏ, tím, ...), nhựa mủ và gai chi chít trên thân. Chính những chiếc gai nhọn này có thể đâm vào tay gây trầy xước nếu không cẩn thận.\n\nBên cạnh đó, nhựa mủ của cây sẽ gây bỏng rát tay khi tiếp xúc. Những người trồng cây cần đeo bao tay kỹ lưỡng và rửa sạch tay nếu lỡ dính phải. Đặc biệt là gia đình có trẻ nhỏ nên tránh trồng cây này."
+            },
+            {
+                "caption": "Hồng môn",
+                "text": "Toàn thân cây hồng môn đều có độc tố Calcium oxalate và Asparagine. Thông thường thì những chất này không gây ảnh hưởng đến chúng ta.\n\nTuy nhiên, nếu trong nhà có trẻ nhỏ hoặc thú cưng thì cần lưu ý khi trồng bởi nếu ăn phải bất kỳ bộ phận nào của cây cũng gây ra bỏng rát họng, dạ dày và ruột. Lá hay hoa nếu nát dính vào da sẽ dễ tạo ban và rộp mụn nước."
+            },
+            {
+                "caption": "Kim tiền",
+                "text": "PGS Trần Hồng Côn – Khoa Hóa học, trường Đại học Khoa học tự nhiên cho hay, rất nhiều cây cảnh để trong gia đình có độc và vô tình ăn phải có thể gây ngộ độc và cây kim tiền cũng là một trong số đó.\n\nCuống và lá cây kim tiền chứa tinh thể canxi oxalat. Chất này có tác dụng hút khí độc trong không khí nhưng lại gây hại cho sức khỏe con người. Chất này trong cây kim tiền gây kích thích các vùng da nhạy cảm, niêm mạc lưỡi, môi, màng nhầy cổ họng hoặc vùng kết mạc mắt."
+            },
+            {
+                "caption": "Vạn thiên thanh",
+                "text": "Cũng theo PGS Hồng Côn, không chỉ riêng cây kim tiền có độc mà những cây cảnh để trong nhà khác cũng rất độc đó là cây vạn niên thanh.\n\nTrong cây này hai loại độc tố andromedotoxin và arbutin glucosit trong tất cả các bộ phận của cây vạn niên thanh, khi tiếp xúc với làn da trẻ em có thể gây bỏng rát. Nghiêm trọng hơn, trẻ em ăn phải lá cây vạn niên thanh (bộ phận chứa độc tố nhiều nhất) có thể bị nôn mửa, co giật."
+            }
+        ]
+    },
+
+    "News_12": {
+        "title": "3 ĐIỂM MẤU CHỐT KHI TRỒNG HOA NHÀI, GIÚP HOA NỞ RỘ TỎA HƯƠNG KHẮP NHÀ",
+        "introduction": "Hoa nhài mang vẻ đẹp thanh tao, trang nhã, lại có mùi hương dễ chịu, giúp thư giãn tinh thần. Không những vậy, bạn cũng có thể hái hoa nhài vào pha trà, làm bánh. Chính vì vậy, rất nhiều người thích trồng hoa nhài trong nhà.",
+        "content": [
+            {
+                "caption": "1. Hoa nhài có thể nhân giống bằng cách giâm cành",
+                "text": "Nếu sợ cây tàn lụi, bạn có thể nhân giống hoa nhài bằng cách giâm cành. Cách nhân giống rất đơn giản, bạn chỉ cần chọn cành khỏe mạnh, vặt bỏ bớt lá dưới gốc rồi cắm cành trong cát ẩm là được.\n\nNếu cẩn thận hơn, hãy nhúng cành giâm qua dung dịch kích rễ trước khi cắm cành vào cát. Đặt ở nơi thoáng mát, bóng râm, đảm bảo sau khoảng 20 ngày thì cành giâm sẽ bén rễ, chồi non bắt đầu xuất hiện. Lúc này, bạn có thể tách cây ra để trồng trong chậu lớn hơn."    
+            },
+            {
+                "caption": "2. Có 3 điểm mấu chốt trong việc chăm sóc hoa nhài",
+                "text": "- Hoa nhài ưa môi trường ấm áp, nhiều nắng: Hoa nhài cũng giống như hoa hồng, thích phơi nắng, không thích môi trường quá râm mát. Loài hoa này ưa môi trường ấm áp và ánh nắng trực tiếp. Càng nhiều nắng, cây mới có thể phát triển tốt, hoa nở liên tục. Hoa nhài trồng trong môi trường thiếu ánh sáng thì cành thường dài và mảnh khảnh hơn, lá nhỏ và có màu nhạt, hình dáng cây trông rất lộn xộn. Không những vậy, cây sẽ nở hoa ít hơn, thậm chí không ra hoa. Chính vì vậy, khi trồng hoa nhài bạn nên trồng những nơi có nhiều ánh sáng mặt trời trực tiếp chiếu vào, tránh đặt cây ở nơi tối.\n\n- Phải tỉa cành thường xuyên: Hoa nhài chỉ nở trên cành mới, tức chỉ có cành mới mọc mới có thể nở hoa, còn cành cũ sẽ không thể nở hoa. Nếu chúng ta để cành cũ phát triển dài ra, không cắt tỉa thì cành mới sẽ ít mọc ra hoặc không mọc, khiến hoa nở ít và thậm chí không ra hoa. Để hoa nhài ra cành mới khỏe mạnh, mập mạp và ra nhiều hoa hơn, bạn phải kịp thời cắt tỉa những cành dài ra vào mùa đông trước khi mùa xuân bắt đầu. Cắt bỏ những cành mỏng và dài đi, chỉ để lại cành khỏe mạnh. Sau mỗi đợt hoa tàn cũng nên cắt tỉa hàng loạt. Khi được cắt tỉa đúng cách, hoa nhài mới mọc ra nhiều cành mới, dễ ra nụ và nở hoa hơn. Bên cạnh đó, mỗi khi thấy cành bệnh thì bạn cũng nên cắt tỉa bớt để tránh lây lan mầm bệnh. Cây có quá nhiều cành rậm rạp thì sẽ cản ánh sáng, gây cản trở quá trình quang hợp và ảnh hưởng đến sự phát triển của cây. Hơn nữa, khi cây rậm rạp thì khả năng thông gió bên trong kém dễ khiến hoa nhài bị bệnh. Vì vậy, khi thấy cành quá rậm rạp, cản trở nhau thì nên cắt tỉa kịp thời để cải thiện khả năng thông gió và ánh sáng cho cây, đồng thời giảm tiêu thụ chất dinh dưỡng của những cành không cần thiết, để hoa nhài có thể nở rộ.\n\n- Bón nhiều phân cho hoa nhài: Nếu thiếu chất dinh dưỡng, hoa nhài sẽ phát triển chậm, tán lá có màu vàng. Nhưng nếu thừa chất dinh dưỡng, hàm lượng đạm dư thừa thì cây sẽ phát triển cành lá thay vì cho hoa. Vì vậy nếu thấy cành lá có màu xanh đậm, mọc nhiều thì chứng tỏ cây đang thừa đạm, tốt hơn hết nên ngừng bón phân cho hoa nhài khoảng 1 tháng. Sau đó, bón phân lân, kali pha loãng hàng tuần để thúc cây ra hoa. Nếu hoa nhài phát triển chậm, lá vàng, hãy bón phân pha loãng hàng tuần cho cây. Ngừng bón phân và hạn chế tưới nước cho hoa nhài vào mùa đông."
+            }
+        ]
+    },
+
+    "News_13": {
+        "title": "4 MẸO TƯỚI CÂY KHI VẮNG NHÀ, TIỆN LỢI, HIỆU QUẢ",
+        "introduction": "Dưới đây sẽ là những tips giúp bạn tưới cây khi văngs nhà vừa tiện lợi vừa hiệu quả!",
+        "content": [
+            {
+                "caption": "1. Dùng hệ thống nhỏ giọt bằng dây",
+                "text": "Đây là phương pháp mà bạn có thể dụng lâu dài và có thể áp dụng được cho các loại cây trồng. Với phương pháp này cây sẽ được hút ẩm qua sợi dây tới rễ cây. Do đó bạn cần lựa chọn những sợi dây thấm hút nước tốt như sợi dây bông, dây thừng.\n\nBạn cần chuẩn bị một sợi dây mà cốc nước. Sau đó đặt một sợi dây vào đất 6cm. đầu còn lại cho vào cốc nước và chạm tới đáy. Trước khi đi vắng hãy tưới nước cho cây và đổ đầy nước vào cốc.\n\nBạn cần phải lưu ý miệng cốc phải cao hơn gốc cây, như vậy thì nước mới có khả năng truyền qua sợi dây. Nên đặt chậu cây ở nơi ít tiếp xúc với ánh sáng mặt trời để hạn chế sự thoát nước."    
+            },
+            {
+                "caption": "2. Tưới bằng chai nước",
+                "text": "Sử dụng chai nước tưới cây thích hợp với các loại cây cần tưới nước hàng ngày. Dưới đây là các cách tưới cây khi vắng nhà mà bạn có thể tham khảo qua:\n- Trước tiên bạn cần chuẩn bị một chai có nắp đậy. Sau đó tiến hành tạo 3 - 5 lỗ nhỏ vừa phải trên nắp chai.\n- Tiếp theo đổ nước đầy vào chai.\n- Tiếp tục đào một lỗ trên bề mặt của chậu và úp ngược phần đầu chai xuống đất và lấp lại. Nước sẽ chảy từ từ với một nước vừa đủ để cung cấp và duy trì độ ẩm cho cây. Với cách này bạn có thể duy trì sự sống cho cây đến 5 ngày"
+            },
+            {
+                "caption": "3. Đặt chậu cây trong chậu nước",
+                "text": "Chiếc đĩa đặt dưới chậu có thể là một giải pháp tốt cho những loại cây đơn giản, không cần chăm sóc đặc biệt. Tất cả những gì bạn cần làm là tìm một chiếc chậu thoát nước và một chiếc đĩa vừa vặn bên dưới.\n\nChọn một chiếc đĩa có kích thước phù hợp, phải bằng hoặc lớn hơn một chút so với nồi. Đổ đầy nước và đặt cây của bạn. Đảm bảo cây được đặt trong chậu thoát nước và có nước. Bằng cách này sẽ giúp cây duy trì sự sống trong 2-3 ngày."
+            },
+            {
+                "caption": "4. Làm nhà kính cho cây",
+                "text": "Đây là một trong những phương pháp dễ thực hiện và có thể là giải pháp lâu dài. Hãy cẩn thận làm theo các bước sau để thực hiện chính xác:\n- Tạo 4 đống gỗ ở mỗi góc của chậu.\n- Tưới nước cho cây như bình thường, nhưng đừng tưới quá nhiều nước. Đảm bảo tránh ánh nắng trực tiếp để cây không bị nóng, hấp hơi và dễ héo.\n- Bọc cây trong túi nhựa. Túi phải đủ lớn để lá không chạm vào túi.\n- Thời gian duy trì tuổi thọ của cây lên đến 6 - 8 tháng."
+            }
+        ]
+    },
+
+    "News_14": {
+        "title": "3 CÁCH LÀM THUỐC TRỪ SÂU SINH HỌC TẠI NHÀ HIỆU QUẢ 99%",
+        "introduction": "Việc sử dụng các loại thuốc trừ sâu hóa học đã bị cấm trong sản xuất nông nghiệp hữu cơ. Điều này đã khiến không ít bà con nông dân lựa chọn thuốc trừ sâu sinh học để kiểm soát sâu bọ.\n\nCó rất nhiều cách làm thuốc trừ sâu sinh học được áp dụng, tuy nhiên do nhu cầu kiểm soát sâu bọ tại các trang trại hữu cơ lớn nên công thức làm chế phẩm sinh học này đòi hỏi phải có nhiều kinh phí. Dưới đây là 3 cách làm thuốc trừ sâu sinh học có chi phí thấp, nguyên liệu dễ tìm, giúp người nông dân có thể tự pha chế với số lượng lớn để phục vụ cho các trang trại nông nghiệp với quy mô lớn.",
+        "content": [
+            {
+                "caption": "1. Thuốc trừ sâu sinh học làm tỏi, ớt, gừng và rượu",
+                "text": "Nguyên liệu bao gồm:\n- Gừng\n- Tỏi\n- Ớt\n- Rượu trắng\n- Pha chế theo công thức: 1kg gừng + 1kg ớt tươi + 1kg tỏi + 3 lít rượu.\n\nCách thực hiện:\n- Nghiền nát gừng, tỏi, ớt. \n- Đổ hỗn hợp vừa được nghiền vào chum ngâm. \n- Sau đó đổ tiếp 3 lít rượu vào chum, bịt kín lại và để ở nơi thoáng mát. Mục đích của việc bịt kín chính là không để rượu bị bay hơi và biến chất.\n- Sau 15 ngày ủ, lấy ra và pha với nước. Sau đó phun hỗn hợp lên hoa màu. Tỷ lệ như sau: 12 lít nước tương ứng với 200ml nước cốt đã ủ. \n- Hỗn hợp chưa dùng tới sẽ được đậy kín và sử dụng trung bình trong khoảng 4 - 5 tháng. Loại thuốc này để trị các loại bọ nhảy, sâu tơ, sâu khoang,..."    
+            },
+            {
+                "caption": "2. Thuốc trừ sâu từ vỏ trứng",
+                "text": "Nguyên liệu bao gồm: Vỏ trứng\n\nCách thức thực hiện:\n- Thu lượm vỏ trứng sau đó nghiền nát\n- Độ sắc nhọn của vỏ trứng sẽ tự nhiên cắt đứt thân của các con sâu nhỏ.\n- Rắc 2 lần/ tháng xung quanh gốc cây và trộn vào các loại phân bón lót trước khi trồng để tăng độ hiệu quả."
+            },
+            {
+                "caption": "3. Làm thuốc từ sâu tại nhà từ hành tăm",
+                "text": "Nguyên liệu bao gồm: Hành tăm\n\nCách thức thực hiện:\n- Nghiền nát nhuyễn hành tăm rồi pha với nước sạch theo tỷ lệ như sau: 1 lạng hành tăm hòa với 1 lít nước.\n- Sau đó ủ kín hỗn hợp này trong vòng 1 tuần.\n- Hòa nước cốt hành tăm với nước theo tỷ lệ 1:4 rồi phun trực tiếp lên cây trồng sẽ giúp ngăn ngừa úng nước, các bệnh tàn rụi muộn, bệnh đốm lá. Ngoài ra có thể ngăn ngừa chuột, nấm bệnh, sâu, bọ."
+            }
+        ]
+    },
+
+    "News_15": {
+        "title": "CÁCH TRỒNG HOA GIẤY NỞ RỘ QUANH NĂM",
+        "introduction": "Dưới đây sẽ là một số tips giúp bạn trồng cây hoa giấy nở rộ quanh năm. Cùng tham khảo nhé!",
+        "content": [
+            {
+                "caption": "Cách cho hoa giấy lâu tàn và ra hoa quanh năm",
+                "text": "Cây hoa giấy nếu trồng ra đất thì vươn rất cao và lá xanh tốt, sau khi thân cành già mới cho hoa ở ngọn cành. Cây càng tốt càng khó ra hoa, nếu trồng cho leo trùm nóc cổng hay dàn hiên thì nên trồng vào bồn xây, lúc đầu cho cây tốt. khi gần kín thì làm cho đất cằn khô và cho điều kiện sống khắc khổ. Cây hoa giấy còn có thể trồng vào chậu và tạo dáng, tạo thế được.\n\nNếu trồng cây hoa giấy vào chậu, sau mỗi đợt hoa cần tưới thêm nước phân thúc hoặc nước ngâm lông xương súc vật. Sau một vài năm trồng, thức ăn trong đất đã cạn, phải lấy cây ra, dũ đất cắt hết rễ rồi trồng lại. nếu cây tốt, lá to, xanh đậm thì nên hái bớt lá từ 1/2 -2/3 để kích thích cho cây ra hoa"    
+            },
+            {
+                "caption": "Cách trồng",
+                "text": "- Vào cuối tháng giêng sau khi đợt hoa giấy đầu tiên tàn, dùng kéo cắt tỉa, sửa lại cành nhánh, rồi đánh ra khỏi chậu, rũ 2/3 đất, cắt bỏ những rễ già khô, cho đất mới vào trộn với phân chuồng và NPK với tỷ lệ: 10 phần đất - 3 phần phân chuồng -1 phần NPK. Sau khi trồng xong, tưới đẫm nước, chăm sóc cây ổn định, sang tháng ba cây ra hoa rực rỡ.\n- Để cây có màu xanh đậm lâu tàn, tôi ngâm phân NPK với lân theo tỉ lệ: 3 NPK - 1 lân pha loãng, cứ năm ngày tưới 1 lần, làm như vậy giữ được hoa, lá trên cành cây đến 2 tháng\n- Sau khi biểu hiện hoa sắp tàn, lấy NPK bón sâu quanh gốc rồi tưới nước, giữ độ ẩm thường xuyên, dùng kéo cắt hoa đã tàn, vặt bỏ cành lá già trên cây, cành rườm rà, chỉnh lại cây. Làm vậy chỉ 10-20 ngày sau cây lại ra hoa trở lại."
+            },
+            {
+                "caption": "Những vấn đề thường gặp khi trồng cây hoa giấy",
+                "text": "- Cây hoa giấy có rất nhiều màu khác nhau như đỏ, trắng, hồng, tím, cam với màu tím là phổ biến. Màu sắc của hoa phụ thuộc bởi nhiều yếu tố như giống cây, nhiệt độ và khí hậu. Nhụy hoa hình ống cũng quyết định màu sắc của hoa.\n- Cây không nở hoa có thể bởi cây đang thừa nước, cây hoa giấy cần rất ít nước, nếu cây thừa nước có thể ảnh hưởng đến khả năng ra hoa. Nếu cây không thừa nước, có thể cây đang thiếu dinh dưỡng. Hãy thử bón phân, tắm nắng hoặc cắt tỉa cành để kích thích cây ra hoa.\n- Hầu hết các loại hoa giấy có thể chịu được nhiệt độ thấp nhất khoảng 12o, có sự thay đổi không lớn tùy loài.\n- Bất cứ loại cây nào cũng có thời kỳ nở rộ. Mặc dù cây hoa giấy gần như nở quanh năm nhưng nó cũng có thời kỳ tăng trưởng để chuẩn bị cho mùa hoa năm sau. Hãy giữ cho cây đủ nắng, không thừa nước và chờ đón một mùa hoa tiếp theo\n\nVậy là chúng tôi đã tổng kết những lưu ý quan trọng nhất để trồng và chăm sóc cây hoa giấy. Chúc cây hoa giấy của bạn phát triển tốt và nở hoa như mong muốn."
             }
         ]
     }
