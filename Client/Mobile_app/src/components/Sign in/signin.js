@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Platform, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {signin } from '../../api/signin_signup'
+import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { updateToken } from '../../reducers/token';
 
@@ -13,8 +14,6 @@ const Signin = () => {
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   }

@@ -8,6 +8,8 @@ import CameraScreen from './src/components/Camera/camera';
 import { NavigationContainer } from '@react-navigation/native';
 import Signin from './src/components/Sign in/signin';
 import Verifycode from './src/components/Verify code/verifycode';
+import { title, introduction, caption, text } from './src/api/getNews';
+
 const App = () =>
 {
   return <Provider store={store}>
@@ -15,6 +17,8 @@ const App = () =>
   </Provider> 
 }
 export default App;
+
+
 /*export default function App() {
   return (
     <Provider store={store}>
