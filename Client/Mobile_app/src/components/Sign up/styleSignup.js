@@ -1,7 +1,12 @@
 import styled from 'styled-components';
-import { View, Text, Image } from 'react-native';
-import Constants from 'expo-constants';
 import { CheckBox } from 'react-native-elements';
+import { Dimensions } from 'react-native';
+// Lấy kích thước màn hìnhr
+const { width, height } = Dimensions.get('window');
+// Chuyển đổi giá trị vh sang giá trị số
+const vh = percent => (percent * height) / 100;
+// Chuyển đổi giá trị vw sang giá trị số
+const vw = percent => (percent * width) / 100;
 
 // default color
 export const Colors = {
@@ -17,7 +22,7 @@ const { maincolor, white, black, gray, green } = Colors;
  //screen
  export const StyledContainer = styled.View`
  flex: 1;
- padding: 20px;
+ padding: ${vh(5)}px;
  background-color: ${maincolor};
  justify-content: center;
  align-items: center;
@@ -32,9 +37,9 @@ export const InnerContainer = styled.View`
  
 //slogan
 export const Slogan = styled.Text`
-  fontSize: 27px;
-  margin-top: 10%;
-  margin-bottom: 5%;
+  fontSize: ${vh(4)}px;
+  margin-top: ${vh(4)}px;
+  margin-bottom: ${vh(2)}px;
   color: ${black};
   font-weight: bold;
   text-align: center;
@@ -42,68 +47,72 @@ export const Slogan = styled.Text`
 `;
 
 //button Signup
+
 export const ButtonSignupwFB = styled.TouchableOpacity`
-   background-color: ${black};
+  background-color: ${black};
   border-radius: 30px;
-  width: 85%;
-  display: flex;
+  width: ${vw(75)}px;
   position: relative;
   align-items: center;
   justify-content: center;
-  height: 60px; /* hoặc sử dụng padding-top */
-`;
-export const ButtonTextFB = styled.Text`
-  fontSize: 16px;
-  color: ${white};
-  font-weight: bold;
-  align-self: flex-end;
-  position: absolute;
-  right: 29px;
-`;
-export const IconButtonFB = styled.Image`
-  align-self: flex-start;
-  left: 30px;
-  height: 30px;
-  width:30px;
+  height: 60px;
 `;
 
-export const ButtonSignupwGG = styled.TouchableOpacity`
-  background-color: ${black};
-  border-radius: 30px;
-  width: 85%;
-  margin-top: 3%;
-  height: 60px; /* hoặc sử dụng padding-top */  
-  align-content: center;
-  justify-content: center;
+export const ButtonTextContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
 `;
-export const ButtonTextGG = styled.Text`
-  fontSize: 16px;
+
+export const IconButtonFB = styled.Image`
+  height: ${vh(5)}px;
+  width: ${vh(5)}px;
+  margin-right: 7px;
+`;
+
+export const ButtonTextFB = styled.Text`
+  fontSize: ${vh(2.3)}px;
   color: ${white};
   font-weight: bold;
-  align-self: flex-end;
-  position: absolute;
-  right: 42px;
+`;
+
+
+export const ButtonSignupwGG = styled.TouchableOpacity`
+   background-color: ${black};
+   margin-top: ${vh(1)}px;
+  border-radius: 30px;
+  width: ${vw(75)}px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
 `;
 export const IconButtonGG = styled.Image`
-  align-self: flex-start;
-  left: 41px;
-  height: 27px;
-  width: 27px;
+ height: ${vh(4.5)}px;
+  width: ${vh(4.5)}px;
+  margin-right: 7px;
 `;
+
+export const ButtonTextGG = styled.Text`
+  fontSize: ${vh(2.3)}px;
+  color: ${white};
+  font-weight: bold;
+`;
+
 export const ButtonCreateAccount = styled.TouchableOpacity`
   background-color: ${black};
   border-radius: 30px;
-  width: 50%;
+  width: ${vw(50)}px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px; /* hoặc sử dụng padding-top */
+  margin-top: ${vh(1)}px;
+  height: ${vh(8)}px; /* hoặc sử dụng padding-top */
 `;
 
 export const OthersText = styled.Text`
-  fontSize: 15px;
-  margin-top: 5%;
-  margin-bottom: 3%;
+  fontSize: ${vh(2)}px;
+  margin-top: ${vh(2)}px;
+  margin-bottom: ${vh(1)}px;
   color: ${black};
   font-weight: bold;
   text-align: center;
@@ -114,9 +123,9 @@ export const OthersText = styled.Text`
 export const InputText = styled.TextInput`
   background-color: ${white};
   border-radius: 30px;
-  width: 85%;
-  margin-top: 3%;
-  height: 7%; /* hoặc sử dụng padding-top */  
+  margin-top: ${vh(1.2)}px;
+  width: ${vw(75)}px;
+   height: ${vh(7)}px;
   align-content: center;
   justify-content: center;
   padding: 5px 15px;
@@ -126,9 +135,10 @@ export const InputText = styled.TextInput`
 export const InputTextpw = styled.TextInput`
    background-color: ${white};
    border-radius: 30px;
-   width: 85%;
-   height: 7%;
-   margin-top: 4%;
+   margin-top: ${vh(1)}px;
+   width: ${vw(75)}px;
+   height: ${vh(7)}px;
+   margin-top: ${vh(1.2)}px;
    align-self: center; 
    justify-content: center;
    padding: 5px 15px;
@@ -138,11 +148,11 @@ export const InputTextpw = styled.TextInput`
 `;
 export const EyeIcon = styled.Image`
   position: relative;
-  height: 20px;
-  width: 20px;
-  left: 105px;
+  height: ${vh(3)}px;
+  width: ${vh(3)}px;
+  left: ${vw(30)}px;
   z-index:1;
-  top: -170%;
+  top: -33px;
 `;
 
 // Privacy checkbox ------------------
@@ -150,10 +160,8 @@ export const CheckboxContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 80%; /* Điều chỉnh độ rộng của CheckboxContainer */
-  margin-left: auto;
-  margin-right: 12%;
-  padding:0px;
+  width: ${vh(35)}px; 
+  right: ${vh(1.2)}px;
   
 `;
 export const OthersCheckbox = styled(CheckBox)`
@@ -162,10 +170,10 @@ export const OthersCheckbox = styled(CheckBox)`
 
 export const CheckboxText = styled.Text`
   font-weight: 500;
-  fontSize: 14px;
+  fontSize: ${vh(2)}px;
 `;
 export const ButtonText1 = styled.Text`
-  fontSize: 20px;
+  fontSize: ${vh(3)}px;
   color: ${white};
   font-weight: bold;
   text-align: center;

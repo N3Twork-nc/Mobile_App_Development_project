@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import { StyledContainer,ButtonTextGG, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1, IconButtonFB, ButtonTextFB, IconButtonGG, InputTextpw, EyeIcon } from './styleSignup'
+import { StyledContainer,ButtonTextGG, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1, IconButtonFB, ButtonTextFB, IconButtonGG, InputTextpw, EyeIcon, ButtonTextContainer } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
-import { Platform, TouchableOpacity } from 'react-native';
+import { Platform, TouchableOpacity, } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
@@ -55,12 +55,16 @@ const Signup = () => {
                     ĐĂNG KÝ 
                 </Slogan>
                 <ButtonSignupwFB>
-                    <IconButtonFB resizeMode="contain" source={require('../../assets/facebook.png')}/>
-                    <ButtonTextFB>Đăng ký bằng Facebook</ButtonTextFB>
+                    <ButtonTextContainer>
+                        <IconButtonFB resizeMode="contain" source={require('../../assets/facebook.png')}/>
+                        <ButtonTextFB>Đăng ký bằng Facebook</ButtonTextFB>
+                    </ButtonTextContainer>                    
                 </ButtonSignupwFB>
                 <ButtonSignupwGG>   
-                    <IconButtonGG resizeMode="contain" source={require('../../assets/google.png')}/>                 
-                    <ButtonTextGG>Đăng ký bằng Google</ButtonTextGG>
+                    <ButtonTextContainer>
+                        <IconButtonGG resizeMode="contain" source={require('../../assets/google.png')}/>                 
+                        <ButtonTextGG>Đăng ký bằng Google</ButtonTextGG>
+                    </ButtonTextContainer>                    
                 </ButtonSignupwGG>    
                 <OthersText>Hoặc đăng ký bằng Email</OthersText>                
                 <InputText onChangeText={setTextFullname} placeholder="Nhập họ và tên đầy đủ"></InputText>
@@ -89,8 +93,8 @@ const Signup = () => {
                     />
                     <CheckboxText>Tôi đã đọc và đồng ý với các điều khoản của ứng dụng.</CheckboxText>
                 </CheckboxContainer>                
-                <ButtonCreateAccount>
-                    <ButtonText1 onPress={handleSignUp}> Đăng ký</ButtonText1>
+                <ButtonCreateAccount onPress={handleSignUp}>
+                    <ButtonText1> Đăng ký</ButtonText1>
                 </ButtonCreateAccount>
                 <OthersText onPress={handleSignIn} >Đã có tài khoản? Đăng nhập</OthersText>  
             </InnerContainer>

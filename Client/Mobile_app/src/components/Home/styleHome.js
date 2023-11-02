@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { View, Text, Image, Platform } from 'react-native';
-import Constants from 'expo-constants';
 
 // default color
 export const Colors = {
   maincolor: "#CEF1CF",
-  white: "#ffffff",
+  white: "#FFFFFF",
   black: "#000000",
   gray: "#D9D9D9",
   green: "#61AF2B", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
