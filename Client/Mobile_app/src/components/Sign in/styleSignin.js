@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Dimensions, KeyboardAvoidingView } from 'react-native';
+import { Dimensions,  } from 'react-native';
 
 // Lấy kích thước màn hìnhr
 const { width, height } = Dimensions.get('window');
