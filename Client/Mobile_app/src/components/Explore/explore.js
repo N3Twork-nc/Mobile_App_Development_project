@@ -14,21 +14,13 @@ const Explore = () => {
 
     const NewsData = async () => {
       try {
-          const results = [];
-          const allNewsData = await data();
-  
-          for (let i = 0; i < 15; i++) {
-              results.push({
-                  title: allNewsData[i].title,
-                  introduction: allNewsData[i].introduction
-              });
-          }
-  
-          setNewsData(results);
+        const newsData = await data();
+        setNewsData(newsData);
       } catch (error) {
-          console.log(error);
+        console.log(error);
       }
-  };
+    };
+    
   
   
     const handleHome = () => {
@@ -43,8 +35,8 @@ const Explore = () => {
     const handleProfile = () => {
       navigation.navigate('Profile', { animations: false });
     };
-    const handleRead = () => {
-      navigation.navigate('News', { animations: false });
+    const handleRead = (selectedNews) => {
+      navigation.navigate('News', { animations: false, selectedNews });
     };
   
     return (
@@ -61,7 +53,7 @@ const Explore = () => {
             
             {/* NewspaperContainers */}
             {newsData.map((news, index) => (
-              <NewspaperContainer key={index} onPress={handleRead}>
+              <NewspaperContainer key={index} onPress={() => handleRead(news)}>
                 <NewspaperImageContainer resizeMode="cover" source={require('../../assets/welcome.png')} />
                 <TextNewspaper>
                   <MainText numberOfLines={2} ellipsizeMode="tail">{news.title}</MainText>
