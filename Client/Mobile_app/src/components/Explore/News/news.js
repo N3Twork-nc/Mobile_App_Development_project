@@ -1,40 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ScrollView,  SafeAreaView } from 'react-native';
 import {  StyledContainer, HeaderContainer, MainTitle, BackContainer, ButtonBack, HeaderImageContainer, MainTitleContainer, NewspaperMaintitle, SubtitleContainer, NewspaperThumbnailContainer, TextNewspaper, SubText, Line, MainContent,
- 
+
 } from './styleNews.js';
 import { useNavigation } from '@react-navigation/native';
-import { title, introduction} from '../../../api/getNews';
-
-
 const Newspaper = () => {
     const navigation = useNavigation();
-    const [titleResult, setTitleResult] = useState('');
-    const [introductionResult, setIntroductionResult] = useState('');
-
-    useEffect(() => {
-        newsData();
-    }, []);
-
-    const newsData = async () => {
-        try {
-            const titleResults = [];
-            const introductionResults = [];
-        
-            for (let i = 0; i < 15; i++) {
-              const titleResult = await title(i);
-              const introductionResult = await introduction(i);
-              titleResults.push(titleResult);
-              introductionResults.push(introductionResult);
-            }
-        
-            setTitleResult(titleResults);
-            setIntroductionResult(introductionResults);
-          } catch (error) {
-            console.log(error);
-          }
-    };
-
     const handleBack = () => {
         navigation.navigate('Explore', { animations: false });
       };
@@ -51,11 +22,11 @@ const Newspaper = () => {
                         <MainTitle>Khám phá</MainTitle>
                     </MainTitleContainer>   
                 </HeaderContainer>
-                <NewspaperMaintitle>{titleResult[0]}</NewspaperMaintitle>
+                <NewspaperMaintitle>8 CÁCH CHĂM SÓC CÂY TRONG NHÀ LUÔN TƯƠI TỐT</NewspaperMaintitle>
                 <SubtitleContainer>
                     <NewspaperThumbnailContainer  resizeMode="cover" source={require('../../../assets/plant.jpg')} />
                     <TextNewspaper>
-                        <SubText>{introductionResult[0]}</SubText>
+                        <SubText>Khi bạn mang cây xanh vào nhà, có nhiều điều cần lưu ý để giữ chúng phát triển tốt và trở thành một vật trang trí nội thất lâu dài. Dưới đây sẽ là 8 cách chăm sóc cây cảnh trong nhà đơn giản mà ai cũng có thể thực hiện được. Cùng tham khảo nhé!</SubText>
                     </TextNewspaper>
                 </SubtitleContainer>
                 <Line/>
