@@ -13,13 +13,7 @@ export const data = async () => {
       const introduction = newsData.introduction;
       const content = newsData.content;
 
-      const captionIndex = 0; 
-      const textIndex = 0;
-
-      const caption = content[captionIndex].caption;
-      const text = content[textIndex].text;
-
-      results.push({ title, introduction, caption, text });
+      results.push({ title, introduction, content });
     });
 
     console.log("Get data success");
