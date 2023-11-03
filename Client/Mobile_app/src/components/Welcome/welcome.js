@@ -4,7 +4,6 @@ import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText, Butto
 import { useNavigation } from '@react-navigation/native';
 
 const Welcome = () => {
-  const [isChecked, setIsChecked] = useState(false);
   const navigation = useNavigation();
   const handleSignIn = () => {
     navigation.navigate('SignIn');
@@ -20,7 +19,7 @@ const Welcome = () => {
                     Welcome to
                     PLANTAHOLIC!
                 </Slogan>  
-                <ImgPlant resizeMode="cover" source={require('../../assets/welcome.png')} />                
+                <ImgPlant resizeMode="contain" source={require('../../assets/welcome.png')} />                
                 <ButtonSignup>
                     <ButtonText onPress={handleSignUp}>Đăng ký</ButtonText>
                 </ButtonSignup>
