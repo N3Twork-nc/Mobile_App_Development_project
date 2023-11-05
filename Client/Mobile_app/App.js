@@ -8,12 +8,10 @@ import CameraScreen from './src/components/Camera/camera';
 import { NavigationContainer } from '@react-navigation/native';
 import Signin from './src/components/Sign in/signin';
 import Verifycode from './src/components/Verify code/verifycode';
-
-//import { plant } from './src/api/uploadPlant';
+import { data } from './src/api/getNews';
 
 /*const App = () =>
 {
-  //plant("caothi", "Phòng ngủ", "Cây lưỡi hổ")
   return <Provider store={store}>
     <AppNavigator/>
   </Provider> 

@@ -17,7 +17,7 @@ export const Colors = {
   green: "#61AF2B",
 }
 
-const { maincolor, white, black, gray, green } = Colors;
+const { maincolor, white, black } = Colors;
 
  //screen
  export const StyledContainer = styled.View`
@@ -55,7 +55,7 @@ export const ButtonSignupwFB = styled.TouchableOpacity`
   position: relative;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  height: ${vw(15)}px;
 `;
 
 export const ButtonTextContainer = styled.View`
@@ -84,7 +84,7 @@ export const ButtonSignupwGG = styled.TouchableOpacity`
   position: relative;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  height: ${vw(15)}px;
 `;
 export const IconButtonGG = styled.Image`
  height: ${vh(4.5)}px;
@@ -110,7 +110,7 @@ export const ButtonCreateAccount = styled.TouchableOpacity`
 `;
 
 export const OthersText = styled.Text`
-  fontSize: ${vh(2)}px;
+  fontSize: ${vh(2.1)}px;
   margin-top: ${vh(2)}px;
   margin-bottom: ${vh(1)}px;
   color: ${black};
@@ -170,7 +170,7 @@ export const OthersCheckbox = styled(CheckBox)`
 
 export const CheckboxText = styled.Text`
   font-weight: 500;
-  fontSize: ${vh(2)}px;
+  fontSize: ${vh(1.9)}px;
 `;
 export const ButtonText1 = styled.Text`
   fontSize: ${vh(3)}px;

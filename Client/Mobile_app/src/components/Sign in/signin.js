@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
-import { Platform, TouchableOpacity, Alert } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Platform, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateToken } from '../../reducers/token';
+import { ScrollView } from 'react-native-gesture-handler';
 const Signin = () => {
   const dispatch=useDispatch()
   const navigation = useNavigation();
@@ -36,10 +37,11 @@ const Signin = () => {
 
   return (
     
-      <KeyboardAwareScrollView
-        contentContainerStyle={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
+    <KeyboardAwareScrollView 
+    contentContainerStyle={{ flex: 1 }}
+    behavior={Platform.OS === 'ios' ? 'padding' : null}
+    keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
+    <ScrollView contentContainerStyle={{ flex: 1 }} >
         <StyledContainer>
           <InnerContainer>
             <Slogan>ĐĂNG NHẬP</Slogan>
@@ -55,8 +57,6 @@ const Signin = () => {
                 <ButtonTextGG>Đăng nhập với Google</ButtonTextGG>
               </ButtonTextContainer>              
             </ButtonSigninwGG>
-          </InnerContainer>
-          <InputContainer>
             <OthersText1>Hoặc đăng nhập với Email</OthersText1>
             <OthersText2>Tên tài khoản hoặc Email</OthersText2>
             <InputTextusername onChangeText={setTextUsername} />
@@ -79,8 +79,10 @@ const Signin = () => {
               <ButtonText1>Đăng nhập</ButtonText1>
             </ButtonSignin>
             <OthersText1 onPress={handleSignUp}>Chưa có tài khoản? Đăng ký</OthersText1>
-          </InputContainer>
+          
+          </InnerContainer>
         </StyledContainer>
+        </ScrollView>
       </KeyboardAwareScrollView>
     
   );
