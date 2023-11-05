@@ -1,5 +1,5 @@
 import React, {useState,  useEffect, useRef} from 'react'
-import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText1, ButtonConfirm, ButtonTextEllipse,TextInput,Text0,Text1, Text2,Text3,ImgHead,ImgLeaf,ImgPo,BoxContainer} from './styleVerifycode'
+import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText1, ButtonConfirm, ButtonTextEllipse,TextInput,Text0,Text1, Text2,Text3,ImgHead,ImgLeaf,ImgPo,BoxContainer,HeaderContainer} from './styleVerifycode'
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { verify } from '../../api/signin_signup' 
@@ -17,16 +17,23 @@ const Verifycode = () => {
     const [otp4, setOtp4] = useState('');
 
     // Count time 
-    const [countdown, setCountdown] = useState(30);
+    const [countdown, setCountdown] = useState(60);
     useEffect(() => {
-        const timer = setInterval(() => {
+      const timer = setInterval(() => {
           if (countdown > 0) {
-            setCountdown(countdown - 1);
+              setCountdown(countdown - 1);
+          } else {
+              setOtp1('');
+              setOtp2('');
+              setOtp3('');
+              setOtp4('');
+              clearInterval(timer);
+              Alert.alert('Hết thời gian', 'Vui lòng gửi lại mã OTP');
           }
-        }, 1000);
-      
-        return () => clearInterval(timer);
-      }, [countdown]);
+      }, 1000);
+
+      return () => clearInterval(timer);
+  }, [countdown]);
 
     const handleResend = () => {
       navigation.navigate('SignIn');
@@ -50,19 +57,20 @@ const Verifycode = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
         <StyledContainer>
-
-            <ImgHead resizeMode="cover" source={require('../../assets/Head.png')} />
+            <ImgHead resizeMode="cover" source={require('../../assets/headVerify.png')} />
+            <HeaderContainer>
             <Slogan>
                     NHẬP MÃ XÁC NHẬN 
             </Slogan>
-            <ImgPo resizeMode="cover" source={require('../../assets/Polygon.png')} />
             <ImgLeaf resizeMode="cover" source={require('../../assets/logo.png')} />
+            </HeaderContainer>
 
             <InnerContainer>
             <Text1 >Một mã xác nhận đã được gửi  </Text1> 
             <Text0>qua địa chỉ</Text0>
             <Text2> Nguyenvancho@gmail.com</Text2>
-          
+            </InnerContainer>
+
             <BoxContainer> 
               <TextInput
               value={otp1}
@@ -89,6 +97,7 @@ const Verifycode = () => {
               maxLength={1}
             />
             </BoxContainer>
+
             <Text3>
             {countdown >= 0 ? `00:${countdown.toLocaleString('en-US', { minimumIntegerDigits: 2 })}` : '00:00'}
             </Text3>
@@ -96,7 +105,7 @@ const Verifycode = () => {
             <ButtonConfirm >
             <ButtonText onPress={handleConfirm}>Xác nhận</ButtonText>
             </ButtonConfirm>
-            </InnerContainer>
+            
         </StyledContainer>
         </KeyboardAwareScrollView>
     )

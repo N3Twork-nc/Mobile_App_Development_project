@@ -10,21 +10,21 @@ import Signin from './src/components/Sign in/signin';
 import Verifycode from './src/components/Verify code/verifycode';
 import { data } from './src/api/getNews';
 
-const App = () =>
+/*const App = () =>
 {
   return <Provider store={store}>
     <AppNavigator/>
   </Provider> 
 }
 export default App;
+*/
 
-
-/*export default function App() {
+export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Verifycode />
+        <CameraScreen />
       </NavigationContainer>
     </Provider>
   );
-}*/
+}
