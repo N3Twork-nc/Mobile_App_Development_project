@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome5 } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,
-        HeaderContainer,FlashButton,ImageFlash,RetakeSaveButtons,StyleContainer,ButtonClose
+import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,
+        HeaderContainer,FlashButton,ImageFlash,RetakeSaveButtons,StyleContainer,ButtonClose, ImageGallery
 } from './styleCamera'
-
+import * as ImagePicker from 'expo-image-picker';
   const CameraScreen = () => {
   const navigation = useNavigation();
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -51,10 +51,29 @@ import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
       setCapturedPhoto(photo);
-      setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Lưu"
+      setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }
   };
-
+  //Mở album ảnh 
+  const handleChooseFromLibrary = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission needed', 'Please grant permission to access the photo library.');
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+  
+    if (!result.cancelled) {
+      setCapturedPhoto(result);
+      setIsModalVisible(true);
+    }
+  };
+  
   // Hàm để đóng cửa sổ modal
   const closePhotoPreview = () => {
     setIsModalVisible(false);
@@ -91,6 +110,9 @@ import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,
         </ButtonClose>
         </HeaderContainer>
         <Container >
+        <GalleryButton onPress={handleChooseFromLibrary}>
+        <ImageGallery resizeMode="cover" source={require('../../assets/gallery.png')} />          
+        </GalleryButton>
           <TakePhotoButton onPress={handleTakePhoto}>
             <ImageCircle resizeMode="cover" source={require('../../assets/takephoto.png')} />
           </TakePhotoButton>  
@@ -122,7 +144,7 @@ import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,
             // Xử lý việc lưu ảnh ở đây
             closePhotoPreview();
           }}>
-            <Text3>Lưu</Text3>
+            <Text3>Nhận diện</Text3>
           </TouchableOpacity>
 
           </View>
