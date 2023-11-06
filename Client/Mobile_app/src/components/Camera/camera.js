@@ -4,7 +4,7 @@ import { Camera } from 'expo-camera';
 import { FontAwesome5 } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,
-        HeaderContainer,FlashButton,ImageFlash,RetakeSaveButtons,StyleContainer,ButtonClose, ImageGallery
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet,RetakeSaveButtons,StyleContainer,ButtonClose, ImageGallery, ImageClose,
 } from './styleCamera'
 import * as ImagePicker from 'expo-image-picker';
   const CameraScreen = () => {
@@ -97,27 +97,27 @@ import * as ImagePicker from 'expo-image-picker';
         flashMode={flash}
       >
         <HeaderContainer>
-        <FlashButton onPress={toggleFlash}>
-        {flash === Camera.Constants.FlashMode.off ? (
-              <ImageFlash resizeMode="cover" source={require('../../assets/flashoff.png')}  />
-            ) : (
-              <ImageFlash resizeMode="cover" source={require('../../assets/flashon.png')} />
-            )}
-        </FlashButton>
-        <Text1> Nhận diện cây </Text1>   
-        <ButtonClose onPress={handleHome}>
-        <FontAwesome5 name="times" size={24} color="white" /> 
-        </ButtonClose>
+          <FlashButton onPress={toggleFlash}>
+            {flash === Camera.Constants.FlashMode.off ? (
+                  <ImageFlash resizeMode="contain" source={require('../../assets/flashoff.png')}  />
+                ) : (
+                  <ImageFlash resizeMode="contain" source={require('../../assets/flashon.png')} />
+                )}
+            </FlashButton>
+          <Text1> Nhận diện cây </Text1>   
+          <ButtonClose onPress={handleHome}>
+           <ImageClose resizeMode="contain" source={require('../../assets/close.png')} tintColor={'white'} />
+          </ButtonClose>
         </HeaderContainer>
         <Container >
         <GalleryButton onPress={handleChooseFromLibrary}>
-        <ImageGallery resizeMode="cover" source={require('../../assets/gallery.png')} />          
+          <ImageGallery resizeMode="cover" source={require('../../assets/gallery.png')} />          
         </GalleryButton>
           <TakePhotoButton onPress={handleTakePhoto}>
             <ImageCircle resizeMode="cover" source={require('../../assets/takephoto.png')} />
           </TakePhotoButton>  
            <ButtonReweet onPress={toggleCameraType}>
-              <FontAwesome5 name="sync-alt" size={24} color="white" />
+              <ImageReweet resizeMode="cover" source={require('../../assets/rotation.png')} tintColor={'white'} />
             </ButtonReweet>   
         </Container>
       </Camera>
@@ -137,14 +137,17 @@ import * as ImagePicker from 'expo-image-picker';
          
           {/* Xử lý Chụp lại */}
           <TouchableOpacity onPress={closePhotoPreview}>
-            <Text2>Chụp lại</Text2>
+             <Text2>Chụp lại</Text2>
+         
           </TouchableOpacity>
+
           {/* Xử lý Lưu */}
           <TouchableOpacity onPress={() => {
             // Xử lý việc lưu ảnh ở đây
             closePhotoPreview();
           }}>
-            <Text3>Nhận diện</Text3>
+           <Text3>Nhận diện</Text3>
+           
           </TouchableOpacity>
 
           </View>

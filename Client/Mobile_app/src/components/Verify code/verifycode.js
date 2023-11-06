@@ -68,7 +68,7 @@ const Verifycode = () => {
             <InnerContainer>
             <Text1 >Một mã xác nhận đã được gửi  </Text1> 
             <Text0>qua địa chỉ</Text0>
-            <Text2> Nguyenvancho@gmail.com</Text2>
+            <Text2>{infoUser.email}</Text2>
             </InnerContainer>
 
             <BoxContainer> 
