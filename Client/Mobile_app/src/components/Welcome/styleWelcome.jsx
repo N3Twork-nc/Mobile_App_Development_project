@@ -23,7 +23,7 @@ const { maincolor, white, black, gray, green } = Colors;
  //screen
  export const StyledContainer = styled.View`
  flex: 1;
- padding: 20px;
+ padding: ${vh(2)}px;
  background-color: ${maincolor};
  justify-content: center;
  
@@ -40,41 +40,41 @@ export const InnerContainer = styled.View`
 export const Slogan = styled.Text`
 color: #0B4F06;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-fontSize: ${vh(5.5)}px;
+fontSize: ${vh(5.3)}px;
 font-style: normal;
 font-weight: bold;
 margin-top: ${vh(1)}px;
-width: ${vw(80)}px;
+width: ${vw(90)}px;
+padding-left: ${vh(3)}px;
 `;
 
 
 export const ButtonSignup = styled.TouchableOpacity`
-  margin-top: 40px;
+  margin-top: ${vh(3)}px;
   background-color: ${black};
   border-radius: 30px;
-  width: 70%;
+  width: ${vw(60)}px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: ${vh(8)}px;
 `;
 export const ButtonText = styled.Text`  
-  fontSize: 25px;
+  fontSize: ${vh(3)}px;
   color: ${white};
   font-weight: bold;
   text-align: center;
 `;
 export const OthersText = styled.Text`
-  fontSize: ${vh(2.5)}px;
-  margin-top: 5%;
-  margin-bottom: 3%;
+  fontSize: ${vh(2.4)}px;
+  margin-top: ${vh(3)}px;
   color: ${black};
   font-weight: bold;
   align-self: center;
 `;
 
 export const ImgPlant=styled.Image`
-  width: 280px;
+  width: ${vw(80)}px;
   height: ${vh(40)}px;
   flex-shrink: 0;
   margin-top:${vh(5)}px;
