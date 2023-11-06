@@ -7,7 +7,7 @@ from model_train.load_model import Model
 from Source.security import Authentication
 from fastapi import Depends
 
-@app.post('/APIPredictPlants')
+@app.post('/APIPredictPlants',dependencies=[Depends(Authentication().validate_token)])
 async def prediectPlants(file: UploadFile):
     #Đọc dữ liệu
     contents = await file.read()
