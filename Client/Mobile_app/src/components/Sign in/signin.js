@@ -4,9 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 import { Platform, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {signin } from '../../api/signin_signup'
-import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { updateToken } from '../../reducers/token';
+import { updateAll } from '../../reducers/infoUser';
 
 const Signin = () => {
   const dispatch=useDispatch()
@@ -21,8 +21,10 @@ const Signin = () => {
   const handleSignIn = async () => {
     const response= await signin(textUsername,textPassword)
     if (response['status']=="200"){
-      const action=updateToken(response['token'])
-      dispatch(action)
+      const acUpdateToken=updateToken(response['token'])
+      const acUpdateInfo=updateAll(response['info'])
+      dispatch(acUpdateToken)
+      dispatch(acUpdateInfo)
       return navigation.navigate('Home')
     }
     else Alert.alert('Tài khoản hoặc mật khẩu không chính xác');
