@@ -39,7 +39,6 @@ export const InnerContainer = styled.View`
 //slogan
 export const Slogan = styled.Text`
   fontSize: ${vh(4)}px;
-  margin-top: 10%;
   margin-bottom: 8%;
   color: ${black};
   font-weight: bold;
@@ -62,8 +61,8 @@ export const ButtonTextContainer = styled.View`
 `;
 
 export const IconButtonFB = styled.Image`
-  height: ${vh(5)}px;
-  width: ${vh(5)}px;
+  height: ${vw(8)}px;
+  width: ${vw(8)}px;
   margin-right: 7px;
 `;
 
@@ -103,8 +102,8 @@ export const ButtonSigninwGG = styled.TouchableOpacity`
 `;
 
 export const IconButtonGG = styled.Image`
-  height: ${vh(4)}px;
-  width: ${vh(4)}px;
+  height: ${vw(7)}px;
+  width: ${vw(7)}px;
   margin-right: 7px;
 `;
 
