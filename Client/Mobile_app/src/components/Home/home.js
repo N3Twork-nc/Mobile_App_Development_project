@@ -62,12 +62,12 @@ const Home = () => {
 
           <RecentlyPlantContainer>
             <Plant1Container>
-              <ImageFrame resizeMode="cover" source={require('../../assets/plant.jpg')}/>
-              <PlantName> Cây chó đẻ </PlantName>
+              <ImageFrame resizeMode="cover" source={require('../../assets/plant1.jpg')}/>
+              <PlantName> Vạn Niên Thanh </PlantName>
             </Plant1Container> 
             <Plant2Container>
-              <ImageFrame resizeMode="cover" source={require('../../assets/welcome.png')}/>
-              <PlantName> Cây thúi địch </PlantName>
+              <ImageFrame resizeMode="cover" source={require('../../assets/plant2.jpg')}/>
+              <PlantName> Lan Ý </PlantName>
             </Plant2Container>
           </RecentlyPlantContainer>
 
@@ -150,7 +150,7 @@ const Home = () => {
 
           {/* Thông báo 2 */}
           <NotificationContainer>
-            <NotificationImageContainer resizeMode="cover" source={require('../../assets/plant.jpg')}/>
+            <NotificationImageContainer resizeMode="cover" source={require('../../assets/plant1.jpg')}/>
             <TextNotification>
               <MainTextNotify numberOfLines={1} ellipsizeMode="tail">Khát nước quá Ngân ơi cho xin mín nước</MainTextNotify>
               <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Đã 2 tuần rồi bạn không tưới nước</SubTextNotify>
@@ -187,7 +187,7 @@ const Home = () => {
         <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
         <TaskbarButtonText>Đã lưu</TaskbarButtonText>
       </ContainerButton>
-      <ContainerButton>
+      <ContainerButton onPress={handleProfile}>
         <TaskbarIcon resizeMode="contain" source={require('../../assets/profile.png')}/>
         <TaskbarButtonText>Cá nhân</TaskbarButtonText>
       </ContainerButton>

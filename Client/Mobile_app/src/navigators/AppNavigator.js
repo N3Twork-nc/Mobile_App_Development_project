@@ -10,7 +10,7 @@ import Livingroom from '../components/Home/Rooms/Livingroom/livingroom';
 import Explore from '../components/Explore/explore';
 import Newspaper from '../components/Explore/News/news';
 import CameraScreen from '../components/Camera/camera';
-
+import Profile from '../components/Profile/profile';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -24,11 +24,11 @@ const AppNavigator = () => {
         <Stack.Screen name="SignUp" component={Signup}  />        
         <Stack.Screen name="VerifyCode" component={Verifycode}  />      
         <Stack.Screen name="Livingroom" component={Livingroom} />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={Home} options={{animationEnabled: false}}/>
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
-        <Stack.Screen name="News" component={Newspaper} />
+        <Stack.Screen name="News" component={Newspaper} options={{animationEnabled: false}}/>
         <Stack.Screen name="CameraScreen" component={CameraScreen} />
-
+        <Stack.Screen name="Profile" component={Profile} options={{animationEnabled: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
