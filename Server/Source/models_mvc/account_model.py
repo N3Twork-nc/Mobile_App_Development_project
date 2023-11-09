@@ -79,3 +79,8 @@ class Account(BaseModel):
             return None if email==0 else email
         except:
             return None
+        
+    def getInfoAccout(self):
+        ref=db.reference(f'Accounts/{self.username}')
+        info=ref.get()
+        return info
