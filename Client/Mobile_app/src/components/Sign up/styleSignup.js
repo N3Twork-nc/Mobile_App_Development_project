@@ -29,16 +29,16 @@ const { maincolor, white, black } = Colors;
 `;
 
 export const InnerContainer = styled.View`
- width: 100%;
- align-items: center;
- justify-content: center;
- display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
  
 //slogan
 export const Slogan = styled.Text`
   fontSize: ${vh(4)}px;
-  margin-top: ${vh(4)}px;
+  margin-top:${vh(3)}px;
   margin-bottom: ${vh(2)}px;
   color: ${black};
   font-weight: bold;
@@ -55,7 +55,7 @@ export const ButtonSignupwFB = styled.TouchableOpacity`
   position: relative;
   align-items: center;
   justify-content: center;
-  height: ${vw(15)}px;
+  height: ${vw(14)}px;
 `;
 
 export const ButtonTextContainer = styled.View`
@@ -64,8 +64,8 @@ export const ButtonTextContainer = styled.View`
 `;
 
 export const IconButtonFB = styled.Image`
-  height: ${vh(5)}px;
-  width: ${vh(5)}px;
+ height: ${vw(8)}px;
+  width: ${vw(8)}px;
   margin-right: 7px;
 `;
 
@@ -84,11 +84,11 @@ export const ButtonSignupwGG = styled.TouchableOpacity`
   position: relative;
   align-items: center;
   justify-content: center;
-  height: ${vw(15)}px;
+  height: ${vw(14)}px;
 `;
 export const IconButtonGG = styled.Image`
- height: ${vh(4.5)}px;
-  width: ${vh(4.5)}px;
+ height: ${vw(7)}px;
+  width: ${vw(7)}px;
   margin-right: 7px;
 `;
 
@@ -132,6 +132,12 @@ export const InputText = styled.TextInput`
   font-weight: 500;
   box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.1);
 `;
+export const InputTextpwContainer = styled.View`
+  position: relative;
+  width: ${vw(75)}px;
+  height: ${vh(7)}px;
+  margin-top: ${vh(1.2)}px;
+`;
 export const InputTextpw = styled.TextInput`
    background-color: ${white};
    border-radius: 30px;
@@ -143,13 +149,13 @@ export const InputTextpw = styled.TextInput`
    justify-content: center;
    padding: 5px 15px;
    font-weight: 500;
-   box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.2);
    z-index:-1;
+   box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.1);
 `;
 export const EyeIcon = styled.Image`
   position: relative;
-  height: ${vh(3)}px;
-  width: ${vh(3)}px;
+  height: 20px;
+  width: 20px;
   left: ${vw(30)}px;
   z-index:1;
   top: -33px;
@@ -160,7 +166,7 @@ export const CheckboxContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: ${vh(35)}px; 
+  width: ${vh(37)}px; 
   right: ${vh(1.2)}px;
   
 `;

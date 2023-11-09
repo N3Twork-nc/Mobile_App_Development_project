@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
 import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
-import { Platform, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native';
+import { Platform, TouchableOpacity, Alert, View, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateToken } from '../../reducers/token';
 import { ScrollView } from 'react-native-gesture-handler';
+import LottieView from 'lottie-react-native';
+
+
 const Signin = () => {
-  const dispatch=useDispatch()
+  const dispatch=useDispatch();  
   const navigation = useNavigation();
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   }
 
   const handleSignIn = async () => {
+    setIsLoading(true); 
     const response= await signin(textUsername,textPassword)
     if (response['status']=="200"){
+      setIsLoading(false);
       const action=updateToken(response['token'])
       dispatch(action)
       return navigation.navigate('Home')
@@ -36,12 +42,20 @@ const Signin = () => {
   };
 
   return (
-    
     <KeyboardAwareScrollView 
     contentContainerStyle={{ flex: 1 }}
     behavior={Platform.OS === 'ios' ? 'padding' : null}
     keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
     <ScrollView contentContainerStyle={{ flex: 1 }} >
+    {isLoading ? (
+        <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+        <LottieView
+                source={require('../../assets/Animation - 1699453290167.json')} 
+                autoPlay
+              />
+        </View>
+           
+          ) : (
         <StyledContainer>
           <InnerContainer>
             <Slogan>ĐĂNG NHẬP</Slogan>
@@ -81,11 +95,16 @@ const Signin = () => {
             <OthersText1 onPress={handleSignUp}>Chưa có tài khoản? Đăng ký</OthersText1>
           
           </InnerContainer>
-        </StyledContainer>
+        </StyledContainer>)}
         </ScrollView>
       </KeyboardAwareScrollView>
-    
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#CEF1CF',
+  }
+})
 export default Signin;

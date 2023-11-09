@@ -97,7 +97,7 @@ export const NewspaperMaintitle = styled.Text`
   margin-top:${vh(5)}px;
 `
 export const SubtitleContainer = styled.View`
-    height: ${vh(20)}px;
+    height: auto;
     width: ${vw(90)}px;
     border-radius: 13px;
     background-color: ${white};
@@ -124,8 +124,10 @@ export const SubText = styled.Text`
   font-style: italic;
   font-weight: 500;
   color: ${maintitle};
-  overflow: hidden;
+  flex: 1;  
+  height: auto; 
 `;
+
 
 
 export const Line = styled.View`
