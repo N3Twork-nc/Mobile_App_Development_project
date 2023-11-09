@@ -6,7 +6,7 @@ import Signin from '../components/Sign in/signin';
 import Signup from '../components/Sign up/signup';
 import Home from '../components/Home/home';
 import Verifycode from '../components/Verify code/verifycode';
-import Livingroom from '../components/Home/Livingroom/livingroom';
+import Livingroom from '../components/Home/Rooms/Livingroom/livingroom';
 import Explore from '../components/Explore/explore';
 import Newspaper from '../components/Explore/News/news';
 import CameraScreen from '../components/Camera/camera';
@@ -28,6 +28,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
         <Stack.Screen name="News" component={Newspaper} />
         <Stack.Screen name="CameraScreen" component={CameraScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

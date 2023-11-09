@@ -75,7 +75,6 @@ const Home = () => {
         {/* quản lý  */}
           <TitleforContainers>
             <Title1>Quản lý</Title1>
-            <Title2>Xem tất cả</Title2>
           </TitleforContainers>
           
           <CategoryPlantRoom>

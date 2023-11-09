@@ -7,7 +7,7 @@ from model_train.load_model import Model
 from Source.security import Authentication
 from fastapi import Depends
 
-@app.post('/APIPredictPlants',dependencies=[Depends(Authentication().validate_token)])
+@app.post('/APIPredictPlants')
 async def prediectPlants(file: UploadFile):
     #Đọc dữ liệu
     contents = await file.read()
@@ -18,4 +18,5 @@ async def prediectPlants(file: UploadFile):
     img_array = np.expand_dims(img_array, axis=0)
     #Dự đoán
     result=Model.PredictPlants(img_array)
-    print(result)
+    print(str(result[0]))
+    return str(result[0])
