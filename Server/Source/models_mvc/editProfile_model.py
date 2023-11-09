@@ -8,11 +8,10 @@ class UpdateUserInfo(BaseModel):
     phoneNumber: str
     address: str
 
-
     def insertInfo(self):
-        ref=db.reference(f'MyInfo/{self.username}')
-        ref.set({
-            "fullName": self.fullName,
+        ref=db.reference(f'Accounts/{self.username}')
+        ref.update({
+            "fullname": self.fullName,
             "gender":self.gender,
             "phoneNumber":self.phoneNumber,
             "address":self.address,
