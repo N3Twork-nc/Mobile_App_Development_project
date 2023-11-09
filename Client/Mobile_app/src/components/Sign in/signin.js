@@ -6,7 +6,6 @@ import { updateAll } from '../../reducers/infoUser';
 import { Platform, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native';
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
-import { useDispatch } from 'react-redux';
 import { updateToken } from '../../reducers/token';
 import { ScrollView } from 'react-native-gesture-handler';
 const Signin = () => {
