@@ -29,6 +29,7 @@ export const HeaderContainer = styled.View`
 `;
 
 export const Text1 = styled.Text`
+  margin-top: ${vh(7)}px;
   font-size: 22px;
   font-weight: 600;
   color: #ffffff;
@@ -104,24 +105,6 @@ export const ImageReweet = styled.Image`
 export const RetakeSaveButtons= styled.TouchableOpacity`
 
 `
-<<<<<<< HEAD
-export const Text2=styled.Text`
-    font-size: 22px;
-    font-weight: 600;
-    color: #61AF2B;
-    margin-bottom: 10px;
-`
-export const Text3=styled.Text`
-    font-size: 22px;
-    font-weight: 600;
-    color: #61AF2B;
-    margin-bottom: 10px;
-`
-export const ButtonClose=styled.TouchableOpacity`
-    left: 350px;
-    bottom: 20px;
-`
-=======
 
 export const Text2 = styled.Text`
   font-size: 20px;
@@ -134,4 +117,3 @@ export const Text3 = styled.Text`
   font-weight: 600;
   color: ${white};
 `;
->>>>>>> 48c20d544c6923589a619761016dc46f756e7ee9
