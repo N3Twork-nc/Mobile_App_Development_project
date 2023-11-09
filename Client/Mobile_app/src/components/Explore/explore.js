@@ -54,7 +54,7 @@ const Explore = () => {
             {/* NewspaperContainers */}
             {newsData.map((news, index) => (
               <NewspaperContainer key={index} onPress={() => handleRead(news)}>
-                <NewspaperImageContainer resizeMode="cover" source={require('../../assets/welcome.png')} />
+                <NewspaperImageContainer resizeMode="cover" source={{uri: news.thumbnaillink}} />
                 <TextNewspaper>
                   <MainText numberOfLines={2} ellipsizeMode="tail">{news.title}</MainText>
                   <SubText numberOfLines={5} ellipsizeMode="tail">{news.introduction}</SubText>

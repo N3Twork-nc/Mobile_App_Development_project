@@ -10,9 +10,12 @@ from Source.security import Authentication
 async def signin(request: Account):
     result=request.checkAccount()
     if result==True:
-        print(f'[x] request_data: {request.__dict__}')
         token = Authentication().generate_token(request.username)
+        info=request.getInfoAccout()
+        info.pop('password',None)
+        #info={key: value for key, value in info.items() if key != "password"}
         return {
+            'info':info,
             'token': token
         }
     else:

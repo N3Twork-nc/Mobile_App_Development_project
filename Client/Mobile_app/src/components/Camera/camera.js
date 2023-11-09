@@ -6,8 +6,12 @@ import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,
         HeaderContainer,FlashButton,ImageFlash, ImageReweet,RetakeSaveButtons,StyleContainer,ButtonClose, ImageGallery, ImageClose,
 } from './styleCamera'
+import { predictPlant } from '../../api/predict';
+import { useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
-  const CameraScreen = () => {
+
+const CameraScreen = () => {
+  const token = useSelector(state=>state.token)['payload']
   const navigation = useNavigation();
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -50,6 +54,8 @@ import * as ImagePicker from 'expo-image-picker';
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
+      console.log(token)
+      predictPlant(photo,token)
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }
