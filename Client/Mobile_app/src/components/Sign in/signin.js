@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
+<<<<<<< HEAD
 import { Platform, TouchableOpacity, Alert, View, StyleSheet } from 'react-native';
+=======
+import { useDispatch } from 'react-redux';
+import { updateAll } from '../../reducers/infoUser';
+import { Platform, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native';
+>>>>>>> CaoThi
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
-import { useDispatch } from 'react-redux';
 import { updateToken } from '../../reducers/token';
 import { ScrollView } from 'react-native-gesture-handler';
 import LottieView from 'lottie-react-native';
@@ -25,9 +30,16 @@ const Signin = () => {
     setIsLoading(true); 
     const response= await signin(textUsername,textPassword)
     if (response['status']=="200"){
+<<<<<<< HEAD
       setIsLoading(false);
       const action=updateToken(response['token'])
       dispatch(action)
+=======
+      const acUpdateToken=updateToken(response['token'])
+      const acUpdateInfo=updateAll(response['info'])
+      dispatch(acUpdateToken)
+      dispatch(acUpdateInfo)
+>>>>>>> CaoThi
       return navigation.navigate('Home')
     }
     else Alert.alert('Tài khoản hoặc mật khẩu không chính xác');

@@ -4,8 +4,10 @@ from firebase_admin import db
 class NewsData(BaseModel):
     title: str
     introduction: str
+    thumbnail: str
+    thumbnaillink: str=None
     content: list[dict]
-
+  
 def get_all_news_data():
     ref = db.reference('News')
     news_dict = ref.get()
