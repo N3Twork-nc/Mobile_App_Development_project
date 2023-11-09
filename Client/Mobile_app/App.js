@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Signin from './src/components/Sign in/signin';
 import Verifycode from './src/components/Verify code/verifycode';
 import { data } from './src/api/getNews';
+import Afterscan from './src/components/After Scan/afterscan';
 
 /*const App = () =>
 {
@@ -16,14 +17,14 @@ import { data } from './src/api/getNews';
     <AppNavigator/>
   </Provider> 
 }
-export default App;
-*/
+export default App;*/
+
 
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <CameraScreen />
+        <Afterscan />
       </NavigationContainer>
     </Provider>
   );

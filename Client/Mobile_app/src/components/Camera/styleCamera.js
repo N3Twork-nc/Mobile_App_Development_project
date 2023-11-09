@@ -73,13 +73,13 @@ export const RetakeSaveButtons= styled.TouchableOpacity`
 export const Text2=styled.Text`
     font-size: 22px;
     font-weight: 600;
-    color: #ffffff;
+    color: #61AF2B;
     margin-bottom: 10px;
 `
 export const Text3=styled.Text`
     font-size: 22px;
     font-weight: 600;
-    color: #ffffff;
+    color: #61AF2B;
     margin-bottom: 10px;
 `
 export const ButtonClose=styled.TouchableOpacity`
