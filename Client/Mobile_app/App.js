@@ -8,10 +8,11 @@ import CameraScreen from './src/components/Camera/camera';
 import { NavigationContainer } from '@react-navigation/native';
 import Signin from './src/components/Sign in/signin';
 import Verifycode from './src/components/Verify code/verifycode';
-import { data } from './src/api/getNews';
+import { info } from './src/api/editProfile';
 
 const App = () =>
 {
+  info("anhthu", "Lê Huỳnh Anh Thư", "Nữ", "0333478530", "KTX khu B")
   return <Provider store={store}>
     <AppNavigator/>
   </Provider> 
