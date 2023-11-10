@@ -1,0 +1,5 @@
+*/.expo
+**/.vs/
+./Client/Mobile_app/%ProgramData%
+**/__pycache__/
+**/node_modules/
