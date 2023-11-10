@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { View, Text, Image, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import { Dimensions,  } from 'react-native';
 // default color
 export const Colors = {
@@ -14,7 +14,7 @@ export const Colors = {
   sectiontitle: "#4E4E4E",
   buttoncolor: "#1A5D1A",
   maintext: "#164303",
-  line: "#B3B3B3",
+  border: "#164303",
 }
 
 
@@ -24,7 +24,7 @@ const vh = percent => (percent * height) / 100;
 // Chuyển đổi giá trị vw sang giá trị số
 const vw = percent => (percent * width) / 100;
 
-const { maincolor, maintext,line, buttoncolor,gray, white, black, containerprofile, sectiontitle, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
+const { maincolor, maintext, border , buttoncolor, white, black, sectiontitle } = Colors;
 
  //screen
  export const StyledContainer = styled.View`
@@ -32,6 +32,7 @@ const { maincolor, maintext,line, buttoncolor,gray, white, black, containerprofi
  padding: 20px;
  z-index: -1;
  height: 100%;
+ margin-top: ${vh(7)}px;
 `;
 //Header
 export const HeaderContainer = styled.View`
@@ -55,19 +56,19 @@ export const MainTitle = styled.Text`
   font-weight: bold;
   align-self: center;
 `;
-export const NotificationContainer = styled.TouchableOpacity`
+export const BackContainer = styled.TouchableOpacity`
   position: absolute;
   left: 0;
   align-items: flex-start;
 `;
 
-export const ButtonNotification = styled.Image`
+export const ButtonBack = styled.Image`
   width: 22px;
   height: 22px;
   align-self: flex-start;
   left: 20px;
 `;
-export const AvatarContainer = styled.View`
+export const AvatarContainer = styled.TouchableOpacity`
   align-items: center;
   top: ${vh(10.5)}px;
   z-index: 1;
@@ -79,32 +80,6 @@ export const AvatarImage = styled.Image`
 `
 
 
-//style container
-export const Name = styled.Text`
-  align-self: center;
-  position: relative;
-  color: ${black};
-  fontSize: ${vw(4.5)}px;
-  margin-top: ${vw(8)}px;
-  font-weight: bold;
-  ${Platform.OS === 'android' ? 'margin-top: 16%' : 'margin-bottom: 0px;'}
-`
-export const ButtonEditProfile = styled.TouchableOpacity`
-  background-color: ${buttoncolor};
-  border-radius: 10px;
-  width: 38%;
-  height: 37px;
-  align-self: center;
-  justify-content: center;
-  position: relative;
-  margin-top: 8px;
-`
-export const EditButtonText = styled.Text`
-  font-size: 15px;
-  color: ${white};
-  font-weight: 500;
-  text-align: center;
-`
 
 //detail
 export const SectionTitle = styled.Text`
@@ -112,64 +87,25 @@ export const SectionTitle = styled.Text`
   color: ${sectiontitle};
   font-weight: 500;
   text-align: left;
-  margin-top: ${vh(3)}px;
+  
+  margin-top: ${vh(2)}px;
 `
-export const SectionContainer = styled.View`
-  width: 100%;
-  height: ${vh(17)}px;
+export const InputText = styled.TextInput`
+  background-color: ${white};
+  border-radius: 13px;
   margin-top: ${vh(1)}px;
-  border: 0.3px solid ${green};
-  borderRadius: 12px;
-  backgroundColor: ${containerprofile};
-  flex-direction: column;
+  width: ${vw(80)}px;
+  height: ${vw(14)}px;
+  align-self: center; 
   justify-content: center;
-
-`
-
-export const ChildSectionContainer = styled.View`
-  height: ${vh(6)}px;
-  padding: 10px;
-  width: 100%;
-  z-index: 1;
-  flexDirection: row;
-  align-items: center;
-`
-export const ChildSectionText = styled.Text`
-  font-size: 17px;
-  color: ${maintext};
+  padding: 5px 15px;
   font-weight: 500;
-  flex: 1;
-  margin-left: ${vw(2)}px;
-  `
-export const ChildSectionIcon = styled.Image`
-  width: 25px;
-  height: 25px;
-  align-items: flex-start;
-`
-export const ChildSectionInfo = styled.Text`
-  font-size: 16px;
-  color: ${sectiontitle};
-  align-items: flex-end;
-`
-export const Line = styled.View`
-  height: 1px;
-  background-color: ${line};
-  margin-vertical: 6px;
-  width: 93%;
-  align-self: center;
-`
-export const ChildSectionButtonContainer = styled.TouchableOpacity`
-  width: 30px;
-  height: 30px;
-  align-items: flex-end;
+  font-size: 14px;
+  border: 1px solid ${border};
+`;
 
-`;
-export const ChildSectionButton = styled.Image`
-  width: 40px;
-  height: 30px;
-`;
 // signout
-export const ButtonSignOut = styled.TouchableOpacity`
+export const ButtonSavechange = styled.TouchableOpacity`
   background-color: ${buttoncolor};
   border-radius: 20px;
   width: 50%;
@@ -179,7 +115,7 @@ export const ButtonSignOut = styled.TouchableOpacity`
   position: relative;
   margin-top: 20px;
 `
-export const SignoutButtonText = styled.Text`
+export const SavechangeButtonText = styled.Text`
   font-size: 20px;
   color: ${white};
   font-weight: bold;
