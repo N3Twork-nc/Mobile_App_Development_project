@@ -4,8 +4,9 @@ import { ScrollView, SafeAreaView,TouchableOpacity,Image,Text } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
-const Profile = () => {
+const Profile = () => { 
     const navigation = useNavigation();
+    const userInfo = useSelector(state => state.infoUser);
     const [capturedPhoto, setCapturedPhoto] = useState(null);
   
     const handleExplore = () => {
@@ -51,7 +52,7 @@ return (
               
       </HeaderContainer>
     <StyledContainer >
-    <Name>Plantaholic</Name>   
+    <Name>{userInfo.fullname}</Name>   
       <ButtonEditProfile onPress={handleEditProfile}>
         <EditButtonText>Chỉnh sửa</EditButtonText>
       </ButtonEditProfile>
@@ -61,7 +62,7 @@ return (
            <ChildSectionIcon source={require('../../assets/location.png')} tintColor={'#1A5D1A'} />
            <ChildSectionText>Vị trí</ChildSectionText>
            <ChildSectionInfo>
-            Thủ Đức, HCM
+           {userInfo.address}
            </ChildSectionInfo>
          </ChildSectionContainer>
          <Line />
