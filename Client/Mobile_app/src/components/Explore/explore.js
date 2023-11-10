@@ -83,7 +83,7 @@ const Explore = () => {
             <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')} />
             <TaskbarButtonText>Đã lưu</TaskbarButtonText>
           </ContainerButton>
-          <ContainerButton>
+          <ContainerButton onPress={handleProfile}>
             <TaskbarIcon resizeMode="contain" source={require('../../assets/profile.png')} />
             <TaskbarButtonText>Cá nhân</TaskbarButtonText>
           </ContainerButton>

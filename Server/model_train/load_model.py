@@ -2,7 +2,7 @@
 import numpy as np
 from keras.models import load_model
 
-#model=load_model('./model_train/plants_EfficientNetB4_model256.h5')
+# model=load_model('./model_train/plants_EfficientNetB4_model256.h5')
 class Model:
     @staticmethod
     def PredictPlants(img):

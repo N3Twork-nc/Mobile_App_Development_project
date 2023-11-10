@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
-import { FontAwesome5 } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet,RetakeSaveButtons,StyleContainer,ButtonClose, ImageGallery, ImageClose,
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet,StyleContainer,ButtonClose, ImageGallery, ImageClose,
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
@@ -54,7 +53,6 @@ const CameraScreen = () => {
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-      console.log(token)
       predictPlant(photo,token)
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
@@ -74,8 +72,8 @@ const CameraScreen = () => {
       quality: 1,
     });
   
-    if (!result.cancelled) {
-      setCapturedPhoto(result);
+    if (!result.cancelled && result.assets!=null) {
+      setCapturedPhoto(result.assets[0]);
       setIsModalVisible(true);
     }
   };
