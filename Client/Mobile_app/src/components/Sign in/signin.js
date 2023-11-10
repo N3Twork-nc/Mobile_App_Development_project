@@ -3,24 +3,31 @@ import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputConta
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import { Platform, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native';
+import { Platform, TouchableOpacity, Alert, KeyboardAvoidingView,StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
 import { ScrollView } from 'react-native-gesture-handler';
+import LottieView from 'lottie-react-native';
+import { height } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
+
+
 const Signin = () => {
-  const dispatch=useDispatch()
+  const dispatch=useDispatch();  
   const navigation = useNavigation();
   const [textUsername, setTextUsername] = useState('');
   const [textPassword, setTextPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   }
 
   const handleSignIn = async () => {
+    setIsLoading(true); 
     const response= await signin(textUsername,textPassword)
     if (response['status']=="200"){
+      setIsLoading(false);
       const acUpdateToken=updateToken(response['token'])
       const acUpdateInfo=updateAll(response['info'])
       dispatch(acUpdateToken)
@@ -39,12 +46,21 @@ const Signin = () => {
   };
 
   return (
-    
     <KeyboardAwareScrollView 
     contentContainerStyle={{ flex: 1 }}
     behavior={Platform.OS === 'ios' ? 'padding' : null}
     keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
     <ScrollView contentContainerStyle={{ flex: 1 }} >
+    {isLoading ? (
+        <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+        <LottieView
+                resizeMode="contain"
+                source={require('../../assets/logo.png')} 
+                autoPlay
+              />
+        </View>
+           
+          ) : (
         <StyledContainer>
           <InnerContainer>
             <Slogan>ĐĂNG NHẬP</Slogan>
@@ -84,11 +100,16 @@ const Signin = () => {
             <OthersText1 onPress={handleSignUp}>Chưa có tài khoản? Đăng ký</OthersText1>
           
           </InnerContainer>
-        </StyledContainer>
+        </StyledContainer>)}
         </ScrollView>
       </KeyboardAwareScrollView>
-    
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#CEF1CF',
+  }
+})
 export default Signin;

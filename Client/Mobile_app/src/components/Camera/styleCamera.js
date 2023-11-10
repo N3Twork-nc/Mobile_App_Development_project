@@ -29,6 +29,7 @@ export const HeaderContainer = styled.View`
 `;
 
 export const Text1 = styled.Text`
+  margin-top: ${vh(7)}px;
   font-size: 22px;
   font-weight: 600;
   color: #ffffff;

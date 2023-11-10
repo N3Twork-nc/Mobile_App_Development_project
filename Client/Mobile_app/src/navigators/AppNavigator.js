@@ -6,11 +6,12 @@ import Signin from '../components/Sign in/signin';
 import Signup from '../components/Sign up/signup';
 import Home from '../components/Home/home';
 import Verifycode from '../components/Verify code/verifycode';
-import Livingroom from '../components/Home/Livingroom/livingroom';
+import Livingroom from '../components/Home/Rooms/Livingroom/livingroom';
 import Explore from '../components/Explore/explore';
 import Newspaper from '../components/Explore/News/news';
 import CameraScreen from '../components/Camera/camera';
-
+import Profile from '../components/Profile/profile';
+import EditProfile from '../components/Profile/Edit profile/editProfile';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -24,10 +25,12 @@ const AppNavigator = () => {
         <Stack.Screen name="SignUp" component={Signup}  />        
         <Stack.Screen name="VerifyCode" component={Verifycode}  />      
         <Stack.Screen name="Livingroom" component={Livingroom} />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={Home} options={{animationEnabled: false}}/>
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
-        <Stack.Screen name="News" component={Newspaper} />
+        <Stack.Screen name="News" component={Newspaper} options={{animationEnabled: false}}/>
         <Stack.Screen name="CameraScreen" component={CameraScreen} />
+        <Stack.Screen name="Profile" component={Profile} options={{animationEnabled: false}} />
+        <Stack.Screen name="EditProfile" component={EditProfile} options={{animationEnabled: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
