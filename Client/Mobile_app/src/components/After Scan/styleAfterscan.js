@@ -22,20 +22,19 @@ const { maincolor, white, black, gray, green } = Colors;
 
  //screen
  export const StyledContainer = styled.View`
- flex: 1;
- background-color: ${white};
- justify-content: center;
- position: relative; 
- ${Platform.OS === 'android' ? 'margin-top: 1%;' : 'margin-bottom: 0%;'}
-
+  flex: 1;
+  background-color: ${white};
+  justify-content: center;
+  position: relative; 
+  ${Platform.OS === 'android' ? 'margin-top: 1%;' : 'margin-bottom: 0%;'}
 `;
 
 //header
 export const HeaderContainer = styled.View`
   position: relative;
-  padding: ${vh(1)}px;
   align-items: center;
   justify-content: center; 
+  top: 15px;
   background-color: ${white};
   ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'}
 `;
@@ -44,6 +43,7 @@ export const MainTitle = styled.Text`
   color: ${black};
   font-weight: bold;
   align-self: center;
+
 `;
 export const ButtonBack = styled.Image`
 width: 22px;
@@ -54,24 +54,31 @@ position: absolute;
 `;
 
 export const ImageContainer = styled.View`
-
-z-index: -1;
+  width: ${vw(100)}px;
+  flex-direction: row;
+  flex:1;
 `;
 export const ImagePlant = styled.Image`
 width: ${vw(100)}px;
 height: ${vh(35)}px;
+margin-bottom:20px;
 z-index: -1;
 `;
-
+export const TopContainer = styled.View`
+  background-color: ${white};
+  width: ${vw(100)}px;
+  height: ${vh(3)}px;
+  top: ${vh(37)}px;
+  border-radius: 35px;  
+  z-index: 1;
+`;
 export const BodyContainer = styled.View`
-background-color: ${white};
-width: ${vw(100)}px;
-height: ${vh(150)}px;
-top: ${vh(35)}px; 
-border-radius: 25px;  
-z-index: 1;
-position: absolute;
-
+  background-color: ${white};
+  width: ${vw(100)}px;
+  height: ${vh(100)}px;
+  position: flex;
+  z-index:1;
+  flex: 1;
 `;
 export const ImgLogo = styled.Image`
   width: ${vw(4)}px;
@@ -82,7 +89,7 @@ export const ImgLogo = styled.Image`
   top: ${vh(2)}px;
 `;
 export const Text1 = styled.Text`
-  fontSize: ${vh(1.5)}px;
+  fontSize: ${vh(1.8)}px;
   color: #61AF2B;
   font-weight: bold;
   justify-content: flex-start;
@@ -101,9 +108,10 @@ export const TagContainer = styled.View`
   left: ${vw(4)}px;
   margin-top: ${vh(1)}px;
   flex-direction: row;
-  height: ${vh(3)}px;
+  height: ${vh(4)}px;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
+  overflow: visible;
 `;
 export const Tag1 = styled.Text`
   fontSize: ${vh(1.5)}px;
@@ -130,7 +138,7 @@ export const Tag3 = styled.Text`
   padding: 5px;
 `;
 export const Text3 = styled.Text`
-  margin-top: ${vh(1)}px;
+  margin-top: ${vh(3)}px;
   fontSize: ${vh(2.5)}px;
   color: ${black};
   font-weight: bold;
@@ -139,12 +147,13 @@ export const Text3 = styled.Text`
 `;
 export const InfoContainer = styled.View`
   position: absolute;
-  top: ${vh(15)}px;
+  top: ${vh(18)}px;
   margin-top: ${vh(1)}px;
   flex-direction: row;
   width: ${vw(100)}px;
   height: ${vh(100)}px;
-
+  z-index: 2;
+  overflow: visible;
 `;
 export const Box1Container = styled.View`
   position: absolute;
@@ -159,36 +168,239 @@ export const Box1 = styled.Image`
   justify-content: flex-start;
   left: ${vw(4)}px;
 `;
+export const TextContainer1 = styled.View`
+  position: absolute;
+  height: ${vh(10)}px;
+  width: ${vw(33)}px;
+  margin-left: ${vw(19)}px;
+  flex-direction: column;
+`;
 export const Title1 = styled.Text`
   margin-top: ${vh(3.5)}px;
   fontSize: ${vh(1.8)}px;
   color: #4B8364;
   font-weight: bold;
-  margin-left: ${vw(6)}px;
 `;
 export const Info1 = styled.Text`
-  margin-top: ${vh(7)}px;
   fontSize: ${vh(1.8)}px;
+  margin-top: ${vh(0.5)}px;
   color: #000000;
-  right: ${vw(19)}px;
 `;
-
+export const Box2Container = styled.View`
+  position: absolute;
+  margin-top: ${vh(1)}px;
+  height: ${vh(13)}px;
+  width: ${vw(50)}px;
+  flex-direction: row;
+`;
 export const Box2 = styled.Image`
   width: ${vw(13)}px;
   height: ${vh(13)}px;
   justify-content: flex-end;
-  margin-left: ${vw(50)}px;
+  margin-left: ${vw(55)}px;
+`;
+export const TextContainer2 = styled.View`
+  position: absolute;
+  height: ${vh(10)}px;
+  width: ${vw(33)}px;
+  flex-direction: column;
+  margin-left: ${vw(70)}px;
 `;
 export const Title2 = styled.Text`
   margin-top: ${vh(3.5)}px;
   fontSize: ${vh(1.8)}px;
   color: #7C95E4;
   font-weight: bold;
-  margin-left: ${vw(3)}px;
 `;
 export const Info2 = styled.Text`
-  margin-top: ${vh(7)}px;
+  margin-top: ${vh(0.5)}px;
   fontSize: ${vh(1.8)}px;
   color: #000000;
-  right: ${vw(19)}px;
+`;
+
+export const Box3Container = styled.View`
+  position: absolute;
+  margin-top: ${vh(10)}px;
+  height: ${vh(13)}px;
+  width: ${vw(50)}px;
+  flex-direction: row;
+`;
+export const Box3 = styled.Image`
+  width: ${vw(13)}px;
+  height: ${vh(13)}px;
+  justify-content: flex-start;
+  left: ${vw(4)}px;
+`;
+export const TextContainer3 = styled.View`
+  position: absolute;
+  height: ${vh(10)}px;
+  width: ${vw(33)}px;
+  margin-left: ${vw(19)}px;
+  flex-direction: column;
+`;
+export const Title3 = styled.Text`
+  margin-top: ${vh(3.5)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #7C95E4;
+  font-weight: bold;
+`;
+export const Info3 = styled.Text`
+  margin-top: ${vh(0.5)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #000000;
+`;
+
+export const Box4Container = styled.View`
+  position: absolute;
+  margin-top: ${vh(10)}px;
+  height: ${vh(13)}px;
+  width: ${vw(50)}px;
+  flex-direction: row;
+`;
+export const Box4 = styled.Image`
+  width: ${vw(13)}px;
+  height: ${vh(13)}px;
+  justify-content: flex-end;
+  margin-left: ${vw(55)}px;
+`;
+export const TextContainer4 = styled.View`
+  position: absolute;
+  height: ${vh(10)}px;
+  width: ${vw(33)}px;
+  flex-direction: column;
+  margin-left: ${vw(70)}px;
+`;
+export const Title4 = styled.Text`
+  margin-top: ${vh(3.5)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #7C95E4;
+  font-weight: bold;
+`;
+export const Info4 = styled.Text`
+  margin-top: ${vh(0.5)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #000000;
+`;
+export const Box5Container = styled.View`
+  position: absolute;
+  margin-top: ${vh(19)}px;
+  height: ${vh(13)}px;
+  width: ${vw(50)}px;
+  flex-direction: row;
+`;
+export const Box5 = styled.Image`
+  width: ${vw(13)}px;
+  height: ${vh(13)}px;
+  justify-content: flex-start;
+  left: ${vw(4)}px;
+`;
+export const TextContainer5 = styled.View`
+  position: absolute;
+  height: ${vh(10)}px;
+  width: ${vw(33)}px;
+  margin-left: ${vw(19)}px;
+  flex-direction: column;
+`;
+export const Title5 = styled.Text`
+  margin-top: ${vh(3.5)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #7C95E4;
+  font-weight: bold;
+`;
+export const Info5 = styled.Text`
+  margin-top: ${vh(1)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #000000;
+`;
+export const Box6Container = styled.View`
+  position: absolute;
+  margin-top: ${vh(19)}px;
+  height: ${vh(13)}px;
+  width: ${vw(50)}px;
+  flex-direction: row;
+`;
+export const Box6 = styled.Image`
+  width: ${vw(13)}px;
+  height: ${vh(13)}px;
+  justify-content: flex-end;
+  margin-left: ${vw(55)}px;
+`;
+export const TextContainer6 = styled.View`
+  position: absolute;
+  height: ${vh(10)}px;
+  width: ${vw(33)}px;
+  flex-direction: column;
+  margin-left: ${vw(70)}px;
+`;
+export const Title6 = styled.Text`
+  margin-top: ${vh(3.5)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #7C95E4;
+  font-weight: bold;
+`;
+export const Info6 = styled.Text`
+  margin-top: ${vh(0.5)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #000000;
+`;
+export const Line = styled.View`
+  position: absolute;
+  height: ${vh(0.1)}px;
+  width: ${vw(90)}px;
+  margin-top: ${vh(50)}px;
+  align-self: center;
+  background-color: #D9D9D9;
+`;
+export const ParagraphContainer = styled.View`
+  position: absolute;
+  height: ${vh(100)}px;
+  width: ${vw(90)}px;
+  margin-top: ${vh(51)}px;
+  align-self: center;
+`;
+export const CreText = styled.Text`
+  margin-top: ${vh(1)}px;
+  fontSize: ${vh(2)}px;
+  color: #8C8C8C;
+  font-weight: bold;
+`;
+export const MainText = styled.Text`
+  margin-top: ${vh(1)}px;
+  fontSize: ${vh(1.8)}px;
+  color: #515151;
+  justify-content: center;
+  margin-left: ${vw(1)}px;
+
+`;
+export const TaskbarView = styled.View`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 55px;
+  background-color: ${white};
+  position: relative;
+  padding: 5px;
+  /* Các thuộc tính CSS khác cho thanh taskbar */
+`;
+export const ContainerButton = styled.TouchableOpacity`
+  height: 100%;
+  width: 70%;
+  border-radius: 13px;
+  align-self: center; 
+  background-color: #BEEBBF;
+  flex-direction:
+`;
+export const SaveIcon = styled.Image`
+  height: ${vh(3)}px;
+  width: ${vw(5)}px;
+  margin-left: ${vw(22)}px;
+  margin-top: ${vh(1.6)}px;
+`;
+export const SaveText = styled.Text`
+  align-self: center;
+  bottom: ${vh(3.3)}px;
+  fontSize: ${vh(2.5)}px;
+  margin-left: ${vw(2.2)}px;
+  font-weight: bold;
+
 `;

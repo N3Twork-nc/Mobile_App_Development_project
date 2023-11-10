@@ -24,7 +24,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <CameraScreen />
+        <Afterscan />
       </NavigationContainer>
     </Provider>
   );
