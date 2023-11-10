@@ -11,13 +11,10 @@ export const Colors = {
   green: "#61AF2B", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
   white_gray: "#F8F8F8",
   gray_subtype: "#628093",
-  livingroom: "#EEF7E8",
-  kitchen: "#E6EAFA",
-  bedroom: "#FCF1E3",
-  backyard: "#F8E8F8",
+  explore: "#E7FFE8"
 }
 
-const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
+const { maincolor, white, black, explore, gray_subtype, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
 
 //screen
 export const StyledContainer = styled.View`
@@ -58,7 +55,7 @@ export const NewspaperContainer = styled.TouchableOpacity`
     height: 150px;
     width: 100%;
     border-radius: 13px;
-    border: 0.3px solid ${green};
+    border: 1px solid ${green};
     background-color: ${white};
     flex-direction: row;
     align-items: center;

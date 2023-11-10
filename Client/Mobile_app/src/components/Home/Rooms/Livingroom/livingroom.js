@@ -5,6 +5,7 @@ import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
         } from './styleLivingroom.js'
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, SafeAreaView } from 'react-native';
+import { color } from 'react-native-elements/dist/helpers/index.js';
 const Livingroom = () => {
 const navigation = useNavigation();
   const handleBack = () => {
@@ -14,7 +15,7 @@ const navigation = useNavigation();
 return (
     <SafeAreaView style={{ flex: 1 }}>
         <ScrollView style={{ flex: 1 }}>
-            <StyledContainer>
+            <StyledContainer >
                 
                 {/*Header*/}
                 <HeaderContainer>
@@ -27,8 +28,8 @@ return (
                 {/* Plants */}
                 <PlantContainer>
                     <Plant1Container>
-                        <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant.jpg')}/>
-                        <PlantName> Cây chó đẻ </PlantName>
+                        <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant1.jpg')}/>
+                        <PlantName>  Vạn Niên Thanh </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
@@ -47,8 +48,8 @@ return (
                         </ButtonContainerWrapper>                        
                     </Plant1Container> 
                     <Plant2Container>
-                        <ImageFrame resizeMode="cover" source={require('../../../../assets/welcome.png')}/>
-                        <PlantName> Cây thúi địch </PlantName>
+                        <ImageFrame resizeMode="cover" source={require('../../../../assets/plant2.jpg')}/>
+                        <PlantName> Lan Ý </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
@@ -71,8 +72,8 @@ return (
                 {/* Plants */}
                 <PlantContainer>
                     <Plant1Container>
-                        <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant.jpg')}/>
-                        <PlantName> Cây chó đẻ </PlantName>
+                        <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant1.jpg')}/>
+                        <PlantName>  Vạn Niên Thanh </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>
@@ -91,8 +92,8 @@ return (
                         </ButtonContainerWrapper>                        
                     </Plant1Container> 
                     <Plant2Container>
-                        <ImageFrame resizeMode="cover" source={require('../../../../assets/welcome.png')}/>
-                        <PlantName> Cây thúi địch </PlantName>
+                        <ImageFrame resizeMode="cover" source={require('../../../../assets/plant2.jpg')}/>
+                        <PlantName> Lan Ý </PlantName>
                         <ButtonContainerWrapper>
                             <ButtonContainer>
                             <IconButton>

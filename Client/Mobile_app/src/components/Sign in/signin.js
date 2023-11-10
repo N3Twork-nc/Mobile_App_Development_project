@@ -9,6 +9,7 @@ import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
 import { ScrollView } from 'react-native-gesture-handler';
 import LottieView from 'lottie-react-native';
+import { height } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 
 const Signin = () => {
@@ -23,9 +24,10 @@ const Signin = () => {
   }
 
   const handleSignIn = async () => {
-    setIsLoading(false); 
+    setIsLoading(true); 
     const response= await signin(textUsername,textPassword)
     if (response['status']=="200"){
+      setIsLoading(false);
       const acUpdateToken=updateToken(response['token'])
       const acUpdateInfo=updateAll(response['info'])
       dispatch(acUpdateToken)
@@ -52,7 +54,8 @@ const Signin = () => {
     {isLoading ? (
         <View style={[StyleSheet.absoluteFillObject, styles.container]}>
         <LottieView
-                source={require('../../assets/Animation - 1699453290167.json')} 
+                resizeMode="contain"
+                source={require('../../assets/logo.png')} 
                 autoPlay
               />
         </View>

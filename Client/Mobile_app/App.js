@@ -7,9 +7,12 @@ import * as MediaLibrary from 'expo-media-library';
 import CameraScreen from './src/components/Camera/camera';
 import { NavigationContainer } from '@react-navigation/native';
 import Signin from './src/components/Sign in/signin';
+import Home from './src/components/Home/home';
 import Verifycode from './src/components/Verify code/verifycode';
 import { data } from './src/api/getNews';
 import Afterscan from './src/components/After Scan/afterscan';
+import Profile from './src/components/Profile/profile';
+
 
 /*const App = () =>
 {
@@ -18,7 +21,6 @@ import Afterscan from './src/components/After Scan/afterscan';
   </Provider> 
 }
 export default App;*/
-
 
 export default function App() {
   return (
@@ -29,3 +31,4 @@ export default function App() {
     </Provider>
   );
 }
+

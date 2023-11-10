@@ -140,6 +140,7 @@ export const Plant1Container = styled.TouchableOpacity`
   width: 48%;
   border-radius: 13px;
   background-color: ${white_gray};
+  border: 0.3px solid ${green};
   align-self: flex-start;
   justify-content: center;
   align-items: center;
@@ -150,6 +151,7 @@ export const Plant2Container = styled.TouchableOpacity`
   width: 48%;
   border-radius: 13px;
   background-color: ${white_gray};
+  border: 0.3px solid ${green};
   align-self: flex-start;
   justify-content: center; 
   align-items: center;
@@ -301,6 +303,7 @@ export const NotificationContainer = styled.TouchableOpacity`
     width: 100%;
     border-radius: 13px;
     background-color: ${white_gray};
+    border: 0.3px solid ${green};
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
