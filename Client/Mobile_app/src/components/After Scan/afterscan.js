@@ -11,9 +11,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const Afterscan = () => {
   const navigation = useNavigation();
-  const handleScan = () => {
-    navigation.navigate('CameraScreen', { animations: false });
-  };
     // Danh sách các nguồn ảnh
   const images = [
     require('../../assets/img1.jpg'),
@@ -25,7 +22,7 @@ const Afterscan = () => {
       <ScrollView style={{ flex: 1 }}>
         <StyledContainer>
         {/* TIÊU ĐỀ */}
-        <HeaderContainer onPress = {handleScan}>
+        <HeaderContainer>
         <ButtonBack resizeMode="cover" source={require('../../assets/back.png')}/>
         <MainTitle>
               Kết quả
@@ -112,10 +109,10 @@ const Afterscan = () => {
       </ScrollView>
       <TaskbarView>
       <ContainerButton>
-        <SaveIcon resizeMode="cover" source={require('../../assets/saved.png')}/>
-        <SaveText> Lưu </SaveText>
+      <SaveIcon resizeMode="cover" source={require('../../assets/saved.png')}/>
+      <SaveText> Lưu </SaveText>
       </ContainerButton>
-     </TaskbarView>
+    </TaskbarView>
     </SafeAreaView>
   );
 }
