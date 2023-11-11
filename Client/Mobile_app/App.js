@@ -20,9 +20,9 @@ const App = () =>
     <AppNavigator/>
   </Provider> 
 }
-export default App;
+export default App;*/
 
-/*export default function App() {
+export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -31,4 +31,4 @@ export default App;
     </Provider>
   );
 }
-*/
+
