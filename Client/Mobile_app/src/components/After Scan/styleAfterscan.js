@@ -404,3 +404,10 @@ export const SaveText = styled.Text`
   font-weight: bold;
 
 `;
+export const ResultButton = styled.TouchableOpacity`
+height: 30%;
+width: 50%;
+border-radius: 13px;
+background-color: #BEEBBF;
+flex-direction:
+`;

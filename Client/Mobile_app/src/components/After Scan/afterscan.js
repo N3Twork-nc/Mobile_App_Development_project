@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const Afterscan = () => {
   const navigation = useNavigation();
+  
     // Danh sách các nguồn ảnh
   const images = [
     require('../../assets/img1.jpg'),

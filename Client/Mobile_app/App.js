@@ -13,16 +13,16 @@ import Afterscan from './src/components/After Scan/afterscan';
 import Profile from './src/components/Profile/profile';
 
 
-/*const App = () =>
+const App = () =>
 {
   //info("anhthu", "Anh Thư", "Nữ", "0333478530", "KTX khu B")
   return <Provider store={store}>
     <AppNavigator/>
   </Provider> 
 }
-export default App;*/
+export default App;
 
-export default function App() {
+/*export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -31,4 +31,4 @@ export default function App() {
     </Provider>
   );
 }
-
+*/

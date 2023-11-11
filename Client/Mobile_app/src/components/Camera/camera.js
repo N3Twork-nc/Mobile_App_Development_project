@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
+import { FontAwesome5 } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet,StyleContainer,ButtonClose, ImageGallery, ImageClose,
+import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet,RetakeSaveButtons,StyleContainer,ButtonClose, ImageGallery, ImageClose,
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
@@ -20,6 +21,9 @@ const CameraScreen = () => {
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const handleHome = () => {
     navigation.navigate('Home', { animations: false });
+  };
+  const handleAfterscan = () => {
+    navigation.navigate('Afterscan', { animations: false });
   };
   //Yêu cầu quyền truy cập camera
   useEffect(() => {
@@ -53,6 +57,7 @@ const CameraScreen = () => {
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
+      console.log(token)
       predictPlant(photo,token)
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
@@ -72,7 +77,7 @@ const CameraScreen = () => {
       quality: 1,
     });
   
-    if (!result.cancelled && result.assets!=null) {
+    if (!result.cancelled) {
       setCapturedPhoto(result.assets[0]);
       setIsModalVisible(true);
     }
@@ -150,10 +155,12 @@ const CameraScreen = () => {
             // Xử lý việc lưu ảnh ở đây
             closePhotoPreview();
           }}>
-           <Text3>Nhận diện</Text3>
            
           </TouchableOpacity>
-
+          <ResultButton onPress={handleAfterscan}> 
+          <Text3>Nhận diện</Text3>
+          </ResultButton>
+          
           </View>
         </View>
       </Modal>

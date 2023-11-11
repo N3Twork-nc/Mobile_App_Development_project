@@ -30,7 +30,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
         <Stack.Screen name="News" component={Newspaper} options={{animationEnabled: false}}/>
         <Stack.Screen name="CameraScreen" component={CameraScreen} />
-        <Stack.Screen name="Afterscan" component={Afterscan} />
+        <Stack.Screen name="Afterscan" component={Afterscan} options={{animationEnabled: false}} />
         <Stack.Screen name="Profile" component={Profile} options={{animationEnabled: false}} />
         <Stack.Screen name="EditProfile" component={EditProfile} options={{animationEnabled: false}} />
       </Stack.Navigator>
