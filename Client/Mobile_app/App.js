@@ -20,7 +20,6 @@ const App = () =>
     <AppNavigator/>
   </Provider> 
 }
-export default App;
 
 // export default function App() {
 //   return (
@@ -31,4 +30,13 @@ export default App;
 //     </Provider>
 //   );
 // }
+export default function App() {
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <CameraScreen/>
+      </NavigationContainer>
+    </Provider>
+  );
+}
 
