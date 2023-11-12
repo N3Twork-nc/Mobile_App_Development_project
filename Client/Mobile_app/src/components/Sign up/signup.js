@@ -118,7 +118,7 @@ const Signup = () => {
             </InnerContainer>
         </StyledContainer>
         </ScrollView>
-        </KeyboardAwareScrollView>
+    </KeyboardAwareScrollView>
     );
     };
 

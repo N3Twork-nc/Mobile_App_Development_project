@@ -19,7 +19,6 @@ export const Colors = {
   const { maincolor, white, black, gray, gray_subtype, green, maintitle} = Colors;
 export const StyleContainer=styled.View`
   flex:1;
-  background-color: #ffffff;
 `
 export const HeaderContainer = styled.View`
   position: relative;
@@ -134,4 +133,10 @@ export const FooterContainer = styled.TouchableOpacity`
   height: ${vh(8)}px;
   right: ${vw(5)}px;
   flex-direction: row;
+`;
+export const HeaderContainer2 = styled.View`
+  background-color: #CEF1CF;
+  width: ${vw(100)}px;
+  height: ${vh(18)}px;
+  top: ${vh(4)}px;
 `;

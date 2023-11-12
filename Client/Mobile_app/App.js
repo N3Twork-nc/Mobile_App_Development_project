@@ -11,6 +11,8 @@ import Home from './src/components/Home/home';
 import Verifycode from './src/components/Verify code/verifycode';
 import Afterscan from './src/components/After Scan/afterscan';
 import Profile from './src/components/Profile/profile';
+import ForgotPassword from './src/components/Forgot Password/forgotpassword';
+import Welcome from './src/components/Welcome/welcome';
 
 
 const App = () =>
@@ -31,4 +33,5 @@ export default App;
 //     </Provider>
 //   );
 // }
+
 

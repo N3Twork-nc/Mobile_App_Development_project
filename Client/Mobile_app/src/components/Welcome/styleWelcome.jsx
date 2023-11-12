@@ -26,6 +26,7 @@ const { maincolor, white, black, gray, green } = Colors;
  padding: ${vh(2)}px;
  background-color: ${maincolor};
  justify-content: center;
+ flex-direction: column;
  
 `;
 
@@ -34,6 +35,7 @@ export const InnerContainer = styled.View`
  width: 100%;
  align-items: center;
  justify-content: center;
+ position: relative;
 `;
  
 //slogan
@@ -78,6 +80,15 @@ export const ImgPlant=styled.Image`
   height: ${vh(40)}px;
   flex-shrink: 0;
   margin-top:${vh(5)}px;
-  margin-bottom: ${vh(5)}px;
+  z-index: 1;
+  `;
+
+  export const ImgCloud=styled.Image`
+  width: ${vw(100)}px;
+  height: ${vh(35)}px;
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
   `;
 
