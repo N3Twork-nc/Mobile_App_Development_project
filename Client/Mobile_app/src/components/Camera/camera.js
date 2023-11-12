@@ -53,7 +53,6 @@ const CameraScreen = () => {
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-      console.log(token)
       predictPlant(photo,token)
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
@@ -73,8 +72,8 @@ const CameraScreen = () => {
       quality: 1,
     });
   
-    if (!result.cancelled) {
-      setCapturedPhoto(result);
+    if (!result.cancelled && result.assets!=null) {
+      setCapturedPhoto(result.assets[0]);
       setIsModalVisible(true);
     }
   };

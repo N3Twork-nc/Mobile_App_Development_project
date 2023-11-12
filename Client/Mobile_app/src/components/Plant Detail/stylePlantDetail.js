@@ -127,6 +127,7 @@ export const TagContainer = styled.View`
 export const Tag1 = styled.Text`
   fontSize: ${vh(1.5)}px;
   color: ${black};
+
   background-color: #F0F3F6;
   margin-right: ${vw(4)}px;
   align-items: center;
