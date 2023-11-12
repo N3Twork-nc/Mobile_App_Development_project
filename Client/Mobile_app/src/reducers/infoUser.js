@@ -6,7 +6,10 @@ infoUser=createSlice({
         "username":"",
         "password":"",
         "email":"",
-        "fullname":""
+        "fullname":"",
+        "gender": "",
+        "phoneNumber": "",
+        "address": ""
     },
     reducers:{
         updateAll(state,data){
