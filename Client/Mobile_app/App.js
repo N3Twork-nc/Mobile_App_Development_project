@@ -13,7 +13,7 @@ import Afterscan from './src/components/After Scan/afterscan';
 import Profile from './src/components/Profile/profile';
 
 
-const App = () =>
+/*const App = () =>
 {
   //info("anhthu", "Anh Thư", "Nữ", "0333478530", "KTX khu B")
   return <Provider store={store}>
