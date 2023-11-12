@@ -390,8 +390,8 @@ export const TaskbarView = styled.View`
   height: 60px;
   background-color: ${white};
   position: relative;
-  justify-content: center;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  justify-content: center; 
+  box-shadow: -5px -2px 1px rgba(0, 0, 0, 0.05);
   /* Các thuộc tính CSS khác cho thanh taskbar */
 `;
 

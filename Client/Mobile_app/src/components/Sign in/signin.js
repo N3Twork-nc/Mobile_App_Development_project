@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
-import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
 import { Platform, TouchableOpacity, Alert, View,StyleSheet } from 'react-native';
@@ -10,7 +9,6 @@ import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
 import { ScrollView } from 'react-native-gesture-handler';
 import LottieView from 'lottie-react-native';
-import { height } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 
 const Signin = () => {
@@ -111,6 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#CEF1CF',
+    zIndex: -1,
   }
 })
 export default Signin;
