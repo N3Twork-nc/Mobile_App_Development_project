@@ -1,23 +1,19 @@
 import React from 'react';
-import { ScrollView, SafeAreaView,TouchableOpacity,FlatList } from 'react-native';
+import { ScrollView, SafeAreaView,FlatList } from 'react-native';
 import { 
   StyledContainer, HeaderContainer,MainTitle, ButtonBack,ImageContainer,ImagePlant,
   BodyContainer,Text1,Text2,ImgLogo, TagContainer,Tag1, Tag2,Tag3,Text3,InfoContainer,Box1,Box2,Box3,Box4,Box5,Box6,
   Box1Container,Box2Container,Box3Container,Title1,Info1,Title2,Info2,Title3,Info3,TextContainer1,TextContainer2,TextContainer3,TextContainer4,
   Box4Container,Title4,Info4, Box5Container,Title5,Info5,TextContainer5,Box6Container,Title6,Info6,TextContainer6,
   ParagraphContainer,CreText,Line,MainText,TopContainer,TaskbarView, SaveButton, SaveContainer, Save, SaveButtonText, BackContainer, TitleContainer
-} from './styleAfterscan';
+} from './stylePlantDetail.js';
 import { useNavigation } from '@react-navigation/native';
 
-const Afterscan = () => {
+const PlantDetail = () => {
   const navigation = useNavigation();
-  const handleScan = () => {
-    navigation.navigate('CameraScreen', { animations: false });
-  };
-  const handleBack = () => {
-    navigation.navigate('CameraScreen', {animations: false});
-  }
-    // Danh sách các nguồn ảnh
+  const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });  };
+  const handleBack = () => {navigation.navigate('Home')}
+  // Danh sách các nguồn ảnh
   const images = [
     require('../../assets/img1.jpg'),
     require('../../assets/img2.jpg'),
@@ -129,4 +125,4 @@ const Afterscan = () => {
   );
 }
 
-export default Afterscan; 
+export default PlantDetail; 

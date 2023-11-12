@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import { Platform, TouchableOpacity, Alert, KeyboardAvoidingView,StyleSheet } from 'react-native';
+import { Platform, TouchableOpacity, Alert, View,StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';

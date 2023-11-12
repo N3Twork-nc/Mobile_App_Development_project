@@ -18,21 +18,12 @@ import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
   const navigation = useNavigation();
-  const handleLivingroom = () => {
-    navigation.navigate('Livingroom');
-  };
-  const handleExplore = () => {
-    navigation.navigate('Explore', { animations: false }, {transitions: false});
-  };
-  const handleScan = () => {
-    navigation.navigate('CameraScreen', { animations: false });
-  };
-  const handleSaved = () => {
-    navigation.navigate('Saved', { animations: false });
-  };
-  const handleProfile= () => {
-    navigation.navigate('Profile', { animations: false });
-  };
+  const handleLivingroom = () => {navigation.navigate('Livingroom');};
+  const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
+  const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
+  const handleSaved = () => {navigation.navigate('Saved', { animations: false });};
+  const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
+  const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
   
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -61,7 +52,7 @@ const Home = () => {
           </TitleforContainers>
 
           <RecentlyPlantContainer>
-            <Plant1Container>
+            <Plant1Container onPress={handlePlantDetail}>
               <ImageFrame resizeMode="cover" source={require('../../assets/plant1.jpg')}/>
               <PlantName> Vạn Niên Thanh </PlantName>
             </Plant1Container> 
