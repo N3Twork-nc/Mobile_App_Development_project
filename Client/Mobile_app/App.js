@@ -22,13 +22,15 @@ const App = () =>
 }
 export default App;
 
+
 // export default function App() {
 //   return (
 //     <Provider store={store}>
 //       <NavigationContainer>
-//         <Afterscan/>
+//         <Afterscan />
 //       </NavigationContainer>
 //     </Provider>
 //   );
-// }
+
+
 
