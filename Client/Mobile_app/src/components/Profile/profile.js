@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import { TaskbarView, ContainerButton, TaskbarIcon, TaskbarButtonText, StyledContainer, HeaderContainer, ButtonNotification, MainTitle, TitleContainer, NotificationContainer, AvatarContainer, Name, ButtonEditProfile, EditButtonText, SectionTitle, LocationContainer, ChildSectionContainer, ChildSectionText, ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, ChildSectionButton, ChildSectionButtonContainer, AvatarImage, ButtonSignOut, SignoutButtonText } from './styleProfile';
 import { ScrollView, SafeAreaView,TouchableOpacity,Image,Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAll } from '../../reducers/infoUser';
 import * as ImagePicker from 'expo-image-picker';
 const Profile = () => { 
     const navigation = useNavigation();
+    const dispatch=useDispatch();
     const userInfo = useSelector(state => state.infoUser);
     const [capturedPhoto, setCapturedPhoto] = useState(null);
   
@@ -25,6 +27,7 @@ const Profile = () => {
         navigation.navigate('Home', {animations: false});
       }
       const handleSignout = () => {
+        dispatch(deleteAll());
         navigation.navigate('SignIn', {animation: false});
       }
       const handleEditProfile = () => {
