@@ -39,11 +39,12 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center; 
   margin-bottom: 5%;
-  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 5%;'}
+  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-top: 0;'}
 `;
 export const MainTitle = styled.Text`
   font-size: 25px;
   color: ${black};
+  top:0;
   font-weight: bold;
   align-self: flex-start;
 `;
@@ -346,7 +347,7 @@ export const TaskbarView = styled.View`
   width: 100%;
   height: 55px;
   background-color: ${white};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -2px 1px rgba(0, 0, 0, 0.05);
   position: relative;
   flex-direction: row;
   align-items: flex-start;
