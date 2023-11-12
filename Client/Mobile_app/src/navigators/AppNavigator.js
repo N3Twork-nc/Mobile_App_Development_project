@@ -14,6 +14,8 @@ import Afterscan from '../components/After Scan/afterscan';
 import Profile from '../components/Profile/profile';
 import EditProfile from '../components/Profile/Edit profile/editProfile';
 import PlantDetail from '../components/Plant Detail/plantDetail';
+import ForgotPassword from '../components/Forgot Password/forgotpassword';
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -35,6 +37,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Profile" component={Profile} options={{animationEnabled: false}} />
         <Stack.Screen name="EditProfile" component={EditProfile} options={{animationEnabled: false}} />
         <Stack.Screen name="PlantDetail" component={PlantDetail}  />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
