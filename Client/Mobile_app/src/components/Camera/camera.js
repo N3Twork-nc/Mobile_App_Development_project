@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
+import { View, Text, TouchableOpacity,Image, Modal,SafeAreaView } from 'react-native';
 import { Camera } from 'expo-camera';
+import { FontAwesome5 } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet,StyleContainer,ButtonClose, ImageGallery, ImageClose,
+import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet,RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,HeaderContainer2,
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
@@ -20,6 +21,9 @@ const CameraScreen = () => {
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const handleHome = () => {
     navigation.navigate('Home', { animations: false });
+  };
+  const handleAfterscan = () => {
+    navigation.navigate('Afterscan', { animations: false });
   };
   //Yêu cầu quyền truy cập camera
   useEffect(() => {
@@ -53,6 +57,7 @@ const CameraScreen = () => {
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
+      console.log(token)
       predictPlant(photo,token)
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
@@ -68,11 +73,11 @@ const CameraScreen = () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
       quality: 1,
+      multiple: false,
     });
   
-    if (!result.cancelled && result.assets!=null) {
+    if (!result.cancelled) {
       setCapturedPhoto(result.assets[0]);
       setIsModalVisible(true);
     }
@@ -93,30 +98,30 @@ const CameraScreen = () => {
   }
 
   return (
-    <StyleContainer>
+    <StyleContainer >
       <Camera
         ref={cameraRef}
-        style={{ flex: 1 }}
+        style={{ flex: 1}}
         type={type}
         flashMode={flash}
       >
         <HeaderContainer>
-          <FlashButton onPress={toggleFlash}>
+            <FlashButton onPress={toggleFlash}>
             {flash === Camera.Constants.FlashMode.off ? (
                   <ImageFlash resizeMode="contain" source={require('../../assets/flashoff.png')}  />
                 ) : (
                   <ImageFlash resizeMode="contain" source={require('../../assets/flashon.png')} />
                 )}
             </FlashButton>
-          <Text1> Nhận diện cây </Text1>   
-          <ButtonClose onPress={handleHome}>
-           <ImageClose resizeMode="contain" source={require('../../assets/close.png')} tintColor={'white'} />
-          </ButtonClose>
+            <Text1> Nhận diện cây </Text1>   
+            <ButtonClose onPress={handleHome}>
+              <ImageClose resizeMode="contain" source={require('../../assets/close.png')} tintColor={'white'} />
+            </ButtonClose>
         </HeaderContainer>
         <Container >
-        <GalleryButton onPress={handleChooseFromLibrary}>
-          <ImageGallery resizeMode="cover" source={require('../../assets/gallery.png')} />          
-        </GalleryButton>
+          <GalleryButton onPress={handleChooseFromLibrary}>
+            <ImageGallery resizeMode="cover" source={require('../../assets/gallery.png')} />          
+          </GalleryButton>
           <TakePhotoButton onPress={handleTakePhoto}>
             <ImageCircle resizeMode="cover" source={require('../../assets/takephoto.png')} />
           </TakePhotoButton>  
@@ -125,35 +130,28 @@ const CameraScreen = () => {
             </ButtonReweet>   
         </Container>
       </Camera>
-
       {/* Cửa sổ modal để hiển thị ảnh đã chụp và nút "Chụp lại" và "Lưu" */}
       <Modal
         visible={isModalVisible}
         transparent={true}
         animationType="slide"
       >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor: '#CEF1CF' }}>
           <Image
             style={{ width: '100%', height: '100%' }}
             source={{ uri: capturedPhoto ? capturedPhoto.uri : null }}
           />
-          <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
-         
-          {/* Xử lý Chụp lại */}
-          <TouchableOpacity onPress={closePhotoPreview}>
-             <Text2>Chụp lại</Text2>
-         
-          </TouchableOpacity>
+          <View style={{ position: 'absolute', bottom: 0, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
 
-          {/* Xử lý Lưu */}
-          <TouchableOpacity onPress={() => {
-            // Xử lý việc lưu ảnh ở đây
-            closePhotoPreview();
-          }}>
-           <Text3>Nhận diện</Text3>
-           
-          </TouchableOpacity>
-
+          {/* Chụp lại và nhận diện cây */}
+          <FooterContainer> 
+              <RetakeButton onPress={closePhotoPreview}>
+                <Text2>Chụp lại</Text2>
+              </RetakeButton>
+              <ResultButton onPress={handleAfterscan}> 
+                <Text3>Nhận diện</Text3>
+              </ResultButton>
+          </FooterContainer>
           </View>
         </View>
       </Modal>
