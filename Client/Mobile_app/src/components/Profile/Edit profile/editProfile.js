@@ -1,13 +1,49 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { TaskbarView, ContainerButton, TaskbarIcon, TaskbarButtonText, StyledContainer, HeaderContainer, 
      MainTitle, TitleContainer, NotificationContainer, AvatarContainer,  SectionTitle,  AvatarImage, BackContainer, ButtonBack, InputText, ButtonSavechange, SavechangeButtonText } from './styleEditProfile.js';
 import { ScrollView, SafeAreaView} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { info } from '../../../api/editProfile.js'
+import { updateAll } from '../../../reducers/infoUser';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
+
 const EditProfile = () => {
-    const navigation = useNavigation();
-    const [capturedPhoto, setCapturedPhoto] = useState(null);
+  const navigation = useNavigation();
+  const dispatch=useDispatch();  
+  const userInfo = useSelector(state => state.infoUser);
+
+  const [textFullname, setTextFullname] = useState(userInfo.fullname);
+  const [textGender, setTextGender] = useState(userInfo.gender);
+  const [textPhoneNumber, setTextPhoneNumber] = useState(userInfo.phoneNumber);
+  const [textAddress, setTextAddress] = useState(userInfo.address);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [capturedPhoto, setCapturedPhoto] = useState(null);
+
+  useEffect(() => {
+    setTextFullname(userInfo.fullname);
+    setTextGender(userInfo.gender);
+    setTextPhoneNumber(userInfo.phoneNumber);
+    setTextAddress(userInfo.address);
+  }, [userInfo]);
+
+  const handleEditProfile = async () => {
+    const data={
+      "fullname":textFullname,
+      "gender":textGender,
+      "phoneNumber":textPhoneNumber,
+      "address":textAddress
+  }
+    const response = await info(userInfo.username, textFullname, textGender, textPhoneNumber, textAddress)
+    if (response === 'Update info successfully'){
+      const action=updateAll(data) 
+      dispatch(action)
+      navigation.navigate('Profile')
+    }
+  };
+
+
     //Mở album ảnh 
   const handleChooseFromLibrary = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -26,21 +62,22 @@ const EditProfile = () => {
       setCapturedPhoto(result);
     }
   };
-    const handleExplore = () => {
-        navigation.navigate('Explore', { animations: false }, {transitions: false});
-      };
-      const handleScan = () => {
-        navigation.navigate('CameraScreen', { animations: false });
-      };
-      const handleSaved = () => {
-        navigation.navigate('Saved', { animations: false });
-      };
-      const handleProfile= () => {
-        navigation.navigate('Profile', { animations: false });
-      };
-      const handleHome = () => {
-        navigation.navigate('Home', {animations: false});
-      }
+
+  const handleExplore = () => {
+    navigation.navigate('Explore', { animations: false }, {transitions: false});
+  };
+  const handleScan = () => {
+    navigation.navigate('CameraScreen', { animations: false });
+  };
+  const handleSaved = () => {
+    navigation.navigate('Saved', { animations: false });
+  };
+  const handleProfile= () => {
+    navigation.navigate('Profile', { animations: false });
+  };
+  const handleHome = () => {
+    navigation.navigate('Home', {animations: false});
+  }  
       
 return (
 <SafeAreaView  style={{ flex: 1, }}>
@@ -64,17 +101,28 @@ return (
       </HeaderContainer>
 
     <StyledContainer >    
-        <SectionTitle>Họ và tên</SectionTitle>
-        <InputText>Plantaholic</InputText> 
-        <SectionTitle>Giới tính</SectionTitle>
-        <InputText>Nữ</InputText>  
-        <SectionTitle>Số điện thoại</SectionTitle>
-        <InputText>012345678</InputText>  
-        <SectionTitle>Vị trí</SectionTitle>
-        <InputText>Thủ Đức, HCM</InputText> 
+    <SectionTitle>Họ và tên</SectionTitle>
+          <InputText
+            value={textFullname}
+            onChangeText={(text) => setTextFullname(text)}
+          />
+          <SectionTitle>Giới tính</SectionTitle>
+          <InputText
+            value={textGender}
+            onChangeText={(text) => setTextGender(text)}
+          />
+          <SectionTitle>Số điện thoại</SectionTitle>
+          <InputText
+            value={textPhoneNumber}
+            onChangeText={(text) => setTextPhoneNumber(text)}
+          />
+          <SectionTitle>Vị trí</SectionTitle>
+          <InputText
+            value={textAddress}
+            onChangeText={(text) => setTextAddress(text)}
+          /> 
 
-
-      <ButtonSavechange>
+      <ButtonSavechange onPress={handleEditProfile}>
         <SavechangeButtonText>Lưu thay đổi</SavechangeButtonText>
       </ButtonSavechange>
     </StyledContainer>
