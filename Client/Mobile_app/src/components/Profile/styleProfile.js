@@ -125,6 +125,17 @@ export const SectionContainer = styled.View`
   justify-content: center;
 
 `
+export const SectionContainer1 = styled.View`
+  width: 100%;
+  height: ${vh(25)}px;
+  margin-top: ${vh(1)}px;
+  border: 0.3px solid ${green};
+  borderRadius: 12px;
+  backgroundColor: ${containerprofile};
+  flex-direction: column;
+  justify-content: center;
+
+`
 
 export const ChildSectionContainer = styled.View`
   height: ${vh(6)}px;

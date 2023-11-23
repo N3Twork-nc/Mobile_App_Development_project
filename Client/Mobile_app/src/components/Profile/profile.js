@@ -1,9 +1,15 @@
 import React, {useState} from 'react';
-import { TaskbarView, ContainerButton, TaskbarIcon, TaskbarButtonText, StyledContainer, HeaderContainer, ButtonNotification, MainTitle, TitleContainer, NotificationContainer, AvatarContainer, Name, ButtonEditProfile, EditButtonText, SectionTitle, LocationContainer, ChildSectionContainer, ChildSectionText, ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, ChildSectionButton, ChildSectionButtonContainer, AvatarImage, ButtonSignOut, SignoutButtonText } from './styleProfile';
+import { TaskbarView, ContainerButton, TaskbarIcon,  TaskbarButtonText, 
+  StyledContainer, HeaderContainer, ButtonNotification, MainTitle, 
+  TitleContainer, NotificationContainer, AvatarContainer, Name, 
+  ButtonEditProfile, EditButtonText, SectionTitle, 
+  LocationContainer, ChildSectionContainer, ChildSectionText, 
+  ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, SectionContainer1,
+  ChildSectionButton, ChildSectionButtonContainer, AvatarImage, 
+  ButtonSignOut, SignoutButtonText } from './styleProfile';
 import { ScrollView, SafeAreaView,Image,} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { tintColor } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 const Profile = () => { 
     const navigation = useNavigation();
     const userInfo = useSelector(state => state.infoUser);
@@ -29,12 +35,16 @@ const Profile = () => {
       const handleEditProfile = () => {
         navigation.navigate('EditProfile', {animation: false});
       }
+      const handleDashboard = () => {
+        navigation.navigate('Dashboard', {animation: false});
+      }
+      
 
       
     
 return (
 
-  <SafeAreaView  style={{ flex: 1, backgroundColor: 'white' }}>
+  <SafeAreaView  style={{ flex: 1, backgroundColor: '#CEF1CF' }}>
     <ScrollView  style={{ flex: 1, backgroundColor: 'white' }}>
         <HeaderContainer>
           <TitleContainer>
@@ -48,7 +58,7 @@ return (
               <AvatarImage
                 resizeMode="cover"
                 style={{ borderRadius: 85, borderWidth: 3, borderColor: 'white' }}
-                source={require('../../assets/placeholder.png')} tintColor = {'#164303'}
+                source={require('../../assets/placeholder.png')} tintColor={'#164303'}
               />
           </AvatarContainer>
                 
@@ -59,7 +69,7 @@ return (
           <EditButtonText>Chỉnh sửa</EditButtonText>
         </ButtonEditProfile>
         <SectionTitle>Thông tin</SectionTitle>
-        <SectionContainer>
+        <SectionContainer1>
           <ChildSectionContainer>
             <ChildSectionIcon source={require('../../assets/location.png')} tintColor={'#1A5D1A'} />
             <ChildSectionText>Vị trí</ChildSectionText>
@@ -71,9 +81,17 @@ return (
           <ChildSectionContainer>
               <ChildSectionIcon source={require('../../assets/weather.png')} tintColor={'#1A5D1A'} />
                 <ChildSectionText>Thời tiết</ChildSectionText>
-                <ChildSectionInfo>Có mây vài nơi, 27°C</ChildSectionInfo>
+                <ChildSectionInfo>  </ChildSectionInfo>
           </ChildSectionContainer>
-        </SectionContainer>
+          <Line />
+          <ChildSectionContainer>
+            <ChildSectionIcon source={require('../../assets/humidity.png')} tintColor={'#1A5D1A'} />
+            <ChildSectionText>Các thông số</ChildSectionText>
+            <ChildSectionButtonContainer onPress={handleDashboard}>
+                  <ChildSectionButton source={require('../../assets/more.png')} tintColor={'#1A5D1A'} />
+              </ChildSectionButtonContainer>  
+          </ChildSectionContainer>
+        </SectionContainer1>
 
 
         <SectionTitle>Thông báo</SectionTitle>

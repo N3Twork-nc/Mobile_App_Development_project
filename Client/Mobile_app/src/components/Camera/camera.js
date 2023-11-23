@@ -71,13 +71,13 @@ const CameraScreen = () => {
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images, 
       allowsEditing: true,
       quality: 1,
       multiple: false,
     });
   
-    if (!result.cancelled) {
+    if (!result.canceled) {
       setCapturedPhoto(result.assets[0]);
       setIsModalVisible(true);
     }
@@ -143,8 +143,11 @@ const CameraScreen = () => {
           />
           <View style={{ position: 'absolute', bottom: 0, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
 
-          {/* Chụp lại và nhận diện cây */}
-          <FooterContainer> 
+          
+          </View>
+        </View>
+        {/* Chụp lại và nhận diện cây */}
+        <FooterContainer> 
               <RetakeButton onPress={closePhotoPreview}>
                 <Text2>Chụp lại</Text2>
               </RetakeButton>
@@ -152,8 +155,6 @@ const CameraScreen = () => {
                 <Text3>Nhận diện</Text3>
               </ResultButton>
           </FooterContainer>
-          </View>
-        </View>
       </Modal>
     </StyleContainer>
   );

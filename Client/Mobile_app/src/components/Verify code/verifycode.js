@@ -28,7 +28,6 @@ const Verifycode = () => {
               setOtp3('');
               setOtp4('');
               clearInterval(timer);
-              Alert.alert('Hết thời gian', 'Vui lòng gửi lại mã OTP');
           }
       }, 1000);
 

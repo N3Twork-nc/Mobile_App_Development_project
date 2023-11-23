@@ -33,7 +33,6 @@ export const Text1 = styled.Text`
   font-size: 22px;
   font-weight: 600;
   color: #ffffff;
-  align-items: center;
   justify-content: center;
   position: absolute;
   align-items: center;
@@ -112,14 +111,15 @@ export const Text2 = styled.Text`
   font-size: ${vh(2.3)}px;
   font-weight: 600;
   color: ${black};
-  text-align: center;
+  left: 35px;
+  top:5px;
 `;
 
 export const Text3 = styled.Text`
   font-size: ${vh(2.3)}px;
   font-weight: 600;
   color: ${black};
-  text-align: center;
+  top: 5px;
 `;
 export const ResultButton = styled.TouchableOpacity`
   width: ${vw(30)}px;
@@ -130,8 +130,7 @@ export const ResultButton = styled.TouchableOpacity`
 export const FooterContainer = styled.TouchableOpacity`
   background-color: #CEF1CF;
   width: ${vw(100)}px;
-  height: ${vh(8)}px;
-  right: ${vw(5)}px;
+  height: ${vh(7)}px;
   flex-direction: row;
 `;
 export const HeaderContainer2 = styled.View`
