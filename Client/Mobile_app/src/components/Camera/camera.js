@@ -48,12 +48,10 @@ const CameraScreen = () => {
       }
     }
   };  
-
   // Hàm xử lý việc chụp ảnh
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-      predictPlant(photo,token)
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }
@@ -77,7 +75,9 @@ const CameraScreen = () => {
       setIsModalVisible(true);
     }
   };
-  
+  const Predicted = () =>{
+    predictPlant(capturedPhoto,token)
+  }
   // Hàm để đóng cửa sổ modal
   const closePhotoPreview = () => {
     setIsModalVisible(false);
@@ -150,7 +150,7 @@ const CameraScreen = () => {
             // Xử lý việc lưu ảnh ở đây
             closePhotoPreview();
           }}>
-           <Text3>Nhận diện</Text3>
+           <Text3 onPress={Predicted}>Nhận diện</Text3>
            
           </TouchableOpacity>
 
