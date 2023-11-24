@@ -50,7 +50,6 @@ width: ${vw(90)}px;
 padding-left: ${vh(3)}px;
 `;
 
-
 export const ButtonSignup = styled.TouchableOpacity`
   margin-top: ${vh(3)}px;
   background-color: ${black};

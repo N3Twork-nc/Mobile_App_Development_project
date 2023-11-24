@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
-import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
 import { Platform, TouchableOpacity, Alert, View,StyleSheet } from 'react-native';
