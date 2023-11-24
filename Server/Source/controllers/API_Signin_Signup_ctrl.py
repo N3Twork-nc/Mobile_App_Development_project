@@ -1,7 +1,7 @@
 from Source import app
 from Source.models_mvc.account_model import Account
 import random
-from Source.controllers.mail_class import Mail
+from Source.classes.mail_class import Mail
 from fastapi import HTTPException
 from Source.security import Authentication 
 

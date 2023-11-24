@@ -3,20 +3,24 @@ from fastapi import UploadFile
 import numpy as np
 from io import BytesIO
 from PIL import Image
+from Source.models_mvc.json_label_model import JsonLabel
 from model_train.load_model import Model
 from Source.security import Authentication
 from fastapi import Depends
 
+
+    
 @app.post('/APIPredictPlants',dependencies=[Depends(Authentication().validate_token)])
 async def prediectPlants(file: UploadFile):
     #Đọc dữ liệu
     contents = await file.read()
     #chuyển binary về numpy
     img = Image.open(BytesIO(contents))
-    img = img.resize((256, 256))
+    img = img.resize((150, 150))
     img_array = np.array(img)
     img_array = np.expand_dims(img_array, axis=0)
     #Dự đoán
     result=Model.PredictPlants(img_array)
-    print(str(result[0]))
-    return str(result[0])
+    str_number = str(result[0]).zfill(4)
+    label=JsonLabel.get_label_plants()
+    return label[str_number]
