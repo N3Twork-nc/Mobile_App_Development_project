@@ -52,13 +52,10 @@ const CameraScreen = () => {
       }
     }
   };  
-
   // Hàm xử lý việc chụp ảnh
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-      console.log(token)
-      predictPlant(photo,token)
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }
@@ -82,7 +79,9 @@ const CameraScreen = () => {
       setIsModalVisible(true);
     }
   };
-  
+  const Predicted = () =>{
+    predictPlant(capturedPhoto,token)
+  }
   // Hàm để đóng cửa sổ modal
   const closePhotoPreview = () => {
     setIsModalVisible(false);
@@ -141,7 +140,22 @@ const CameraScreen = () => {
             style={{ width: '100%', height: '100%' }}
             source={{ uri: capturedPhoto ? capturedPhoto.uri : null }}
           />
-          <View style={{ position: 'absolute', bottom: 0, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+         
+          {/* Xử lý Chụp lại */}
+          <TouchableOpacity onPress={closePhotoPreview}>
+             <Text2>Chụp lại</Text2>
+         
+          </TouchableOpacity>
+
+          {/* Xử lý Lưu */}
+          <TouchableOpacity onPress={() => {
+            // Xử lý việc lưu ảnh ở đây
+            closePhotoPreview();
+          }}>
+           <Text3 onPress={Predicted}>Nhận diện</Text3>
+           
+          </TouchableOpacity>
 
           {/* Chụp lại và nhận diện cây */}
           <FooterContainer> 
