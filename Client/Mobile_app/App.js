@@ -14,22 +14,24 @@ import Profile from './src/components/Profile/profile';
 import ForgotPassword from './src/components/Forgot Password/forgotpassword';
 import Welcome from './src/components/Welcome/welcome';
 
+
 const App = () =>
 {
-  //info("anhthu", "Anh Thư", "Nữ", "0333478530", "KTX khu B")
   return <Provider store={store}>
     <AppNavigator/>
   </Provider> 
 }
 export default App;
 
-/*export default function App() {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Welcome />
-      </NavigationContainer>
-    </Provider>
-  );
-}*/
+
+// export default function App() {
+//   return (
+//     <Provider store={store}>
+//       <NavigationContainer>
+//         <CameraScreen/>
+//       </NavigationContainer>
+//     </Provider>
+//   );
+// }
+
 

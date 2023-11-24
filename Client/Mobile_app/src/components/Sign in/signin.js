@@ -9,7 +9,6 @@ import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
 import { ScrollView } from 'react-native-gesture-handler';
 import LottieView from 'lottie-react-native';
-import { height } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 
 const Signin = () => {
@@ -110,6 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#CEF1CF',
+    zIndex: -1,
   }
 })
 export default Signin;
