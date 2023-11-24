@@ -24,7 +24,7 @@ const vh = percent => (percent * height) / 100;
 // Chuyển đổi giá trị vw sang giá trị số
 const vw = percent => (percent * width) / 100;
 
-const { maincolor, white, black, gray, gray_subtype, green, maintitle} = Colors;
+const { maincolor, white, black, gray, maintitle} = Colors;
 
 //screen
 export const StyledContainer = styled.View`
@@ -43,7 +43,7 @@ export const HeaderContainer = styled.View`
   justify-content: center;
   margin-top: ${vh(1.8)}px;
   margin-bottom: ${vh(1.8)}px;
-  ${Platform.OS === 'android' ? 'margin-top: 15%' : 'margin-bottom: 10px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 15%' : 'margin-top: 0px;'}
  
 `;
 export const BackContainer = styled.TouchableOpacity`

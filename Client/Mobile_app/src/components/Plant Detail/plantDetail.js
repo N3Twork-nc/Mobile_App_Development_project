@@ -20,7 +20,7 @@ const PlantDetail = () => {
     require('../../assets/img3.jpg'),
   ];
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <ScrollView style={{ flex: 1 }}>
         <StyledContainer>
         {/* TIÊU ĐỀ */}

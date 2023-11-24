@@ -28,7 +28,7 @@ const Afterscan = () => {
       <ScrollView style={{ flex: 1 }}>
         <StyledContainer>
         {/* TIÊU ĐỀ */}
-        <HeaderContainer onPress = {handleScan}>
+        <HeaderContainer >
           <TitleContainer>
             <BackContainer onPress={handleBack}>
               <ButtonBack resizeMode="cover" source={require('../../assets/back.png')}/>

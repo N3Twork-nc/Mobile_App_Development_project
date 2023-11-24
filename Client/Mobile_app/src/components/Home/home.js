@@ -26,8 +26,8 @@ const Home = () => {
   const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
   
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+      <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
         <StyledContainer>
 
         {/* TIÊU ĐỀ */}
