@@ -57,6 +57,5 @@ export const verify = async (fullname, username, password, email, otp) => {
     console.log(error)
     return error
   }
-
 };
 

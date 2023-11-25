@@ -9,9 +9,12 @@ import { TaskbarView, ContainerButton, TaskbarIcon,  TaskbarButtonText,
   ButtonSignOut, SignoutButtonText } from './styleProfile';
 import { ScrollView, SafeAreaView,Image,} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAll } from '../../reducers/infoUser';
+
 const Profile = () => { 
     const navigation = useNavigation();
+    const dispatch=useDispatch();
     const userInfo = useSelector(state => state.infoUser);
   
     const handleExplore = () => {
@@ -30,6 +33,7 @@ const Profile = () => {
         navigation.navigate('Home', {animations: false});
       }
       const handleSignout = () => {
+        dispatch(deleteAll());
         navigation.navigate('SignIn', {animation: false});
       }
       const handleEditProfile = () => {

@@ -181,7 +181,7 @@ export const Box1 = styled.Image`
 `;
 export const TextContainer1 = styled.View`
   position: absolute;
-  height: ${vh(10)}px;
+  height: auto;
   width: ${vw(33)}px;
   margin-left: ${vw(19)}px;
   flex-direction: column;
