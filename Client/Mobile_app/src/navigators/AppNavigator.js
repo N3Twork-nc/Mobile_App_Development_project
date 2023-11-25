@@ -10,9 +10,11 @@ import Livingroom from '../components/Home/Rooms/Livingroom/livingroom';
 import Explore from '../components/Explore/explore';
 import Newspaper from '../components/Explore/News/news';
 import CameraScreen from '../components/Camera/camera';
+import Afterscan from '../components/After Scan/afterscan';
 import Profile from '../components/Profile/profile';
 import EditProfile from '../components/Profile/Edit profile/editProfile';
 import PlantDetail from '../components/Plant Detail/plantDetail';
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -30,6 +32,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
         <Stack.Screen name="News" component={Newspaper} options={{animationEnabled: false}}/>
         <Stack.Screen name="CameraScreen" component={CameraScreen} />
+        <Stack.Screen name="Afterscan" component={Afterscan} />
         <Stack.Screen name="Profile" component={Profile} options={{animationEnabled: false}} />
         <Stack.Screen name="EditProfile" component={EditProfile} options={{animationEnabled: false}} />
         <Stack.Screen name="PlantDetail" component={PlantDetail}  />

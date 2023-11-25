@@ -28,7 +28,7 @@ const News = () => {
   
             <NewspaperMaintitle>{selectedNews.title}</NewspaperMaintitle>
             <SubtitleContainer>
-              <NewspaperThumbnailContainer resizeMode="cover" source={{uri:selectedNews.thumbnaillinknp}} />
+              <NewspaperThumbnailContainer resizeMode="cover" source={{uri:selectedNews.thumbnaillink}} />
               <TextNewspaper>
                 <SubText>{selectedNews.introduction}</SubText>
               </TextNewspaper>

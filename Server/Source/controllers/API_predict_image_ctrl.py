@@ -3,7 +3,7 @@ from fastapi import UploadFile
 import numpy as np
 from io import BytesIO
 from PIL import Image
-from Source.models_mvc.json_label_model import JsonLabel
+from Source.models_mvc.json_info_model import JsonInfo
 from model_train.load_model import Model
 from Source.security import Authentication
 from fastapi import Depends
@@ -21,6 +21,7 @@ async def prediectPlants(file: UploadFile):
     img_array = np.expand_dims(img_array, axis=0)
     #Dự đoán
     result=Model.PredictPlants(img_array)
-    str_number = str(result[0]).zfill(4)
-    label=JsonLabel.get_label_plants()
-    return label[str_number]
+    str_number = str(result[0])
+    info=JsonInfo.get_info_plants()
+    return info[int(str_number)]
+

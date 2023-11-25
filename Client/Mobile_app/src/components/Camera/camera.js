@@ -75,9 +75,21 @@ const CameraScreen = () => {
       setIsModalVisible(true);
     }
   };
-  const Predicted = () =>{
-    predictPlant(capturedPhoto,token)
+
+const [info, setInfoData] = useState([]);
+
+useEffect(() => {}, []);
+
+const Predicted = async () => {
+  try {
+    const predictedInfo = await predictPlant(capturedPhoto, token);
+    setInfoData(predictedInfo);
+    navigation.replace('Afterscan', { info: predictedInfo });
+  } catch (error) {
+    console.log(error);
   }
+};
+
   // Hàm để đóng cửa sổ modal
   const closePhotoPreview = () => {
     setIsModalVisible(false);
