@@ -125,6 +125,17 @@ export const SectionContainer = styled.View`
   justify-content: center;
 
 `
+export const SectionContainer1 = styled.View`
+  width: 100%;
+  height: ${vh(25)}px;
+  margin-top: ${vh(1)}px;
+  border: 0.3px solid ${green};
+  borderRadius: 12px;
+  backgroundColor: ${containerprofile};
+  flex-direction: column;
+  justify-content: center;
+
+`
 
 export const ChildSectionContainer = styled.View`
   height: ${vh(6)}px;
@@ -193,7 +204,7 @@ export const TaskbarView = styled.View`
   width: 100%;
   height: 55px;
   background-color: ${white};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -2px 1px rgba(0, 0, 0, 0.05);
   position: relative;
   flex-direction: row;
   align-items: flex-start;

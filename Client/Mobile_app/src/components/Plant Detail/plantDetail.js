@@ -20,7 +20,7 @@ const PlantDetail = () => {
     require('../../assets/img3.jpg'),
   ];
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <ScrollView style={{ flex: 1 }}>
         <StyledContainer>
         {/* TIÊU ĐỀ */}
@@ -62,43 +62,43 @@ const PlantDetail = () => {
                   <Box1Container>
                     <Box1 resizeMode="cover" source={require('../../assets/bonphan.png')}/>
                     <TextContainer1>
-                      <Title1> Bón phân </Title1>
-                      <Info1> Mùa xuân hè, mỗi 4-6 tuần</Info1>
+                      <Title1>Bón phân </Title1>
+                      <Info1>Xuân hè, mỗi 4-6 tuần</Info1>
                     </TextContainer1>
                   </Box1Container>
                   <Box2Container>
                     <Box2 resizeMode="cover" source={require('../../assets/tuoinuoc.png')}/>
                     <TextContainer2>
-                      <Title2> Tưới nước </Title2>
-                      <Info2> Mỗi 5-7 ngày</Info2>
+                      <Title2>Tưới nước </Title2>
+                      <Info2>Mỗi 5-7 ngày</Info2>
                     </TextContainer2>
                   </Box2Container>
                   <Box3Container>
                   <Box3 resizeMode="cover" source={require('../../assets/thaydat.png')}/>
                   <TextContainer3>
-                    <Title3> Thay đất </Title3>
-                    <Info3> Mỗi 2-3 năm</Info3>
+                    <Title3>Thay đất</Title3>
+                    <Info3>Mỗi 2-3 năm</Info3>
                   </TextContainer3>
                   </Box3Container>
                   <Box4Container>
                     <Box4 resizeMode="cover" source={require('../../assets/nhietdo.png')}/>
                     <TextContainer4>
-                      <Title4> Nhiệt độ </Title4>
-                      <Info4> 25-40°C </Info4>
+                      <Title4>Nhiệt độ </Title4>
+                      <Info4>25-40°C </Info4>
                     </TextContainer4>
                   </Box4Container>
                   <Box5Container>
                     <Box5 resizeMode="cover" source={require('../../assets/anhsang.png')}/>
                     <TextContainer5>
-                      <Title5> Ánh sáng </Title5>
-                      <Info5> Cao </Info5>
+                      <Title5>Ánh sáng </Title5>
+                      <Info5>Cao </Info5>
                     </TextContainer5>
                   </Box5Container>
                   <Box6Container>
                     <Box6 resizeMode="cover" source={require('../../assets/doam.png')}/>
                     <TextContainer6>
-                      <Title6> Độ ẩm </Title6>
-                      <Info6> Vừa </Info6>
+                      <Title6>Độ ẩm </Title6>
+                      <Info6>Vừa </Info6>
                     </TextContainer6>
                   </Box6Container>
                 </InfoContainer>

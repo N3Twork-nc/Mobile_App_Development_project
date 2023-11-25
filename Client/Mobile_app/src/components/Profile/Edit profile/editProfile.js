@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import { TaskbarView, ContainerButton, TaskbarIcon, TaskbarButtonText, StyledContainer, HeaderContainer, 
-     MainTitle, TitleContainer, NotificationContainer, AvatarContainer,  SectionTitle,  AvatarImage, BackContainer, ButtonBack, InputText, ButtonSavechange, SavechangeButtonText } from './styleEditProfile.js';
+import {StyledContainer, HeaderContainer, 
+     MainTitle, TitleContainer, AvatarContainer, 
+     SectionTitle,  AvatarImage, BackContainer, ButtonBack, 
+     InputText, ButtonSavechange, SavechangeButtonText } from './styleEditProfile.js';
 import { ScrollView, SafeAreaView} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { info } from '../../../api/editProfile.js'
 import { updateAll } from '../../../reducers/infoUser';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const EditProfile = () => {
   const navigation = useNavigation();
@@ -20,6 +23,8 @@ const EditProfile = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
+  const [isEditingAvatar, setIsEditingAvatar] = useState(false);
+  const placeholder = require('../../../assets/placeholder.png');
 
   useEffect(() => {
     setTextFullname(userInfo.fullname);
@@ -44,8 +49,8 @@ const EditProfile = () => {
   };
 
 
-    //Mở album ảnh 
   const handleChooseFromLibrary = async () => {
+    setIsEditingAvatar(true);
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
       Alert.alert('Permission needed', 'Please grant permission to access the photo library.');
@@ -54,48 +59,49 @@ const EditProfile = () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
       quality: 1,
+      multiple: false,
     });
   
-    if (!result.cancelled) {
-      setCapturedPhoto(result);
+    if (!result.canceled) {
+      setCapturedPhoto(result.assets[0]);
     }
   };
+  
+  let avatarSource;
+  if (isEditingAvatar) {
+    avatarSource = capturedPhoto ? { uri: capturedPhoto.uri } : placeholder;
+  } else {
+    avatarSource = placeholder;
+  }
 
-  const handleExplore = () => {
-    navigation.navigate('Explore', { animations: false }, {transitions: false});
-  };
-  const handleScan = () => {
-    navigation.navigate('CameraScreen', { animations: false });
-  };
-  const handleSaved = () => {
-    navigation.navigate('Saved', { animations: false });
-  };
-  const handleProfile= () => {
+  const handleBack= () => {
     navigation.navigate('Profile', { animations: false });
   };
-  const handleHome = () => {
-    navigation.navigate('Home', {animations: false});
-  }  
+
       
 return (
-<SafeAreaView  style={{ flex: 1, }}>
-<ScrollView  style={{ flex: 1, backgroundColor: 'white' }}>
+  <KeyboardAwareScrollView 
+  contentContainerStyle={{ flex: 1 }}
+  behavior={Platform.OS === 'ios' ? 'padding' : null}
+  keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
+  <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+  <ScrollView  style={{ flex: 1, backgroundColor: 'white' }}>
+
       <HeaderContainer>
         <TitleContainer>
-          <BackContainer onPress={handleProfile}>
+          <BackContainer onPress={handleBack}>
             <ButtonBack resizeMode="contain" source={require('../../../assets/back.png')} tintColor={'#164303'}/>
           </BackContainer>        
           <MainTitle>Chỉnh sửa</MainTitle>
           
         </TitleContainer>
-        <AvatarContainer onPress={handleChooseFromLibrary}>
-            <AvatarImage
-              resizeMode="contain"
-              style={{  borderRadius: 85, borderWidth:3, borderColor: 'white'}}
-              source={require('../../../assets/plant2.jpg')}
-            />
+            <AvatarContainer onPress={handleChooseFromLibrary}>
+              <AvatarImage
+                resizeMode="contain"
+                style={{ borderRadius: 85, borderWidth: 3, borderColor: 'white' }}
+                source={avatarSource}
+              />
           </AvatarContainer>   
               
       </HeaderContainer>
@@ -127,31 +133,8 @@ return (
       </ButtonSavechange>
     </StyledContainer>
 </ScrollView>
-{/* 
-Taskbar */}
-    <TaskbarView>
-      <ContainerButton onPress={handleExplore}>
-        <TaskbarIcon resizeMode="contain" source={require('../../../assets/explore.png')}/>
-        <TaskbarButtonText>Khám phá</TaskbarButtonText>
-      </ContainerButton>
-      <ContainerButton onPress={handleHome}>
-        <TaskbarIcon resizeMode="contain" source={require('../../../assets/mygarden.png')}  />
-        <TaskbarButtonText >Vườn của tôi</TaskbarButtonText>
-      </ContainerButton>
-      <ContainerButton onPress={handleScan}>
-        <TaskbarIcon resizeMode="contain" source={require('../../../assets/scan.png')}/>
-        <TaskbarButtonText>Scan</TaskbarButtonText>
-      </ContainerButton>
-      <ContainerButton>
-        <TaskbarIcon resizeMode="contain" source={require('../../../assets/saved.png')}/>
-        <TaskbarButtonText>Đã lưu</TaskbarButtonText>
-      </ContainerButton>
-      <ContainerButton onPress={handleProfile}>
-        <TaskbarIcon resizeMode="contain" source={require('../../../assets/profile.png')}  tintColor={'green'}/>
-        <TaskbarButtonText style={{ color: 'green' }}>Cá nhân</TaskbarButtonText>
-      </ContainerButton>
-    </TaskbarView>
-  </SafeAreaView>
+</SafeAreaView>
+  </KeyboardAwareScrollView>
 )
 }
 export default EditProfile;
