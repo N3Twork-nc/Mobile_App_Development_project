@@ -24,8 +24,6 @@ const { maincolor, white, black, gray, green } = Colors;
  export const StyledContainer = styled.View`
   flex: 1;
   background-color: ${white};
-  justify-content: center;
-  position: relative; 
   ${Platform.OS === 'android' ? 'margin-top: 1%;' : 'margin-bottom: 0%;'}
 `;
 
@@ -111,39 +109,23 @@ export const Text2 = styled.Text`
 `;
 
 export const TagContainer = styled.View`
-  left: ${vw(4)}px;
+  right: ${vw(15)}px;
   margin-top: ${vh(1)}px;
   flex-direction: row;
+  justify-content: space-between;
   height: ${vh(4)}px;
-  align-items: center;
-  z-index: 2;
+  align-items: left;
   overflow: visible;
+  padding-horizontal: 80px;
 `;
 export const Tag1 = styled.Text`
   fontSize: ${vh(1.5)}px;
   color: ${black};
+  background-color: #F0F3F6;
+  padding: 5px;
 
-  background-color: #F0F3F6;
-  margin-right: ${vw(4)}px;
-  align-items: center;
-  padding: 5px;
 `;
-export const Tag2 = styled.Text`
-  fontSize: ${vh(1.5)}px;
-  color: ${black};
-  background-color: #F0F3F6;
-  margin-right: ${vw(4)}px;
-  align-items: center;
-  padding: 5px;
-`;
-export const Tag3 = styled.Text`
-  fontSize: ${vh(1.5)}px;
-  color: ${black};
-  background-color: #F0F3F6;
-  margin-right: ${vw(4)}px;
-  align-items: center;
-  padding: 5px;
-`;
+
 export const Text3 = styled.Text`
   margin-top: ${vh(3)}px;
   fontSize: ${vh(2.5)}px;
@@ -164,8 +146,8 @@ export const InfoContainer = styled.View`
 `;
 export const Box1Container = styled.View`
   position: absolute;
+  height: auto;
   margin-top: ${vh(1)}px;
-  height: ${vh(13)}px;
   width: ${vw(50)}px;
   flex-direction: row;
 `;
@@ -177,7 +159,7 @@ export const Box1 = styled.Image`
 `;
 export const TextContainer1 = styled.View`
   position: absolute;
-  height: ${vh(10)}px;
+  height: auto;
   width: ${vw(33)}px;
   margin-left: ${vw(19)}px;
   flex-direction: column;

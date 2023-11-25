@@ -7,6 +7,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { height } from "deprecated-react-native-prop-types/DeprecatedImagePropType";
 
 const DashBoard = () => {
   const navigation = useNavigation();
@@ -15,6 +16,7 @@ const DashBoard = () => {
   };
   const [currentTime, setCurrentTime] = useState("");
   const [currentLocation, setCurrentLocation] = useState(null);
+ 
   useEffect(() => {
     // Lấy thời gian thực
     const interval = setInterval(() => {
@@ -23,6 +25,7 @@ const DashBoard = () => {
     }, 1000);
     return () => clearInterval(interval);
     }, []);
+
   const itemDashboard = {
     title: "Example Title",
     subtitle: "Example Subtitle",
@@ -48,8 +51,8 @@ const DashBoard = () => {
           <NowBoard>
             <NowBoardText>{currentTime}</NowBoardText>
           </NowBoard>
-          <NowBoard>
-            <NowBoardText>My location</NowBoardText>
+          <NowBoard style={{ width: '100px' }}>
+            <NowBoardText>Dĩ An, Bình Dương</NowBoardText>
           </NowBoard>
         </NowBoardContainer>
         

@@ -342,7 +342,6 @@ export const MoreNotifyContainer = styled.Image`
 
 
 export const TaskbarView = styled.View`
-  position: fixed;
   bottom: 0;
   width: 100%;
   height: 55px;

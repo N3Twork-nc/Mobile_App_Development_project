@@ -46,7 +46,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center; 
   height: ${vh(7)}px;
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-top: 5%;'}
+  ${Platform.OS === 'android' ? 'margin-top: 5%;' : 'margin-top: 5%;'}
 `;
 export const TitleContainer = styled.View`
   position: absolute;
@@ -85,14 +85,12 @@ export const NowBoardContainer = styled.View`
 
 export const NowBoard = styled.View`
   height: 50px;
-  width: 45%;
   border-radius: 13px;
-  border: 0.5px solid ${green};
-  background-color: ${white};
+  background-color: ${white_gray};
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-horizontal: 10px;
+  padding-horizontal: 20px;
 `;
 
 export const NowBoardText = styled.Text`
