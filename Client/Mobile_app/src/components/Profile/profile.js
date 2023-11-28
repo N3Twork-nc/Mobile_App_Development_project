@@ -12,6 +12,9 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteAll } from '../../reducers/infoUser';
 
+import * as ImagePicker from 'expo-image-picker';
+import { tintColor } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
+
 const Profile = () => { 
     const navigation = useNavigation();
     const dispatch=useDispatch();
