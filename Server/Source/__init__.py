@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi_mqtt import FastMQTT, MQTTConfig
+#from fastapi_mqtt import FastMQTT, MQTTConfig
 
 app = FastAPI()
 

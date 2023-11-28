@@ -14,13 +14,34 @@ import Profile from './src/components/Profile/profile';
 import ForgotPassword from './src/components/Forgot Password/forgotpassword';
 import Welcome from './src/components/Welcome/welcome';
 import DashBoard from './src/components/Profile/Dashboard/dashboard';
+import PlantDetail from './src/components/Plant Detail/plantDetail';
 
 
+<<<<<<< HEAD
 const App = () =>
 {
   return <Provider store={store}>
     <AppNavigator/>
   </Provider> 
+=======
+// const App = () =>
+// {
+//   return <Provider store={store}>
+//     <AppNavigator/>
+//   </Provider> 
+// }
+// export default App;
+
+
+export default function App() {
+return (
+<Provider store={store}>
+ <NavigationContainer>
+    <Home/>
+   </NavigationContainer>
+  </Provider>
+);
+>>>>>>> c1a789df0b1a307dd875c292d40e59fb5186328f
 }
 export default App;
 
