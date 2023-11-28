@@ -23,6 +23,7 @@ const Home = () => {
   const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
   const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
   const handleDashboard = () => {navigation.navigate('Dashboard')};
+  const handleGardens = () => {navigation.navigate('Gardens')};
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
@@ -124,7 +125,7 @@ const Home = () => {
           {/* quản lý cây trồng */}
           <TitleforContainers>
             <Title1>Quản lý vườn trồng</Title1>
-            <Title2>Xem tất cả</Title2>
+            <Title2 onPress={handleGardens}>Xem tất cả</Title2>
           </TitleforContainers>
           
           <CategoryPlantRoom>
