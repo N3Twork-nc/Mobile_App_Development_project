@@ -16,23 +16,23 @@ import Welcome from './src/components/Welcome/welcome';
 import DashBoard from './src/components/Profile/Dashboard/dashboard';
 
 
-// const App = () =>
-// {
-//   return <Provider store={store}>
-//     <AppNavigator/>
-//   </Provider> 
-// }
-// export default App;
-
-
-export default function App() {
-return (
-<Provider store={store}>
- <NavigationContainer>
-    <DashBoard/>
-   </NavigationContainer>
-  </Provider>
-);
+const App = () =>
+{
+  return <Provider store={store}>
+    <AppNavigator/>
+  </Provider> 
 }
+export default App;
+
+
+// export default function App() {
+// return (
+// <Provider store={store}>
+//  <NavigationContainer>
+//     <DashBoard/>
+//    </NavigationContainer>
+//   </Provider>
+// );
+// }
 
 
