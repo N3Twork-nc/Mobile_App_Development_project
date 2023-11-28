@@ -54,8 +54,8 @@ const PlantDetail = () => {
                 <Text2> Hoa hướng dương</Text2>
                 <TagContainer>
                   <Tag1> Ngoài trời </Tag1>
-                  <Tag2> Trang trí </Tag2>
-                  <Tag3> Thực phẩm </Tag3>
+                  <Tag1> Trang trí </Tag1>
+                  <Tag1> Thực phẩm </Tag1>
                 </TagContainer>
                 <Text3> Thông tin</Text3> 
                 <InfoContainer>
@@ -108,6 +108,7 @@ const PlantDetail = () => {
                   <CreText> Nguồn Wikipedia</CreText>
                   <MainText>
                   Hoa hướng dương (Sunflower) là một loài cây thân thảo có hoa, có đặc điểm nổi bật là luôn quay về hướng mặt trời. Cây có thân mảnh mai, cao từ 1 đến 3 mét, với lá hình trái tim có cạnh răng cưa. Loài này sinh trưởng mạnh mẽ và phân bố rộng khắp vùng nhiệt đới và cận nhiệt đới, cũng như trong các vùng ôn đới. Hoa hướng dương không chỉ được trồng vì vẻ đẹp của nó, mà còn có nhiều ứng dụng hữu ích khác. Các hạt của hoa hướng dương là nguồn cung cấp dưỡng chất quý giá, thường được sử dụng trong ẩm thực và chế biến thực phẩm. Để chăm sóc cây hoa hướng dương, cần cung cấp đủ ánh sáng mặt trời, tưới nước đều đặn và đảm bảo thoát nước tốt. Thay đất mỗi 2-3 năm để đảm bảo rễ cây có đủ không gian để phát triển. Hơn nữa, hãy chú ý rằng cây này cần hỗ trợ hoặc giá để phát triển vững vàng do thân cây mảnh dẻ và cao.
+Hoa hướng dương (Sunflower) là một loài cây thân thảo có hoa, có đặc điểm nổi bật là luôn quay về hướng mặt trời. Cây có thân mảnh mai, cao từ 1 đến 3 mét, với lá hình trái tim có cạnh răng cưa. Loài này sinh trưởng mạnh mẽ và phân bố rộng khắp vùng nhiệt đới và cận nhiệt đới, cũng như trong các vùng ôn đới. Hoa hướng dương không chỉ được trồng vì vẻ đẹp của nó, mà còn có nhiều ứng dụng hữu ích khác. Các hạt của hoa hướng dương là nguồn cung cấp dưỡng chất quý giá, thường được sử dụng trong ẩm thực và chế biến thực phẩm. Để chăm sóc cây hoa hướng dương, cần cung cấp đủ ánh sáng mặt trời, tưới nước đều đặn và đảm bảo thoát nước tốt. Thay đất mỗi 2-3 năm để đảm bảo rễ cây có đủ không gian để phát triển. Hơn nữa, hãy chú ý rằng cây này cần hỗ trợ hoặc giá để phát triển vững vàng do thân cây mảnh dẻ và cao.
                   </MainText>
                 </ParagraphContainer>
         </BodyContainer>
