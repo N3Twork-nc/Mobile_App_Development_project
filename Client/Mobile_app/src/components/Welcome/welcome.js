@@ -20,7 +20,7 @@ const Welcome = () => {
                     PLANTAHOLIC!
                 </Slogan>  
                 <ImgPlant resizeMode="contain" source={require('../../assets/welcome.png')} />   
-                <ImgCloud resizeMode="contain" source={require('../../assets/cloud.png')} />              
+                <ImgCloud resizeMode="stretch" source={require('../../assets/cloud.png')} />              
                 <ButtonSignup onPress={handleSignUp}>
                     <ButtonText>Đăng ký</ButtonText>
                 </ButtonSignup>

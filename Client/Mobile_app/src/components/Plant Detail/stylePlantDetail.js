@@ -87,30 +87,25 @@ export const BodyContainer = styled.View`
   background-color: ${white};
   width: ${vw(100)}px;
   height: ${vh(100)}px;
-  position: flex;
   z-index:1;
   flex: 1;
 `;
 export const ImgLogo = styled.Image`
-  width: ${vw(4)}px;
-  height: ${vh(3)}px;
-  margin-top: ${vh(0.5)}px;
-  justify-content: flex-start;
-  left:${vw(4)}px;
-  top: ${vh(2)}px;
+  width: ${vw(5)}px;
+  height: ${vh(4)}px;
+  left: ${vw(4)}px;
 `;
 export const Text1 = styled.Text`
-  fontSize: ${vh(1.8)}px;
+  fontSize: ${vh(2)}px;
   color: #61AF2B;
   font-weight: bold;
-  justify-content: flex-start;
   margin-left: ${vw(10)}px;
+  bottom: 17px;
 `;
 export const Text2 = styled.Text`
   fontSize: ${vh(3)}px;
   color: ${black};
-  font-weight: bold;
-  margin-top: ${vh(1.5)}px;  
+  font-weight: bold; 
   align-items: center;
   left: ${vw(3)}px;
 `;

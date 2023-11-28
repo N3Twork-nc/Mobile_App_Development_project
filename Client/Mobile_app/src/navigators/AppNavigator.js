@@ -14,7 +14,9 @@ import Afterscan from '../components/After Scan/afterscan';
 import Profile from '../components/Profile/profile';
 import EditProfile from '../components/Profile/Edit profile/editProfile';
 import PlantDetail from '../components/Plant Detail/plantDetail';
+
 import ForgotPassword from '../components/Forgot Password/forgotpassword';
+import DashBoard from '../components/Profile/Dashboard/dashboard';
 
 const Stack = createStackNavigator();
 
@@ -26,7 +28,7 @@ const AppNavigator = () => {
         }}>
          <Stack.Screen name="Welcome" component={Welcome} /> 
         <Stack.Screen name="SignIn" component={Signin}  />
-        <Stack.Screen name="SignUp" component={Signup}  />        
+        <Stack.Screen name="SignUp" component={Signup} options={{animationEnabled: false}} />        
         <Stack.Screen name="VerifyCode" component={Verifycode}  />      
         <Stack.Screen name="Livingroom" component={Livingroom} />
         <Stack.Screen name="Home" component={Home} options={{animationEnabled: false}}/>
@@ -38,6 +40,8 @@ const AppNavigator = () => {
         <Stack.Screen name="EditProfile" component={EditProfile} options={{animationEnabled: false}} />
         <Stack.Screen name="PlantDetail" component={PlantDetail}  />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword}  />
+        <Stack.Screen name="Dashboard" component={DashBoard}  />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

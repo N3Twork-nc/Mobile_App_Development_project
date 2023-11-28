@@ -13,25 +13,26 @@ import Afterscan from './src/components/After Scan/afterscan';
 import Profile from './src/components/Profile/profile';
 import ForgotPassword from './src/components/Forgot Password/forgotpassword';
 import Welcome from './src/components/Welcome/welcome';
+import DashBoard from './src/components/Profile/Dashboard/dashboard';
 
 
-const App = () =>
-{
-  return <Provider store={store}>
-    <AppNavigator/>
-  </Provider> 
-}
-export default App;
-
-
-// export default function App() {
-//   return (
-//     <Provider store={store}>
-//       <NavigationContainer>
-//         <CameraScreen/>
-//       </NavigationContainer>
-//     </Provider>
-//   );
+// const App = () =>
+// {
+//   return <Provider store={store}>
+//     <AppNavigator/>
+//   </Provider> 
 // }
+// export default App;
+
+
+export default function App() {
+return (
+<Provider store={store}>
+ <NavigationContainer>
+    <DashBoard/>
+   </NavigationContainer>
+  </Provider>
+);
+}
 
 

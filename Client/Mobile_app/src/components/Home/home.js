@@ -53,8 +53,8 @@ const Home = () => {
 
           <RecentlyPlantContainer>
             <Plant1Container onPress={handlePlantDetail}>
-              <ImageFrame resizeMode="cover" source={require('../../assets/plant1.jpg')}/>
-              <PlantName> Vạn Niên Thanh </PlantName>
+              <ImageFrame resizeMode="cover" source={require('../../assets/plant0.jpg')}/>
+              <PlantName>Hoa Hướng Dương</PlantName>
             </Plant1Container> 
             <Plant2Container>
               <ImageFrame resizeMode="cover" source={require('../../assets/plant2.jpg')}/>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import { Platform, TouchableOpacity, Alert, View,StyleSheet } from 'react-native';
+import { Platform, TouchableOpacity, Alert, Animated ,StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
@@ -33,7 +33,9 @@ const Signin = () => {
       dispatch(acUpdateInfo)
       return navigation.navigate('Home')
     }
-    else Alert.alert('Tài khoản hoặc mật khẩu không chính xác');
+    else 
+    {Alert.alert('Tài khoản hoặc mật khẩu không chính xác');
+     return navigation.navigate('SignIn')}
   };
   
   const handleForgotPassword = () => {
@@ -43,14 +45,24 @@ const Signin = () => {
   const handleSignUp = () => {
     navigation.navigate('SignUp');
   };
+  
+  //Sự kiện lùi màn hình
+  const animatedValue = useRef(new Animated.Value(0)).current;
+
+  const handleAnimatedValueUpdate = () => {
+    navigation.navigate('Welcome')
+  };
+
+  animatedValue.addListener(handleAnimatedValueUpdate);
 
   return (
     <KeyboardAwareScrollView 
+    backgroundColor="#CEF1CF"
     contentContainerStyle={{ flex: 1 }}
     behavior={Platform.OS === 'ios' ? 'padding' : null}
     keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
     <ScrollView contentContainerStyle={{ flex: 1 }} >
-    {isLoading ? (
+    {/* {isLoading ? (
         <View style={[StyleSheet.absoluteFillObject, styles.container]}>
         <LottieView
                 resizeMode="contain"
@@ -59,7 +71,7 @@ const Signin = () => {
               />
         </View>
            
-          ) : (
+          ) : ( */}
         <StyledContainer>
           <InnerContainer>
             <Slogan>ĐĂNG NHẬP</Slogan>
@@ -99,7 +111,8 @@ const Signin = () => {
             <OthersText1 onPress={handleSignUp}>Chưa có tài khoản? Đăng ký</OthersText1>
           
           </InnerContainer>
-        </StyledContainer>)}
+        </StyledContainer>
+ {/** ) */}
         </ScrollView>
       </KeyboardAwareScrollView>
   );
