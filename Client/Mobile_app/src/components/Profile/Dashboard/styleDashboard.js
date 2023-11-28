@@ -46,7 +46,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center; 
   height: ${vh(7)}px;
-  ${Platform.OS === 'android' ? 'margin-top: 5%;' : 'margin-top: 5%;'}
+  ${Platform.OS === 'android' ? 'margin-top: 5%;' : 'margin-top:0;'}
 `;
 export const TitleContainer = styled.View`
   position: absolute;
@@ -80,13 +80,13 @@ export const NowBoardContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 7px;
+  margin-bottom: 15px;
 `;
 
 export const NowBoard = styled.View`
   height: 50px;
   border-radius: 13px;
-  background-color: ${white_gray};
+  background-color: ${maincolor};
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -99,47 +99,56 @@ export const NowBoardText = styled.Text`
     color: ${maintext};
     align-self: center;
 `
+
 // dashboard
 export const DashBoardContainer = styled.View`
   height: 150px;
   width: 100%;
   border-radius: 13px;
-  border: 2px solid ${green};
+  border: 1px solid ${green};
   background-color: ${white};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-horizontal: 10px;
+  padding-horizontal: 5px;
   margin-bottom: 7px;
 
 `;
-
+export const IconContainer = styled.Image`
+   width: 30px;
+  height: 35px;
+  align-self: center;
+  margin-left: 10px;
+`;
 export const CircularProgressContainer = styled.View`
-  width: 40%;
-  height: 80%;
+  width: 36%;
+  height: 70%;
   border-radius: 10px;  
   align-items: center;
   z-index: -1;
   justify-content: center;
 `;
-
+export const TextContainer = styled.TouchableOpacity`
+  flex: 1;
+  align-self: center;
+  margin-left: 5px;
+  margin-right: 0px;
+`;
 export const ItemText = styled.Text`
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
-  position: relative; /* Thêm thuộc tính position: absolute */
+  position: absolute;
   z-index: 1;
 `;
 
 
-export const TextContainer = styled.TouchableOpacity`
-  flex: 1;
-  left: 10px;
-`;
+
 
 export const MainText = styled.Text`
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 5px;  
+  width: 100%;
 `;
 
 export const SubText = styled.Text`
