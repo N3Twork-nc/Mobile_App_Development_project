@@ -57,6 +57,8 @@ const CameraScreen = () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
 
+
+
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }
@@ -81,6 +83,7 @@ const CameraScreen = () => {
     }
   };
 
+
 const [info, setInfoData] = useState([]);
 
 useEffect(() => {}, []);
@@ -94,6 +97,7 @@ const Predicted = async () => {
     console.log(error);
   }
 };
+
 
   // Hàm để đóng cửa sổ modal
   const closePhotoPreview = () => {
@@ -153,6 +157,24 @@ const Predicted = async () => {
             style={{ width: '100%', height: '100%' }}
             source={{ uri: capturedPhoto ? capturedPhoto.uri : null }}
           />
+
+          <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+         
+          {/* Xử lý Chụp lại */}
+          <TouchableOpacity onPress={closePhotoPreview}>
+             <Text2>Chụp lại</Text2>
+         
+          </TouchableOpacity>
+
+          {/* Xử lý Lưu */}
+          <TouchableOpacity onPress={() => {
+            // Xử lý việc lưu ảnh ở đây
+            closePhotoPreview();
+          }}>
+           <Text3 onPress={Predicted}>Nhận diện</Text3>
+           
+          </TouchableOpacity>
+
 
           <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
          

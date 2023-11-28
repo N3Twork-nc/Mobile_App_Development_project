@@ -24,4 +24,3 @@ async def prediectPlants(file: UploadFile):
     str_number = str(result[0])
     info=JsonInfo.get_info_plants()
     return info[int(str_number)]
-
