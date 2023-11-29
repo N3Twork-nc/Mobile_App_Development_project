@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import {Image} from 'react-native'
-import { StyledContainer, Title,  HeaderContainer, ButtonAdd, ButtonText1,ButtonBack,ButtonText} from './styleGarden'
+import { StyledContainer, Title,  HeaderContainer, ButtonAdd, ButtonText1,ButtonBack,ButtonText, MainTitle, BackContainer, AddContainer} from './styleGarden'
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native';
 
 const Garden = () => {
   const navigation = useNavigation();
@@ -10,17 +12,21 @@ const Garden = () => {
     
   };
     return(
-        <StyledContainer>
-            <HeaderContainer>
-                <ButtonBack  onPress={handleBack}>
-                     <ButtonText> back to home</ButtonText>
-                </ButtonBack>
-                <Title> Khu vườn của tôi </Title>
-                <ButtonAdd>
-                     <ButtonText1>+</ButtonText1>
-                </ButtonAdd>
-            </HeaderContainer>
-        </StyledContainer>
+      
+        <ScrollView contentContainerStyle={{ flex: 1 }} backgroundColor="white">
+          <StyledContainer>
+              <HeaderContainer>
+
+                  <BackContainer onPress={handleBack}>
+                    <ButtonBack source = {require('../../../assets/back.png')}/>
+                  </BackContainer>
+                  <MainTitle>Vườn trồng</MainTitle>
+                  <AddContainer>
+                    <ButtonAdd source = {require('../../../assets/add.png')}/>
+                  </AddContainer>
+              </HeaderContainer>
+          </StyledContainer>
+          </ScrollView>
     )
     }
 

@@ -70,8 +70,8 @@ const Home = () => {
           <CategoryPlantRoom>
             <RoomsContainer>
               <FirstRooms>
-                <LeftRoomContainer >
-                  <RoomContainer onPress = {handleLivingroom}>
+                <LeftRoomContainer  onPress = {handleLivingroom} >
+                  <RoomContainer >
                     <LivingroomContainer >
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
@@ -131,9 +131,9 @@ const Home = () => {
           <CategoryPlantRoom>
             <RoomsContainer>
               <FirstRooms>
-                <LeftRoomContainer>
+                <LeftRoomContainer  onPress = {handleDashboard}>
                   <RoomContainer>
-                    <LivingroomContainer onPress = {handleDashboard}>
+                    <LivingroomContainer>
                       <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
                     </LivingroomContainer> 
                     <CategoryDetailText>

@@ -23,55 +23,42 @@ const { maincolor, white, black, gray, green } = Colors;
  //screen
  export const StyledContainer = styled.View`
  flex: 1;
+ padding:20px;
  background-color: ${white};
- ${Platform.OS === 'android' ? 'margin-top: 1%;' : 'margin-bottom: 0%;'}
 `;
 
-// all items
-export const HeaderContainer = styled.View`
-position: relative;
-align-items: center;
-background-color: ${white};
-margin-top: ${vh(7)}px;
-flex-direction: row;
-${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'} 
-`;
  
-//slogan
-export const Title = styled.Text`
-font-size: 25px;
-color: ${black};
-font-weight: bold;
-align-self: center;
-padding: ${vw(5)}px;
-`;
-export const ButtonBack = styled.TouchableOpacity`
-  background-color: ${maincolor};
-  border-radius: 30px;
-  width: ${vw(20)}px;
-  display: flex;
+//header
+export const HeaderContainer = styled.View`
+  position: relative;
   align-items: center;
-  justify-content: center;
-  height: ${vh(5)}px; 
+  flex-direction: row;
+  justify-content: space-between;
+  ${Platform.OS === 'android' ? 'margin-top: 15px;' : 'margin-top: 12px;'}
 `;
-export const ButtonText = styled.Text`
-  fontSize: ${vh(1.5)}px;
+export const BackContainer = styled.TouchableOpacity`
+  align-items: flex-start;
+`;
+export const AddContainer = styled.TouchableOpacity`
+ align-items: flex-end;
+`
+
+export const MainTitle = styled.Text`
+  font-size: 25px;
   color: ${black};
-  font-weight: bold;
-  text-align: center;
+  font-weight: bold;  
 `;
-export const ButtonAdd = styled.TouchableOpacity`
-  background-color: ${maincolor};
-  border-radius: 30px;
-  width: ${vw(20)}px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: ${vh(5)}px; 
+
+export const ButtonBack = styled.Image`
+  width: 22px;
+  height: 22px;
+  align-self: flex-start;
 `;
-export const ButtonText1 = styled.Text`
-  fontSize: ${vh(3)}px;
-  color: ${black};
-  font-weight: bold;
-  text-align: center;
-`;
+
+
+
+export const ButtonAdd = styled.Image`
+  width: 22px;
+  height: 22px;
+  align-self: flex-end;
+`
