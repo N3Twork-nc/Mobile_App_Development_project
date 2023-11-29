@@ -175,37 +175,8 @@ const Predicted = async () => {
            
           </TouchableOpacity>
 
-
-          <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
-         
-          {/* Xử lý Chụp lại */}
-          <TouchableOpacity onPress={closePhotoPreview}>
-             <Text2>Chụp lại</Text2>
-         
-          </TouchableOpacity>
-
-          {/* Xử lý Lưu */}
-          <TouchableOpacity onPress={() => {
-            // Xử lý việc lưu ảnh ở đây
-            closePhotoPreview();
-          }}>
-           <Text3 onPress={Predicted}>Nhận diện</Text3>
-           
-          </TouchableOpacity>
-
-
-          
-          </View>
         </View>
-        {/* Chụp lại và nhận diện cây */}
-        <FooterContainer> 
-              <RetakeButton onPress={closePhotoPreview}>
-                <Text2>Chụp lại</Text2>
-              </RetakeButton>
-              <ResultButton onPress={handleAfterscan}> 
-                <Text3>Nhận diện</Text3>
-              </ResultButton>
-          </FooterContainer>
+          </View>
       </Modal>
     </StyleContainer>
   );
