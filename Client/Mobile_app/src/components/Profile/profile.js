@@ -12,13 +12,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteAll } from '../../reducers/infoUser';
 
 import * as ImagePicker from 'expo-image-picker';
-import { tintColor } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 const Profile = () => { 
     const navigation = useNavigation();
     const dispatch=useDispatch();
     const userInfo = useSelector(state => state.infoUser);
   
+// các navigate chuyển màn hình
     const handleExplore = () => {
         navigation.navigate('Explore', { animations: false }, {transitions: false});
       };
@@ -44,13 +44,10 @@ const Profile = () => {
       const handleDashboard = () => {
         navigation.navigate('Dashboard', {animation: false});
       }
-      
-
-      
-    
+                
 return (
 
-  <SafeAreaView  style={{ flex: 1, backgroundColor: '#CEF1CF' }}>
+  <SafeAreaView  style={{ flex: 1, backgroundColor:  'white' }}>
     <ScrollView  style={{ flex: 1, backgroundColor: 'white' }}>
         <HeaderContainer>
           <TitleContainer>
@@ -88,14 +85,6 @@ return (
               <ChildSectionIcon source={require('../../assets/weather.png')} tintColor={'#1A5D1A'} />
                 <ChildSectionText>Thời tiết</ChildSectionText>
                 <ChildSectionInfo>  </ChildSectionInfo>
-          </ChildSectionContainer>
-          <Line />
-          <ChildSectionContainer>
-            <ChildSectionIcon source={require('../../assets/humidity.png')} tintColor={'#1A5D1A'} />
-            <ChildSectionText>Các thông số</ChildSectionText>
-            <ChildSectionButtonContainer onPress={handleDashboard}>
-                  <ChildSectionButton source={require('../../assets/more.png')} tintColor={'#1A5D1A'} />
-              </ChildSectionButtonContainer>  
           </ChildSectionContainer>
         </SectionContainer>
 

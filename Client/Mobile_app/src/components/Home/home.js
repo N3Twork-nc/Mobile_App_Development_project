@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, SafeAreaView,TouchableOpacity,View,Text } from 'react-native';
+import { ScrollView, SafeAreaView,} from 'react-native';
 import { 
   StyledContainer, 
   MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,

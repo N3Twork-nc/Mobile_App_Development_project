@@ -14,7 +14,6 @@ import Afterscan from '../components/After Scan/afterscan';
 import Profile from '../components/Profile/profile';
 import EditProfile from '../components/Profile/Edit profile/editProfile';
 import PlantDetail from '../components/Plant Detail/plantDetail';
-
 import ForgotPassword from '../components/Forgot Password/forgotpassword';
 import DashBoard from '../components/Profile/Dashboard/dashboard';
 import Gardens from '../components/Home/Gardens/gardens';

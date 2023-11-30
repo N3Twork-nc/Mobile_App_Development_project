@@ -7,7 +7,7 @@ import { Platform, View, TouchableOpacity, Alert, Animated ,StyleSheet } from 'r
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native';
 import LottieView from 'lottie-react-native';
 
 

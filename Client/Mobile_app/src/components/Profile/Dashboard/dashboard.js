@@ -7,18 +7,20 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView, ScrollView } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { Image } from "react-native";
+
 
 const DashBoard = () => {
+ 
+// các navigation
   const navigation = useNavigation();
   const handleBack = () => {
-    navigation.navigate("Profile", { animation: false });
+    navigation.navigate("Gardens", { animation: false });
   };
+
+// hàm lấy thời gian, vị trí
   const [currentTime, setCurrentTime] = useState("");
-  const [currentLocation, setCurrentLocation] = useState(null);
- 
+  const [currentLocation, setCurrentLocation] = useState(null); 
   useEffect(() => {
-    // Lấy thời gian thực
     const interval = setInterval(() => {
     const currentTime = new Date().toLocaleTimeString();
     setCurrentTime(currentTime);
@@ -26,6 +28,7 @@ const DashBoard = () => {
     return () => clearInterval(interval);
     }, []);
 
+// thông số hiển thị
   const itemDashboard = {
     title: "Example Title",
     subtitle: "Example Subtitle",
@@ -128,7 +131,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer source={require("../../../assets/humidity1.png")}/>
+          <IconContainer resizeMode={"contain"} source={require("../../../assets/soil.png")}/>
 
           <TextContainer>
             <MainText>Độ ẩm đất</MainText>
@@ -138,8 +141,8 @@ const DashBoard = () => {
             <AnimatedCircularProgress
                 size={90} width={8}
                 fill={itemDashboard.humidity}
-                backgroundColor="#E0F4FF"             
-                tintColor="#39A7FF"
+                backgroundColor="#F8DFD4"             
+                tintColor="#C69774"
                 rotation={360}
                 lineCap="round" >
                     {() => (

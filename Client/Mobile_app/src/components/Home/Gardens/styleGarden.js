@@ -34,7 +34,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  ${Platform.OS === 'android' ? 'margin-top: 15px;' : 'margin-top: 12px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 15px;' : 'margin-top: 0px;'}
 `;
 export const BackContainer = styled.TouchableOpacity`
   align-items: flex-start;
@@ -62,3 +62,63 @@ export const ButtonAdd = styled.Image`
   height: 22px;
   align-self: flex-end;
 `
+
+// show plant
+
+export const GardenContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+`;
+
+export const EachGardenContainer = styled.View`
+  height: 200px;
+  width: 48%;
+  border-radius: 5px;
+  background-color: ${white};
+  border: 0.3px solid ${green};
+  align-self: flex-start;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const ImageFrame = styled.Image`
+  width: 80%;
+  height: 45%;
+  border-radius: 5px;
+`;
+
+export const GardenName = styled.Text`
+  font-size: 15px;
+  font-weight: 600;
+  color: ${black};
+  margin-top: 7%;
+`
+
+export const ButtonContainerWrapper = styled.View`
+`;
+
+export const ButtonContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  top: 5%;
+`;
+export const IconButton = styled.TouchableOpacity`
+  width: 55px;
+  height: 50px;
+  align-items: center;
+`;
+
+export const Icon = styled.Image`
+  width: 22px;
+  height: 22px;
+  tintColor: ${green};
+`;
+
+export const ButtonText = styled.Text`
+  font-size: 10px;
+  font-weight: 500;
+  color: ${black};
+  margin-top: 5px;
+`;

@@ -6,8 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import { ScrollView } from 'react-native-gesture-handler';
-import { ErrorMessage } from 'formik';
+import { ScrollView } from 'react-native';
 
 
 const Signup = () => {
