@@ -23,11 +23,8 @@ const { maincolor, white, black, gray, green } = Colors;
  //screen
  export const StyledContainer = styled.View`
  flex: 1;
- padding: ${vh(2)}px;
  background-color: ${maincolor};
  justify-content: center;
- flex-direction: column;
- 
 `;
 
 // all items
@@ -36,6 +33,7 @@ export const InnerContainer = styled.View`
  align-items: center;
  justify-content: center;
  position: relative;
+ 
 `;
  
 //slogan
@@ -49,7 +47,6 @@ margin-top: ${vh(1)}px;
 width: ${vw(90)}px;
 padding-left: ${vh(3)}px;
 `;
-
 
 export const ButtonSignup = styled.TouchableOpacity`
   margin-top: ${vh(3)}px;
@@ -85,7 +82,7 @@ export const ImgPlant=styled.Image`
 
   export const ImgCloud=styled.Image`
   width: ${vw(100)}px;
-  height: ${vh(35)}px;
+  height: ${vh(38)}px;
   z-index: 0;
   align-items: center;
   justify-content: center;

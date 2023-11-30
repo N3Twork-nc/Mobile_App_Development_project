@@ -3,11 +3,9 @@ import { ScrollView, SafeAreaView,TouchableOpacity,View,Text } from 'react-nativ
 import { 
   StyledContainer, 
   MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
-  Title1, Title2,
-  TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
-  Line,Icon,
-  ImageFrame,
-  FirstRooms, SecondRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
+  Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
+  Line,Icon, ImageFrame,
+  FirstRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
   KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer,
   CategoryPlantRoom, RoomName,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify, TotalPlant, CategoryDetailText,
@@ -24,7 +22,8 @@ const Home = () => {
   const handleSaved = () => {navigation.navigate('Saved', { animations: false });};
   const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
   const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
-  
+  const handleDashboard = () => {navigation.navigate('Dashboard')};
+  const handleGardens = () => {navigation.navigate('Gardens')};
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
@@ -53,8 +52,8 @@ const Home = () => {
 
           <RecentlyPlantContainer>
             <Plant1Container onPress={handlePlantDetail}>
-              <ImageFrame resizeMode="cover" source={require('../../assets/plant1.jpg')}/>
-              <PlantName> Vạn Niên Thanh </PlantName>
+              <ImageFrame resizeMode="cover" source={require('../../assets/plant0.jpg')}/>
+              <PlantName>Hoa Hướng Dương</PlantName>
             </Plant1Container> 
             <Plant2Container>
               <ImageFrame resizeMode="cover" source={require('../../assets/plant2.jpg')}/>
@@ -63,20 +62,20 @@ const Home = () => {
           </RecentlyPlantContainer>
 
           <Line />
-        {/* quản lý  */}
+        {/* quản lý cây cảnh */}
           <TitleforContainers>
-            <Title1>Quản lý</Title1>
+            <Title1>Quản lý cây cảnh</Title1>
           </TitleforContainers>
           
           <CategoryPlantRoom>
             <RoomsContainer>
               <FirstRooms>
-                <LeftRoomContainer>
-                  <RoomContainer>
-                    <LivingroomContainer onPress = {handleLivingroom}>
+                <LeftRoomContainer  onPress = {handleLivingroom} >
+                  <RoomContainer >
+                    <LivingroomContainer >
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
-                    <CategoryDetailText onPress = {handleLivingroom}>
+                    <CategoryDetailText >
                       <TotalPlant>5 plants</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
@@ -94,7 +93,7 @@ const Home = () => {
                   </RoomContainer>          
                 </RightRoomContainer>
               </FirstRooms>
-              <SecondRooms>
+              <FirstRooms>
                 <LeftRoomContainer>
                   <RoomContainer>                   
                     <BedroomContainer>
@@ -117,7 +116,65 @@ const Home = () => {
                     </CategoryDetailText>
                   </RoomContainer>          
                 </RightRoomContainer>
-              </SecondRooms>
+              </FirstRooms>
+            </RoomsContainer>
+          </CategoryPlantRoom>
+
+          <Line/>
+
+          {/* quản lý cây trồng */}
+          <TitleforContainers>
+            <Title1>Quản lý vườn trồng</Title1>
+            <Title2 onPress={handleGardens}>Xem tất cả</Title2>
+          </TitleforContainers>
+          
+          <CategoryPlantRoom>
+            <RoomsContainer>
+              <FirstRooms>
+                <LeftRoomContainer  onPress = {handleDashboard}>
+                  <RoomContainer>
+                    <LivingroomContainer>
+                      <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
+                    </LivingroomContainer> 
+                    <CategoryDetailText>
+                      <RoomName>Vườn 1</RoomName> 
+                    </CategoryDetailText>                      
+                  </RoomContainer>                    
+                </LeftRoomContainer>
+                <RightRoomContainer>
+                  <RoomContainer>
+                    <LivingroomContainer onPress = {handleDashboard}>
+                      <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
+                    </LivingroomContainer> 
+                    <CategoryDetailText>
+                      <RoomName>Vườn 2</RoomName> 
+                    </CategoryDetailText>   
+                  </RoomContainer>          
+                </RightRoomContainer>
+              </FirstRooms>
+              <FirstRooms>
+                <LeftRoomContainer>
+                  <RoomContainer>
+                    <LivingroomContainer onPress = {handleLivingroom} >
+                      <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
+                    </LivingroomContainer> 
+                    <CategoryDetailText onPress = {handleLivingroom}>
+                      <RoomName>Vườn 3</RoomName> 
+                    </CategoryDetailText>                      
+                  </RoomContainer>                    
+                </LeftRoomContainer>
+                <RightRoomContainer>
+                  <RoomContainer>
+                    <LivingroomContainer onPress = {handleLivingroom}>
+                      <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
+                    </LivingroomContainer> 
+                    <CategoryDetailText onPress = {handleLivingroom}>
+                      <RoomName>Vườn 4</RoomName> 
+                    </CategoryDetailText>   
+                  </RoomContainer>          
+                </RightRoomContainer>
+              </FirstRooms>
+              
             </RoomsContainer>
           </CategoryPlantRoom>
 

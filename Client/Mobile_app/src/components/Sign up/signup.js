@@ -57,10 +57,11 @@ const Signup = () => {
       };
     return(
         <KeyboardAwareScrollView
+         backgroundColor="#CEF1CF"
         contentContainerStyle={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
-        <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={{ flex: 1 }} backgroundColor="#CEF1CF">
         <StyledContainer>
             <InnerContainer>
                 <Slogan>

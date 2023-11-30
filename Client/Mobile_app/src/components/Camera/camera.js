@@ -56,6 +56,9 @@ const CameraScreen = () => {
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
+
+
+
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }
@@ -68,20 +71,34 @@ const CameraScreen = () => {
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images, 
       allowsEditing: true,
       quality: 1,
       multiple: false,
     });
   
-    if (!result.cancelled) {
+    if (!result.canceled) {
       setCapturedPhoto(result.assets[0]);
       setIsModalVisible(true);
     }
   };
-  const Predicted = () =>{
-    predictPlant(capturedPhoto,token)
+
+
+const [info, setInfoData] = useState([]);
+
+useEffect(() => {}, []);
+
+const Predicted = async () => {
+  try {
+    const predictedInfo = await predictPlant(capturedPhoto, token);
+    setInfoData(predictedInfo);
+    navigation.replace('Afterscan', { info: predictedInfo });
+  } catch (error) {
+    console.log(error);
   }
+};
+
+
   // Hàm để đóng cửa sổ modal
   const closePhotoPreview = () => {
     setIsModalVisible(false);
@@ -140,6 +157,7 @@ const CameraScreen = () => {
             style={{ width: '100%', height: '100%' }}
             source={{ uri: capturedPhoto ? capturedPhoto.uri : null }}
           />
+
           <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
          
           {/* Xử lý Chụp lại */}
@@ -157,17 +175,8 @@ const CameraScreen = () => {
            
           </TouchableOpacity>
 
-          {/* Chụp lại và nhận diện cây */}
-          <FooterContainer> 
-              <RetakeButton onPress={closePhotoPreview}>
-                <Text2>Chụp lại</Text2>
-              </RetakeButton>
-              <ResultButton onPress={handleAfterscan}> 
-                <Text3>Nhận diện</Text3>
-              </ResultButton>
-          </FooterContainer>
-          </View>
         </View>
+          </View>
       </Modal>
     </StyleContainer>
   );

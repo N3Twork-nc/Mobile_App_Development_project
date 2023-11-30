@@ -21,8 +21,6 @@ const Explore = () => {
       }
     };
     
-  
-  
     const handleHome = () => {
       navigation.navigate('Home', { animations: false });
     };
