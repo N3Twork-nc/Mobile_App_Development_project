@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import { TaskbarView, ContainerButton, TaskbarIcon,  TaskbarButtonText, 
   StyledContainer, HeaderContainer, ButtonNotification, MainTitle, 
   TitleContainer, NotificationContainer, AvatarContainer, Name, 
-  ButtonEditProfile, EditButtonText, SectionTitle, 
-  LocationContainer, ChildSectionContainer, ChildSectionText, 
+  ButtonEditProfile, EditButtonText, SectionTitle,  ChildSectionContainer, ChildSectionText, 
   ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, SectionContainer1,
   ChildSectionButton, ChildSectionButtonContainer, AvatarImage, 
   ButtonSignOut, SignoutButtonText } from './styleProfile';
@@ -63,20 +62,20 @@ return (
           </TitleContainer>
           <AvatarContainer>
               <AvatarImage
-                resizeMode="cover"
+                resizeMode="contain"
                 style={{ borderRadius: 85, borderWidth: 3, borderColor: 'white' }}
                 source={require('../../assets/placeholder.png')} tintColor={'#164303'}
               />
           </AvatarContainer>
                 
         </HeaderContainer>
+        <Name>{userInfo.fullname}</Name>   
       <StyledContainer >
-      <Name>{userInfo.fullname}</Name>   
         <ButtonEditProfile onPress={handleEditProfile}>
           <EditButtonText>Chỉnh sửa</EditButtonText>
         </ButtonEditProfile>
         <SectionTitle>Thông tin</SectionTitle>
-        <SectionContainer1>
+        <SectionContainer>
           <ChildSectionContainer>
             <ChildSectionIcon source={require('../../assets/location.png')} tintColor={'#1A5D1A'} />
             <ChildSectionText>Vị trí</ChildSectionText>
@@ -98,7 +97,7 @@ return (
                   <ChildSectionButton source={require('../../assets/more.png')} tintColor={'#1A5D1A'} />
               </ChildSectionButtonContainer>  
           </ChildSectionContainer>
-        </SectionContainer1>
+        </SectionContainer>
 
 
         <SectionTitle>Thông báo</SectionTitle>

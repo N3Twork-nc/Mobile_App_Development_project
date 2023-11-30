@@ -31,7 +31,7 @@ export default App;
 // return (
 // <Provider store={store}>
 //  <NavigationContainer>
-//     <Home/>
+//     <Profile/>
 //    </NavigationContainer>
 //   </Provider>
 // );
