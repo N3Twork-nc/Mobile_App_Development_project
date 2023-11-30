@@ -1,15 +1,12 @@
-from fastapi import FastAPI
-from fastapi_mqtt import FastMQTT, MQTTConfig
+from fastapi import FastAPI, WebSocket
 
 app = FastAPI()
-
-mqtt_config = MQTTConfig()
-
-mqtt = FastMQTT(
-    config=mqtt_config
-)
-
-mqtt.init_app(app)
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    while True:
+        data = await websocket.receive_text()
+        await websocket.send_text(f"Message text was: {data}")
 
 
 from Source.config.config import *

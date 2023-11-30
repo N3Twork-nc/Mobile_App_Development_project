@@ -4,7 +4,6 @@ from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 import threading
 import time
-import paho.mqtt.server as mqtt
 
 
 # app.add_middleware(
