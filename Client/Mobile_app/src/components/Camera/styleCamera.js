@@ -102,18 +102,41 @@ export const ImageReweet = styled.Image`
   height: 30px;
   top: 3px;
 `;
-export const RetakeSaveButtons= styled.TouchableOpacity`
-
+export const RetakeButton= styled.TouchableOpacity`
+  width: ${vw(30)}px;
+  height: ${vh(5)}px;
+  margin-right: ${vw(40)}px;
+  align-self: center;
 `
-
 export const Text2 = styled.Text`
-  font-size: 20px;
+  font-size: ${vh(2.3)}px;
   font-weight: 600;
-  color: ${white};
+  color: ${black};
+  text-align: center;
 `;
 
 export const Text3 = styled.Text`
-  font-size: 20px;
+  font-size: ${vh(2.3)}px;
   font-weight: 600;
-  color: ${white};
+  color: ${black};
+  text-align: center;
+`;
+export const ResultButton = styled.TouchableOpacity`
+  width: ${vw(30)}px;
+  height: ${vh(5)}px;
+  align-self: center;
+
+`;
+export const FooterContainer = styled.TouchableOpacity`
+  background-color: #CEF1CF;
+  width: ${vw(100)}px;
+  height: ${vh(8)}px;
+  right: ${vw(5)}px;
+  flex-direction: row;
+`;
+export const HeaderContainer2 = styled.View`
+  background-color: #CEF1CF;
+  width: ${vw(100)}px;
+  height: ${vh(18)}px;
+  top: ${vh(4)}px;
 `;
