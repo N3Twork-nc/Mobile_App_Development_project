@@ -13,6 +13,9 @@ import Afterscan from './src/components/After Scan/afterscan';
 import Profile from './src/components/Profile/profile';
 import ForgotPassword from './src/components/Forgot Password/forgotpassword';
 import Welcome from './src/components/Welcome/welcome';
+import DashBoard from './src/components/Profile/Dashboard/dashboard';
+import PlantDetail from './src/components/Plant Detail/plantDetail';
+import Gardens from './src/components/Home/Gardens/gardens';
 
 
 const App = () =>
@@ -25,13 +28,13 @@ export default App;
 
 
 // export default function App() {
-//   return (
-//     <Provider store={store}>
-//       <NavigationContainer>
-//         <CameraScreen/>
-//       </NavigationContainer>
-//     </Provider>
-//   );
+// return (
+// <Provider store={store}>
+//  <NavigationContainer>
+//     <Profile/>
+//    </NavigationContainer>
+//   </Provider>
+// );
 // }
 
 

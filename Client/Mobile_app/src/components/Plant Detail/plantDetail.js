@@ -54,51 +54,51 @@ const PlantDetail = () => {
                 <Text2> Hoa hướng dương</Text2>
                 <TagContainer>
                   <Tag1> Ngoài trời </Tag1>
-                  <Tag2> Trang trí </Tag2>
-                  <Tag3> Thực phẩm </Tag3>
+                  <Tag1> Trang trí </Tag1>
+                  <Tag1> Thực phẩm </Tag1>
                 </TagContainer>
                 <Text3> Thông tin</Text3> 
                 <InfoContainer>
                   <Box1Container>
                     <Box1 resizeMode="cover" source={require('../../assets/bonphan.png')}/>
                     <TextContainer1>
-                      <Title1> Bón phân </Title1>
-                      <Info1> Mùa xuân hè, mỗi 4-6 tuần</Info1>
+                      <Title1>Bón phân </Title1>
+                      <Info1>Xuân hè, mỗi 4-6 tuần</Info1>
                     </TextContainer1>
                   </Box1Container>
                   <Box2Container>
                     <Box2 resizeMode="cover" source={require('../../assets/tuoinuoc.png')}/>
                     <TextContainer2>
-                      <Title2> Tưới nước </Title2>
-                      <Info2> Mỗi 5-7 ngày</Info2>
+                      <Title2>Tưới nước </Title2>
+                      <Info2>Mỗi 5-7 ngày</Info2>
                     </TextContainer2>
                   </Box2Container>
                   <Box3Container>
                   <Box3 resizeMode="cover" source={require('../../assets/thaydat.png')}/>
                   <TextContainer3>
-                    <Title3> Thay đất </Title3>
-                    <Info3> Mỗi 2-3 năm</Info3>
+                    <Title3>Thay đất</Title3>
+                    <Info3>Mỗi 2-3 năm</Info3>
                   </TextContainer3>
                   </Box3Container>
                   <Box4Container>
                     <Box4 resizeMode="cover" source={require('../../assets/nhietdo.png')}/>
                     <TextContainer4>
-                      <Title4> Nhiệt độ </Title4>
-                      <Info4> 25-40°C </Info4>
+                      <Title4>Nhiệt độ </Title4>
+                      <Info4>25-40°C </Info4>
                     </TextContainer4>
                   </Box4Container>
                   <Box5Container>
                     <Box5 resizeMode="cover" source={require('../../assets/anhsang.png')}/>
                     <TextContainer5>
-                      <Title5> Ánh sáng </Title5>
-                      <Info5> Cao </Info5>
+                      <Title5>Ánh sáng </Title5>
+                      <Info5>Cao </Info5>
                     </TextContainer5>
                   </Box5Container>
                   <Box6Container>
                     <Box6 resizeMode="cover" source={require('../../assets/doam.png')}/>
                     <TextContainer6>
-                      <Title6> Độ ẩm </Title6>
-                      <Info6> Vừa </Info6>
+                      <Title6>Độ ẩm </Title6>
+                      <Info6>Vừa </Info6>
                     </TextContainer6>
                   </Box6Container>
                 </InfoContainer>
@@ -108,6 +108,7 @@ const PlantDetail = () => {
                   <CreText> Nguồn Wikipedia</CreText>
                   <MainText>
                   Hoa hướng dương (Sunflower) là một loài cây thân thảo có hoa, có đặc điểm nổi bật là luôn quay về hướng mặt trời. Cây có thân mảnh mai, cao từ 1 đến 3 mét, với lá hình trái tim có cạnh răng cưa. Loài này sinh trưởng mạnh mẽ và phân bố rộng khắp vùng nhiệt đới và cận nhiệt đới, cũng như trong các vùng ôn đới. Hoa hướng dương không chỉ được trồng vì vẻ đẹp của nó, mà còn có nhiều ứng dụng hữu ích khác. Các hạt của hoa hướng dương là nguồn cung cấp dưỡng chất quý giá, thường được sử dụng trong ẩm thực và chế biến thực phẩm. Để chăm sóc cây hoa hướng dương, cần cung cấp đủ ánh sáng mặt trời, tưới nước đều đặn và đảm bảo thoát nước tốt. Thay đất mỗi 2-3 năm để đảm bảo rễ cây có đủ không gian để phát triển. Hơn nữa, hãy chú ý rằng cây này cần hỗ trợ hoặc giá để phát triển vững vàng do thân cây mảnh dẻ và cao.
+Hoa hướng dương (Sunflower) là một loài cây thân thảo có hoa, có đặc điểm nổi bật là luôn quay về hướng mặt trời. Cây có thân mảnh mai, cao từ 1 đến 3 mét, với lá hình trái tim có cạnh răng cưa. Loài này sinh trưởng mạnh mẽ và phân bố rộng khắp vùng nhiệt đới và cận nhiệt đới, cũng như trong các vùng ôn đới. Hoa hướng dương không chỉ được trồng vì vẻ đẹp của nó, mà còn có nhiều ứng dụng hữu ích khác. Các hạt của hoa hướng dương là nguồn cung cấp dưỡng chất quý giá, thường được sử dụng trong ẩm thực và chế biến thực phẩm. Để chăm sóc cây hoa hướng dương, cần cung cấp đủ ánh sáng mặt trời, tưới nước đều đặn và đảm bảo thoát nước tốt. Thay đất mỗi 2-3 năm để đảm bảo rễ cây có đủ không gian để phát triển. Hơn nữa, hãy chú ý rằng cây này cần hỗ trợ hoặc giá để phát triển vững vàng do thân cây mảnh dẻ và cao.
                   </MainText>
                 </ParagraphContainer>
         </BodyContainer>

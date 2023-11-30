@@ -21,13 +21,16 @@ export const Colors = {
  //screen
  export const StyledContainer = styled.View`
  flex: 1;
+ justify-content: center;
+ align-items: center;
+ backgroundColor: #ffffff;
 
 `;
 export const HeaderContainer = styled.View`
-    margin-top: ${vh()}px;
+    margin-top: ${vh(0)}px;
 `;
 export const ImgHeader = styled.Image`
-    height: ${vh(50)}px;
+    height: ${vh(45)}px;
     width: ${vw(100)}px;
 `;
 export const TitleContainer = styled.View`
@@ -36,7 +39,7 @@ export const TitleContainer = styled.View`
     width: ${vw(85)}px;
     align-self: center; 
     justify-content: center;
-    margin-bottom: ${vh(2)}px;
+    margin-top: ${vh(2)}px;
 `;
 export const Text1 = styled.Text`
     font-size: ${vh(3)}px;
@@ -53,10 +56,11 @@ export const Text2 = styled.Text`
 `;
 
 export const InputText1= styled.TextInput`
-  background-color: #F6F6F6;
+  background-color: #ffffff;
   border-radius: 25px;
   margin-top: ${vh(2)}px;
   width: ${vw(85)}px;
+  border: 0.4px solid #61AF2B;
   height: ${vw(14)}px;
   align-self: center; 
   justify-content: center;
@@ -67,10 +71,11 @@ export const InputText1= styled.TextInput`
 
 export const InputText2= styled.TextInput`
   top: ${vh(3)}px;
-  background-color: #F6F6F6;
+  background-color: #ffffff;
   border-radius: 25px;
   width: ${vw(85)}px;
   height: ${vw(14)}px;
+  border: 0.4px solid #61AF2B;
   align-self: center; 
   justify-content: center;
   padding: 5px 15px;
@@ -80,18 +85,18 @@ export const InputText2= styled.TextInput`
 
 export const ButtonSend = styled.TouchableOpacity`
   background-color: #005C04;
-  border-radius: 20px;
+  border-radius: 30px;
   width: ${vw(55)}px;
   align-self: center;
   justify-content: center;
-  height: ${vh(6)}px; 
-  margin-top: ${vh(13)}px; 
+  height: ${vh(8)}px; 
+  margin-top: ${vh(10)}px; 
 `;
 export const ButtonText = styled.Text`
   color: #ffffff;
   align-self: center;
   justify-content: center;
-  font-size: ${vh(2)}px;
+  font-size: ${vw(5)}px;
   font-weight: bold;
   
 `;
