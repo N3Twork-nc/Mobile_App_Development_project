@@ -15,7 +15,8 @@ import ForgotPassword from './src/components/Forgot Password/forgotpassword';
 import Welcome from './src/components/Welcome/welcome';
 import DashBoard from './src/components/Profile/Dashboard/dashboard';
 import PlantDetail from './src/components/Plant Detail/plantDetail';
-import Gardens from './src/components/Home/Gardens/gardens';
+import 'react-native-gesture-handler';
+
 
 
 const App = () =>
