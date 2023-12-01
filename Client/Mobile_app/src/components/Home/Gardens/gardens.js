@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import {Image, View, Text, TouchableOpacity } from 'react-native'
-import { StyledContainer, Title,  HeaderContainer, ButtonAdd, 
-  ButtonText1,ButtonBack,ButtonText, MainTitle, BackContainer, 
+import {View, Text, TouchableOpacity } from 'react-native'
+import { StyledContainer, HeaderContainer, ButtonAdd, 
+  ButtonBack,ButtonText, MainTitle, BackContainer, 
   AddContainer, GardenContainer, EachGardenContainer,
  ImageFrame, GardenName,ButtonContainerWrapper, ButtonContainer,IconButton,
 Icon,  } from './styleGarden'

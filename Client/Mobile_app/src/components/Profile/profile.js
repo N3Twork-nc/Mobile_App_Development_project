@@ -3,7 +3,7 @@ import { TaskbarView, ContainerButton, TaskbarIcon,  TaskbarButtonText,
   StyledContainer, HeaderContainer, ButtonNotification, MainTitle, 
   TitleContainer, NotificationContainer, AvatarContainer, Name, 
   ButtonEditProfile, EditButtonText, SectionTitle,  ChildSectionContainer, ChildSectionText, 
-  ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, SectionContainer1,
+  ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, 
   ChildSectionButton, ChildSectionButtonContainer, AvatarImage, 
   ButtonSignOut, SignoutButtonText } from './styleProfile';
 import { ScrollView, SafeAreaView,Image,} from 'react-native';
