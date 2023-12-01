@@ -6,8 +6,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import { ScrollView } from 'react-native';
-
 
 const Signup = () => {
     const [isChecked, setIsChecked] = useState(false);

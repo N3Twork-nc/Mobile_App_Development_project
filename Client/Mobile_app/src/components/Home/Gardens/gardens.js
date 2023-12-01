@@ -9,7 +9,6 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, ScrollView  } from 'react-native';
 import Modal from 'react-native-modal';
 
-
 const Garden = () => {
 
   //Các navigate chuyển màn hình
