@@ -1,15 +1,13 @@
 import React from 'react';
-import { ScrollView, SafeAreaView,TouchableOpacity,View,Text } from 'react-native';
+import { ScrollView, SafeAreaView,} from 'react-native';
 import { 
   StyledContainer, 
   MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
   Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
-  Line,Icon, ImageFrame,
-  FirstRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
-  KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer,
-  CategoryPlantRoom, RoomName,
-  NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify, TotalPlant, CategoryDetailText,
-  TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
+  Line,Icon, ImageFrame,  FirstRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
+  KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer, CategoryPlantRoom, RoomName,
+  NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, 
+  MainTextNotify, TotalPlant, CategoryDetailText, TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';

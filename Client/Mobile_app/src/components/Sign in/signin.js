@@ -122,8 +122,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#CEF1CF',
-    zIndex: -1,
+    zIndex: 1,
   }
 })
 export default Signin;
