@@ -32,9 +32,9 @@ export default App;
 // return (
 // <Provider store={store}>
 //  <NavigationContainer>
-//     <Profile/>
+//     <Afterscan/>
 //    </NavigationContainer>
-//   </Provider>
+// </Provider>
 // );
 // }
 
