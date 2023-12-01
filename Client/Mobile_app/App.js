@@ -14,25 +14,28 @@ import Profile from './src/components/Profile/profile';
 import ForgotPassword from './src/components/Forgot Password/forgotpassword';
 import Welcome from './src/components/Welcome/welcome';
 import DashBoard from './src/components/Profile/Dashboard/dashboard';
+import PlantDetail from './src/components/Plant Detail/plantDetail';
+import 'react-native-gesture-handler';
 
 
-// const App = () =>
-// {
-//   return <Provider store={store}>
-//     <AppNavigator/>
-//   </Provider> 
-// }
-// export default App;
 
-
-export default function App() {
-return (
-<Provider store={store}>
- <NavigationContainer>
-    <DashBoard/>
-   </NavigationContainer>
-  </Provider>
-);
+const App = () =>
+{
+  return <Provider store={store}>
+    <AppNavigator/>
+  </Provider> 
 }
+export default App;
+
+
+// export default function App() {
+// return (
+// <Provider store={store}>
+//  <NavigationContainer>
+//     <Afterscan/>
+//    </NavigationContainer>
+// </Provider>
+// );
+// }
 
 

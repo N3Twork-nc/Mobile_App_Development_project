@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity,Image, Modal,SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
-import { FontAwesome5 } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet,RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,HeaderContainer2,
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,HeaderContainer2,
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
@@ -175,37 +174,8 @@ const Predicted = async () => {
            
           </TouchableOpacity>
 
-
-          <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
-         
-          {/* Xử lý Chụp lại */}
-          <TouchableOpacity onPress={closePhotoPreview}>
-             <Text2>Chụp lại</Text2>
-         
-          </TouchableOpacity>
-
-          {/* Xử lý Lưu */}
-          <TouchableOpacity onPress={() => {
-            // Xử lý việc lưu ảnh ở đây
-            closePhotoPreview();
-          }}>
-           <Text3 onPress={Predicted}>Nhận diện</Text3>
-           
-          </TouchableOpacity>
-
-
-          
-          </View>
         </View>
-        {/* Chụp lại và nhận diện cây */}
-        <FooterContainer> 
-              <RetakeButton onPress={closePhotoPreview}>
-                <Text2>Chụp lại</Text2>
-              </RetakeButton>
-              <ResultButton onPress={handleAfterscan}> 
-                <Text3>Nhận diện</Text3>
-              </ResultButton>
-          </FooterContainer>
+          </View>
       </Modal>
     </StyleContainer>
   );

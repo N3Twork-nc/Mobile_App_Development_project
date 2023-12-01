@@ -34,8 +34,9 @@ export const predictPlant= async(photo,token)=>{
     const temperature = plant.Temperature;
     const humidity = plant.Humidity;
     const information = plant.Info;
+    const cover=plant.cover;
 
-    results.push({ plantName, keyword, fertilize, watering, repotting, light, temperature, humidity, information});
+    results.push({ plantName, keyword, fertilize, watering, repotting, light, temperature, humidity, information,cover});
 
     console.log("Predict successfull")
     return results
