@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import {Image} from 'react-native'
 import { StyledContainer, Title,  HeaderContainer, ButtonAdd, ButtonText1,ButtonBack,ButtonText, MainTitle, BackContainer, AddContainer} from './styleGarden'
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native';
+import { ScrollView } from 'react-native';
+// import { SafeAreaView } from 'react-native';
 
 const Garden = () => {
   const navigation = useNavigation();

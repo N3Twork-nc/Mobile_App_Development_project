@@ -11,7 +11,6 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 const Afterscan = () => {
   const navigation = useNavigation();
-
   const route = useRoute();
   const { info } = route.params;
   const keywords = info[0].keyword.split(', ');
@@ -24,9 +23,9 @@ const Afterscan = () => {
   }
     // Danh sách các nguồn ảnh
   const images = [
-    require('../../assets/img1.jpg'),
-    require('../../assets/img2.jpg'),
-    require('../../assets/img3.jpg'),
+    {uri:info[0].cover[0]},
+    {uri:info[0].cover[1]},
+    {uri:info[0].cover[2]},
   ];
   return (
     <SafeAreaView style={{ flex: 1 }}>
