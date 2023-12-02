@@ -70,8 +70,8 @@ const Home = () => {
           <CategoryPlantRoom>
             <RoomsContainer>
               <FirstRooms>
-                <LeftRoomContainer >
-                  <RoomContainer onPress = {handleLivingroom}>
+                <LeftRoomContainer onPress = {handleLivingroom}>
+                  <RoomContainer >
                     <LivingroomContainer >
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { View, Text, Image, Platform } from 'react-native';
-import PropTypes from 'deprecated-react-native-prop-types';
 
 // default color
 export const Colors = {
