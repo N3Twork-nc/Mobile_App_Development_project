@@ -7,6 +7,8 @@ from Source.models_mvc.json_info_model import JsonInfo
 from model_train.load_model import Model
 from Source.security import Authentication
 from fastapi import Depends
+from Source.config.config import container
+from Source.classes.azure_class import CustomFunctionAzure
 
 
     
@@ -21,7 +23,10 @@ async def prediectPlants(file: UploadFile):
     img_array = np.expand_dims(img_array, axis=0)
     #Dự đoán
     result=Model.PredictPlants(img_array)
-    str_number = str(result[0])
-    info=JsonInfo.get_info_plants()
-    return info[int(str_number)]
-
+    info=JsonInfo.get_info_plants(result)
+    info["cover"]=[]
+    for i in range(1,4):
+        blob=container.get_blob_client(f"infoPlants/{result}_{i}.jpg")
+        token=CustomFunctionAzure.generate_token_blob(blob)
+        (info["cover"]).append(f'https://caothi.blob.core.windows.net/myplants/infoPlants/{result}_{i}.jpg?{token}')
+    return info

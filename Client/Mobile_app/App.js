@@ -11,11 +11,16 @@ import Home from './src/components/Home/home';
 import Verifycode from './src/components/Verify code/verifycode';
 import Afterscan from './src/components/After Scan/afterscan';
 import Profile from './src/components/Profile/profile';
+import ForgotPassword from './src/components/Forgot Password/forgotpassword';
+import Welcome from './src/components/Welcome/welcome';
+import DashBoard from './src/components/Profile/Dashboard/dashboard';
+import PlantDetail from './src/components/Plant Detail/plantDetail';
+import 'react-native-gesture-handler';
+
 
 
 const App = () =>
 {
-  //info("anhthu", "Anh Thư", "Nữ", "0333478530", "KTX khu B")
   return <Provider store={store}>
     <AppNavigator/>
   </Provider> 
@@ -24,13 +29,13 @@ export default App;
 
 
 // export default function App() {
-//   return (
-//     <Provider store={store}>
-//       <NavigationContainer>
-//         <Afterscan />
-//       </NavigationContainer>
-//     </Provider>
-//   );
-
+// return (
+// <Provider store={store}>
+//  <NavigationContainer>
+//     <Afterscan/>
+//    </NavigationContainer>
+// </Provider>
+// );
+// }
 
 

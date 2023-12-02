@@ -6,9 +6,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import { ScrollView } from 'react-native-gesture-handler';
-import { ErrorMessage } from 'formik';
-
 
 const Signup = () => {
     const [isChecked, setIsChecked] = useState(false);
@@ -57,10 +54,11 @@ const Signup = () => {
       };
     return(
         <KeyboardAwareScrollView
+         backgroundColor="#CEF1CF"
         contentContainerStyle={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
-        <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={{ flex: 1 }} backgroundColor="#CEF1CF">
         <StyledContainer>
             <InnerContainer>
                 <Slogan>
@@ -118,7 +116,7 @@ const Signup = () => {
             </InnerContainer>
         </StyledContainer>
         </ScrollView>
-        </KeyboardAwareScrollView>
+    </KeyboardAwareScrollView>
     );
     };
 

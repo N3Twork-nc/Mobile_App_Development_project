@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, SafeAreaView } from 'react-native';
-import { StyledContainer, HeaderContainer, MainTitle, SearchContainer, ButtonSearch, NewspaperContainer, NewspaperImageContainer, MainText, SubText, MoreContainer, TextNewspaper, TaskbarButtonText, TaskbarIcon, TaskbarView, ContainerButton } from './styleExplore.js';
+import { StyledContainer, HeaderContainer, MainTitle, SearchContainer, ButtonSearch, 
+  NewspaperContainer, NewspaperImageContainer, MainText, SubText, MoreContainer, TextNewspaper, 
+  TaskbarButtonText, TaskbarIcon, TaskbarView, ContainerButton } from './styleExplore.js';
 import { useNavigation } from '@react-navigation/native';
 import { data } from '../../api/getNews';
 
@@ -38,7 +40,7 @@ const Explore = () => {
     };
   
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <ScrollView style={{ flex: 1 }}>
           <StyledContainer>
             {/* Header */}

@@ -24,14 +24,11 @@ const { maincolor, white, black, gray, green } = Colors;
  export const StyledContainer = styled.View`
   flex: 1;
   background-color: ${white};
-  justify-content: center;
-  position: relative; 
   ${Platform.OS === 'android' ? 'margin-top: 1%;' : 'margin-bottom: 0%;'}
 `;
 
 //header
 export const HeaderContainer = styled.View`
-  position: relative;
   align-items: center;
   justify-content: center; 
   background-color: ${white};
@@ -65,9 +62,7 @@ export const ButtonBack = styled.Image`
 `;
 
 export const ImageContainer = styled.View`
-  width: ${vw(100)}px;
   flex-direction: row;
-  flex:1;
 `;
 export const ImagePlant = styled.Image`
 width: ${vw(100)}px;
@@ -84,71 +79,45 @@ export const TopContainer = styled.View`
   z-index: 1;
 `;
 export const BodyContainer = styled.View`
-  background-color: ${white};
-  width: ${vw(100)}px;
-  height: ${vh(100)}px;
-  position: flex;
-  z-index:1;
-  flex: 1;
 `;
 export const ImgLogo = styled.Image`
-  width: ${vw(4)}px;
-  height: ${vh(3)}px;
-  margin-top: ${vh(0.5)}px;
-  justify-content: flex-start;
-  left:${vw(4)}px;
-  top: ${vh(2)}px;
+  width: ${vw(5)}px;
+  height: ${vh(4)}px;
+  left: ${vw(4)}px;
 `;
 export const Text1 = styled.Text`
-  fontSize: ${vh(1.8)}px;
+  fontSize: ${vh(2)}px;
   color: #61AF2B;
   font-weight: bold;
-  justify-content: flex-start;
   margin-left: ${vw(10)}px;
+  bottom: 17px;
 `;
 export const Text2 = styled.Text`
   fontSize: ${vh(3)}px;
   color: ${black};
-  font-weight: bold;
-  margin-top: ${vh(1.5)}px;  
+  font-weight: bold; 
   align-items: center;
   left: ${vw(3)}px;
 `;
 
 export const TagContainer = styled.View`
-  left: ${vw(4)}px;
+  right: ${vw(15)}px;
   margin-top: ${vh(1)}px;
   flex-direction: row;
+  justify-content: space-between;
   height: ${vh(4)}px;
-  align-items: center;
-  z-index: 2;
+  align-items: left;
   overflow: visible;
+  padding-horizontal: 80px;
 `;
 export const Tag1 = styled.Text`
   fontSize: ${vh(1.5)}px;
   color: ${black};
+  background-color: #F0F3F6;
+  padding: 5px;
 
-  background-color: #F0F3F6;
-  margin-right: ${vw(4)}px;
-  align-items: center;
-  padding: 5px;
 `;
-export const Tag2 = styled.Text`
-  fontSize: ${vh(1.5)}px;
-  color: ${black};
-  background-color: #F0F3F6;
-  margin-right: ${vw(4)}px;
-  align-items: center;
-  padding: 5px;
-`;
-export const Tag3 = styled.Text`
-  fontSize: ${vh(1.5)}px;
-  color: ${black};
-  background-color: #F0F3F6;
-  margin-right: ${vw(4)}px;
-  align-items: center;
-  padding: 5px;
-`;
+
 export const Text3 = styled.Text`
   margin-top: ${vh(3)}px;
   fontSize: ${vh(2.5)}px;
@@ -158,19 +127,17 @@ export const Text3 = styled.Text`
   left: ${vw(3)}px;
 `;
 export const InfoContainer = styled.View`
-  position: absolute;
-  top: ${vh(18)}px;
-  margin-top: ${vh(1)}px;
   flex-direction: row;
   width: ${vw(100)}px;
   height: ${vh(100)}px;
   z-index: 2;
   overflow: visible;
+  bottom: 13px;
 `;
 export const Box1Container = styled.View`
   position: absolute;
+  height: auto;
   margin-top: ${vh(1)}px;
-  height: ${vh(13)}px;
   width: ${vw(50)}px;
   flex-direction: row;
 `;
@@ -182,7 +149,7 @@ export const Box1 = styled.Image`
 `;
 export const TextContainer1 = styled.View`
   position: absolute;
-  height: ${vh(10)}px;
+  height: auto;
   width: ${vw(33)}px;
   margin-left: ${vw(19)}px;
   flex-direction: column;
@@ -390,8 +357,8 @@ export const TaskbarView = styled.View`
   height: 60px;
   background-color: ${white};
   position: relative;
-  justify-content: center;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  justify-content: center; 
+  box-shadow: -5px -2px 1px rgba(0, 0, 0, 0.05);
   /* Các thuộc tính CSS khác cho thanh taskbar */
 `;
 
