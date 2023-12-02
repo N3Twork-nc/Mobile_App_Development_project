@@ -23,55 +23,102 @@ const { maincolor, white, black, gray, green } = Colors;
  //screen
  export const StyledContainer = styled.View`
  flex: 1;
+ padding:20px;
  background-color: ${white};
- ${Platform.OS === 'android' ? 'margin-top: 1%;' : 'margin-bottom: 0%;'}
 `;
 
-// all items
-export const HeaderContainer = styled.View`
-position: relative;
-align-items: center;
-background-color: ${white};
-margin-top: ${vh(7)}px;
-flex-direction: row;
-${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'} 
-`;
  
-//slogan
-export const Title = styled.Text`
-font-size: 25px;
-color: ${black};
-font-weight: bold;
-align-self: center;
-padding: ${vw(5)}px;
-`;
-export const ButtonBack = styled.TouchableOpacity`
-  background-color: ${maincolor};
-  border-radius: 30px;
-  width: ${vw(20)}px;
-  display: flex;
+//header
+export const HeaderContainer = styled.View`
+  position: relative;
   align-items: center;
-  justify-content: center;
-  height: ${vh(5)}px; 
+  flex-direction: row;
+  justify-content: space-between;
+  ${Platform.OS === 'android' ? 'margin-top: 15px;' : 'margin-top: 0px;'}
 `;
+export const BackContainer = styled.TouchableOpacity`
+  align-items: flex-start;
+`;
+export const AddContainer = styled.TouchableOpacity`
+ align-items: flex-end;
+`
+
+export const MainTitle = styled.Text`
+  font-size: 25px;
+  color: ${black};
+  font-weight: bold;  
+`;
+
+export const ButtonBack = styled.Image`
+  width: 22px;
+  height: 22px;
+  align-self: flex-start;
+`;
+
+
+
+export const ButtonAdd = styled.Image`
+  width: 22px;
+  height: 22px;
+  align-self: flex-end;
+`
+
+// show plant
+
+export const GardenContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+`;
+
+export const EachGardenContainer = styled.View`
+  height: 200px;
+  width: 48%;
+  border-radius: 5px;
+  background-color: ${white};
+  border: 0.3px solid ${green};
+  align-self: flex-start;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const ImageFrame = styled.Image`
+  width: 80%;
+  height: 45%;
+  border-radius: 5px;
+`;
+
+export const GardenName = styled.Text`
+  font-size: 15px;
+  font-weight: 600;
+  color: ${black};
+  margin-top: 7%;
+`
+
+export const ButtonContainerWrapper = styled.View`
+`;
+
+export const ButtonContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  top: 5%;
+`;
+export const IconButton = styled.TouchableOpacity`
+  width: 55px;
+  height: 50px;
+  align-items: center;
+`;
+
+export const Icon = styled.Image`
+  width: 22px;
+  height: 22px;
+  tintColor: ${green};
+`;
+
 export const ButtonText = styled.Text`
-  fontSize: ${vh(1.5)}px;
+  font-size: 10px;
+  font-weight: 500;
   color: ${black};
-  font-weight: bold;
-  text-align: center;
-`;
-export const ButtonAdd = styled.TouchableOpacity`
-  background-color: ${maincolor};
-  border-radius: 30px;
-  width: ${vw(20)}px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: ${vh(5)}px; 
-`;
-export const ButtonText1 = styled.Text`
-  fontSize: ${vh(3)}px;
-  color: ${black};
-  font-weight: bold;
-  text-align: center;
+  margin-top: 5px;
 `;

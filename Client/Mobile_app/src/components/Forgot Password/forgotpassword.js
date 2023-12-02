@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import {Image,Text,ScrollView, Animated} from 'react-native'
+import {ScrollView, Animated} from 'react-native'
 import { StyledContainer, HeaderContainer, ImgHeader,Text1, Text2, TitleContainer,InputText1,InputText2,ButtonSend, ButtonText} from './styleForgotpassword'
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';

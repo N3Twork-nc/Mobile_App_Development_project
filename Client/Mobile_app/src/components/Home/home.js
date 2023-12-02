@@ -1,15 +1,13 @@
 import React from 'react';
-import { ScrollView, SafeAreaView,TouchableOpacity,View,Text } from 'react-native';
+import { ScrollView, SafeAreaView,} from 'react-native';
 import { 
   StyledContainer, 
   MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
   Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
-  Line,Icon, ImageFrame,
-  FirstRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
-  KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer,
-  CategoryPlantRoom, RoomName,
-  NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, MainTextNotify, TotalPlant, CategoryDetailText,
-  TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
+  Line,Icon, ImageFrame,  FirstRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
+  KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer, CategoryPlantRoom, RoomName,
+  NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, 
+  MainTextNotify, TotalPlant, CategoryDetailText, TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
@@ -70,7 +68,9 @@ const Home = () => {
           <CategoryPlantRoom>
             <RoomsContainer>
               <FirstRooms>
-                <LeftRoomContainer onPress = {handleLivingroom}>
+
+                <LeftRoomContainer  onPress = {handleLivingroom} >
+
                   <RoomContainer >
                     <LivingroomContainer >
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
@@ -131,9 +131,9 @@ const Home = () => {
           <CategoryPlantRoom>
             <RoomsContainer>
               <FirstRooms>
-                <LeftRoomContainer>
+                <LeftRoomContainer  onPress = {handleDashboard}>
                   <RoomContainer>
-                    <LivingroomContainer onPress = {handleDashboard}>
+                    <LivingroomContainer>
                       <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
                     </LivingroomContainer> 
                     <CategoryDetailText>

@@ -3,12 +3,13 @@ import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputConta
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import { Platform, TouchableOpacity, Alert, Animated ,StyleSheet } from 'react-native';
+import { Platform, View, TouchableOpacity, Alert, Animated ,StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native';
 import LottieView from 'lottie-react-native';
+
 
 
 const Signin = () => {
@@ -62,16 +63,17 @@ const Signin = () => {
     behavior={Platform.OS === 'ios' ? 'padding' : null}
     keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
     <ScrollView contentContainerStyle={{ flex: 1 }} >
-    {/* {isLoading ? (
+    {isLoading ? (
         <View style={[StyleSheet.absoluteFillObject, styles.container]}>
         <LottieView
                 resizeMode="contain"
-                source={require('../../assets/logo.png')} 
+                source={require('../../assets/Animation-loading1.json')} 
                 autoPlay
+                style={{ width: 100, height: 100 }}
               />
         </View>
            
-          ) : ( */}
+          ) : (
         <StyledContainer>
           <InnerContainer>
             <Slogan>ĐĂNG NHẬP</Slogan>
@@ -111,8 +113,7 @@ const Signin = () => {
             <OthersText1 onPress={handleSignUp}>Chưa có tài khoản? Đăng ký</OthersText1>
           
           </InnerContainer>
-        </StyledContainer>
- {/** ) */}
+        </StyledContainer>)}
         </ScrollView>
       </KeyboardAwareScrollView>
   );
@@ -121,8 +122,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#CEF1CF',
-    zIndex: -1,
+    zIndex: 1,
   }
 })
 export default Signin;

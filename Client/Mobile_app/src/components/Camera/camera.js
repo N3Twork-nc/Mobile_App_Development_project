@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity,Image, Modal,SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
-import { FontAwesome5 } from 'react-native-vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet,RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,HeaderContainer2,
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,HeaderContainer2,
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';

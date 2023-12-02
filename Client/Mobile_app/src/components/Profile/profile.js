@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import { TaskbarView, ContainerButton, TaskbarIcon,  TaskbarButtonText, 
   StyledContainer, HeaderContainer, ButtonNotification, MainTitle, 
   TitleContainer, NotificationContainer, AvatarContainer, Name, 
-  ButtonEditProfile, EditButtonText, SectionTitle, 
-  LocationContainer, ChildSectionContainer, ChildSectionText, 
-  ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, SectionContainer1,
+  ButtonEditProfile, EditButtonText, SectionTitle,  ChildSectionContainer, ChildSectionText, 
+  ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, 
   ChildSectionButton, ChildSectionButtonContainer, AvatarImage, 
   ButtonSignOut, SignoutButtonText } from './styleProfile';
 import { ScrollView, SafeAreaView,Image,} from 'react-native';
@@ -13,13 +12,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteAll } from '../../reducers/infoUser';
 
 import * as ImagePicker from 'expo-image-picker';
-import { tintColor } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 const Profile = () => { 
     const navigation = useNavigation();
     const dispatch=useDispatch();
     const userInfo = useSelector(state => state.infoUser);
   
+// các navigate chuyển màn hình
     const handleExplore = () => {
         navigation.navigate('Explore', { animations: false }, {transitions: false});
       };
@@ -45,13 +44,10 @@ const Profile = () => {
       const handleDashboard = () => {
         navigation.navigate('Dashboard', {animation: false});
       }
-      
-
-      
-    
+                
 return (
 
-  <SafeAreaView  style={{ flex: 1, backgroundColor: '#CEF1CF' }}>
+  <SafeAreaView  style={{ flex: 1, backgroundColor:  'white' }}>
     <ScrollView  style={{ flex: 1, backgroundColor: 'white' }}>
         <HeaderContainer>
           <TitleContainer>
@@ -63,20 +59,20 @@ return (
           </TitleContainer>
           <AvatarContainer>
               <AvatarImage
-                resizeMode="cover"
+                resizeMode="contain"
                 style={{ borderRadius: 85, borderWidth: 3, borderColor: 'white' }}
                 source={require('../../assets/placeholder.png')} tintColor={'#164303'}
               />
           </AvatarContainer>
                 
         </HeaderContainer>
+        <Name>{userInfo.fullname}</Name>   
       <StyledContainer >
-      <Name>{userInfo.fullname}</Name>   
         <ButtonEditProfile onPress={handleEditProfile}>
           <EditButtonText>Chỉnh sửa</EditButtonText>
         </ButtonEditProfile>
         <SectionTitle>Thông tin</SectionTitle>
-        <SectionContainer1>
+        <SectionContainer>
           <ChildSectionContainer>
             <ChildSectionIcon source={require('../../assets/location.png')} tintColor={'#1A5D1A'} />
             <ChildSectionText>Vị trí</ChildSectionText>
@@ -90,15 +86,7 @@ return (
                 <ChildSectionText>Thời tiết</ChildSectionText>
                 <ChildSectionInfo>  </ChildSectionInfo>
           </ChildSectionContainer>
-          <Line />
-          <ChildSectionContainer>
-            <ChildSectionIcon source={require('../../assets/humidity.png')} tintColor={'#1A5D1A'} />
-            <ChildSectionText>Các thông số</ChildSectionText>
-            <ChildSectionButtonContainer onPress={handleDashboard}>
-                  <ChildSectionButton source={require('../../assets/more.png')} tintColor={'#1A5D1A'} />
-              </ChildSectionButtonContainer>  
-          </ChildSectionContainer>
-        </SectionContainer1>
+        </SectionContainer>
 
 
         <SectionTitle>Thông báo</SectionTitle>

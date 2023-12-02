@@ -29,7 +29,6 @@ const { maincolor, white, black, gray, green } = Colors;
 
 //header
 export const HeaderContainer = styled.View`
-  position: relative;
   align-items: center;
   justify-content: center; 
   background-color: ${white};
@@ -63,9 +62,7 @@ export const ButtonBack = styled.Image`
 `;
 
 export const ImageContainer = styled.View`
-  width: ${vw(100)}px;
   flex-direction: row;
-  flex:1;
 `;
 export const ImagePlant = styled.Image`
 width: ${vw(100)}px;
@@ -82,11 +79,6 @@ export const TopContainer = styled.View`
   z-index: 1;
 `;
 export const BodyContainer = styled.View`
-  background-color: ${white};
-  width: ${vw(100)}px;
-  height: ${vh(100)}px;
-  z-index:1;
-  flex: 1;
 `;
 export const ImgLogo = styled.Image`
   width: ${vw(5)}px;
@@ -135,14 +127,12 @@ export const Text3 = styled.Text`
   left: ${vw(3)}px;
 `;
 export const InfoContainer = styled.View`
-  position: absolute;
-  top: ${vh(18)}px;
-  margin-top: ${vh(1)}px;
   flex-direction: row;
   width: ${vw(100)}px;
   height: ${vh(100)}px;
   z-index: 2;
   overflow: visible;
+  bottom: 13px;
 `;
 export const Box1Container = styled.View`
   position: absolute;
