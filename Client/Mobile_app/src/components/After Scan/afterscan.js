@@ -64,9 +64,8 @@ const Afterscan = () => {
                 <Text1> Cây của bạn đã được nhận diện!</Text1>
                 <Text2> {info[0].plantName} </Text2>
                 <TagContainer>
-                  <Tag> {keywords[0]} </Tag>
-                  <Tag> {keywords[1]} </Tag>
-                  <Tag> {keywords[2]} </Tag>
+                  {keywords.map((keyword, index) => (
+                  <Tag key={index}>{keyword}</Tag> ))}
                 </TagContainer>
                 <Text3> Thông tin</Text3> 
                 <SectionsContainer>
