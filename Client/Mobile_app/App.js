@@ -16,25 +16,30 @@ import Welcome from './src/components/Welcome/welcome';
 import DashBoard from './src/components/Profile/Dashboard/dashboard';
 import PlantDetail from './src/components/Plant Detail/plantDetail';
 import Gardens from './src/components/Home/Gardens/gardens';
+
 import 'react-native-gesture-handler';
 
-const App = () =>
-{
-  return <Provider store={store}>
-    <AppNavigator/>
-  </Provider> 
-}
-export default App;
+import Schedule from './src/components/Schedule/schedule';
 
 
-// export default function App() {
-// return (
-// <Provider store={store}>
-//  <NavigationContainer>
-//     <Afterscan/>
-//    </NavigationContainer>
-// </Provider>
-// );
+// const App = () =>
+// {
+//   return <Provider store={store}>
+//     <AppNavigator/>
+//   </Provider> 
 // }
+// export default App;
+
+
+export default function App() {
+return (
+<Provider store={store}>
+ <NavigationContainer>
+    <Schedule/>
+   </NavigationContainer>
+  </Provider>
+);
+}
+
 
 

@@ -17,6 +17,7 @@ import PlantDetail from '../components/Plant Detail/plantDetail';
 import ForgotPassword from '../components/Forgot Password/forgotpassword';
 import DashBoard from '../components/Profile/Dashboard/dashboard';
 import Gardens from '../components/Home/Gardens/gardens';
+import Schedule from '../components/Schedule/schedule';
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,7 @@ const AppNavigator = () => {
         <Stack.Screen name="ForgotPassword" component={ForgotPassword}  />
         <Stack.Screen name="Dashboard" component={DashBoard}  />
         <Stack.Screen name="Gardens" component={Gardens}  />
+        <Stack.Screen name="Schedule" component={Schedule}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
