@@ -212,10 +212,6 @@ export default Afterscan;
 const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose}) => {
   const [isRoomAlertVisible, setRoomAlertVisible] = useState(false);
 
-  const handleRoomAlert = () => {
-    setRoomAlertVisible(true);
-  };
-
   const handleRoomSelection = (room) => {
     setRoomAlertVisible(false);
     onRoom(room);
