@@ -3,6 +3,7 @@ import {Image} from 'react-native'
 import { StyledContainer, InnerContainer, Slogan,  ButtonText, OthersText, ButtonSignup,ImgPlant,ImgCloud} from './styleWelcome'
 import { useNavigation } from '@react-navigation/native';
 
+
 const Welcome = () => {
   const navigation = useNavigation();
   const handleSignIn = () => {

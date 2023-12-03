@@ -161,8 +161,7 @@ const Predicted = async () => {
          
           {/* Xử lý Chụp lại */}
           <TouchableOpacity onPress={closePhotoPreview}>
-             <Text2>Chụp lại</Text2>
-         
+             <Text2>Chụp lại</Text2>         
           </TouchableOpacity>
 
           {/* Xử lý Lưu */}
@@ -170,12 +169,10 @@ const Predicted = async () => {
             // Xử lý việc lưu ảnh ở đây
             closePhotoPreview();
           }}>
-           <Text3 onPress={Predicted}>Nhận diện</Text3>
-           
+           <Text3 onPress={Predicted}>Nhận diện</Text3>           
           </TouchableOpacity>
-
         </View>
-          </View>
+        </View>
       </Modal>
     </StyleContainer>
   );
