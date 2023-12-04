@@ -7,9 +7,6 @@ from Source.config.config import container
 import numpy as np
 import cv2
 
-
-
-
 @app.put("/APIuploadMyPlant")
 async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depends(Authentication().validate_token)):
     data=MyPlant(roomName,plantName)
