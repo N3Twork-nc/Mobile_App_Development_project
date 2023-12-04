@@ -42,6 +42,7 @@ const Afterscan = () => {
     // Lưu vào mục Đã lưu
     setAlertVisible(false);
   };
+  
   const handleBack = () => {
     navigation.navigate('CameraScreen', {animations: false});
   }
@@ -180,7 +181,7 @@ const Afterscan = () => {
               
                 {/* ĐOẠN VĂN */}
                 <ParagraphContainer>
-                  <CreText> Nguồn Wikipedia</CreText>
+                  <CreText>Nguồn Wikipedia</CreText>
                   <MainText>{info[0].information}</MainText>
                 </ParagraphContainer>
                 </BodyContainer>
@@ -217,33 +218,20 @@ const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose}) => {
   };
 
   const showRoomSelectionAlert = () => {
-    Alert.alert(
-      'Chọn phòng',
-      'Chọn nơi để lưu cây',
-      [
-        { text: 'Phòng khách', onPress: () => handleRoomSelection('Phòng khách') },
-        { text: 'Nhà bếp', onPress: () => handleRoomSelection('Nhà bếp') },
-        { text: 'Phòng ngủ', onPress: () => handleRoomSelection('Phòng ngủ') },
-        { text: 'Vườn', onPress: () => handleRoomSelection('Vườn') },
-        { text: 'Hủy', style: 'cancel', textStyle: {color: 'green'} },
-      ],
-      {
-        cancelable: true,
-        textStyle: { color: 'green', fontSize: 30 }
-      }
-    );
+    setRoomAlertVisible(true);
   };
   return (
     <Modal isVisible={isVisible} onBackdropPress={onClose}>          
-      <View style={{ backgroundColor: 'white',}}>
-        <View style={{ flexDirection: 'row', alignItems: 'center',backgroundColor: '#CEF1CF', marginBottom: 20, height: 50, }}>
+      <View style={{ backgroundColor: 'white', borderRadius: 15}}>
+        <View style={{ 
+          flexDirection: 'row', alignItems: 'center',
+          backgroundColor: '#CEF1CF', marginBottom: 20, height: 50, 
+          borderTopLeftRadius: 15, borderTopRightRadius: 15 }}>
+
           <Image source={logoApp} style={{ width: 30, height: 30, marginLeft: 10,marginRight: 5, marginBottom: 5 }} />
           <Text style={{ fontSize: 18, flex: 1, fontWeight: '500' }}>{message}</Text>
-          <TouchableOpacity onPress={onClose}>
-            <Image source={require('../../assets/close.png')} 
-                   style={{ width: 15, height: 15 ,marginRight: 15}} 
-            />
-          </TouchableOpacity>
+          <TouchableOpacity onPress={onClose}></TouchableOpacity>
+
         </View>
         <View style={{ padding: 10, zIndex: 1, bottom: 7}}>              
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 10 }}>
@@ -258,22 +246,36 @@ const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose}) => {
       </View>
       {isRoomAlertVisible && (
         <Modal isVisible={true} onBackdropPress={() => setRoomAlertVisible(false)}>
-          <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
-            <Text style={{ fontSize: 18, marginBottom: 20 }}>Chọn phòng</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <TouchableOpacity onPress={() => handleRoomSelection('Phòng khách')}>
-                <Text style={{ color: 'green', fontSize: 15 }}>Phòng khách</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleRoomSelection('Nhà bếp')}>
-                <Text style={{ color: 'green', fontSize: 15 }}>Nhà bếp</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleRoomSelection('Phòng ngủ')}>
-                <Text style={{ color: 'green', fontSize: 15 }}>Phòng ngủ</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleRoomSelection('Vườn')}>
-                <Text style={{ color: 'green', fontSize: 15 }}>Vườn</Text>
-              </TouchableOpacity>
+          <View style={{ backgroundColor: 'white', borderRadius: 15}}>
+            <View style={{ 
+              flexDirection: 'row', alignItems: 'center',
+              backgroundColor: '#CEF1CF', marginBottom: 13, height: 50,
+              borderTopLeftRadius: 15, borderTopRightRadius: 15 }}>
+              <Image source={logoApp} style={{ width: 30, height: 30, marginLeft: 10,marginRight: 5, marginBottom: 5 }} />
+              <Text style={{ fontSize: 18, flex: 1, fontWeight: '500', }}>Chọn phòng</Text>
+              <TouchableOpacity onPress={onClose}></TouchableOpacity>
             </View>
+            <TouchableOpacity onPress={() => handleRoomSelection('Phòng khách')}>
+              <Text style={{ color: 'green', fontSize: 17, textAlign: 'center' }}>Phòng khách</Text>
+            </TouchableOpacity>
+
+            <View style={{height: 1, backgroundColor: '#D9D9D9', marginBottom: 13, marginTop: 13 }}/>
+
+            <TouchableOpacity onPress={() => handleRoomSelection('Nhà bếp')}>
+              <Text style={{ color: 'green', fontSize: 17, textAlign: 'center' }}>Nhà bếp</Text>
+            </TouchableOpacity>
+
+            <View style={{height: 1, backgroundColor: '#D9D9D9', marginBottom: 13, marginTop: 13 }}/>
+
+            <TouchableOpacity onPress={() => handleRoomSelection('Phòng ngủ')}>
+              <Text style={{ color: 'green', fontSize: 17, textAlign: 'center' }}>Phòng ngủ</Text>
+            </TouchableOpacity>
+
+            <View style={{height: 1, backgroundColor: '#D9D9D9', marginBottom: 13, marginTop: 13 }}/>
+
+            <TouchableOpacity onPress={() => handleRoomSelection('Vườn')}>
+              <Text style={{ color: 'green', fontSize: 17, marginBottom: 15, textAlign: 'center' }}>Sân vườn</Text>
+            </TouchableOpacity>
           </View>
         </Modal>
       )}

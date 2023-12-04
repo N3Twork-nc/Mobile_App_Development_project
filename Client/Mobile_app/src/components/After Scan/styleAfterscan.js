@@ -84,6 +84,8 @@ export const ImgLogo = styled.Image`
   width: ${vw(5)}px;
   height: ${vh(4)}px;
   left: ${vw(4)}px;
+  ${Platform.OS === 'android' ? 'margin-top: 5px' : 'margin-top: 0%;'}
+
 `;
 export const Text1 = styled.Text`
   fontSize: ${vh(2)}px;
