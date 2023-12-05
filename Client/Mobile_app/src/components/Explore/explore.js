@@ -10,9 +10,7 @@ const Explore = () => {
     const navigation = useNavigation();
     const [newsData, setNewsData] = useState([]);
 
-    useEffect(() => {
-        NewsData();
-    }, []);
+    useEffect(() => { NewsData(); }, []);
 
     const NewsData = async () => {
       try {

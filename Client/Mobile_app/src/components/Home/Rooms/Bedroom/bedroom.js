@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
          Plant1Container, Plant2Container, ImageFrame, PlantName, PlantContainer,
          ButtonContainer, IconButton, Icon, ButtonText, ButtonContainerWrapper,
-        } from './styleLivingroom.js'
+        } from './styleBedroom.js'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, SafeAreaView } from 'react-native';
 
-const Livingroom = () => {
+const Bedroom = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const { plantsInRoom } = route.params;
@@ -24,7 +24,7 @@ return (
                     <BackContainer onPress={handleBack}>
                         <ButtonBack  resizeMode="cover" source={require('../../../../assets/back.png')} />
                     </BackContainer>                    
-                    <MainTitle>Phòng khách</MainTitle>
+                    <MainTitle>Phòng ngủ</MainTitle>
                 </HeaderContainer>
 
                 {/* Plants */}
@@ -90,4 +90,4 @@ return (
 
 )
 }
-export default Livingroom;
+export default Bedroom;

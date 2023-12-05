@@ -7,6 +7,9 @@ import Signup from '../components/Sign up/signup';
 import Home from '../components/Home/home';
 import Verifycode from '../components/Verify code/verifycode';
 import Livingroom from '../components/Home/Rooms/Livingroom/livingroom';
+import Bedroom from '../components/Home/Rooms/Bedroom/bedroom';
+import Kitchen from '../components/Home/Rooms/Kitchen/kitchen';
+import Backyard from '../components/Home/Rooms/Backyard/backyard';
 import Explore from '../components/Explore/explore';
 import Newspaper from '../components/Explore/News/news';
 import CameraScreen from '../components/Camera/camera';
@@ -32,6 +35,9 @@ const AppNavigator = () => {
         <Stack.Screen name="SignUp" component={Signup} options={{animationEnabled: false}} />        
         <Stack.Screen name="VerifyCode" component={Verifycode}  />      
         <Stack.Screen name="Livingroom" component={Livingroom} />
+        <Stack.Screen name="Bedroom" component={Bedroom} />
+        <Stack.Screen name="Kitchen" component={Kitchen} />
+        <Stack.Screen name="Backyard" component={Backyard} />
         <Stack.Screen name="Home" component={Home} options={{animationEnabled: false}}/>
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
         <Stack.Screen name="News" component={Newspaper} options={{animationEnabled: false}}/>
