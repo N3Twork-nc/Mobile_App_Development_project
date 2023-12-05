@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,HeaderContainer2,
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,ActionContainer, Action1Container,Action2Container
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
@@ -157,21 +157,19 @@ const Predicted = async () => {
             source={{ uri: capturedPhoto ? capturedPhoto.uri : null }}
           />
 
-          <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
-         
-          {/* Xử lý Chụp lại */}
-          <TouchableOpacity onPress={closePhotoPreview}>
-             <Text2>Chụp lại</Text2>         
-          </TouchableOpacity>
+       
+          <ActionContainer> 
+            <Action1Container onPress={closePhotoPreview}>
+              {/* Xử lý Chụp lại */}
+                <Text2>Chụp lại</Text2>         
+            </Action1Container>
 
-          {/* Xử lý Lưu */}
-          <TouchableOpacity onPress={() => {
-            // Xử lý việc lưu ảnh ở đây
-            closePhotoPreview();
-          }}>
-           <Text3 onPress={Predicted}>Nhận diện</Text3>           
-          </TouchableOpacity>
-        </View>
+              {/* Xử lý Lưu */}
+              <Action2Container onPress={() => {closePhotoPreview(); }}>
+                <Text3 onPress={Predicted}>Nhận diện</Text3>           
+              </Action2Container>
+          </ActionContainer>
+
         </View>
       </Modal>
     </StyleContainer>
