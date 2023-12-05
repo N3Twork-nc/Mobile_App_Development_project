@@ -57,9 +57,6 @@ const CameraScreen = () => {
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-
-
-
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }

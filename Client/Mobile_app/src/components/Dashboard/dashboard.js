@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import {
   StyledContainer,  HeaderContainer,  TitleContainer,  MainTitle,  BackContainer,  ButtonBack,  DashBoardContainer,  CircularProgressContainer,
   TextContainer,  MainText,  SubText,  ItemText,  MoreContainer,  NowBoardContainer,
-  NowBoard,  NowBoardText, IconContainer,
+  NowBoard,  NowBoardText, IconContainer, NowBoardTime, NowBoardLocate, ImageContainer, GardenImage, GardenInfo, ButtonsContainer, EditContainer, EditButton, SwitchContainer, SwitchButton, Line,
 } from "./styleDashboard";
 import { useNavigation } from "@react-navigation/native";
-import { SafeAreaView, ScrollView } from "react-native";
+import { SafeAreaView, ScrollView, Image } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-
+import * as ImagePicker from 'expo-image-picker';
 
 const DashBoard = () => {
  
@@ -30,14 +30,41 @@ const DashBoard = () => {
 
 // thông số hiển thị
   const itemDashboard = {
-    title: "Example Title",
-    subtitle: "Example Subtitle",
     value: 100,
     temperature: 30,
     humidity: 75,
     light: 40,
     percent: 1,
   };
+  const placeholder = require('../../assets/placeholder.png');
+  // Hình ảnh của vườn
+  const [capturedPhoto, setCapturedPhoto] = useState(null);
+  const [isEditingAvatar, setIsEditingAvatar] = useState(false);
+  const handleChooseFromLibrary = async () => {
+    setIsEditingAvatar(true);
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission needed', 'Please grant permission to access the photo library.');
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+      multiple: false,
+    });
+  
+    if (!result.canceled) {
+      setCapturedPhoto(result.assets[0]);
+    }
+  };
+  
+  let imgSource;
+  if (isEditingAvatar) {
+    imgSource = capturedPhoto ? { uri: capturedPhoto.uri } : null;
+  } else {
+    imgSource = placeholder;
+  }
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "white"}}>
@@ -45,23 +72,40 @@ const DashBoard = () => {
       <HeaderContainer>
         <TitleContainer>
           <BackContainer onPress={handleBack}>
-            <ButtonBack source={require("../../../assets/back.png")} />
+            <ButtonBack source={require("../../assets/back.png")} />
           </BackContainer>
-          <MainTitle>Dashboard</MainTitle>
+          <MainTitle>Vườn 1</MainTitle>
         </TitleContainer>
       </HeaderContainer>
       <StyledContainer>
         <NowBoardContainer>
-          <NowBoard>
+          <NowBoardTime>
             <NowBoardText>{currentTime}</NowBoardText>
-          </NowBoard>
-          <NowBoard>
+          </NowBoardTime>
+          <NowBoardLocate>
             <NowBoardText>Dĩ An, Bình Dương</NowBoardText>
-          </NowBoard>
+          </NowBoardLocate>
         </NowBoardContainer>
-        
+        <GardenInfo>
+          <ImageContainer onPress={handleChooseFromLibrary}>
+            <GardenImage  
+              style={{borderRadius: 8, borderWidth: 0.5, borderColor: 'green'}}
+              resizeMode="contain" 
+              source={imgSource}/>
+          </ImageContainer>
+          <ButtonsContainer>
+            <EditContainer>
+              <EditButton source={require("../../assets/edit.png")} tintColor='#164303'/>
+            </EditContainer>
+            <SwitchContainer>
+              <SwitchButton source={require("../../assets/lighton.png")} tintColor='#164303'/>
+            </SwitchContainer>
+          </ButtonsContainer>
+        </GardenInfo>
+        <Line/>
+        <MainTitle>Dashboard</MainTitle>
         <DashBoardContainer>
-          <IconContainer resizeMode="cover" source={require("../../../assets/temper.png")}/>
+          <IconContainer resizeMode="cover" source={require("../../assets/temper.png")}/>
           <TextContainer>
             <MainText>Nhiệt độ</MainText>
             <SubText>Nhiệt độ bên ngoài hôm nay</SubText>
@@ -84,7 +128,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer source={require("../../../assets/humidity1.png")}/>
+          <IconContainer source={require("../../assets/humidity1.png")}/>
 
           <TextContainer>
             <MainText>Độ ẩm không khí</MainText>
@@ -108,7 +152,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer source={require("../../../assets/sun.png")}/>
+          <IconContainer source={require("../../assets/sun.png")}/>
           <TextContainer>
             <MainText>Ánh sáng</MainText>
             <SubText>Cường độ ánh sáng lúc này</SubText>
@@ -131,7 +175,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer resizeMode={"contain"} source={require("../../../assets/soil.png")}/>
+          <IconContainer resizeMode={"contain"} source={require("../../assets/soil.png")}/>
 
           <TextContainer>
             <MainText>Độ ẩm đất</MainText>

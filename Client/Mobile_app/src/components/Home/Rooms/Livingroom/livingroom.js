@@ -46,7 +46,8 @@ return (
                             </ButtonContainer>
                         </ButtonContainerWrapper>                        
                     </Plant1Container> 
-                    <Plant2Container>
+
+                    <Plant1Container>
                         <ImageFrame resizeMode="cover" source={require('../../../../assets/plant2.jpg')}/>
                         <PlantName> Lan Ý </PlantName>
                         <ButtonContainerWrapper>
@@ -65,7 +66,7 @@ return (
                             </IconButton>
                             </ButtonContainer>
                         </ButtonContainerWrapper>
-                    </Plant2Container>
+                    </Plant1Container>
                 </PlantContainer>
 
                 {/* Plants */}
@@ -90,7 +91,7 @@ return (
                             </ButtonContainer>
                         </ButtonContainerWrapper>                        
                     </Plant1Container> 
-                    <Plant2Container>
+                    <Plant1Container>
                         <ImageFrame resizeMode="cover" source={require('../../../../assets/plant4.jpg')}/>
                         <PlantName>Kim Tiền</PlantName>
                         <ButtonContainerWrapper>
@@ -109,8 +110,9 @@ return (
                             </IconButton>
                             </ButtonContainer>
                         </ButtonContainerWrapper>
-                    </Plant2Container>                    
+                    </Plant1Container>                    
                 </PlantContainer>
+
                 <PlantContainer>
                     <Plant1Container>
                         <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant5.jpg')}/>
@@ -131,9 +133,9 @@ return (
                             </IconButton>
                             </ButtonContainer>
                         </ButtonContainerWrapper>                        
-                    </Plant1Container> 
-                    
+                    </Plant1Container>                     
                 </PlantContainer>
+                
             </StyledContainer>
         </ScrollView>
     </SafeAreaView>
