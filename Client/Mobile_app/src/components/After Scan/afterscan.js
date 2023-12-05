@@ -43,12 +43,10 @@ const Afterscan = () => {
       setAlertVisible(false);
 
       const response = await plant(photoURI, roomName, info[0].plantName, token);
-      console.log(photoURI);
-
-      console.log("Cây đã được lưu vào phòng");
-
+      if (response=="Successfull") Alert.alert("Thêm cây thành công");
+      else Alert.alert("Thêm cây thất bại")
     } catch (error) {
-      console.error("Lỗi khi lưu cây vào phòng");
+      Alert.alert("Thêm cây thất bại")
     }
   };
 

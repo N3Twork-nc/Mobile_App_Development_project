@@ -1,21 +1,20 @@
 import axios from "axios";
 import { IPServer } from ".";
 
-const createFormData = (photo) => {
-  const uriPhoto=photo.uri;
+const createFormData = (uriPhoto) => {
   const formData = new FormData();
   formData.append('file', {
     uri: uriPhoto,
-    name: 'test.jpg',
+    name: 'myroom.jpg',
     type: 'image/jpeg'
   }); 
   return formData;
 }
 
-export const plant = async (photo, roomName, plantName, token) => {
+export const plant = async (uriPhotophoto, roomName, plantName, token) => {
   try {
-    const data = createFormData(photo);
-    
+    const data = createFormData(uriPhotophoto);
+
     const encodedRoomName = encodeURIComponent(roomName);
     const encodedPlantName = encodeURIComponent(plantName);
 
@@ -24,10 +23,8 @@ export const plant = async (photo, roomName, plantName, token) => {
       'Content-Type': 'multipart/form-data',
       Authorization:`Bearer ${token}`,}
     },)
-    console.log(photo, roomName, plantName, token);
-
-    console.log(response.data);
-    return response.data;
+    if (response.data.id!=null) return "Successfull"
+    return "Failure"
   } catch (error) {
     console.log(error);
     return error;
