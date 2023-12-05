@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { StyledContainer,ButtonTextGG, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1, IconButtonFB, ButtonTextFB, IconButtonGG, InputTextpw, EyeIcon, ButtonTextContainer } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
-import { Platform, TouchableOpacity, Alert } from 'react-native';
+import { Platform, TouchableOpacity, Alert,ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';

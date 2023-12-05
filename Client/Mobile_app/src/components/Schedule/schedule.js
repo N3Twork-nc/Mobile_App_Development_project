@@ -2,37 +2,123 @@ import React, { useState } from 'react';
 import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
         TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
-        TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,DayContainer,
-        TextEach, InputEach, TextDay, InputDay
+        TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
+        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate
         } from './styleSchedule';
 import { useNavigation } from '@react-navigation/native';
 import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Platform,StyleSheet } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 
-const Schedule = () => {
+
+  const Schedule = () => {
   const navigation = useNavigation();
   const handleBack = () => { navigation.navigate('Home'); }
 
   const [selectedDate, setSelectedDate] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [time, setTime] = useState(new Date()); // Giá trị thời gian được chọn
+  const [showTimepicker, setShowTimepicker] = useState(true); // Biến để điều khiển việc hiển thị time picker
+  
+   // Khai báo biến isFocus và các hàm setter cho biến state này
+   const [isFocusNumber, setIsFocusNumber] = useState(false);
+   const [isFocusFrequency, setIsFocusFrequency] = useState(false);
+   const [isFocusWork, setIsFocusWork] = useState(false);
+   const [selectedNumber, setSelectedNumber] = useState(null); // Biến state cho dropdown dãy số
+   const [selectedFrequency, setSelectedFrequency] = useState(null); // Biến state cho dropdown "Ngày", "Tuần", "Tháng"
+   const [selectedWork, setSelectedWork] = useState(null); // Biến state cho các công việc 
 
+ 
   const onDayPress = (day) => {
     setSelectedDate(day.dateString);
     setShowModal(true);
   };
+  // Hàm để chuyển đổi ngày từ yyyy-mm-dd sang dd/mm/yyyy
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
+    const onChangeTime = (event, selectedTime) => {
+    const currentTime = selectedTime || time;
+    setTime(currentTime);
+    
+  };
+  const getAMPM = (hour) => {
+    return hour >= 12 ? 'PM' : 'AM';
+  };
+
+  const numbersArray = Array.from({ length: 20 }, (_, index) => index + 1);
+  const data = numbersArray.map((number) => ({
+    label: `${number}`,
+    value: `${number}`,
+  }));
+
+  const frequencyData = [
+    { label: 'Ngày', value: 'Ngày' },
+    { label: 'Tuần', value: 'Tuần' },
+    { label: 'Tháng', value: 'Tháng' },
+    { label: 'Năm', value: 'Năm' },
+  ];
+
+  const workData = [
+    { label: 'Tưới cây', value: 'Tưới cây' },
+    { label: 'Bón phân', value: 'Bón phân' },
+    { label: 'Thay đất', value: 'Thay đất' },
+    { label: 'Tỉa lá', value: 'Tỉa lá' },
+  ];
+  
+// Style Number Dropdown 
+  const numbersStyles = StyleSheet.create({
+    container: {
+      backgroundColor: 'white', width: 100, left: 45, bottom: 34,
+    },
+    dropdown: {
+      height: 50,width: 60, borderRadius: 8, paddingHorizontal: 10,
+    },
+    selectedTextStyle: {
+      fontSize: 16,
+    },
+  });
+ //Style Frequency Dropdown 
+  const frequencyStyles = StyleSheet.create({
+    container: {
+      backgroundColor: 'white', width: 70, left: 110, bottom: 85,
+    },
+    dropdown: {
+      height: 50, width: 85, borderRadius: 8, paddingHorizontal: 10,
+    },
+    selectedTextStyle: { 
+      fontSize: 16,
+    },
+  });
+ //Style Work Dropdown 
+  const workStyles = StyleSheet.create({
+    container: { width: 100, left: 45, bottom: 34,
+    },
+    dropdown: {
+      height: 50, width: 150, borderRadius: 8, paddingHorizontal: 25,
+    },
+    placeholderStyle: {
+      fontSize: 16,
+    },
+    selectedTextStyle: {
+      fontSize: 16,
+    },
+  });
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>   
-      <ScrollView style={{ flex: 1 }}>
+<SafeAreaView style={{ flex: 1, backgroundColor: '#CEF1CF' }}>   
+     <ScrollView style={{ flex: 1 }}>
         <StyledContainer>
           <HeaderContainer>
             <TitleContainer>
               <BackContainer onPress={handleBack}>
                 <ButtonBack resizeMode="cover" source={require('../../assets/back.png')} />
               </BackContainer>
-              <MainTitle>
-                Lên lịch
-              </MainTitle>
+              <MainTitle> Lên lịch </MainTitle>
             </TitleContainer>
           </HeaderContainer>
           <View style={{ flex: 1 }}>
@@ -64,44 +150,114 @@ const Schedule = () => {
             <Text1>Chi tiết</Text1>
             {/* Nội dung khác trong modal */}
             <NoteContainer>
-              <InputNote placeholder="Thêm ghi chú vào đây"></InputNote>
+              <InputNote placeholder="Thêm ghi chú vào đây" placeholderTextColor="#D3DBD3"></InputNote>
               <NoteImage resizeMode="contain" source={require('../../assets/note.png')}/> 
             </NoteContainer>
             <ReviewContainer> 
                 <TextReview>Nhắc nhở của bạn sẽ được gửi vào 10:00 mỗi 2 tuần vào Thứ hai, Thứ ba, Thứ tư</TextReview>
             </ReviewContainer>
-              {/*CHI TIẾT */}
+
+              {/*THỜI GIAN*/}
             <DetailContainer>
                   <DetailText>Thời gian</DetailText>
                   <DetailImage resizeMode="contain" source={require('../../assets/detail.png')}/> 
                   <StartContainer>
                       <TextStart>Bắt đầu</TextStart>
-                      <InputTime placeholder="10:00 AM"></InputTime>
+                       <TextTime>{`${getAMPM(time.getHours())}`}</TextTime>
                   </StartContainer>
+
+                  {showTimepicker && (
+                      <DateTimePicker
+                        style={{right: 40, zIndex: 1, top: 30, width: 65, height: 90 }}
+                        value={time}
+                        mode="time"
+                        is24Hour={false} // Set is24Hour thành false để hiển thị AM/PM
+                        display="default"
+                        show={true}
+                        onChange={onChangeTime}
+                      />
+                    )}
                   <DateContainer>
                       <TextDate>Ngày</TextDate>
-                      <InputDate placeholder="02/10/2023"></InputDate>
+                      <InputDate
+                      placeholder="02/10/2023"
+                      placeholderTextColor="#D3DBD3"
+                      value={formatDate(selectedDate)} // Gán giá trị ngày được chọn vào InputDate
+                      // onChangeText={(text) => setSelectedDate(text)} //Có thể nhập ngày thủ công 
+                    ></InputDate>
                   </DateContainer>
             </DetailContainer>
-            {/*LẶP LẠI */}
+
+            {/*TẦN SUÂT*/}
             <FrequencyContainer>
               <FrequencyText>Tần suất</FrequencyText>
               <FrequencyImage resizeMode="contain" source={require('../../assets/tansuat.png')}/> 
               <EachContainer>
-                      <TextEach>Mỗi</TextEach>
-                      <InputEach placeholder="2"></InputEach>
-              </EachContainer>
-              <DayContainer>
-                <TextDay>Việc</TextDay>
-                <InputDay placeholder="Bón phân"></InputDay>
-              </DayContainer>
-            </FrequencyContainer>
+                    <TextEach>Mỗi</TextEach>
+                    {/* Dropdown list dãy số từ 1-20 */}
+                        <View style={numbersStyles.container}>
+                            <Dropdown
+                                  style={[numbersStyles.dropdown]}
+                                  selectedTextStyle={numbersStyles.selectedTextStyle}
+                                  data={data}
+                                  maxHeight={100}
+                                  labelField="label"
+                                  valueField="value"
+                                  placeholder={!isFocusNumber ? '1' : '...'}
+                                  value={selectedNumber} 
+                                  onChange={item => {
+                                  setSelectedNumber(item.value); // Cập nhật giá trị đã chọn cho dropdown dãy số
+                                  }}
+                           />
+                        </View>
+                       {/* Dropdown list chứa "Ngày", "Tuần", "Tháng" */}
+                        <View style={frequencyStyles.container}>
+                            <Dropdown
+                                   style={[frequencyStyles.dropdown]}
+                                   selectedTextStyle={frequencyStyles.selectedTextStyle}
+                                   data={frequencyData}
+                                   maxHeight={100}
+                                   labelField="label"
+                                   valueField="value"
+                                   placeholder={!isFocusFrequency ? 'Chọn' : '...'}
+                                   value={selectedFrequency} 
+                                   onChange={item => {
+                                  setSelectedFrequency(item.value); // Cập nhật giá trị đã chọn cho dropdown "Ngày", "Tuần", "Tháng"
+                                   }}
+                              />
+                        </View>
+                </EachContainer>
+                <WorkContainer>
+                  <TextDay>Việc</TextDay>
+                        <View style={workStyles.container}>
+                            {/* Dropdown list chứa việc cần làm */}
+                           <Dropdown
+                                    style={[workStyles.dropdown]}
+                                    selectedTextStyle={workStyles.selectedTextStyle}
+                                    data={workData}
+                                    maxHeight={100}
+                                    labelField="label"
+                                    valueField="value"
+                                    placeholder={!isFocusWork ? 'Chọn' : '...'}
+                                    value={selectedWork} 
+                                    onChange={item => {
+                                    setSelectedWork(item.value); // Cập nhật giá trị đã chọn cho dropdown 
+                                    }}
+                            />
+                        </View>
+                </WorkContainer>
+              </FrequencyContainer>
+              <ButtonCreateReminder onPress={handleBack}>
+                    <ButtonCreate> Tạo nhắc nhở</ButtonCreate>
+              </ButtonCreateReminder>
           </View>
         </TouchableOpacity>
-        </KeyboardAwareScrollView>
+         </KeyboardAwareScrollView>
       </Modal>
-    </SafeAreaView>
+</SafeAreaView>
   );
 };
 
 export default Schedule;
+
+
