@@ -39,6 +39,7 @@ const DashBoard = () => {
     percent: 1,
   };
 
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "white"}}>
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
@@ -59,7 +60,24 @@ const DashBoard = () => {
             <NowBoardText>Dĩ An, Bình Dương</NowBoardText>
           </NowBoard>
         </NowBoardContainer>
-        
+        <GardenInfo>
+          <ImageContainer>
+            <GardenImage  
+              style={{borderRadius: 8, borderWidth: 0.5, borderColor: 'green'}}
+              resizeMode="contain" 
+              source={imgSource}/>
+          </ImageContainer>
+          <ButtonsContainer>
+            <EditContainer>
+              <EditButton  resizeMode="cover" source={require("../../assets/edit.png")}/>
+            </EditContainer>
+            <SwitchContainer>
+              <SwitchButton  resizeMode="cover" source={require("../../assets/lighton.png")}/>
+            </SwitchContainer>
+          </ButtonsContainer>
+        </GardenInfo>
+        <Line/>
+        <MainTitle>Dashboard</MainTitle>
         <DashBoardContainer>
           <IconContainer resizeMode="cover" source={require("../../../assets/temper.png")}/>
           <TextContainer>
