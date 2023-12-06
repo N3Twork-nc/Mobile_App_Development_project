@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
+import { View, Text, TouchableOpacity,Image, Modal,  StyleSheet} from 'react-native';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
@@ -8,6 +8,7 @@ import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
+import LottieView from 'lottie-react-native';
 
 const CameraScreen = () => {
   const token = useSelector(state=>state.token)['payload']
@@ -18,6 +19,7 @@ const CameraScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false); 
   const cameraRef = useRef(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const handleHome = () => {
     navigation.navigate('Home', { animations: false });
   };
@@ -55,9 +57,6 @@ const CameraScreen = () => {
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-
-
-
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }
@@ -88,10 +87,12 @@ const [info, setInfoData] = useState([]);
 useEffect(() => {}, []);
 
 const Predicted = async () => {
+  setIsLoading(true);
   try {
     const predictedInfo = await predictPlant(capturedPhoto, token);
     setInfoData(predictedInfo);
     navigation.replace('Afterscan', { info: predictedInfo, photoURI: capturedPhoto ? capturedPhoto.uri : null});
+    setIsLoading(false);
   } catch (error) {
     console.log(error);
   }
@@ -156,7 +157,16 @@ const Predicted = async () => {
             style={{ width: '100%', height: '100%' }}
             source={{ uri: capturedPhoto ? capturedPhoto.uri : null }}
           />
-
+          {isLoading ? (
+            <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+              <LottieView
+                resizeMode="contain"
+                source={require('../../assets/Animation-loading1.json')}
+                autoPlay
+                style={{ width: 100, height: 100 }}
+              />
+            </View>
+          ) : (
           <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
          
           {/* Xử lý Chụp lại */}
@@ -172,10 +182,17 @@ const Predicted = async () => {
            <Text3 onPress={Predicted}>Nhận diện</Text3>           
           </TouchableOpacity>
         </View>
+        )}
         </View>
       </Modal>
     </StyleContainer>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+  }
+})
 export default CameraScreen;

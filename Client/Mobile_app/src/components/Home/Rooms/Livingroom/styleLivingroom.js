@@ -76,16 +76,7 @@ export const Plant1Container = styled.View`
   align-items: center;
 `;
 
-export const Plant2Container = styled.View`
-  height: 250px;
-  width: 48%;
-  border-radius: 13px;
-  background-color: ${white_gray};
-  border: 0.3px solid ${green};
-  align-self: flex-start;
-  justify-content: center; 
-  align-items: center;
-`;
+
 
 export const ImageFrame = styled.Image`
   width: 70%;

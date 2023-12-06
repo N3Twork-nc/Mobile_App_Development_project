@@ -7,7 +7,6 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView, ScrollView } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import MQTT from '../../../mqtt'
 
 
 const DashBoard = () => {
@@ -21,27 +20,24 @@ const DashBoard = () => {
 // hàm lấy thời gian, vị trí
   const [currentTime, setCurrentTime] = useState("");
   const [currentLocation, setCurrentLocation] = useState(null); 
-  const [data, setData]=useState({
-    title: "Example Title",
-    subtitle: "Example Subtitle",
-    value: 100,
-    temperature:0,
-    humidity:0,
-    light:0,
-    moisture:0,
-    percent: 1
-  });
   useEffect(() => {
-    setData(data)
-    const mqtt=new MQTT(setData,data,"plantaholic","Plantaholic123")
     const interval = setInterval(() => {
     const currentTime = new Date().toLocaleTimeString();
     setCurrentTime(currentTime);
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+    }, []);
 
-// thông số hiển thi
+// thông số hiển thị
+  const itemDashboard = {
+    title: "Example Title",
+    subtitle: "Example Subtitle",
+    value: 100,
+    temperature: 30,
+    humidity: 75,
+    light: 40,
+    percent: 1,
+  };
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "white"}}>
@@ -73,14 +69,15 @@ const DashBoard = () => {
           <CircularProgressContainer>
             <AnimatedCircularProgress
                 size={90} width={8}
-                fill={data.temperature}
+                fill={itemDashboard.temperature}
                 backgroundColor="#FFE3BB"             
                 tintColor="#F05941"
                 rotation={360}
                 lineCap="round" >
                     {() => (
                       <CircularProgressContainer>
-                        <ItemText>{data.temperature}°C</ItemText>
+                        <ItemText>
+                        {itemDashboard.temperature}°C</ItemText>
                       </CircularProgressContainer>
                     )}
             </AnimatedCircularProgress>                
@@ -96,7 +93,7 @@ const DashBoard = () => {
           <CircularProgressContainer>
             <AnimatedCircularProgress
                 size={90} width={8}
-                fill={data.humidity}
+                fill={itemDashboard.humidity}
                 backgroundColor="#E0F4FF"             
                 tintColor="#39A7FF"
                 rotation={360}
@@ -104,7 +101,7 @@ const DashBoard = () => {
                     {() => (
                       <CircularProgressContainer>
                         <ItemText>
-                        {data.humidity}%</ItemText>
+                        {itemDashboard.humidity}%</ItemText>
                       </CircularProgressContainer>
                     )}
             </AnimatedCircularProgress>                
@@ -119,7 +116,7 @@ const DashBoard = () => {
           <CircularProgressContainer>
             <AnimatedCircularProgress
                 size={90} width={8}
-                fill={data.light}
+                fill={itemDashboard.light}
                 backgroundColor="#F5EEC8"             
                 tintColor="#F4CE14"
                 rotation={360}
@@ -127,7 +124,7 @@ const DashBoard = () => {
                     {() => (
                       <CircularProgressContainer>
                         <ItemText>
-                        {data.light}%</ItemText>
+                        {itemDashboard.light}%</ItemText>
                       </CircularProgressContainer>
                     )}
             </AnimatedCircularProgress>                
@@ -143,7 +140,7 @@ const DashBoard = () => {
           <CircularProgressContainer>
             <AnimatedCircularProgress
                 size={90} width={8}
-                fill={data.moisture}
+                fill={itemDashboard.humidity}
                 backgroundColor="#F8DFD4"             
                 tintColor="#C69774"
                 rotation={360}
@@ -151,7 +148,7 @@ const DashBoard = () => {
                     {() => (
                       <CircularProgressContainer>
                         <ItemText>
-                        {data.moisture}%</ItemText>
+                        {itemDashboard.humidity}%</ItemText>
                       </CircularProgressContainer>
                     )}
             </AnimatedCircularProgress>                
