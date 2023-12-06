@@ -8,6 +8,11 @@ import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView, ScrollView, Image } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import * as ImagePicker from 'expo-image-picker';
+import { Modal, View,Text, TextInput, TouchableOpacity } from "react-native";
+import logo from '../../assets/logo.png';
+
+
+const logoApp = logo;
 
 const DashBoard = () => {
  
@@ -37,6 +42,7 @@ const DashBoard = () => {
     percent: 1,
   };
   const placeholder = require('../../assets/placeholder.png');
+
   // Hình ảnh của vườn
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [isEditingAvatar, setIsEditingAvatar] = useState(false);
@@ -66,6 +72,53 @@ const DashBoard = () => {
     imgSource = placeholder;
   }
 
+  //edit thông tin vườn
+  const [isEditVisible, setEditVisible] = useState(false);
+  const EditGarden = ({ isVisible, message, onSave, onCancel }) => {
+    return (
+      <Modal isVisible={isVisible}>
+        <View style={{ backgroundColor: 'white', padding: 12, borderRadius: 15}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' ,marginBottom: 10, height: 50, }}>
+            <Image source={logoApp} style={{ width: 32, height: 32, marginBottom: 5, marginRight: 5 }} />
+            <Text style={{ fontSize: 17, fontWeight: '600', }}>{message}</Text>
+            <Image source={logoApp} style={{ width: 32, height: 32, marginBottom: 5,  marginLeft:5  }} />
+          </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
+            <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Tên vườn:</Text>
+            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+          </View>
+          <Image source={logoApp} style={{ width: 100, height: 50, marginBottom: 5,  marginLeft:5  }}/>
+          <View style={{ padding: 10, zIndex: 1}}>              
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
+            <TouchableOpacity onPress={onCancel} style={{ marginRight: 25 }}>
+              <Text style={{ color: 'green', fontSize: 17 }}>Hủy</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onSave}>
+              <Text style={{ color: 'green', fontSize: 17 }}>Lưu</Text>
+            </TouchableOpacity>
+          </View>
+        </View>        
+      </View>
+      </Modal>
+    )
+  };
+  const handleEdit = () =>
+  {
+    setEditVisible(true);
+  };
+  const handleSaveEdit = () =>
+  {
+    // xử lý việc lưu thông tin mới của vườn
+
+    setEditVisible(false);
+  };
+  const handleCancelEdit = () =>
+  {
+    setEditVisible(false);
+  }
+ 
+  
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "white"}}>
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
@@ -87,16 +140,23 @@ const DashBoard = () => {
           </NowBoardLocate>
         </NowBoardContainer>
         <GardenInfo>
-          <ImageContainer onPress={handleChooseFromLibrary}>
+          <ImageContainer>
             <GardenImage  
               style={{borderRadius: 8, borderWidth: 0.5, borderColor: 'green'}}
               resizeMode="contain" 
               source={imgSource}/>
           </ImageContainer>
           <ButtonsContainer>
-            <EditContainer>
+            <EditContainer>              
               <EditButton source={require("../../assets/edit.png")} tintColor='#164303'/>
+              <EditGarden
+                isVisible={isEditVisible}
+                message="Chỉnh sửa"
+                onCancel={handleCancelEdit}
+                onSave={handleSaveEdit}
+              />
             </EditContainer>
+           
             <SwitchContainer>
               <SwitchButton source={require("../../assets/lighton.png")} tintColor='#164303'/>
             </SwitchContainer>
