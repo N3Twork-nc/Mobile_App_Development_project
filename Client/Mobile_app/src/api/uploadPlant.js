@@ -1,19 +1,64 @@
 import axios from "axios";
 import { IPServer } from ".";
 
-export const plant = async (username, roomName, plantName) => {
+const createFormData = (uriPhoto) => {
+  const formData = new FormData();
+  formData.append('file', {
+    uri: uriPhoto,
+    name: 'myroom.jpg',
+    type: 'image/jpeg'
+  }); 
+  return formData;
+}
+
+export const plant = async (photo, roomName, plantName, token) => {
   try {
-    const timeUpload = new Date().toISOString();
-    const data = {
-        "username": `${username}`,
-        "roomName": `${roomName}`,
-        "plantName": `${plantName}`,
-        "timeUpload": `${timeUpload}`
-    };
-    console.log(username, roomName, plantName, timeUpload)
-    const response = await axios.put(IPServer + 'APIuploadMyPlant', data);
-    console.log(response.data);
-    return response.data;
+    const data = createFormData(photo);
+
+    const encodedRoomName = encodeURIComponent(roomName);
+    const encodedPlantName = encodeURIComponent(plantName);
+
+    const response = await axios.put(IPServer + `APIuploadMyPlant?roomName=${encodedRoomName}&plantName=${encodedPlantName}`, data, {
+      headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization:`Bearer ${token}`,}
+    },)
+
+    console.log("Add successful!");
+
+    if (response.data.id!=null) return "Successfull"
+    return "Failure"
+    
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export const myPlant = async (token) => {
+  try {
+    const response = await axios.get(IPServer + "APIMyPlant", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    const getPlants = response.data;
+
+    const saving = [];
+
+    getPlants.forEach(plant => {
+      const plantimage = plant.id;
+      const plantname = plant.plantName;
+      const roomname = plant.roomName;
+      const time = plant.timeUpload;
+
+      saving.push({ plantimage, plantname, roomname, time });
+    });
+
+    console.log("Get plants success");
+
+    return saving;
   } catch (error) {
     console.log(error);
     return error;

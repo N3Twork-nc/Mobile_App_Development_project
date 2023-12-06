@@ -12,9 +12,9 @@ export const data = async () => {
       const title = newsData.title;
       const introduction = newsData.introduction;
       const content = newsData.content;
-      const thumbnaillink=newsData.thumbnaillink
+      const thumbnaillink = newsData.thumbnaillink;
 
-      results.push({ title, introduction, content,thumbnaillink});
+      results.push({ title, introduction, content, thumbnaillink });
     });
 
     console.log("Get data success");
