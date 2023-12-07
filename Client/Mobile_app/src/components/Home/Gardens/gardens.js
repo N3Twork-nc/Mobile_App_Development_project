@@ -7,7 +7,7 @@ import { StyledContainer, HeaderContainer, ButtonAdd,
 Icon,  } from './styleGarden'
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, ScrollView  } from 'react-native';
-import Modal from 'react-native-modal';
+import Modal, { ReactNativeModal } from 'react-native-modal';
 import logo from '../../../assets/logo.png';
 
 

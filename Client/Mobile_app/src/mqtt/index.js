@@ -1,4 +1,5 @@
 import init from 'react_native_mqtt'
+import {BROKER,BROKER_USERNAME,BROKER_PASSWORD,BROKER_PORT} from '@env';
 
  const myStorage = {
   setItem: (key, item) => {
@@ -6,7 +7,7 @@ import init from 'react_native_mqtt'
   },
   getItem: (key) => myStorage[key],
   removeItem: (key) => {
-    delete myStorage[key];
+    delete myStorage[key];r
   },
 };
 init({
@@ -24,14 +25,14 @@ export default class MQTT{
     this.data=data
     this.onMessageArrived = this.onMessageArrived.bind(this)
     this.onConnectionLost = this.onConnectionLost.bind(this)
-    const client = new Paho.MQTT.Client('f2df0b83710d41b4ad161efe5d58b708.s1.eu.hivemq.cloud', 8884, String(Math.random()));
+    const client = new Paho.MQTT.Client(BROKER,Number(BROKER_PORT), userName+String(Math.random()));
     client.onMessageArrived = this.onMessageArrived;
     client.onConnectionLost = this.onConnectionLost;
     client.connect({ 
       onSuccess: this.onConnect,
-      useSSL: true ,
-      userName: userName,
-      password: password,
+      useSSL: true,
+      userName:BROKER_USERNAME,
+      password:BROKER_PASSWORD,
       reconnect:true,
       onFailure: (e) => {console.log("here is the error" , e); }
     });
@@ -64,7 +65,7 @@ export default class MQTT{
 
 
   onConnect = () => {
-    console.log("Connected!!!!");
+    console.log("Connected MQTT BROKER!!!!");
     this.client.subscribe('garden/temperature');
     this.client.subscribe('garden/humidity')
     this.client.subscribe('garden/light')

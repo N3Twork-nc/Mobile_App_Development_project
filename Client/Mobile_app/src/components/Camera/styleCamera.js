@@ -139,3 +139,21 @@ export const HeaderContainer2 = styled.View`
   height: ${vh(18)}px;
   top: ${vh(4)}px;
 `;
+
+export const ActionContainer = styled.View`
+    background-color: #CEF1CF;
+    width: ${vw(100)}px;
+    height: ${vh(18)}px;
+    flex-direction: row;
+`;
+export const Action1Container = styled.TouchableOpacity`
+  width: ${vw(50)}px;
+  align-items: flex-start;
+  top:  ${vh(2)}px;
+`;
+export const Action2Container = styled.TouchableOpacity`
+  width: ${vw(50)}px;
+  align-items: flex-end;
+  right:  ${vw(9)}px;
+  top:  ${vh(2)}px;
+`;

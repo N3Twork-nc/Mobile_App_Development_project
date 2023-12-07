@@ -101,21 +101,19 @@ export const Text2 = styled.Text`
 `;
 
 export const TagContainer = styled.View`
-  right: ${vw(15)}px;
   margin-top: ${vh(1)}px;
   flex-direction: row;
-  justify-content: space-between;
   height: ${vh(4)}px;
   align-items: left;
   overflow: visible;
-  padding-horizontal: 80px;
 `;
 export const Tag1 = styled.Text`
+  align-items: flex-start;
+  margin-left: ${vw(4)}px;
   fontSize: ${vh(1.5)}px;
   color: ${black};
   background-color: #F0F3F6;
   padding: 5px;
-
 `;
 
 export const Text3 = styled.Text`
