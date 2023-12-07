@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, SafeAreaView,} from 'react-native';
 import { 
   StyledContainer, 
@@ -11,10 +11,46 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
+import { myPlant } from '../../api/uploadPlant.js';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const navigation = useNavigation();
-  const handleLivingroom = () => {navigation.navigate('Livingroom');};
+  const token = useSelector(state=>state.token)['payload'];
+  const [plantsData, setplantsData] = useState([]);
+
+  useEffect(() => { savedPlants(); }, []);
+
+  const savedPlants = async () => {
+    try {
+      const plantsData = await myPlant(token);
+      setplantsData(plantsData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const livingRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng khách');
+  const bedRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng ngủ');
+  const kitchenPlants = plantsData.filter((plant) => plant.roomname == 'Nhà bếp');
+  const backYardPlants = plantsData.filter((plant) => plant.roomname == 'Vườn');
+
+  const handleLivingroom = () => {
+    navigation.navigate('Livingroom', { plantsInRoom: livingRoomPlants });
+  };
+
+  const handleBedroom = () => {
+    navigation.navigate('Bedroom', { plantsInRoom: bedRoomPlants });
+  };
+
+  const handleKitchen = () => {
+    navigation.navigate('Kitchen', { plantsInRoom: kitchenPlants });
+  };
+
+  const handleBackyard = () => {
+    navigation.navigate('Backyard', { plantsInRoom: backYardPlants });
+  };
+
   const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
   const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
   const handleSaved = () => {navigation.navigate('Saved', { animations: false });};
@@ -69,49 +105,49 @@ const Home = () => {
             <RoomsContainer>
               <FirstRooms>
 
-                <LeftRoomContainer  onPress = {handleLivingroom} >
+                <LeftRoomContainer onPress = {handleLivingroom} >
 
                   <RoomContainer >
                     <LivingroomContainer >
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
                     <CategoryDetailText >
-                      <TotalPlant>5 plants</TotalPlant>
+                      <TotalPlant>{livingRoomPlants.length} plants</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
                   </RoomContainer>                    
                 </LeftRoomContainer>
-                <RightRoomContainer>
+                <RightRoomContainer onPress = {handleKitchen}>
                   <RoomContainer>
                     <KitchenContainer>
                       <Icon resizeMode="contain" source={require('../../assets/kitchen.png')}/>
                     </KitchenContainer> 
                     <CategoryDetailText>
-                      <TotalPlant>5 plants</TotalPlant>
+                      <TotalPlant>{kitchenPlants.length} plants</TotalPlant>
                       <RoomName>Nhà bếp</RoomName> 
                     </CategoryDetailText> 
                   </RoomContainer>          
                 </RightRoomContainer>
               </FirstRooms>
               <FirstRooms>
-                <LeftRoomContainer>
+                <LeftRoomContainer onPress = {handleBedroom}>
                   <RoomContainer>                   
                     <BedroomContainer>
                       <Icon resizeMode="contain" source={require('../../assets/bedroom.png')}/>
                     </BedroomContainer>
                     <CategoryDetailText>
-                      <TotalPlant>5 plants</TotalPlant>                      
+                      <TotalPlant>{bedRoomPlants.length} plants</TotalPlant>                      
                       <RoomName>Phòng ngủ</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>
                 </LeftRoomContainer>
-                <RightRoomContainer>
+                <RightRoomContainer onPress = {handleBackyard}>
                   <RoomContainer>
                     <BackyardContainer>
                       <Icon resizeMode="contain" source={require('../../assets/backyard.png')}/>
                     </BackyardContainer>
                     <CategoryDetailText>
-                      <TotalPlant>5 plants</TotalPlant>
+                      <TotalPlant>{backYardPlants.length} plants</TotalPlant>
                       <RoomName>Sân vườn</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>          

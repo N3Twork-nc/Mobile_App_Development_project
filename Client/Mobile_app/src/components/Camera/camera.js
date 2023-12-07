@@ -91,7 +91,7 @@ const Predicted = async () => {
   try {
     const predictedInfo = await predictPlant(capturedPhoto, token);
     setInfoData(predictedInfo);
-    navigation.replace('Afterscan', { info: predictedInfo });
+    navigation.replace('Afterscan', { info: predictedInfo, photoURI: capturedPhoto ? capturedPhoto.uri : null});
     setIsLoading(false);
   } catch (error) {
     console.log(error);

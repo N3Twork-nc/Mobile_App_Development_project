@@ -5,7 +5,7 @@ import {
   NowBoard,  NowBoardText, IconContainer, NowBoardTime, NowBoardLocate, ImageContainer, GardenImage, GardenInfo, ButtonsContainer, EditContainer, EditButton, SwitchContainer, SwitchButton, Line, IDContainer, IDText, IDTilte, EyeIcon,
 } from "./styleDashboard";
 import { useNavigation } from "@react-navigation/native";
-import { SafeAreaView, ScrollView, Image } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import * as ImagePicker from 'expo-image-picker';
 import { View,Text, TextInput, TouchableOpacity } from "react-native";
@@ -73,6 +73,8 @@ const DashBoard = () => {
 
 // thông số hiển thị
   const itemDashboard = {
+    title: "Example Title",
+    subtitle: "Example Subtitle",
     value: 100,
     temperature: 30,
     humidity: 75,
@@ -151,19 +153,19 @@ const DashBoard = () => {
       <HeaderContainer>
         <TitleContainer>
           <BackContainer onPress={handleBack}>
-            <ButtonBack source={require("../../assets/back.png")} />
+            <ButtonBack source={require("../../../assets/back.png")} />
           </BackContainer>
           <MainTitle>{gardenName}</MainTitle>
         </TitleContainer>
       </HeaderContainer>
       <StyledContainer>
         <NowBoardContainer>
-          <NowBoardTime>
+          <NowBoard>
             <NowBoardText>{currentTime}</NowBoardText>
-          </NowBoardTime>
-          <NowBoardLocate>
+          </NowBoard>
+          <NowBoard>
             <NowBoardText>Dĩ An, Bình Dương</NowBoardText>
-          </NowBoardLocate>
+          </NowBoard>
         </NowBoardContainer>
         <GardenInfo>
           <ImageContainer onPress={handleChooseFromLibrary}>
@@ -213,7 +215,7 @@ const DashBoard = () => {
 
         <MainTitle>Dashboard</MainTitle>
         <DashBoardContainer>
-          <IconContainer resizeMode="cover" source={require("../../assets/temper.png")}/>
+          <IconContainer resizeMode="cover" source={require("../../../assets/temper.png")}/>
           <TextContainer>
             <MainText>Nhiệt độ</MainText>
             <SubText>Nhiệt độ bên ngoài hôm nay</SubText>
@@ -236,7 +238,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer source={require("../../assets/humidity1.png")}/>
+          <IconContainer source={require("../../../assets/humidity1.png")}/>
 
           <TextContainer>
             <MainText>Độ ẩm không khí</MainText>
@@ -260,7 +262,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer source={require("../../assets/sun.png")}/>
+          <IconContainer source={require("../../../assets/sun.png")}/>
           <TextContainer>
             <MainText>Ánh sáng</MainText>
             <SubText>Cường độ ánh sáng lúc này</SubText>
@@ -283,7 +285,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer resizeMode={"contain"} source={require("../../assets/soil.png")}/>
+          <IconContainer resizeMode={"contain"} source={require("../../../assets/soil.png")}/>
 
           <TextContainer>
             <MainText>Độ ẩm đất</MainText>

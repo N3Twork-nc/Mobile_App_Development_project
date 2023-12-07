@@ -12,13 +12,15 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
+import { plant } from '../../api/uploadPlant.js';
+import { useSelector } from 'react-redux';
 import { AlertProProps } from 'react-native-alert-pro';
 const logoApp = logo;
  
 const Afterscan = () => {
-
+  const token = useSelector(state=>state.token)['payload'];
   const route = useRoute();
-  const { info } = route.params;
+  const { info, photoURI } = route.params;
   const keywords = info[0].keyword.split(', ');
 
    
@@ -34,10 +36,20 @@ const Afterscan = () => {
     setAlertVisible(false);
   };
     
-  const handleSavedtoRooms = () => {
-  // Chọn phòng để lưu
-    setAlertVisible(false);
+  const [selectedRoom, setSelectedRoom] = useState('');
+
+  const handleSavedtoRooms = async (roomName) => {
+    try {
+      setAlertVisible(false);
+
+      const response = await plant(photoURI, roomName, info[0].plantName, token);
+      if (response=="Successfull") Alert.alert("Thêm cây thành công");
+      else Alert.alert("Thêm cây thất bại")
+    } catch (error) {
+      Alert.alert("Thêm cây thất bại")
+    }
   };
+
   const handleSavedtoStorage = () => {
     // Lưu vào mục Đã lưu
     setAlertVisible(false);
@@ -198,6 +210,7 @@ const Afterscan = () => {
                       onSaved={handleSavedtoStorage}
                       onRoom={handleSavedtoRooms}
                       onClose={handleCloseAlert}
+                      setSelectedRoom={setSelectedRoom}
                 />                         
           </SaveContainer>
         </SaveButton>
@@ -209,11 +222,16 @@ const Afterscan = () => {
 export default Afterscan; 
 
 // Alert options khi nhấn LƯU
-const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose}) => {
+const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelectedRoom}) => {
   const [isRoomAlertVisible, setRoomAlertVisible] = useState(false);
+
+  const handleRoomAlert = () => {
+    setRoomAlertVisible(true);
+  };
 
   const handleRoomSelection = (room) => {
     setRoomAlertVisible(false);
+    setSelectedRoom(room); // Lưu selectedRoom khi chọn phòng
     onRoom(room);
   };
 
