@@ -2,17 +2,55 @@ import React, { useEffect, useState } from "react";
 import {
   StyledContainer,  HeaderContainer,  TitleContainer,  MainTitle,  BackContainer,  ButtonBack,  DashBoardContainer,  CircularProgressContainer,
   TextContainer,  MainText,  SubText,  ItemText,  MoreContainer,  NowBoardContainer,
-  NowBoard,  NowBoardText, IconContainer, NowBoardTime, NowBoardLocate, ImageContainer, GardenImage, GardenInfo, ButtonsContainer, EditContainer, EditButton, SwitchContainer, SwitchButton, Line,
+  NowBoard,  NowBoardText, IconContainer, NowBoardTime, NowBoardLocate, ImageContainer, GardenImage, GardenInfo, ButtonsContainer, EditContainer, EditButton, SwitchContainer, SwitchButton, Line, IDContainer, IDText, IDTilte, EyeIcon,
 } from "./styleDashboard";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView, ScrollView, Image } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import * as ImagePicker from 'expo-image-picker';
-import { Modal, View,Text, TextInput, TouchableOpacity } from "react-native";
+import { View,Text, TextInput, TouchableOpacity } from "react-native";
 import logo from '../../assets/logo.png';
-
-
+import Modal from 'react-native-modal';
 const logoApp = logo;
+
+const EditGardenAlert = ({ isVisible, gardenName, onSave, onCancel}) => {
+  const [editedName, setEditedName] = useState(gardenName);
+
+  const handleSaveGarden = () => {
+    onSave(editedName);
+  };
+
+  return (
+    <Modal isVisible={isVisible}>
+      <View style={{ backgroundColor: "white", padding: 12, borderRadius: 15,  }}>
+       {/* title */}
+        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", marginBottom: 10, height: 50 }}>
+          <Image source={logoApp} style={{ width: 32, height: 32, marginBottom: 5, marginRight: 5 }} />
+          <Text style={{ fontSize: 17, fontWeight: "600" }}>Chỉnh sửa vườn</Text>
+          <Image source={logoApp} style={{ width: 32, height: 32, marginBottom: 5, marginLeft: 5 }} />
+        </View>
+        
+        {/* thông tin cần chỉnh sửa */}
+        <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 15 }}>
+          <Text style={{ fontSize: 16, flex: 1, fontWeight: "500", marginLeft: 10 }}>Tên vườn:</Text>
+          <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: "gray", borderRadius: 5, paddingHorizontal: 10, height: 30 }} value={editedName} onChangeText={setEditedName} />
+        </View>
+
+        {/* Nút bấm */}
+        <View style={{ padding: 10, zIndex: 1 }}>
+          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+            <TouchableOpacity onPress={onCancel} style={{ marginRight: 25 }}>
+              <Text style={{ color: "green", fontSize: 17 }}>Hủy</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleSaveGarden}>
+              <Text style={{ color: "green", fontSize: 17 }}>Lưu</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  )
+}
 
 const DashBoard = () => {
  
@@ -41,11 +79,18 @@ const DashBoard = () => {
     light: 40,
     percent: 1,
   };
-  const placeholder = require('../../assets/placeholder.png');
+  
+  const placeholder = require('../../assets/plant1.jpg');
 
   // Hình ảnh của vườn
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [isEditingAvatar, setIsEditingAvatar] = useState(false);
+  let imgSource;
+  if (isEditingAvatar) {
+    imgSource = capturedPhoto ? { uri: capturedPhoto.uri } : null;
+  } else {
+    imgSource = placeholder;
+  }
   const handleChooseFromLibrary = async () => {
     setIsEditingAvatar(true);
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -65,13 +110,40 @@ const DashBoard = () => {
     }
   };
   
-  let imgSource;
-  if (isEditingAvatar) {
-    imgSource = capturedPhoto ? { uri: capturedPhoto.uri } : null;
-  } else {
-    imgSource = placeholder;
+
+
+  // Chỉnh sửa vườn
+  const [gardenName, setGardenName] = useState(""); 
+  const [isEditGardenVisible, setIsEditGardenVisible] = useState(false);
+
+    const handleEditGarden = () => {
+    setIsEditGardenVisible(true);
+  };
+  const handleSaveGarden = (editedName) => {
+    // xử lý đổi tên vườn tại đây
+    setGardenName(editedName);
+    setIsEditGardenVisible(false);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditGardenVisible(false);
+  };
+
+  // bật tắt đèn
+  const [turnOnLight, setTurnOnLight] = useState(false);
+
+  const toggleLightOn = () => {
+    setTurnOnLight(!turnOnLight);
   }
-  
+
+  // hiển thị ID vườn
+  const [showID, setShowID] = useState(false);
+  const id = "20231205010626";
+  const hiddenID = "*".repeat(id.length);
+  const toggleShowID = () => {
+    setShowID(!showID);
+  }
+
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "white"}}>
@@ -81,7 +153,7 @@ const DashBoard = () => {
           <BackContainer onPress={handleBack}>
             <ButtonBack source={require("../../assets/back.png")} />
           </BackContainer>
-          <MainTitle>Vườn 1</MainTitle>
+          <MainTitle>{gardenName}</MainTitle>
         </TitleContainer>
       </HeaderContainer>
       <StyledContainer>
@@ -94,22 +166,51 @@ const DashBoard = () => {
           </NowBoardLocate>
         </NowBoardContainer>
         <GardenInfo>
-          <ImageContainer>
+          <ImageContainer onPress={handleChooseFromLibrary}>
             <GardenImage  
               style={{borderRadius: 8, borderWidth: 0.5, borderColor: 'green'}}
               resizeMode="contain" 
               source={imgSource}/>
           </ImageContainer>
           <ButtonsContainer>
-            <EditContainer>
+            <EditContainer onPress={handleEditGarden}>
               <EditButton  resizeMode="cover" source={require("../../assets/edit.png")}/>
+              <EditGardenAlert
+                isVisible={isEditGardenVisible}
+                gardenName={gardenName}
+                onSave={handleSaveGarden}
+                onCancel={handleCancelEdit}
+              />   
             </EditContainer>
-            <SwitchContainer>
-              <SwitchButton  resizeMode="cover" source={require("../../assets/lighton.png")}/>
-            </SwitchContainer>
-          </ButtonsContainer>
+            <SwitchContainer onPress={toggleLightOn}>
+              <SwitchButton 
+                source={
+                    turnOnLight
+                      ? require('../../assets/lighton.png')
+                      : require('../../assets/lightoff.png')
+                  }
+              />
+            </SwitchContainer>             
+          </ButtonsContainer>                   
         </GardenInfo>
+
+        <IDContainer>
+          <IDTilte>ID vườn:  </IDTilte>
+          <IDText>{showID ? id : hiddenID}</IDText>
+          <TouchableOpacity onPress={toggleShowID}>
+            <EyeIcon 
+              source={
+                      showID
+                        ? require('../../assets/open-eye.png')
+                        : require('../../assets/close-eye.png')
+                    }
+            />
+          </TouchableOpacity>
+          
+        </IDContainer> 
+
         <Line/>
+
         <MainTitle>Dashboard</MainTitle>
         <DashBoardContainer>
           <IconContainer resizeMode="cover" source={require("../../assets/temper.png")}/>

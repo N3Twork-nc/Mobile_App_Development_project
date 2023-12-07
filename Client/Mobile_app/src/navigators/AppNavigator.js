@@ -41,7 +41,7 @@ const AppNavigator = () => {
         <Stack.Screen name="PlantDetail" component={PlantDetail}  />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword}  />
         <Stack.Screen name="Dashboard" component={DashBoard} options={{animationEnabled: false}} />
-        <Stack.Screen name="Gardens" component={Gardens}  />
+        <Stack.Screen name="Gardens" component={Gardens} options={{animationEnabled: false}} />
         <Stack.Screen name="Schedule" component={Schedule}  />
       </Stack.Navigator>
     </NavigationContainer>

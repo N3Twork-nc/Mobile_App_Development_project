@@ -169,7 +169,29 @@ export const SwitchButton = styled.Image`
   width: 26px;
   height: 26px;
 `;
+// id
+export const IDContainer = styled.View`
+  margin-bottom: 10px;
+  justifyContent: flex-end;
+  flex-direction: row;
+  margin-right: 10px;
 
+`
+export const IDTilte = styled.Text`
+ font-size: 15px;
+  font-weight: bold;
+  color: ${black};
+`
+export const IDText = styled.Text`
+  font-size: 15px;
+  font-weight: 500;
+  color: ${black};
+  marginRight: 10px;
+`
+export const EyeIcon = styled.Image`
+  height: ${vh(3)}px;
+  width: ${vh(3)}px;
+`;
 
 // dashboard
 export const DashBoardContainer = styled.View`
