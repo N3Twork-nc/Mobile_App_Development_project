@@ -26,3 +26,13 @@ class MyGarden(BaseModel):
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__)
+    
+    @staticmethod
+    def insertData(path,data):
+        try:
+            ref=db.reference(f'MyGarden/{path}')
+            timestamp=datetime.now()
+            timestamp=timestamp.strftime("%Y-%m-%d-%H:%M:%S")
+            ref.update({timestamp:data})
+        except Exception as e:
+            print("Update the data of the faulty garden",str(e))
