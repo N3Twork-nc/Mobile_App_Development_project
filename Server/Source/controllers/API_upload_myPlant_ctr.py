@@ -1,5 +1,6 @@
 from Source import app
 from Source.models_mvc.myRoom_model import MyPlant
+from Source.models_mvc.myPlants_model import get_user_plants
 from fastapi import UploadFile,Depends
 from Source.security import Authentication
 from datetime import datetime
@@ -30,6 +31,11 @@ async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depe
                  "room":roomName,
                  "plantname":plantName}
 
+
+@app.get("/APIMyPlant")
+async def get_plants_data(username=Depends(Authentication().validate_token)):
+    all_my_plants = get_user_plants(username)
+    return all_my_plants
 
 @app.put("/API_schedule")
 def schedule(schedule:Schedule):

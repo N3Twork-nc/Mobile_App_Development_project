@@ -13,7 +13,7 @@ import Afterscan from './src/components/After Scan/afterscan';
 import Profile from './src/components/Profile/profile';
 import ForgotPassword from './src/components/Forgot Password/forgotpassword';
 import Welcome from './src/components/Welcome/welcome';
-import DashBoard from './src/components/Profile/Dashboard/dashboard';
+import DashBoard from './src/components/Dashboard/dashboard';
 import PlantDetail from './src/components/Plant Detail/plantDetail';
 import 'react-native-gesture-handler';
 
@@ -21,26 +21,25 @@ import 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
 
 import Schedule from './src/components/Schedule/schedule';
-
-
-// const App = () =>
-// {
-//   return <Provider store={store}>
-//     <AppNavigator/>
-//   </Provider> 
-// }
-// export default App;
-
-
-export default function App() {
-return (
-<Provider store={store}>
- <NavigationContainer>
-    <DashBoard/>
-   </NavigationContainer>
-  </Provider>
-);
+const App = () =>
+{
+  return <Provider store={store}>
+    <AppNavigator/>
+  </Provider> 
 }
+export default App;
+
+
+// export default function App() {
+// return (
+// <Provider store={store}>
+//  <NavigationContainer>
+//     <Notify/>
+//    </NavigationContainer>
+//   </Provider>
+// );
+// }
+
 
 
 

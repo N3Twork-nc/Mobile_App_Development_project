@@ -2,23 +2,18 @@ import React, {useState} from 'react'
 import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
          Plant1Container, Plant2Container, ImageFrame, PlantName, PlantContainer,
          ButtonContainer, IconButton, Icon, ButtonText, ButtonContainerWrapper,
-        } from './styleLivingroom'
+        } from './styleKitchen.js'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, SafeAreaView } from 'react-native';
 
-const Livingroom = () => {
-const navigation = useNavigation();
-const route = useRoute();
-const { plantsInRoom } = route.params;
+const Kitchen = () => {
+    const navigation = useNavigation();
+    const route = useRoute();
+    const { plantsInRoom } = route.params;
+    const handleBack = () => {
+        navigation.navigate('Home');
+    };
 
-const navigation = useNavigation();
-  const handleBack = () => {
-    navigation.navigate('Home');
-  };
-  const handleSchedule = () => {
-    navigation.navigate('Schedule');
-    
-  };
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <ScrollView style={{ flex: 1 }}>
@@ -29,7 +24,7 @@ return (
                     <BackContainer onPress={handleBack}>
                         <ButtonBack  resizeMode="cover" source={require('../../../../assets/back.png')} />
                     </BackContainer>                    
-                    <MainTitle>Phòng khách</MainTitle>
+                    <MainTitle>Nhà bếp</MainTitle>
                 </HeaderContainer>
 
                 {/* Plants */}
@@ -58,9 +53,10 @@ return (
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
                             </Plant1Container>
+
                     {plantsInRoom[index + 1] && (
                             
-                            <Plant1Container>
+                            <Plant2Container>
                                 <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant2.jpg')}/>
                                 <PlantName> {plant.plantname} </PlantName>
                                 <ButtonContainerWrapper>
@@ -79,7 +75,7 @@ return (
                                     </IconButton>
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
-                            </Plant1Container>
+                            </Plant2Container>
 
                     )}
                         </React.Fragment>
@@ -94,4 +90,4 @@ return (
 
 )
 }
-export default Livingroom;
+export default Kitchen;
