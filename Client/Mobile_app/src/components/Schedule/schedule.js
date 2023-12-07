@@ -41,11 +41,12 @@ import { Dropdown } from 'react-native-element-dropdown';
     return `${day}/${month}/${year}`;
   };
 
-    const onChangeTime = (event, selectedTime) => {
+  const onChangeTime = (event, selectedTime) => {
+    console.log("test")
     const currentTime = selectedTime || time;
     setTime(currentTime);
-    
   };
+
   const getAMPM = (hour) => {
     return hour >= 12 ? 'PM' : 'AM';
   };
@@ -172,8 +173,8 @@ import { Dropdown } from 'react-native-element-dropdown';
                         value={time}
                         mode="time"
                         is24Hour={false} // Set is24Hour thành false để hiển thị AM/PM
-                        display="default"
-                        show={true}
+                        display="compact"
+                        show={false}
                         onChange={onChangeTime}
                       />
                     )}
