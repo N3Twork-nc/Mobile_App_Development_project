@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import {
   StyledContainer,  HeaderContainer,  TitleContainer,  MainTitle,  BackContainer,  ButtonBack,  DashBoardContainer,  CircularProgressContainer,
   TextContainer,  MainText,  SubText,  ItemText,  MoreContainer,  NowBoardContainer,
-  NowBoard,  NowBoardText, IconContainer, NowBoardTime, NowBoardLocate, ImageContainer, GardenImage, GardenInfo, ButtonsContainer, EditContainer, EditButton, SwitchContainer, SwitchButton, Line, IDContainer, IDText, IDTilte, EyeIcon,
+  NowBoard,  NowBoardText, IconContainer, ImageContainer, GardenImage, GardenInfo, ButtonsContainer, EditContainer, EditButton, SwitchContainer, SwitchButton, Line, IDContainer, IDText, IDTilte, EyeIcon,
 } from "./styleDashboard";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView, ScrollView } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import * as ImagePicker from 'expo-image-picker';
-import { View,Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import logo from '../../assets/logo.png';
 import Modal from 'react-native-modal';
 const logoApp = logo;
@@ -153,7 +153,7 @@ const DashBoard = () => {
       <HeaderContainer>
         <TitleContainer>
           <BackContainer onPress={handleBack}>
-            <ButtonBack source={require("../../../assets/back.png")} />
+            <ButtonBack source={require("../../assets/back.png")} />
           </BackContainer>
           <MainTitle>{gardenName}</MainTitle>
         </TitleContainer>
@@ -215,7 +215,7 @@ const DashBoard = () => {
 
         <MainTitle>Dashboard</MainTitle>
         <DashBoardContainer>
-          <IconContainer resizeMode="cover" source={require("../../../assets/temper.png")}/>
+          <IconContainer resizeMode="cover" source={require("../../assets/temper.png")}/>
           <TextContainer>
             <MainText>Nhiệt độ</MainText>
             <SubText>Nhiệt độ bên ngoài hôm nay</SubText>
@@ -238,7 +238,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer source={require("../../../assets/humidity1.png")}/>
+          <IconContainer source={require("../../assets/humidity1.png")}/>
 
           <TextContainer>
             <MainText>Độ ẩm không khí</MainText>
@@ -262,7 +262,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer source={require("../../../assets/sun.png")}/>
+          <IconContainer source={require("../../assets/sun.png")}/>
           <TextContainer>
             <MainText>Ánh sáng</MainText>
             <SubText>Cường độ ánh sáng lúc này</SubText>
@@ -285,7 +285,7 @@ const DashBoard = () => {
           </CircularProgressContainer>
         </DashBoardContainer>
         <DashBoardContainer>
-          <IconContainer resizeMode={"contain"} source={require("../../../assets/soil.png")}/>
+          <IconContainer resizeMode={"contain"} source={require("../../assets/soil.png")}/>
 
           <TextContainer>
             <MainText>Độ ẩm đất</MainText>

@@ -106,7 +106,6 @@ const Home = () => {
               <FirstRooms>
 
                 <LeftRoomContainer onPress = {handleLivingroom} >
-
                   <RoomContainer >
                     <LivingroomContainer >
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
@@ -117,6 +116,7 @@ const Home = () => {
                     </CategoryDetailText>                      
                   </RoomContainer>                    
                 </LeftRoomContainer>
+
                 <RightRoomContainer onPress = {handleKitchen}>
                   <RoomContainer>
                     <KitchenContainer>

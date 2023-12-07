@@ -90,19 +90,8 @@ export const NowBoardContainer = styled.View`
   padding-horizontal: auto;
 `;
 
-export const NowBoardTime = styled.View`
+export const NowBoard= styled.View`
   height: 35px;
-  width: 37%;
-  border: 0.5px solid ${green};
-  backgroundColor: ${maincolor};
-  border-radius: 8px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-export const NowBoardLocate = styled.View`
-  height: 35px;
-  width: 60%;
   border: 0.5px solid ${green};
   backgroundColor: ${maincolor};
   border-radius: 8px;

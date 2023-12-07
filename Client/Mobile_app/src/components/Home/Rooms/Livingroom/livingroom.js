@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
          Plant1Container, Plant2Container, ImageFrame, PlantName, PlantContainer,
          ButtonContainer, IconButton, Icon, ButtonText, ButtonContainerWrapper,
-        } from './styleLivingroom.js'
+        } from './styleLivingroom'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, SafeAreaView } from 'react-native';
 
@@ -56,7 +56,7 @@ return (
 
                     {plantsInRoom[index + 1] && (
                             
-                            <Plant2Container>
+                            <Plant1Container>
                                 <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant2.jpg')}/>
                                 <PlantName> {plant.plantname} </PlantName>
                                 <ButtonContainerWrapper>
@@ -75,7 +75,7 @@ return (
                                     </IconButton>
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
-                            </Plant2Container>
+                            </Plant1Container>
 
                     )}
                         </React.Fragment>

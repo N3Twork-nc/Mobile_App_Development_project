@@ -33,8 +33,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  margin-bottom: 10px;
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 10px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 40px;'}
 `;
 export const BackContainer = styled.TouchableOpacity`
   position: absolute;
@@ -61,7 +60,6 @@ export const PlantContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 30px;
   margin-bottom: 10px;
 `;
 
