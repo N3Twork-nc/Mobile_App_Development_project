@@ -18,3 +18,12 @@ os.environ['storage_connection_string'] = 'DefaultEndpointsProtocol=https;Accoun
 os.environ['account_key_azure']="YEntRbcbq20f2JdnbdictnmEiR0OnVpIp2R3Tem6te2FFuApw3XxD+T7na6r4e+CbtKiW22wjCya+AStNDnYgg=="
 blob_service_client=BlobServiceClient.from_connection_string(os.environ['storage_connection_string'])
 container=blob_service_client.get_container_client('myplants')
+
+
+
+#MQTT
+os.environ["BROKER"]="f2df0b83710d41b4ad161efe5d58b708.s1.eu.hivemq.cloud"
+os.environ["BROKER_USERNAME"]="plantaholic"
+os.environ["BROKER_PASSWORD"]="Plantaholic123"
+os.environ["BROKER_PORT"]="8883"
+os.environ["BROKER_IDCLIENT"]="Server"

@@ -6,6 +6,7 @@ from datetime import datetime
 from Source.config.config import container
 import numpy as np
 import cv2
+from Source.models_mvc.myRoom_model import Schedule
 
 @app.put("/APIuploadMyPlant")
 async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depends(Authentication().validate_token)):
@@ -28,3 +29,8 @@ async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depe
                  "timeUpload":data.timeUpload,
                  "room":roomName,
                  "plantname":plantName}
+
+
+@app.put("/API_schedule")
+def schedule(schedule:Schedule):
+    return schedule.inserSchedule()
