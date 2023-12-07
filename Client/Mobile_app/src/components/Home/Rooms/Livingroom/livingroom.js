@@ -10,8 +10,6 @@ const Livingroom = () => {
 const navigation = useNavigation();
 const route = useRoute();
 const { plantsInRoom } = route.params;
-
-const navigation = useNavigation();
   const handleBack = () => {
     navigation.navigate('Home');
   };
