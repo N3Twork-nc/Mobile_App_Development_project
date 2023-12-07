@@ -118,6 +118,7 @@ export const DetailContainer = styled.View`
   background-color: ${white}; 
   height: ${vh(10)}px;
   flex-direction: row;
+  z-index: 0; 
 `;
 export const DetailText = styled.Text`
   font-size: ${vh(2)}px;
@@ -135,6 +136,7 @@ export const DetailImage = styled.Image`
 `;
 
 export const StartContainer = styled.View`
+  z-index: 0; 
   position: absolute;
   top: ${vh(5)}px;
   width: ${vw(48)}px;
@@ -149,6 +151,14 @@ export const TextStart = styled.Text`
   color: #1A5D1A;
   padding-top: ${vh(2)}px;
   left: ${vw(2)}px;
+`;
+export const TextTime = styled.Text`
+  width: ${vw(10)}px;
+  height: ${vh(5)}px;
+  font-size: ${vh(2)}px;
+  color: #1A5D1A;
+  left: ${vw(38)}px;
+  bottom: ${vh(2.4)}px;
 `;
 export const InputTime = styled.TextInput`
   position: absolute; 
@@ -179,7 +189,7 @@ export const TextDate = styled.Text`
 export const InputDate = styled.TextInput`
   position: absolute; 
   background-color: ${white};
-  font-size: ${vh(2)}px;
+  font-size: ${vh(1.8)}px;
   width: ${vw(25)}px;
   padding-top: ${vh(2)}px;
   left: ${vw(18)}px;
@@ -219,7 +229,7 @@ export const EachContainer = styled.View`
   border-radius: 10px;
   border: ${maincolor}; 
 `;
-export const DayContainer = styled.View`
+export const WorkContainer = styled.View`
   position: absolute;
   top: ${vh(5)}px;
   width: ${vw(47)}px;
@@ -263,3 +273,20 @@ export const InputDay = styled.TextInput`
   padding-top: ${vh(2)}px;
   left: ${vw(18)}px;
 `;
+// signout
+export const ButtonCreateReminder= styled.TouchableOpacity`
+  background-color:  #1A5D1A;
+  border-radius: 20px;
+  width: 50%;
+  height: 50px;
+  align-self: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 90px;
+`
+export const ButtonCreate = styled.Text`
+  font-size: 20px;
+  color: ${white};
+  font-weight: bold;
+  text-align: center;
+`
