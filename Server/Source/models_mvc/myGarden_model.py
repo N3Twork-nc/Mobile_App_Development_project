@@ -1,32 +1,40 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,Field,PrivateAttr
 from datetime import datetime,time
 from firebase_admin import db
 import uuid
 import json
 
-class MyGarden(BaseModel):
-    id_garden:str=None
+class UploadGarden(BaseModel):
     name_garden:str
-    username:str=None
     cropType:str
-    timeUpload:time
     location:str
 
-    def insertGarden(self):
+    def insertGarden(self,username):
         now=datetime.now()
-        self.timeUpload=str(now)
-        self.id_garden=now.strftime("%Y%m%d%H%M%S%f")
-        ref=db.reference(f'MyGarden/{self.username}')
-        ref.update({self.id_garden:{
+        timeUpload=str(now)
+        id_garden=now.strftime("%Y%m%d%H%M%S%f")
+        ref=db.reference(f'MyGarden/{username}')
+        ref.update({id_garden:{
             "NameGarden":self.name_garden,
             "CropType":self.cropType,
-            "timeUpload":str(self.timeUpload),
+            "timeUpload":str(timeUpload),
             "location":self.location
         }})
 
-    def to_json(self):
-        return json.dumps(self, default=lambda o: o.__dict__)
     
+    
+class DataGarden():
+
+    def __init__(self,username,idGarden,type):
+        self.id_garden=idGarden
+        self.username=username
+        self.type=type
+       
+    def getData(self):
+         ref=db.reference(f'MyGarden/{self.username}/{self.id_garden}/Data')
+         data=ref.get()
+         return data
+
     @staticmethod
     def insertData(path,data):
         try:
@@ -35,4 +43,4 @@ class MyGarden(BaseModel):
             timestamp=timestamp.strftime("%Y-%m-%d-%H:%M:%S")
             ref.update({timestamp:data})
         except Exception as e:
-            print("Update the data of the faulty garden",str(e))
+            print("Garden data update failed",str(e)) 

@@ -1,22 +1,26 @@
 from Source import app
 from Source.security import Authentication
 from fastapi import Depends
-from Source.models_mvc.myGarden_model import MyGarden
+from Source.models_mvc.myGarden_model import UploadGarden,DataGarden
 import json
 
 @app.put("/APIUploadMyGarden")
-def UploadMyGarden(garden:MyGarden,username=Depends(Authentication().validate_token)):
+def UploadMyGarden(garden:UploadGarden,username=Depends(Authentication().validate_token)):
     try:
-        garden.username=username
-        garden.insertGarden()
-        print(garden.to_json())
+        garden.insertGarden(username)
         return {
             "Erro":False,
             "Message":"Successful garden upload",
-            "Data":json.dumps(garden.__dict__)
         }
-    except Exception:
+    except Exception as e:
+        print(str(e))
         return {
             "Erro":True,
-            "Message":"Upload a faulty garden"
+            "Message":"Garden upload failed"
         }
+    
+@app.get("/APIGetDataGarden")
+def getDataGarden(idGarden:str,type:str,username=Depends(Authentication().validate_token)):
+    garden=DataGarden(username,idGarden,type)
+    data=garden.getData()
+    return data
