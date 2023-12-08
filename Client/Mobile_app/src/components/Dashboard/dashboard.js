@@ -62,7 +62,6 @@ const DashBoard = () => {
 
 // hàm lấy thời gian, vị trí
   const [currentTime, setCurrentTime] = useState("");
-  const [currentLocation, setCurrentLocation] = useState(null); 
   useEffect(() => {
     const interval = setInterval(() => {
     const currentTime = new Date().toLocaleTimeString();
