@@ -7,13 +7,18 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, SafeAreaView } from 'react-native';
 
 const Livingroom = () => {
-    const navigation = useNavigation();
-    const route = useRoute();
-    const { plantsInRoom } = route.params;
-    const handleBack = () => {
-        navigation.navigate('Home');
-    };
+const navigation = useNavigation();
+const route = useRoute();
+const { plantsInRoom } = route.params;
 
+const navigation = useNavigation();
+  const handleBack = () => {
+    navigation.navigate('Home');
+  };
+  const handleSchedule = () => {
+    navigation.navigate('Schedule');
+    
+  };
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <ScrollView style={{ flex: 1 }}>
@@ -53,7 +58,6 @@ return (
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
                             </Plant1Container>
-
                     {plantsInRoom[index + 1] && (
                             
                             <Plant1Container>
