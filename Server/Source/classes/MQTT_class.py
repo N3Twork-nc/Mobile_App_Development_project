@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 import paho
 import os
-from Source.models_mvc.myGarden_model import MyGarden
+from Source.models_mvc.myGarden_model import DataGarden
 
 
 class MQTTData:
@@ -15,11 +15,10 @@ class MQTTData:
         client.subscribe("#")
 
     def on_message(self,client, userdata, msg):
-        print("Received message: " + str(msg.payload.decode()))
         topic=str(msg.topic)
         data=str(msg.payload.decode())
         if topic.split('/')[2]=="Data":
-            MyGarden.insertData(topic,data)
+            DataGarden.insertData(topic,data)
 
         
 

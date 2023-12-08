@@ -22,7 +22,7 @@ container=blob_service_client.get_container_client('myplants')
 
 
 #MQTT
-os.environ["BROKER"]="f2df0b83710d41b4ad161efe5d58b708.s1.eu.hivemq.cloud"
+os.environ["BROKER"]="6e19efb1a1d6413fa4d16cf7b5a445c8.s2.eu.hivemq.cloud"
 os.environ["BROKER_USERNAME"]="plantaholic"
 os.environ["BROKER_PASSWORD"]="Plantaholic123"
 os.environ["BROKER_PORT"]="8883"
