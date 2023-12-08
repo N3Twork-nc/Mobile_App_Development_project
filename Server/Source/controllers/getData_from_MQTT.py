@@ -1,11 +1,6 @@
 import paho.mqtt.client as mqtt
 import os
 
-
-
-
-import paho.mqtt.client as mqtt
-
 class MQTTClient:
     def __init__(self):
         self.client = mqtt.Client()
