@@ -20,12 +20,14 @@ init({
 
 
 export default class MQTT{
-  constructor(setData,data,userName,password){
+  constructor(setData,data,username,idGarden){
+    this.username=username
+    this.idGarden=idGarden
     this.setData=setData
     this.data=data
     this.onMessageArrived = this.onMessageArrived.bind(this)
     this.onConnectionLost = this.onConnectionLost.bind(this)
-    const client = new Paho.MQTT.Client(BROKER,Number(BROKER_PORT), userName+String(Math.random()));
+    const client = new Paho.MQTT.Client(BROKER,Number(BROKER_PORT), username+String(Math.random()));
     client.onMessageArrived = this.onMessageArrived;
     client.onConnectionLost = this.onConnectionLost;
     client.connect({ 
@@ -47,16 +49,16 @@ export default class MQTT{
 
   onMessageArrived(entry) {
     switch (entry.topic){
-      case "garden/temperature":
+      case `${this.username}/${this.idGarden}/Data/Temperature`:
         this.data.temperature=Number(entry.payloadString)
         break;
-      case "garden/humidity":
+      case `${this.username}/${this.idGarden}/Data/Humidity`:
         this.data.humidity=Number(entry.payloadString)
         break;
-      case "garden/light":
+      case `${this.username}/${this.idGarden}/Data/Light`:
         this.data.light=Number(entry.payloadString)
         break;
-      case "garden/moisture":
+      case `${this.username}/${this.idGarden}/Data/Moisture`:
         this.data.moisture=Number(entry.payloadString)
         break;
     }
@@ -66,10 +68,10 @@ export default class MQTT{
 
   onConnect = () => {
     console.log("Connected MQTT BROKER!!!!");
-    this.client.subscribe('garden/temperature');
-    this.client.subscribe('garden/humidity')
-    this.client.subscribe('garden/light')
-    this.client.subscribe('garden/moisture')
+    this.client.subscribe(`${this.username}/${this.idGarden}/Data/Temperature`);
+    this.client.subscribe(`${this.username}/${this.idGarden}/Data/Humidity`);
+    this.client.subscribe(`${this.username}/${this.idGarden}/Data/Light`)
+    this.client.subscribe(`${this.username}/${this.idGarden}/Data/Moisture`)
   };
 
   onConnectionLost(responseObject) {
