@@ -35,8 +35,10 @@ const Signin = () => {
       return navigation.navigate('Home')
     }
     else 
-    {Alert.alert('Tài khoản hoặc mật khẩu không chính xác');
-     return navigation.navigate('SignIn')}
+    {
+      Alert.alert('Tài khoản hoặc mật khẩu không chính xác');
+      setIsLoading(false);
+      return navigation.navigate('SignIn')}
   };
   
   const handleForgotPassword = () => {

@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { View, Text, Image } from 'react-native';
-import Constants from 'expo-constants';
 
 // default color
 export const Colors = {
@@ -33,8 +31,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  margin-bottom: 10px;
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 10px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 40px;'}
 `;
 export const BackContainer = styled.TouchableOpacity`
   position: absolute;
@@ -61,7 +58,6 @@ export const PlantContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 30px;
   margin-bottom: 10px;
 `;
 
@@ -76,16 +72,7 @@ export const Plant1Container = styled.View`
   align-items: center;
 `;
 
-export const Plant2Container = styled.View`
-  height: 250px;
-  width: 48%;
-  border-radius: 13px;
-  background-color: ${white_gray};
-  border: 0.3px solid ${green};
-  align-self: flex-start;
-  justify-content: center; 
-  align-items: center;
-`;
+
 
 export const ImageFrame = styled.Image`
   width: 70%;

@@ -7,7 +7,7 @@ import { StyledContainer, HeaderContainer, ButtonAdd,
 Icon,  } from './styleGarden'
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, ScrollView  } from 'react-native';
-import Modal from 'react-native-modal';
+import Modal, { ReactNativeModal } from 'react-native-modal';
 import logo from '../../../assets/logo.png';
 
 
@@ -51,6 +51,14 @@ const logoApp = logo;
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
             <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Tên vườn:</Text>
+            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+          </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
+            <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Vị trí:</Text>
+            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+          </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
+            <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Loại cây trồng:</Text>
             <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
           </View>
           <View style={{ padding: 10, zIndex: 1}}>              

@@ -84,6 +84,8 @@ export const ImgLogo = styled.Image`
   width: ${vw(5)}px;
   height: ${vh(4)}px;
   left: ${vw(4)}px;
+  ${Platform.OS === 'android' ? 'margin-top: 5px' : 'margin-top: 0%;'}
+
 `;
 export const Text1 = styled.Text`
   fontSize: ${vh(2)}px;
@@ -100,22 +102,21 @@ export const Text2 = styled.Text`
   left: ${vw(3)}px;
 `;
 
+
 export const TagContainer = styled.View`
-  right: ${vw(15)}px;
   margin-top: ${vh(1)}px;
   flex-direction: row;
-  justify-content: space-between;
   height: ${vh(4)}px;
   align-items: left;
   overflow: visible;
-  padding-horizontal: 80px;
 `;
 export const Tag = styled.Text`
+  align-items: flex-start;
+  margin-left: ${vw(4)}px;
   fontSize: ${vh(1.5)}px;
   color: ${black};
   background-color: #F0F3F6;
   padding: 5px;
-
 `;
 
 export const Text3 = styled.Text`

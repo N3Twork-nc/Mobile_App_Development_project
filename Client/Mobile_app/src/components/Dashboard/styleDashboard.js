@@ -3,18 +3,22 @@ import {  Platform } from 'react-native';
 import { Dimensions,  } from 'react-native';
 // default color
 export const Colors = {
-  maincolor: "#CEF1CF",
+  maincolor: "#F2F9F2",
   white: "#FFFFFF",
   black: "#000000",
   gray: "#D9D9D9",
   green: "#61AF2B", 
   containerprofile: "#EEF7E8",
-  white_gray: "#F8F8F8",
+  white_gray: "#F8F8F9",
   gray: "#4E4E4E",
   sectiontitle: "#4E4E4E",
   buttoncolor: "#1A5D1A",
   maintext: "#164303",
   line: "#B3B3B3",
+  livingroom: "#EEF7E8",
+  kitchen: "#E6EAFA",
+  bedroom: "#FCF1E3",
+  backyard: "#F8E8F8",
 }
 
 
@@ -29,8 +33,8 @@ const { maincolor, maintext,line, buttoncolor,gray, white, black, containerprofi
 export const Line = styled.View`
   height: 1px;
   background-color: ${line};
-  margin-vertical: 6px;
-  width: 93%;
+  width: 100%;
+  margin-bottom: 15px;
   align-self: center;
 `
  //screen
@@ -39,6 +43,7 @@ export const Line = styled.View`
  padding: 20px;
  z-index: -1;
  height: 100%;
+ backgroundColor: ${white};
 `;
 //Header
 export const HeaderContainer = styled.View`
@@ -46,7 +51,8 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center; 
   height: ${vh(7)}px;
-  ${Platform.OS === 'android' ? 'margin-top: 5%;' : 'margin-top:0;'}
+  backgroundColor: ${white};
+  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-top:0;'}
 `;
 export const TitleContainer = styled.View`
   position: absolute;
@@ -57,7 +63,7 @@ export const TitleContainer = styled.View`
 `;
 export const MainTitle = styled.Text`
   font-size: 25px;
-  color: ${maintext};
+  color: ${black};
   font-weight: bold;
   align-self: center;
 `;
@@ -81,38 +87,113 @@ export const NowBoardContainer = styled.View`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
+  padding-horizontal: auto;
 `;
 
-export const NowBoard = styled.View`
-  height: 50px;
-  border-radius: 13px;
-  background-color: ${maincolor};
+export const NowBoard= styled.View`
+  height: 35px;
+  border: 0.5px solid ${green};
+  backgroundColor: ${maincolor};
+  border-radius: 8px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-horizontal: 20px;
 `;
 
 export const NowBoardText = styled.Text`
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     color: ${maintext};
     align-self: center;
 `
+// Garden info
+export const GardenInfo = styled.View`
+  height: 150px;
+  border-radius: 13px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding-horizontal: 5px;
+  margin-bottom: 20px;
+`;
+
+// Image
+export const ImageContainer = styled.TouchableOpacity`
+  align-items: flex-start;
+  width: 80%;
+
+`;
+
+export const GardenImage = styled.Image`
+  width: 100%;
+  height: 150px;
+`;
+
+// Buttons
+export const ButtonsContainer = styled.View`
+  align-items: center;
+  width: 18%;
+  border-radius: 13px;
+  height: 150px;
+  border: 0.5px solid ${green};
+  flex-direction: column;
+  justify-content: center;
+  padding-vertical: 50px;
+`;
+export const EditContainer = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+`;
+export const EditButton = styled.Image`
+  width: 20px;
+  height: 20px;
+`;
+export const SwitchContainer = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+`;
+export const SwitchButton = styled.Image`
+  width: 26px;
+  height: 26px;
+`;
+// id
+export const IDContainer = styled.View`
+  margin-bottom: 10px;
+  justifyContent: flex-end;
+  flex-direction: row;
+  margin-right: 10px;
+
+`
+export const IDTilte = styled.Text`
+ font-size: 15px;
+  font-weight: bold;
+  color: ${black};
+`
+export const IDText = styled.Text`
+  font-size: 15px;
+  font-weight: 500;
+  color: ${black};
+  marginRight: 10px;
+`
+export const EyeIcon = styled.Image`
+  height: ${vh(3)}px;
+  width: ${vh(3)}px;
+`;
 
 // dashboard
 export const DashBoardContainer = styled.View`
   height: 150px;
   width: 100%;
   border-radius: 13px;
-  border: 1px solid ${green};
-  background-color: ${white};
+  border: 0.2px solid ${green};
+  background-color: ${maincolor};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding-horizontal: 5px;
-  margin-bottom: 7px;
-
+  margin-top: 15px;
 `;
 export const IconContainer = styled.Image`
    width: 30px;
