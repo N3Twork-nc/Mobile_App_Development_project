@@ -53,6 +53,14 @@ const logoApp = logo;
             <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Tên vườn:</Text>
             <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
           </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
+            <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Vị trí:</Text>
+            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+          </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
+            <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Loại cây trồng:</Text>
+            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+          </View>
           <View style={{ padding: 10, zIndex: 1}}>              
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
             <TouchableOpacity onPress={onCancel} style={{ marginRight: 25 }}>
