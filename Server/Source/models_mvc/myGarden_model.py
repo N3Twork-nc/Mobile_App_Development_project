@@ -25,7 +25,7 @@ class UploadGarden(BaseModel):
     
 class DataGarden():
 
-    def __init__(self,username,idGarden,type):
+    def __init__(self,username,idGarden=None,type=None):
         self.id_garden=idGarden
         self.username=username
         self.type=type
@@ -34,6 +34,15 @@ class DataGarden():
          ref=db.reference(f'MyGarden/{self.username}/{self.id_garden}/Data')
          data=ref.get()
          return data
+
+    def getDatail(self):
+        ref=db.reference(f'MyGarden/{self.username}')
+        data=ref.get()
+        for key in data:
+            if 'Data' in data[key]:
+                del data[key]['Data']
+        return data
+
 
     @staticmethod
     def insertData(path,data):
