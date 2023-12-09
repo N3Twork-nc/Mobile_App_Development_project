@@ -12,7 +12,7 @@ import {
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
 import { myPlant } from '../../api/uploadPlant.js';
-import {getDetailGardens} from '../../api/getDatailGarden'
+import {getDetailGardens} from '../../api/getDetailGarden'
 import { useSelector } from 'react-redux';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry.js';
 

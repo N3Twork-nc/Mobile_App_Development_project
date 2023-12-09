@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, Text, TouchableOpacity,Image,  TextInput } from 'react-native'
+import {Alert, View, Text, TouchableOpacity,Image,  TextInput } from 'react-native'
 import { StyledContainer, HeaderContainer, ButtonAdd, 
   ButtonBack,ButtonText, MainTitle, BackContainer, 
   AddContainer, GardenContainer, EachGardenContainer,
@@ -8,6 +8,8 @@ Icon,  } from './styleGarden'
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, ScrollView  } from 'react-native';
 import Modal, { ReactNativeModal } from 'react-native-modal';
+import { useSelector } from 'react-redux';
+import { myGarden } from '../../../api/getDetailGarden.js'
 import logo from '../../../assets/logo.png';
 
 
@@ -41,6 +43,10 @@ const logoApp = logo;
  
   // Alert thêm vườn
   const AddGarden = ({ isVisible, message, onAdd, onCancel }) => {
+    const [gardenNameInput, setGardenNameInput] = useState('');
+    const [locationInput, setLocationInput] = useState('');
+    const [cropTypeInput, setCropTypeInput] = useState('');
+
     return (
       <Modal isVisible={isVisible}>
         <View style={{ backgroundColor: 'white', padding: 12, borderRadius: 15}}>
@@ -51,22 +57,27 @@ const logoApp = logo;
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
             <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Tên vườn:</Text>
-            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+            <TextInput onChangeText={setGardenNameInput} style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
             <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Vị trí:</Text>
-            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+            <TextInput onChangeText={setLocationInput} style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
             <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Loại cây trồng:</Text>
-            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+            <TextInput onChangeText={setCropTypeInput} style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
           </View>
           <View style={{ padding: 10, zIndex: 1}}>              
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
             <TouchableOpacity onPress={onCancel} style={{ marginRight: 25 }}>
               <Text style={{ color: 'green', fontSize: 17 }}>Hủy</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={onAdd}>
+            <TouchableOpacity onPress={() => {
+              onAdd(gardenNameInput, cropTypeInput, locationInput); // Truyền các giá trị được cập nhật
+              setGardenNameInput(''); // Đặt lại giá trị của TextInput về rỗng sau khi nhấn Thêm
+              setLocationInput('');
+              setCropTypeInput('');
+            }}>
               <Text style={{ color: 'green', fontSize: 17 }}>Thêm</Text>
             </TouchableOpacity>
           </View>
@@ -81,6 +92,10 @@ const Garden = () => {
 
   //Các navigate chuyển màn hình
   const navigation = useNavigation();
+  const token = useSelector(state=>state.token)['payload'];
+  const [gardenName, setNewGardenName] = useState('');
+  const [location, setNewLocation] = useState('');
+  const [cropType, setNewCropType] = useState('');
   const handleBack = () => {
     navigation.navigate('Home');    
   };
@@ -94,10 +109,19 @@ const Garden = () => {
   {
     setAddGardenVisible(true);
   }
-  const handleSaveNewGarden = () =>
+  const handleSaveNewGarden = async () =>
   {
-    setAddGardenVisible(false);
-    // Xử lý logic thêm vườn mới
+    try {
+      const response = await myGarden(gardenName, location, cropType, token);
+
+      if (response == "Successful") Alert.alert("Thêm vườn thành công!");
+      else Alert.alert ("Thêm vườn thất bại!");
+
+      setAddGardenVisible(false);
+
+    } catch (error) {
+      Alert.alert ("Thêm vườn thất bại!");
+    }
   }
   const handleCancelAdd = () =>
   {
@@ -133,11 +157,12 @@ const Garden = () => {
                   <AddContainer onPress={handleAddGarden}>
                     <ButtonAdd source = {require('../../../assets/add.png')}/>
                     <AddGarden 
-                       isVisible={isAddGardenVisible}
-                       message="Thêm một vườn trồng mới"
-                       onCancel={handleCancelAdd}
-                       onAdd={handleSaveNewGarden}
+                      isVisible={isAddGardenVisible}
+                      message="Thêm một vườn trồng mới"
+                      onCancel={handleCancelAdd}
+                      onAdd={handleSaveNewGarden}
                     />
+
                   </AddContainer>
               </HeaderContainer>
 
