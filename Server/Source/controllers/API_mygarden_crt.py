@@ -9,13 +9,13 @@ def UploadMyGarden(garden:UploadGarden,username=Depends(Authentication().validat
     try:
         garden.insertGarden(username)
         return {
-            "Erro":False,
+            "Status":True,
             "Message":"Successful garden upload",
         }
     except Exception as e:
         print(str(e))
         return {
-            "Erro":True,
+            "Status":False,
             "Message":"Garden upload failed"
         }
     
@@ -24,3 +24,16 @@ def getDataGarden(idGarden:str,type:str,username=Depends(Authentication().valida
     garden=DataGarden(username,idGarden,type)
     data=garden.getData()
     return data
+
+@app.get("/APIGetDetailGarden")
+def getDetail(username=Depends(Authentication().validate_token)):
+    try:
+        garden=DataGarden(username)
+        data=garden.getDatail()
+        return data
+    except Exception as e:
+        print(str(e))
+        return {
+            "Status":False,
+            "Message":"Retrieving garden information failed"
+        }

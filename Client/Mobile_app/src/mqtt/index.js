@@ -7,7 +7,7 @@ import {BROKER,BROKER_USERNAME,BROKER_PASSWORD,BROKER_PORT} from '@env';
   },
   getItem: (key) => myStorage[key],
   removeItem: (key) => {
-    delete myStorage[key];r
+    delete myStorage[key];
   },
 };
 init({
@@ -36,6 +36,7 @@ export default class MQTT{
       userName:BROKER_USERNAME,
       password:BROKER_PASSWORD,
       reconnect:true,
+      cleanSession:true,
       onFailure: (e) => {console.log("here is the error" , e); }
     });
     this.client=client
@@ -61,6 +62,8 @@ export default class MQTT{
       case `${this.username}/${this.idGarden}/Data/Moisture`:
         this.data.moisture=Number(entry.payloadString)
         break;
+      case `${this.username}/${this.idGarden}/Broadcast/Led`:
+        this.data.led=Number(entry.payloadString)
     }
     this.setData(this.data)
   }
@@ -72,11 +75,24 @@ export default class MQTT{
     this.client.subscribe(`${this.username}/${this.idGarden}/Data/Humidity`);
     this.client.subscribe(`${this.username}/${this.idGarden}/Data/Light`)
     this.client.subscribe(`${this.username}/${this.idGarden}/Data/Moisture`)
+    this.client.subscribe(`${this.username}/${this.idGarden}/Broadcast/Led`)
   };
 
   onConnectionLost(responseObject) {
     if (responseObject.errorCode !== 0) {
       console.log("onConnectionLost:"+responseObject.errorMessage);
+    }
+  }
+  controlLED(status)
+  {
+    try {
+      this.data.led=!this.data.led
+      this.setData(this.data)
+      this.client.publish(`${this.username}/${this.idGarden}/Control/Led`, payload=String(Number(this.data.led)), qos=1)
+    }
+    catch
+    {
+      console.log("Đã xảy ra lỗi khi public message")
     }
   }
 }

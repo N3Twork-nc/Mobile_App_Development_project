@@ -12,23 +12,38 @@ import {
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
 import { myPlant } from '../../api/uploadPlant.js';
+import {getDetailGardens} from '../../api/getDatailGarden'
 import { useSelector } from 'react-redux';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry.js';
 
 const Home = () => {
   const navigation = useNavigation();
   const token = useSelector(state=>state.token)['payload'];
   const [plantsData, setplantsData] = useState([]);
 
-  useEffect(() => { savedPlants(); }, []);
+  useEffect(() => { 
+    savedPlants(); }, []);
 
   const savedPlants = async () => {
     try {
       const plantsData = await myPlant(token);
       setplantsData(plantsData);
+      const data=await getDetailGardens(token)
+      console.log(data)
     } catch (error) {
       console.log(error);
     }
   };
+
+  const detailGardens = async ()=>{
+    try {
+      const data=await getDetailGardens(token)
+      console.log(data)
+    } 
+    catch (error) {
+      console.log(error);
+    }
+  } 
 
   const livingRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng khách');
   const bedRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng ngủ');

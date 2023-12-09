@@ -55,7 +55,7 @@ const handleSaveGarden = () => {
     </Modal>
   )
 }
-
+var mqttclient=null;
 const DashBoard = () => {
   const infoUser=useSelector(state=>state.infoUser)
  
@@ -76,12 +76,13 @@ const DashBoard = () => {
     humidity: 0,
     light: 0,
     moisture:0,
-    percent: 1
+    percent: 1,
+    led:false
   })
   useEffect(() => {
     const username=infoUser.username;
     const id_garden="16916d3bd5"
-    new MQTT(setDataDataBoard,dataDashBoard,username,id_garden)
+    mqttclient=new MQTT(setDataDataBoard,dataDashBoard,username,id_garden)
     const interval = setInterval(() => {
     const currentTime = new Date().toLocaleTimeString();
     setCurrentTime(currentTime);
@@ -140,11 +141,8 @@ const DashBoard = () => {
     setIsEditGardenVisible(false);
   };
 
-  // bật tắt đèn
-  const [turnOnLight, setTurnOnLight] = useState(false);
-
   const toggleLightOn = () => {
-    setTurnOnLight(!turnOnLight);
+    mqttclient.controlLED()
   }
 
   // hiển thị ID vườn
@@ -196,7 +194,7 @@ const DashBoard = () => {
             <SwitchContainer onPress={toggleLightOn}>
               <SwitchButton 
                 source={
-                    turnOnLight
+                    dataDashBoard.led
                       ? require('../../assets/lighton.png')
                       : require('../../assets/lightoff.png')
                   }
