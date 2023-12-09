@@ -1,8 +1,6 @@
-from pydantic import BaseModel,Field,PrivateAttr
-from datetime import datetime,time
+from pydantic import BaseModel
+from datetime import datetime,timedelta
 from firebase_admin import db
-import uuid
-import json
 
 class UploadGarden(BaseModel):
     name_garden:str
@@ -25,15 +23,18 @@ class UploadGarden(BaseModel):
     
 class DataGarden():
 
-    def __init__(self,username,idGarden=None,type=None):
+    def __init__(self,username,idGarden=None,type=None,interval=None):
         self.id_garden=idGarden
         self.username=username
         self.type=type
+        self.interval=interval
        
     def getData(self):
-         ref=db.reference(f'MyGarden/{self.username}/{self.id_garden}/Data')
-         data=ref.get()
-         return data
+        ref=db.reference(f'MyGarden/{self.username}/{self.id_garden}/Data/{self.type}')
+        timeQuery=datetime.now()-timedelta(days=self.interval)
+        query = ref.order_by_key().start_at(timeQuery.strftime("%Y-%m-%d-%H:%M:%S"))
+        data=query.get()
+        return data
 
     def getDatail(self):
         ref=db.reference(f'MyGarden/{self.username}')
@@ -50,6 +51,6 @@ class DataGarden():
             ref=db.reference(f'MyGarden/{path}')
             timestamp=datetime.now()
             timestamp=timestamp.strftime("%Y-%m-%d-%H:%M:%S")
-            ref.update({timestamp:data})
+            ref.update({timestamp:int(data)})
         except Exception as e:
             print("Garden data update failed",str(e)) 
