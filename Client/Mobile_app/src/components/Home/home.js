@@ -12,36 +12,34 @@ import {
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
 import { myPlant } from '../../api/uploadPlant.js';
-import {getDetailGardens} from '../../api/getDetailGarden'
-import { useSelector } from 'react-redux';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry.js';
+import {getDetailGardens} from '../../api/Garden.js'
+import { useSelector,useDispatch } from 'react-redux';
+import { updateMyGarden } from '../../reducers/mygarden';
 
 const Home = () => {
-  const navigation = useNavigation();
-  const token = useSelector(state=>state.token)['payload'];
   const [plantsData, setplantsData] = useState([]);
-  const [gardenData, setGardenData] = useState([]);
-  const [allgardenData, setallGardenData] = useState([]);
+  const gardenData=useSelector(state=>state.garden)['payload'].slice(0,4);
+  const dispatch=useDispatch()
+  const token = useSelector(state=>state.token)['payload'];
+  const navigation = useNavigation();
 
-
-  useEffect(() => { 
-    savedPlants(); }, []);
+  useEffect(() => {  
+    savedPlants();
+   }, []);
+ 
 
   const savedPlants = async () => {
     try {
       const plantsData = await myPlant(token);
       setplantsData(plantsData);
-      
       const gardenDetails = await getDetailGardens(token);
-      setallGardenData(gardenDetails);
-      const gardenList = Object.values(gardenDetails).slice(0, 4); 
-      setGardenData(gardenList);
-
+      const action=updateMyGarden(gardenDetails)
+      dispatch(action)
     } catch (error) {
       console.log(error);
     }
   };
-
+  
   const livingRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng khách');
   const bedRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng ngủ');
   const kitchenPlants = plantsData.filter((plant) => plant.roomname == 'Nhà bếp');
@@ -73,7 +71,7 @@ const Home = () => {
   };
     
   const handleGardens = () => {
-    navigation.navigate('Gardens', { gardensDetail: allgardenData });
+    navigation.navigate('Gardens');
   };  
 
   return (

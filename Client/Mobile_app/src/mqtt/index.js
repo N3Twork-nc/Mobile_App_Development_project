@@ -95,4 +95,8 @@ export default class MQTT{
       console.log("Đã xảy ra lỗi khi public message")
     }
   }
+  disconect(){
+    console.log("Disconect MQTT Broker!!!")
+    this.client.disconnect()
+  }
 }

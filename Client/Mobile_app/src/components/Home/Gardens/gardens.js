@@ -8,9 +8,11 @@ Icon,  } from './styleGarden'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { SafeAreaView, ScrollView  } from 'react-native';
 import Modal, { ReactNativeModal } from 'react-native-modal';
-import { useSelector } from 'react-redux';
-import { myGarden } from '../../../api/getDetailGarden.js'
+import { useSelector,useDispatch } from 'react-redux';
+import { myGarden } from '../../../api/Garden.js'
 import logo from '../../../assets/logo.png';
+import {getDetailGardens,deleteGarden} from '../../../api/Garden.js'
+import { updateMyGarden } from '../../../reducers/mygarden.js';
 
 
 const logoApp = logo;
@@ -102,11 +104,11 @@ const Garden = () => {
   //Các navigate chuyển màn hình
   const navigation = useNavigation();
   const token = useSelector(state=>state.token)['payload'];
+  const gardensDetail =useSelector(state=>state.garden)['payload'];
   const [gardenName, setNewGardenName] = useState('');
   const [location, setNewLocation] = useState('');
   const [cropType, setNewCropType] = useState('');
-  const route = useRoute();
-  const { gardensDetail } = route.params;
+  const dispatch=useDispatch()
   const handleBack = () => {
     navigation.navigate('Home');    
   };
@@ -126,10 +128,11 @@ const Garden = () => {
   {
     try {
       const response = await myGarden(gardenName, location, cropType, token);
-
+      const gardenDetails = await getDetailGardens(token);
+      const action=updateMyGarden(gardenDetails)
+      dispatch(action)
       if (response == "Successful") Alert.alert("Thêm vườn thành công!");
       else Alert.alert ("Thêm vườn thất bại!");
-
       setAddGardenVisible(false);
 
     } catch (error) {
@@ -144,18 +147,25 @@ const Garden = () => {
 
   // Xử lý xóa vườn
   const [isAlertVisible, setAlertVisible] = useState(false);
+  const [deleteGardenId,setDeleteGardenId]=useState(null)
  
-  const handleDelete = () => {
+  const handleDelete = (garden) => {
     setAlertVisible(true);
+    setDeleteGardenId(garden.gardenId)
   };
 
   const handleCancel = () => {
     setAlertVisible(false);
   };
 
- const handleConfirmDelete = () => {
-    // Xử lý logic xóa 
+ const handleConfirmDelete = async () => {
     setAlertVisible(false);
+    const result = await deleteGarden(deleteGardenId,token);
+    const gardenDetails = await getDetailGardens(token);
+    const action=updateMyGarden(gardenDetails)
+    dispatch(action)
+    if (result==true) Alert.alert ("Xóa vườn thành công");
+    else Alert.alert ("Xóa vườn thất bại");
   };
  
 
@@ -200,7 +210,7 @@ const Garden = () => {
                             <Icon source={require('../../../assets/activity.png')} />
                             <ButtonText>Dashboard</ButtonText>
                         </IconButton>
-                        <IconButton onPress={handleDelete}>
+                        <IconButton onPress={()=>handleDelete(gardensDetail[i])}>
                             <Icon source={require('../../../assets/trash-can.png')} />
                             <ButtonText>Xóa</ButtonText>
                             <CustomAlert
@@ -210,7 +220,6 @@ const Garden = () => {
                               onDelete={handleConfirmDelete}
                             />
                         </IconButton>
-                        
                         </ButtonContainer>
                     </ButtonContainerWrapper>                        
                 </EachGardenContainer> 
@@ -225,9 +234,15 @@ const Garden = () => {
                             <Icon source={require('../../../assets/activity.png')} />
                             <ButtonText>Dashboard</ButtonText>
                         </IconButton>
-                        <IconButton>
+                        <IconButton onPress={handleDelete}>
                             <Icon source={require('../../../assets/trash-can.png')} />
                             <ButtonText>Xóa</ButtonText>
+                            <CustomAlert
+                              isVisible={isAlertVisible}
+                              message="Bạn có chắc chắn muốn xóa khu vườn này không?"
+                              onCancel={handleCancel}
+                              onDelete={handleConfirmDelete}
+                            />
                         </IconButton>
                         </ButtonContainer>
                     </ButtonContainerWrapper>

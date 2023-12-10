@@ -5,6 +5,7 @@ from Source.models_mvc.myGarden_model import UploadGarden,DataGarden
 from enum import Enum
 from datetime import datetime
 
+#Thêm vườn mới
 @app.put("/APIUploadMyGarden")
 def UploadMyGarden(garden:UploadGarden,username=Depends(Authentication().validate_token)):
     try:
@@ -21,6 +22,8 @@ def UploadMyGarden(garden:UploadGarden,username=Depends(Authentication().validat
         }
     
 
+
+#Lấy dữ liệu của vườn
 class Interval(Enum):
     DAY="1"
     WEEK="7"
@@ -63,6 +66,8 @@ def getDataGarden(idGarden:str,type:TypeData,interval:Interval,username=Depends(
             "Message":"Get data failed"
         }
 
+
+#Lấy thông tin của vườn
 @app.get("/APIGetDetailGarden")
 def getDetail(username=Depends(Authentication().validate_token)):
     try:
@@ -74,4 +79,22 @@ def getDetail(username=Depends(Authentication().validate_token)):
         return {
             "Status":False,
             "Message":"Retrieving garden information failed"
+        }
+
+
+#Xóa vườn
+@app.delete("/APIDeleteGarden")
+def deleteGarden(id_garden:str,username=Depends(Authentication().validate_token)):
+    try:
+        garden= DataGarden(username,id_garden)
+        garden.deleteGarden()
+        return{
+            "Status":True,
+            "Message":"Delete garden successfull"
+        }
+    except Exception as e:
+        print(str(e))
+        return{
+            "Status":False,
+            "Message":"Delete garden failed"
         }

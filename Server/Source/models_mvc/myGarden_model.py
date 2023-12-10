@@ -39,11 +39,15 @@ class DataGarden():
     def getDatail(self):
         ref=db.reference(f'MyGarden/{self.username}')
         data=ref.get()
+        if data==None:
+            return {}
         for key in data:
             if 'Data' in data[key]:
                 del data[key]['Data']
         return data
-
+    def deleteGarden(self):
+        ref=db.reference(f'MyGarden/{self.username}/{self.id_garden}')
+        ref.delete()
 
     @staticmethod
     def insertData(path,data):
