@@ -4,7 +4,7 @@ import {
   TextContainer,  MainText,  SubText,  ItemText,  MoreContainer,  NowBoardContainer,
   NowBoard,  NowBoardText, IconContainer, ImageContainer, GardenImage, GardenInfo, ButtonsContainer, EditContainer, EditButton, SwitchContainer, SwitchButton, Line, IDContainer, IDText, IDTilte, EyeIcon,
 } from "./styleDashboard";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { SafeAreaView, ScrollView } from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import * as ImagePicker from 'expo-image-picker';
@@ -58,11 +58,14 @@ const handleSaveGarden = () => {
 var mqttclient=null;
 const DashBoard = () => {
   const infoUser=useSelector(state=>state.infoUser)
+  const route = useRoute();
+  const { gardensDetail } = route.params;
+
  
 // các navigation
   const navigation = useNavigation();
   const handleBack = () => {
-    navigation.navigate("Gardens", { animation: false });
+    navigation.navigate("Home", { animation: false });
   };
 
 // hàm lấy thời gian, vị trí
@@ -147,7 +150,7 @@ const DashBoard = () => {
 
   // hiển thị ID vườn
   const [showID, setShowID] = useState(false);
-  const id = "20231205010626";
+  const id = gardensDetail.gardenId;
   const hiddenID = "*".repeat(id.length);
   const toggleShowID = () => {
     setShowID(!showID);
@@ -162,7 +165,7 @@ const DashBoard = () => {
           <BackContainer onPress={handleBack}>
             <ButtonBack source={require("../../assets/back.png")} />
           </BackContainer>
-          <MainTitle>{gardenName}</MainTitle>
+          <MainTitle>{gardensDetail.gardenname}</MainTitle>
         </TitleContainer>
       </HeaderContainer>
       <StyledContainer>
@@ -171,7 +174,7 @@ const DashBoard = () => {
             <NowBoardText>{currentTime}</NowBoardText>
           </NowBoard>
           <NowBoard>
-            <NowBoardText>Dĩ An, Bình Dương</NowBoardText>
+            <NowBoardText>{gardensDetail.location}</NowBoardText>
           </NowBoard>
         </NowBoardContainer>
         <GardenInfo>

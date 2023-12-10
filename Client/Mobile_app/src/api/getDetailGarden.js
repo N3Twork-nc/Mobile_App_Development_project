@@ -1,4 +1,5 @@
-import {SERVER} from '@env'
+// import {SERVER} from '@env'
+import { IPServer } from ".";
 import axios from "axios";
 
 export const myGarden = async (gardenName, location, cropType, token) => {
@@ -9,7 +10,7 @@ export const myGarden = async (gardenName, location, cropType, token) => {
         "cropType": `${cropType}`
     };
 
-    const response = await axios.put(SERVER + 'APIUploadMyGarden', data, {
+    const response = await axios.put(IPServer + 'APIUploadMyGarden', data, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -31,13 +32,26 @@ export const myGarden = async (gardenName, location, cropType, token) => {
 
 export const getDetailGardens = async (token) => {
     try {
-      const response = await axios.get(SERVER + "APIGetDetailGarden",
+      const response = await axios.get(IPServer + "APIGetDetailGarden",
       {headers: {
         Authorization:`Bearer ${token}`}
-        });
+      });
+      
       const detail = response.data;
+      
+      const saving = [];
+      
+      Object.entries(detail).forEach(([gardenId, gardenInfo]) => {
+        const croptype = gardenInfo.CropType;
+        const gardenname = gardenInfo.NameGarden;
+        const location = gardenInfo.location;
+        const time = gardenInfo.timeUpload;
+      
+        saving.push({ gardenId, croptype, gardenname, location, time });
+      });
+
       console.log("Get detail gardens success");
-      return detail;
+      return saving;
     } catch (error) {
       console.log(error);
       return error;
