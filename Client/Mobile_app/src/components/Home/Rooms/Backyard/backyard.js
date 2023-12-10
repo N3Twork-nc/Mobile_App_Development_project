@@ -28,14 +28,16 @@ return (
                 </HeaderContainer>
 
                 {/* Plants */}
-                {plantsInRoom.map((plant, index) => (
-                    <PlantContainer key={index}>
-                    {(index % 2 == 0) ? (
-                        <React.Fragment>
-                            
+                {plantsInRoom.length >= 1 && (
+                    <React.Fragment>
+                        {(() => {
+                            const pairs = [];
+                            for (let i = 0; i < plantsInRoom.length; i += 2) {
+                            pairs.push(
+                        <PlantContainer key={i}>
                             <Plant1Container>
                                 <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant1.jpg')}/>
-                                <PlantName> {plant.plantname} </PlantName>
+                                <PlantName> {plantsInRoom[i].plantname} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
                                     <IconButton>
@@ -53,12 +55,11 @@ return (
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
                             </Plant1Container>
-
-                    {plantsInRoom[index + 1] && (
+                    {plantsInRoom[i + 1] && (
                             
-                            <Plant2Container>
+                            <Plant1Container>
                                 <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant2.jpg')}/>
-                                <PlantName> {plant.plantname} </PlantName>
+                                <PlantName> {plantsInRoom[i + 1].plantname} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
                                     <IconButton>
@@ -75,13 +76,13 @@ return (
                                     </IconButton>
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
-                            </Plant2Container>
-
-                    )}
-                        </React.Fragment>
-                    ) : null}
-                    </PlantContainer>
-                ))}
+                            </Plant1Container>
+                            )}
+                        </PlantContainer>
+                        );} return pairs;
+                    })()}
+                    </React.Fragment>
+                )}
                 
             </StyledContainer>
         </ScrollView>

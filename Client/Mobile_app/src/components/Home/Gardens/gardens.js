@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
-import {View, Text, TouchableOpacity,Image,  TextInput } from 'react-native'
+import {Alert, View, Text, TouchableOpacity,Image,  TextInput } from 'react-native'
 import { StyledContainer, HeaderContainer, ButtonAdd, 
   ButtonBack,ButtonText, MainTitle, BackContainer, 
   AddContainer, GardenContainer, EachGardenContainer,
  ImageFrame, GardenName,ButtonContainerWrapper, ButtonContainer, IconButton,
 Icon,  } from './styleGarden'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { SafeAreaView, ScrollView  } from 'react-native';
 import Modal, { ReactNativeModal } from 'react-native-modal';
+import { useSelector } from 'react-redux';
+import { myGarden } from '../../../api/getDetailGarden.js'
 import logo from '../../../assets/logo.png';
 
 
@@ -40,7 +42,11 @@ const logoApp = logo;
 
  
   // Alert thêm vườn
-  const AddGarden = ({ isVisible, message, onAdd, onCancel }) => {
+  const AddGarden = ({ isVisible, message, onAdd, onCancel, setNewGardenName, setNewLocation, setNewCropType }) => {
+    const [gardenNameInput, setGardenNameInput] = useState('');
+    const [locationInput, setLocationInput] = useState('');
+    const [cropTypeInput, setCropTypeInput] = useState('');
+
     return (
       <Modal isVisible={isVisible}>
         <View style={{ backgroundColor: 'white', padding: 12, borderRadius: 15}}>
@@ -51,22 +57,36 @@ const logoApp = logo;
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
             <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Tên vườn:</Text>
-            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+            <TextInput onChangeText={(text) => {
+              setGardenNameInput(text);
+              setNewGardenName(text); // Cập nhật giá trị của Garden component
+            }} style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
             <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Vị trí:</Text>
-            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+            <TextInput onChangeText={(text) => {
+              setLocationInput(text);
+              setNewLocation(text); // Cập nhật giá trị của Garden component
+            }} style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15,  }}>
             <Text style={{ fontSize: 16, flex: 1, fontWeight: '500', marginLeft: 10 }}>Loại cây trồng:</Text>
-            <TextInput style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
+            <TextInput onChangeText={(text) => {
+              setCropTypeInput(text);
+              setNewCropType(text); // Cập nhật giá trị của Garden component
+            }} style={{ marginRight: 12, flex: 2, borderWidth: 1, borderColor: 'gray', borderRadius: 5, paddingHorizontal: 10, height: 30 }} />
           </View>
           <View style={{ padding: 10, zIndex: 1}}>              
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
             <TouchableOpacity onPress={onCancel} style={{ marginRight: 25 }}>
               <Text style={{ color: 'green', fontSize: 17 }}>Hủy</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={onAdd}>
+            <TouchableOpacity onPress={() => {
+              onAdd(gardenNameInput, cropTypeInput, locationInput); // Truyền các giá trị được cập nhật
+              setGardenNameInput(''); // Đặt lại giá trị của TextInput về rỗng sau khi nhấn Thêm
+              setLocationInput('');
+              setCropTypeInput('');
+            }}>
               <Text style={{ color: 'green', fontSize: 17 }}>Thêm</Text>
             </TouchableOpacity>
           </View>
@@ -81,11 +101,18 @@ const Garden = () => {
 
   //Các navigate chuyển màn hình
   const navigation = useNavigation();
+  const token = useSelector(state=>state.token)['payload'];
+  const [gardenName, setNewGardenName] = useState('');
+  const [location, setNewLocation] = useState('');
+  const [cropType, setNewCropType] = useState('');
+  const route = useRoute();
+  const { gardensDetail } = route.params;
   const handleBack = () => {
     navigation.navigate('Home');    
   };
-  const handleDashboard = () => {
-    navigation.navigate('Dashboard');
+  
+  const handleDashboard = (gardensDetail) => {
+    navigation.navigate('Dashboard', { gardensDetail });
   };
 
   // Xử lý thêm vườn
@@ -94,11 +121,22 @@ const Garden = () => {
   {
     setAddGardenVisible(true);
   }
-  const handleSaveNewGarden = () =>
+
+  const handleSaveNewGarden = async () =>
   {
-    setAddGardenVisible(false);
-    // Xử lý logic thêm vườn mới
+    try {
+      const response = await myGarden(gardenName, location, cropType, token);
+
+      if (response == "Successful") Alert.alert("Thêm vườn thành công!");
+      else Alert.alert ("Thêm vườn thất bại!");
+
+      setAddGardenVisible(false);
+
+    } catch (error) {
+      Alert.alert ("Thêm vườn thất bại!");
+    }
   }
+  
   const handleCancelAdd = () =>
   {
     setAddGardenVisible(false);
@@ -133,100 +171,73 @@ const Garden = () => {
                   <AddContainer onPress={handleAddGarden}>
                     <ButtonAdd source = {require('../../../assets/add.png')}/>
                     <AddGarden 
-                       isVisible={isAddGardenVisible}
-                       message="Thêm một vườn trồng mới"
-                       onCancel={handleCancelAdd}
-                       onAdd={handleSaveNewGarden}
+                      isVisible={isAddGardenVisible}
+                      message="Thêm một vườn trồng mới"
+                      onCancel={handleCancelAdd}
+                      onAdd={handleSaveNewGarden}
+                      setNewGardenName={setNewGardenName}
+                      setNewLocation={setNewLocation}
+                      setNewCropType={setNewCropType}
                     />
+
                   </AddContainer>
               </HeaderContainer>
 
          {/* Hàng 1 */}
-              <GardenContainer>
+         {gardensDetail.length >= 1 && (
+          <React.Fragment>
+            {(() => {
+              const pairs = [];
+              for (let i = 0; i < gardensDetail.length; i += 2) {
+              pairs.push(
+              <GardenContainer key={i}>
+                <EachGardenContainer>
+                    <ImageFrame  resizeMode="cover" source={require('../../../assets/plant3.jpg')}/>
+                    <GardenName>Vườn {gardensDetail[i].gardenname}</GardenName>
+                    <ButtonContainerWrapper>
+                        <ButtonContainer>
+                        <IconButton onPress={() => handleDashboard(gardensDetail[i])}>
+                            <Icon source={require('../../../assets/activity.png')} />
+                            <ButtonText>Dashboard</ButtonText>
+                        </IconButton>
+                        <IconButton onPress={handleDelete}>
+                            <Icon source={require('../../../assets/trash-can.png')} />
+                            <ButtonText>Xóa</ButtonText>
+                            <CustomAlert
+                              isVisible={isAlertVisible}
+                              message="Bạn có chắc chắn muốn xóa khu vườn này không?"
+                              onCancel={handleCancel}
+                              onDelete={handleConfirmDelete}
+                            />
+                        </IconButton>
+                        
+                        </ButtonContainer>
+                    </ButtonContainerWrapper>                        
+                </EachGardenContainer> 
 
-                    <EachGardenContainer>
-                        <ImageFrame  resizeMode="cover" source={require('../../../assets/plant3.jpg')}/>
-                        <GardenName>Vườn 1</GardenName>
-                        <ButtonContainerWrapper>
-                            <ButtonContainer>
-                            <IconButton onPress={handleDashboard}>
-                                <Icon source={require('../../../assets/activity.png')} />
-                                <ButtonText>Dashboard</ButtonText>
-                            </IconButton>
-                            <IconButton onPress={handleDelete}>
-                                <Icon source={require('../../../assets/trash-can.png')} />
-                                <ButtonText>Xóa</ButtonText>
-                                <CustomAlert
-                                  isVisible={isAlertVisible}
-                                  message="Bạn có chắc chắn muốn xóa khu vườn này không?"
-                                  onCancel={handleCancel}
-                                  onDelete={handleConfirmDelete}
-                                />
-                            </IconButton>
-                            
-                            </ButtonContainer>
-                        </ButtonContainerWrapper>                        
-                    </EachGardenContainer> 
-
-                    <EachGardenContainer>
-                        <ImageFrame resizeMode="cover" source={require('../../../assets/plant4.jpg')}/>
-                        <GardenName>Vườn 2</GardenName>
-                        <ButtonContainerWrapper>
-                            <ButtonContainer>
-                            <IconButton onPress={handleDashboard}>
-                                <Icon source={require('../../../assets/activity.png')} />
-                                <ButtonText>Dashboard</ButtonText>
-                            </IconButton>
-                            <IconButton>
-                                <Icon source={require('../../../assets/trash-can.png')} />
-                                <ButtonText>Xóa</ButtonText>
-                            </IconButton>
-                            </ButtonContainer>
-                        </ButtonContainerWrapper>
-                    </EachGardenContainer>       
-                                 
-                </GardenContainer>
-
-                {/* Hàng 2 */}
-                <GardenContainer>
-
-                    <EachGardenContainer>
-                        <ImageFrame resizeMode="cover" source={require('../../../assets/plant4.jpg')}/>
-                        <GardenName>Vườn 3</GardenName>
-                        <ButtonContainerWrapper>
-                            <ButtonContainer>
-                            <IconButton>
-                                <Icon source={require('../../../assets/activity.png')} />
-                                <ButtonText>Dashboard</ButtonText>
-                            </IconButton>
-                            <IconButton>
-                                <Icon source={require('../../../assets/trash-can.png')} />
-                                <ButtonText>Xóa</ButtonText>
-                            </IconButton>
-                            </ButtonContainer>
-                        </ButtonContainerWrapper>
-                    </EachGardenContainer> 
-
-                    <EachGardenContainer>
-                        <ImageFrame resizeMode="cover" source={require('../../../assets/plant4.jpg')}/>
-                        <GardenName>Vườn 4</GardenName>
-                        <ButtonContainerWrapper>
-                            <ButtonContainer>
-                            <IconButton>
-                                <Icon source={require('../../../assets/activity.png')} />
-                                <ButtonText>Dashboard</ButtonText>
-                            </IconButton>
-                            <IconButton>
-                                <Icon source={require('../../../assets/trash-can.png')} />
-                                <ButtonText>Xóa</ButtonText>
-                            </IconButton>
-                            </ButtonContainer>
-                        </ButtonContainerWrapper>
-                    </EachGardenContainer> 
-
-                </GardenContainer>
-
-
+                {gardensDetail[i + 1] && (
+                <EachGardenContainer>
+                    <ImageFrame resizeMode="cover" source={require('../../../assets/plant4.jpg')}/>
+                    <GardenName>Vườn {gardensDetail[i + 1].gardenname}</GardenName>
+                    <ButtonContainerWrapper>
+                        <ButtonContainer>
+                        <IconButton onPress={() => handleDashboard(gardensDetail[i + 1])}>
+                            <Icon source={require('../../../assets/activity.png')} />
+                            <ButtonText>Dashboard</ButtonText>
+                        </IconButton>
+                        <IconButton>
+                            <Icon source={require('../../../assets/trash-can.png')} />
+                            <ButtonText>Xóa</ButtonText>
+                        </IconButton>
+                        </ButtonContainer>
+                    </ButtonContainerWrapper>
+                </EachGardenContainer> 
+                )}      
+              </GardenContainer>
+              );} return pairs;
+            })()}
+            </React.Fragment>
+          )}
                 
           </StyledContainer>
           </ScrollView>
