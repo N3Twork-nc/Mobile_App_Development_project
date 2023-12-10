@@ -65,12 +65,12 @@ const DashBoard = () => {
 // các navigation
   const navigation = useNavigation();
   const handleBack = () => {
+    mqttclient.disconect()
     navigation.navigate("Home", { animation: false });
   };
 
 // hàm lấy thời gian, vị trí
   const [currentTime, setCurrentTime] = useState("");
-  const [currentLocation, setCurrentLocation] = useState(null); 
   const [dataDashBoard,setDataDataBoard]=useState({
     title: "Example Title",
     subtitle: "Example Subtitle",
@@ -84,7 +84,7 @@ const DashBoard = () => {
   })
   useEffect(() => {
     const username=infoUser.username;
-    const id_garden="16916d3bd5"
+    const id_garden=gardensDetail.gardenId
     mqttclient=new MQTT(setDataDataBoard,dataDashBoard,username,id_garden)
     const interval = setInterval(() => {
     const currentTime = new Date().toLocaleTimeString();
