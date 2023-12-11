@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,7 @@ import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
 import { ScrollView } from 'react-native';
 import LottieView from 'lottie-react-native';
+import { updateMyGarden } from '../../reducers/mygarden';
 
 
 
@@ -22,6 +23,11 @@ const Signin = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   }
+  
+  useEffect(() => {  
+    const action=updateMyGarden([]);
+    dispatch(action)
+   }, []);
 
   const handleSignIn = async () => {
     setIsLoading(true); 
