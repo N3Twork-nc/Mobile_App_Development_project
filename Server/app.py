@@ -5,12 +5,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from Source.classes.MQTT_class import MQTTData
 
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # app.add_middleware(HTTPSRedirectMiddleware)
 

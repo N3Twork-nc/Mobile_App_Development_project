@@ -12,24 +12,34 @@ import {
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
 import { myPlant } from '../../api/uploadPlant.js';
-import { useSelector } from 'react-redux';
+import {getDetailGardens} from '../../api/Garden.js'
+import { useSelector,useDispatch } from 'react-redux';
+import { updateMyGarden } from '../../reducers/mygarden';
 
 const Home = () => {
-  const navigation = useNavigation();
-  const token = useSelector(state=>state.token)['payload'];
   const [plantsData, setplantsData] = useState([]);
+  const gardenData=useSelector(state=>state.garden)['payload'].slice(0,4);
+  const dispatch=useDispatch()
+  const token = useSelector(state=>state.token)['payload'];
+  const navigation = useNavigation();
 
-  useEffect(() => { savedPlants(); }, []);
+  useEffect(() => {  
+    savedPlants();
+   }, []);
+ 
 
   const savedPlants = async () => {
     try {
       const plantsData = await myPlant(token);
       setplantsData(plantsData);
+      const gardenDetails = await getDetailGardens(token);
+      const action=updateMyGarden(gardenDetails)
+      dispatch(action)
     } catch (error) {
       console.log(error);
     }
   };
-
+  
   const livingRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng khách');
   const bedRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng ngủ');
   const kitchenPlants = plantsData.filter((plant) => plant.roomname == 'Nhà bếp');
@@ -56,8 +66,14 @@ const Home = () => {
   const handleSaved = () => {navigation.navigate('Saved', { animations: false });};
   const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
   const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
-  const handleDashboard = () => {navigation.navigate('Dashboard')};
-  const handleGardens = () => {navigation.navigate('Gardens')};
+  const handleDashboard = (gardensDetail) => {
+    navigation.navigate('Dashboard', { gardensDetail });
+  };
+    
+  const handleGardens = () => {
+    navigation.navigate('Gardens');
+  };  
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
@@ -65,9 +81,7 @@ const Home = () => {
 
         {/* TIÊU ĐỀ */}
           <HeaderContainer>
-            <MainTitle>
-              Vườn của tôi
-            </MainTitle>
+            <MainTitle>Vườn của tôi</MainTitle>
             <ButtonSearch resizeMode="cover" source={require('../../assets/search.png')}/>
             <ButtonAdd resizeMode="cover" source={require('../../assets/add.png')}/>
           </HeaderContainer>   
@@ -166,53 +180,45 @@ const Home = () => {
           
           <CategoryPlantRoom>
             <RoomsContainer>
-              <FirstRooms>
-                <LeftRoomContainer  onPress = {handleDashboard}>
-                  <RoomContainer>
-                    <LivingroomContainer>
-                      <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
-                    </LivingroomContainer> 
-                    <CategoryDetailText>
-                      <RoomName>Vườn 1</RoomName> 
-                    </CategoryDetailText>                      
-                  </RoomContainer>                    
-                </LeftRoomContainer>
-                <RightRoomContainer>
-                  <RoomContainer>
-                    <LivingroomContainer onPress = {handleDashboard}>
-                      <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
-                    </LivingroomContainer> 
-                    <CategoryDetailText>
-                      <RoomName>Vườn 2</RoomName> 
-                    </CategoryDetailText>   
-                  </RoomContainer>          
-                </RightRoomContainer>
-              </FirstRooms>
-              <FirstRooms>
-                <LeftRoomContainer>
-                  <RoomContainer>
-                    <LivingroomContainer onPress = {handleLivingroom} >
-                      <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
-                    </LivingroomContainer> 
-                    <CategoryDetailText onPress = {handleLivingroom}>
-                      <RoomName>Vườn 3</RoomName> 
-                    </CategoryDetailText>                      
-                  </RoomContainer>                    
-                </LeftRoomContainer>
-                <RightRoomContainer>
-                  <RoomContainer>
-                    <LivingroomContainer onPress = {handleLivingroom}>
-                      <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'}/>
-                    </LivingroomContainer> 
-                    <CategoryDetailText onPress = {handleLivingroom}>
-                      <RoomName>Vườn 4</RoomName> 
-                    </CategoryDetailText>   
-                  </RoomContainer>          
-                </RightRoomContainer>
-              </FirstRooms>
-              
+              {gardenData.length >= 1 && (
+                <React.Fragment>
+                  {(() => {
+                    const pairs = [];
+                    for (let i = 0; i < gardenData.length; i += 2) {
+                      pairs.push(
+                        <FirstRooms key={i}>
+                          <LeftRoomContainer onPress={() => handleDashboard(gardenData[i])}>
+                            <RoomContainer>
+                              <LivingroomContainer>
+                                <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'} />
+                              </LivingroomContainer>
+                              <CategoryDetailText>
+                                <RoomName> Vườn {gardenData[i].gardenname}</RoomName>
+                              </CategoryDetailText>
+                            </RoomContainer>
+                          </LeftRoomContainer>
+                          {gardenData[i + 1] && (
+                            <LeftRoomContainer onPress={() => handleDashboard(gardenData[i + 1])}>
+                              <RoomContainer>
+                                <LivingroomContainer>
+                                  <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'} />
+                                </LivingroomContainer>
+                                <CategoryDetailText>
+                                  <RoomName> Vườn {gardenData[i + 1].gardenname}</RoomName>
+                                </CategoryDetailText>
+                              </RoomContainer>
+                            </LeftRoomContainer>
+                          )}
+                        </FirstRooms>
+                      );
+                    }
+                    return pairs;
+                  })()}
+                </React.Fragment>
+              )}
             </RoomsContainer>
           </CategoryPlantRoom>
+
 
           <Line/>
          {/* Thông báo */}         
