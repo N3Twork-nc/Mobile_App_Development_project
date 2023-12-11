@@ -232,7 +232,7 @@ const DashBoard = () => {
           </TextContainer>
           <CircularProgressContainer>
             <AnimatedCircularProgress
-                size={90} width={8}
+                size={110} width={8}
                 fill={dataDashBoard.temperature}
                 backgroundColor="#FFE3BB"             
                 tintColor="#F05941"
@@ -256,7 +256,7 @@ const DashBoard = () => {
           </TextContainer>
           <CircularProgressContainer>
             <AnimatedCircularProgress
-                size={90} width={8}
+                size={110} width={8}
                 fill={dataDashBoard.humidity}
                 backgroundColor="#E0F4FF"             
                 tintColor="#39A7FF"
@@ -279,7 +279,7 @@ const DashBoard = () => {
           </TextContainer>
           <CircularProgressContainer>
             <AnimatedCircularProgress
-                size={90} width={8}
+                size={110} width={8}
                 fill={dataDashBoard.light}
                 backgroundColor="#F5EEC8"             
                 tintColor="#F4CE14"
@@ -303,7 +303,7 @@ const DashBoard = () => {
           </TextContainer>
           <CircularProgressContainer>
             <AnimatedCircularProgress
-                size={90} width={8}
+                size={110} width={8}
                 fill={dataDashBoard.moisture}
                 backgroundColor="#F8DFD4"             
                 tintColor="#C69774"
