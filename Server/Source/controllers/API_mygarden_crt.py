@@ -42,10 +42,10 @@ def getDataGarden(idGarden:str,type:TypeData,interval:Interval,username=Depends(
         for date_str, value in data.items():
             if interval==Interval.DAY:
                 date_obj = datetime.strptime(date_str,"%Y-%m-%d-%H:%M:%S")
-                date_obj=date_obj.strftime("%Y-%m-%d:%H")
+                date_obj=date_obj.strftime("%H:00")
             else:
                 date_obj = datetime.strptime(date_str, "%Y-%m-%d-%H:%M:%S")
-                date_obj=date_obj.strftime("%Y-%m-%d")
+                date_obj=date_obj.strftime("Ngày %d")
             # Tạo hoặc cập nhật nhóm trong từ điển
             if date_obj in grouped_data:
                 grouped_data[date_obj].append(value)
