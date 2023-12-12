@@ -92,6 +92,7 @@ export const NowBoardContainer = styled.View`
 
 export const NowBoard= styled.View`
   height: 35px;
+  width: 48%;
   border: 0.5px solid ${green};
   backgroundColor: ${maincolor};
   border-radius: 8px;
@@ -221,10 +222,6 @@ export const ItemText = styled.Text`
   position: absolute;
   z-index: 1;
 `;
-
-
-
-
 export const MainText = styled.Text`
   font-size: 20px;
   font-weight: bold;
