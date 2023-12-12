@@ -1,5 +1,8 @@
 import init from 'react_native_mqtt'
 import {BROKER,BROKER_USERNAME,BROKER_PASSWORD,BROKER_PORT} from '@env';
+import { updateTemperature,updateHumidity,updateLight,updateMoisture,updateLed } from '../reducers/dataMQTT';
+import store from '../store';
+import { source } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
  const myStorage = {
   setItem: (key, item) => {
@@ -20,11 +23,9 @@ init({
 
 
 export default class MQTT{
-  constructor(setData,data,username,idGarden){
+  constructor(username,idGarden){
     this.username=username
     this.idGarden=idGarden
-    this.setData=setData
-    this.data=data
     this.onMessageArrived = this.onMessageArrived.bind(this)
     this.onConnectionLost = this.onConnectionLost.bind(this)
     const client = new Paho.MQTT.Client(BROKER,Number(BROKER_PORT), username+String(Math.random()));
@@ -51,30 +52,34 @@ export default class MQTT{
   onMessageArrived(entry) {
     switch (entry.topic){
       case `${this.username}/${this.idGarden}/Data/Temperature`:
-        this.data.temperature=Number(entry.payloadString)
+        var action=updateTemperature(Number(entry.payloadString))
+        store.dispatch(action);
         break;
       case `${this.username}/${this.idGarden}/Data/Humidity`:
-        this.data.humidity=Number(entry.payloadString)
+         var action=updateHumidity(Number(entry.payloadString))
+        store.dispatch(action);
         break;
       case `${this.username}/${this.idGarden}/Data/Light`:
-        this.data.light=Number(entry.payloadString)
+          var action=updateLight(Number(entry.payloadString))
+          store.dispatch(action);
         break;
       case `${this.username}/${this.idGarden}/Data/Moisture`:
-        this.data.moisture=Number(entry.payloadString)
+          var action=updateMoisture(Number(entry.payloadString))
+          store.dispatch(action);
         break;
       case `${this.username}/${this.idGarden}/Broadcast/Led`:
-        this.data.led=Number(entry.payloadString)
+          var action=updateLed(Number(entry.payloadString))
+          store.dispatch(action);
     }
-    this.setData(this.data)
   }
 
 
   onConnect = () => {
     console.log("Connected MQTT BROKER!!!!");
+    this.client.subscribe(`${this.username}/${this.idGarden}/Data/Moisture`)
     this.client.subscribe(`${this.username}/${this.idGarden}/Data/Temperature`);
     this.client.subscribe(`${this.username}/${this.idGarden}/Data/Humidity`);
-    this.client.subscribe(`${this.username}/${this.idGarden}/Data/Light`)
-    this.client.subscribe(`${this.username}/${this.idGarden}/Data/Moisture`)
+    this.client.subscribe(`${this.username}/${this.idGarden}/Data/Light`);
     this.client.subscribe(`${this.username}/${this.idGarden}/Broadcast/Led`)
   };
 
@@ -83,12 +88,13 @@ export default class MQTT{
       console.log("onConnectionLost:"+responseObject.errorMessage);
     }
   }
-  controlLED(status)
+  controlLED()
   {
     try {
-      this.data.led=!this.data.led
-      this.setData(this.data)
-      this.client.publish(`${this.username}/${this.idGarden}/Control/Led`, payload=String(Number(this.data.led)), qos=1)
+      const currentLed=Boolean(store.getState().dataMQTT.led)
+      var action=updateLed(!currentLed)
+      store.dispatch(action)
+      this.client.publish(`${this.username}/${this.idGarden}/Control/Led`, payload=String(Number(!currentLed  )), qos=1)
     }
     catch
     {

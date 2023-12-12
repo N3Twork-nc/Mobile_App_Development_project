@@ -58,6 +58,7 @@ const handleSaveGarden = () => {
 var mqttclient=null;
 const DashBoard = () => {
   const infoUser=useSelector(state=>state.infoUser)
+  const dataMQTT=useSelector(state=>state.dataMQTT)
   const route = useRoute();
   const { gardensDetail } = route.params;
 
@@ -71,21 +72,10 @@ const DashBoard = () => {
 
 // hàm lấy thời gian, vị trí
   const [currentTime, setCurrentTime] = useState("");
-  const [dataDashBoard,setDataDataBoard]=useState({
-    title: "Example Title",
-    subtitle: "Example Subtitle",
-    value: 100,
-    temperature: 0,
-    humidity: 0,
-    light: 0,
-    moisture:0,
-    percent: 1,
-    led:false
-  })
   useEffect(() => {
     const username=infoUser.username;
     const id_garden=gardensDetail.gardenId
-    mqttclient=new MQTT(setDataDataBoard,dataDashBoard,username,id_garden)
+    mqttclient=new MQTT(username,id_garden)
     const interval = setInterval(() => {
     const currentTime = new Date().toLocaleTimeString();
     setCurrentTime(currentTime);
@@ -95,7 +85,7 @@ const DashBoard = () => {
 
 // thông số hiển thị
   
-  const placeholder = require('../../assets/plant1.jpg');
+  const placeholder = require('../../assets/placeholder.jpg');
 
   // Hình ảnh của vườn
   const [capturedPhoto, setCapturedPhoto] = useState(null);
@@ -197,7 +187,7 @@ const DashBoard = () => {
             <SwitchContainer onPress={toggleLightOn}>
               <SwitchButton 
                 source={
-                    dataDashBoard.led
+                    dataMQTT.led
                       ? require('../../assets/lighton.png')
                       : require('../../assets/lightoff.png')
                   }
@@ -233,15 +223,15 @@ const DashBoard = () => {
           <CircularProgressContainer>
             <AnimatedCircularProgress
                 size={110} width={8}
-                fill={dataDashBoard.temperature}
+                fill={dataMQTT.temperature}
                 backgroundColor="#FFE3BB"             
                 tintColor="#F05941"
                 rotation={360}
-                lineCap="round" >
+                lineCap="round">
                     {() => (
                       <CircularProgressContainer>
                         <ItemText>
-                        {dataDashBoard.temperature}°C</ItemText>
+                        {dataMQTT.temperature}°C</ItemText>
                       </CircularProgressContainer>
                     )}
             </AnimatedCircularProgress>                
@@ -257,7 +247,7 @@ const DashBoard = () => {
           <CircularProgressContainer>
             <AnimatedCircularProgress
                 size={110} width={8}
-                fill={dataDashBoard.humidity}
+                fill={dataMQTT.humidity}
                 backgroundColor="#E0F4FF"             
                 tintColor="#39A7FF"
                 rotation={360}
@@ -265,7 +255,7 @@ const DashBoard = () => {
                     {() => (
                       <CircularProgressContainer>
                         <ItemText>
-                        {dataDashBoard.humidity}%</ItemText>
+                        {dataMQTT.humidity}%</ItemText>
                       </CircularProgressContainer>
                     )}
             </AnimatedCircularProgress>                
@@ -280,15 +270,16 @@ const DashBoard = () => {
           <CircularProgressContainer>
             <AnimatedCircularProgress
                 size={110} width={8}
-                fill={dataDashBoard.light}
+                fill={dataMQTT.light}
                 backgroundColor="#F5EEC8"             
                 tintColor="#F4CE14"
                 rotation={360}
-                lineCap="round" >
+                lineCap="round"                 
+                >
                     {() => (
-                      <CircularProgressContainer>
+                      <CircularProgressContainer style={{alignItems: 'center'}}>
                         <ItemText>
-                        {dataDashBoard.light}%</ItemText>
+                        {dataMQTT.light}%</ItemText>
                       </CircularProgressContainer>
                     )}
             </AnimatedCircularProgress>                
@@ -304,7 +295,7 @@ const DashBoard = () => {
           <CircularProgressContainer>
             <AnimatedCircularProgress
                 size={110} width={8}
-                fill={dataDashBoard.moisture}
+                fill={dataMQTT.moisture}
                 backgroundColor="#F8DFD4"             
                 tintColor="#C69774"
                 rotation={360}
@@ -312,7 +303,7 @@ const DashBoard = () => {
                     {() => (
                       <CircularProgressContainer>
                         <ItemText>
-                        {dataDashBoard.moisture}%</ItemText>
+                        {dataMQTT.moisture}%</ItemText>
                       </CircularProgressContainer>
                     )}
             </AnimatedCircularProgress>                
