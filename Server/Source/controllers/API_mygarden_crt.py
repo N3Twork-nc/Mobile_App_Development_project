@@ -33,6 +33,7 @@ class TypeData(Enum):
     HUMIDITY="Humidity"
     LIGHT="Light"
     MOISTURE="Moisture"
+
 @app.get("/APIGetDataGarden")
 def getDataGarden(idGarden:str,type:TypeData,interval:Interval,username=Depends(Authentication().validate_token)):
     try: 
