@@ -1,7 +1,7 @@
 from Source import app
 from Source.models_mvc.myRoom_model import MyPlant
-from Source.models_mvc.myPlants_model import get_user_plants
-from fastapi import UploadFile,Depends
+from Source.models_mvc.myPlants_model import MyPlants
+from fastapi import UploadFile, Depends, Path 
 from Source.security import Authentication
 from datetime import datetime
 from Source.config.config import container
@@ -31,11 +31,19 @@ async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depe
                  "room":roomName,
                  "plantname":plantName}
 
-
-@app.get("/APIMyPlant")
-async def get_plants_data(username=Depends(Authentication().validate_token)):
-    all_my_plants = get_user_plants(username)
-    return all_my_plants
+@app.get("/APIMyPlant/{roomName}")  # Sử dụng Path để lấy roomName từ URL
+def getPlants(roomName: str = Path(...), username=Depends(Authentication().validate_token)):
+    try:
+        garden = MyPlants(username, roomName)
+        data = garden.getPlants()
+        # Xử lý dữ liệu ở đây nếu cần thiết trước khi trả về (ví dụ: loại bỏ thông tin không cần thiết)
+        return data
+    except Exception as e:
+        print(str(e))
+        return {
+            "Status": False,
+            "Message": "Retrieving plants information failed"
+        }
 
 @app.put("/API_schedule")
 def schedule(schedule:Schedule):
