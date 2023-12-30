@@ -1,23 +1,19 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from firebase_admin import db
 
-class MyPlants(BaseModel):
-    username: str
-    id: str
-    roomname: str = Field(alias="roomName")
-    plantname: str = Field(alias="plantName")
-    timeupload: str = Field(alias="timeUpload")
+class MyPlants():
 
-def get_user_plants(username: str):
-    ref = db.reference(f'MyRoom/{username}')
-    user_room_data = ref.get()
-    all_user_plants = []
+    def __init__(self,username,roomName=None,idPlant=None):
+        self.room_name=roomName
+        self.id_plant=idPlant
+        self.username=username
 
-    if user_room_data:
-        for room_name, plants in user_room_data.items():
-            for plant_id, plant_data in plants.items():
-                plant_data.update({'username': username, 'roomName': room_name, 'id': plant_id})
-                user_plant = MyPlants(**plant_data)
-                all_user_plants.append(user_plant)
-
-    return all_user_plants
+    def getPlants(self):
+            ref=db.reference(f'MyRoom/{self.username}/{self.room_name}')
+            data=ref.get()
+            if data==None:
+                return {}
+            for key in data:
+                if 'Data' in data[key]:
+                    del data[key]['Data']
+            return data
