@@ -4,8 +4,8 @@ import {
   StyledContainer, 
   MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
   Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
-  Line,Icon, ImageFrame,  FirstRooms, RoomsContainer,RoomContainer, RightRoomContainer, LeftRoomContainer,
-  KitchenContainer, LivingroomContainer, BackyardContainer, BedroomContainer, CategoryPlantRoom, RoomName,
+  Line,Icon, ImageFrame,  FirstRooms, RoomsContainer, RightRoomContainer, LeftRoomContainer,
+  KitchenContainer, RoomContainer, LivingroomContainer, BackyardContainer, BedroomContainer, CategoryPlantRoom, RoomName,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, 
   MainTextNotify, TotalPlant, CategoryDetailText, TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
 
@@ -18,6 +18,8 @@ import { updateMyGarden } from '../../reducers/mygarden';
 
 const Home = () => {
   const [plantsData, setplantsData] = useState([]);
+  const [plantCount, setPlantCount] = useState({});
+  const [selectedRoom, setSelectedRoom] = useState(null);
   const gardenData=useSelector(state=>state.garden)['payload'].slice(0,4);
   const dispatch=useDispatch()
   const token = useSelector(state=>state.token)['payload'];
@@ -26,12 +28,9 @@ const Home = () => {
   useEffect(() => {  
     savedPlants();
    }, []);
- 
 
   const savedPlants = async () => {
     try {
-      const plantsData = await myPlant(token);
-      setplantsData(plantsData);
       const gardenDetails = await getDetailGardens(token);
       const action=updateMyGarden(gardenDetails)
       dispatch(action)
@@ -39,26 +38,18 @@ const Home = () => {
       console.log(error);
     }
   };
-  
-  const livingRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng khách');
-  const bedRoomPlants = plantsData.filter((plant) => plant.roomname == 'Phòng ngủ');
-  const kitchenPlants = plantsData.filter((plant) => plant.roomname == 'Nhà bếp');
-  const backYardPlants = plantsData.filter((plant) => plant.roomname == 'Vườn');
 
-  const handleLivingroom = () => {
-    navigation.navigate('Livingroom', { plantsInRoom: livingRoomPlants });
-  };
-
-  const handleBedroom = () => {
-    navigation.navigate('Bedroom', { plantsInRoom: bedRoomPlants });
-  };
-
-  const handleKitchen = () => {
-    navigation.navigate('Kitchen', { plantsInRoom: kitchenPlants });
-  };
-
-  const handleBackyard = () => {
-    navigation.navigate('Backyard', { plantsInRoom: backYardPlants });
+  const handleRoomPress = async (roomName) => {
+    setSelectedRoom(roomName);
+    let plantsInRoom = [];
+    try {
+      if (roomName) {
+        plantsInRoom = await myPlant(token, roomName);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    navigation.navigate('Room', { plantsInRoom, roomName });
   };
 
   const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
@@ -119,49 +110,49 @@ const Home = () => {
             <RoomsContainer>
               <FirstRooms>
 
-                <LeftRoomContainer onPress = {handleLivingroom} >
+                <LeftRoomContainer onPress={() => handleRoomPress('Phòng khách')} >
                   <RoomContainer >
                     <LivingroomContainer >
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
                     <CategoryDetailText >
-                      <TotalPlant>{livingRoomPlants.length} plants</TotalPlant>
+                      <TotalPlant>0 plants</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
                   </RoomContainer>                    
                 </LeftRoomContainer>
 
-                <RightRoomContainer onPress = {handleKitchen}>
+                <RightRoomContainer onPress={() => handleRoomPress('Nhà bếp')}>
                   <RoomContainer>
                     <KitchenContainer>
                       <Icon resizeMode="contain" source={require('../../assets/kitchen.png')}/>
                     </KitchenContainer> 
                     <CategoryDetailText>
-                      <TotalPlant>{kitchenPlants.length} plants</TotalPlant>
+                      <TotalPlant>0 plants</TotalPlant>
                       <RoomName>Nhà bếp</RoomName> 
                     </CategoryDetailText> 
                   </RoomContainer>          
                 </RightRoomContainer>
               </FirstRooms>
               <FirstRooms>
-                <LeftRoomContainer onPress = {handleBedroom}>
+                <LeftRoomContainer onPress={() => handleRoomPress('Phòng ngủ')}>
                   <RoomContainer>                   
                     <BedroomContainer>
                       <Icon resizeMode="contain" source={require('../../assets/bedroom.png')}/>
                     </BedroomContainer>
                     <CategoryDetailText>
-                      <TotalPlant>{bedRoomPlants.length} plants</TotalPlant>                      
+                      <TotalPlant>0 plants</TotalPlant>                      
                       <RoomName>Phòng ngủ</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>
                 </LeftRoomContainer>
-                <RightRoomContainer onPress = {handleBackyard}>
+                <RightRoomContainer onPress={() => handleRoomPress('Vườn')}>
                   <RoomContainer>
                     <BackyardContainer>
                       <Icon resizeMode="contain" source={require('../../assets/backyard.png')}/>
                     </BackyardContainer>
                     <CategoryDetailText>
-                      <TotalPlant>{backYardPlants.length} plants</TotalPlant>
+                      <TotalPlant>0 plants</TotalPlant>
                       <RoomName>Sân vườn</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>          
@@ -189,9 +180,9 @@ const Home = () => {
                         <FirstRooms key={i}>
                           <LeftRoomContainer onPress={() => handleDashboard(gardenData[i])}>
                             <RoomContainer>
-                              <LivingroomContainer>
+                              <RoomContainer>
                                 <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'} />
-                              </LivingroomContainer>
+                              </RoomContainer>
                               <CategoryDetailText>
                                 <RoomName> Vườn {gardenData[i].gardenname}</RoomName>
                               </CategoryDetailText>
@@ -200,9 +191,9 @@ const Home = () => {
                           {gardenData[i + 1] && (
                             <LeftRoomContainer onPress={() => handleDashboard(gardenData[i + 1])}>
                               <RoomContainer>
-                                <LivingroomContainer>
+                                <RoomContainer>
                                   <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'} />
-                                </LivingroomContainer>
+                                </RoomContainer>
                                 <CategoryDetailText>
                                   <RoomName> Vườn {gardenData[i + 1].gardenname}</RoomName>
                                 </CategoryDetailText>
