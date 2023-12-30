@@ -35,6 +35,7 @@ async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depe
 @app.get("/APIMyPlant")
 async def get_plants_data(username=Depends(Authentication().validate_token)):
     all_my_plants = get_user_plants(username)
+    print(all_my_plants)
     return all_my_plants
 
 @app.put("/API_schedule")

@@ -52,8 +52,9 @@ export const myPlant = async (token) => {
       const plantname = plant.plantName;
       const roomname = plant.roomName;
       const time = plant.timeUpload;
+      const linkImg=plant.linkImg;
 
-      saving.push({ plantimage, plantname, roomname, time });
+      saving.push({ plantimage, plantname, roomname, time,linkImg });
     });
 
     console.log("Get plants success");

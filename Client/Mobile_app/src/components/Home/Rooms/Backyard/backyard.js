@@ -36,7 +36,7 @@ return (
                             pairs.push(
                         <PlantContainer key={i}>
                             <Plant1Container>
-                                <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant1.jpg')}/>
+                                <ImageFrame  resizeMode="cover" source={{uri:plantsInRoom[i].linkImg}}/>
                                 <PlantName> {plantsInRoom[i].plantname} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
@@ -58,7 +58,7 @@ return (
                     {plantsInRoom[i + 1] && (
                             
                             <Plant1Container>
-                                <ImageFrame  resizeMode="cover" source={require('../../../../assets/plant2.jpg')}/>
+                                <ImageFrame  resizeMode="cover" source={{uri:plantsInRoom[i].linkImg}}/>
                                 <PlantName> {plantsInRoom[i + 1].plantname} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
