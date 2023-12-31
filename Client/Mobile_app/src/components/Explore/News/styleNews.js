@@ -43,7 +43,7 @@ export const HeaderContainer = styled.View`
   justify-content: center;
   margin-top: ${vh(1.8)}px;
   margin-bottom: ${vh(1.8)}px;
-  ${Platform.OS === 'android' ? 'margin-top: 15%' : 'margin-top: 0px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 10%' : 'margin-top: 0px;'}
  
 `;
 export const BackContainer = styled.TouchableOpacity`

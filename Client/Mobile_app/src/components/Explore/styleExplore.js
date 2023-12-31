@@ -31,7 +31,7 @@ export const HeaderContainer = styled.View`
   position: relative;
   align-items: center;
   justify-content: center;
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 10px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 5%;' : 'margin-bottom: 10px;'}
 `;
 
 export const MainTitle = styled.Text`

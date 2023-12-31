@@ -5,7 +5,7 @@ export const Colors = {
   maincolor: "#CEF1CF",
   white: "#ffffff",
   black: "#000000",
-  gray: "#D9D9D9",
+  gray: "#333333",
   green: "#61AF2B", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
   white_gray: "#F8F8F8",
   gray_subtype: "#628093",
@@ -31,7 +31,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 40px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 10%; margin-bottom: 10%' : 'margin-bottom: 10%;'}
 `;
 export const BackContainer = styled.TouchableOpacity`
   position: absolute;
