@@ -3,13 +3,12 @@ import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View } from 'r
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
         TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
         TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
-        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate
+        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor
         } from './styleSchedule';
 import { useNavigation } from '@react-navigation/native';
 import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { Platform,StyleSheet } from 'react-native';
+import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
 
@@ -20,16 +19,46 @@ import { Dropdown } from 'react-native-element-dropdown';
   const [selectedDate, setSelectedDate] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(new Date()); // Giá trị thời gian được chọn
-  const [showTimepicker, setShowTimepicker] = useState(true); // Biến để điều khiển việc hiển thị time picker
-  
-   // Khai báo biến isFocus và các hàm setter cho biến state này
+
    const [isFocusNumber, setIsFocusNumber] = useState(false);
    const [isFocusFrequency, setIsFocusFrequency] = useState(false);
    const [isFocusWork, setIsFocusWork] = useState(false);
    const [selectedNumber, setSelectedNumber] = useState(null); // Biến state cho dropdown dãy số
    const [selectedFrequency, setSelectedFrequency] = useState(null); // Biến state cho dropdown "Ngày", "Tuần", "Tháng"
    const [selectedWork, setSelectedWork] = useState(null); // Biến state cho các công việc 
+   const [selectedHour, setSelectedHour] = useState(''); // Thêm state cho giờ
+   const [selectedMinute, setSelectedMinute] = useState(''); // Thêm state cho phút
 
+    //Ràng buộc giờ
+    const onHourChange = (text) => {
+      const hour = parseInt(text);
+      if (!isNaN(hour) && hour >= 0 && hour <= 23) {
+        setSelectedHour(text);
+        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), hour, time.getMinutes()));
+      } else {
+        // Hiển thị thông báo không hợp lệ khi giờ nhập vượt quá 23
+        alert('Giờ không hợp lệ');
+      }
+    };
+    //Ràng buộc phút
+    const onMinuteChange = (text) => {
+      const minute = parseInt(text);
+      if (!isNaN(minute) && minute >= 0 && minute <= 59) {
+        setSelectedMinute(text);
+        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), time.getHours(), minute));
+      }
+    
+      if (minute >= 60) {
+        const newHour = time.getHours() + 1;
+        if (newHour <= 23) {
+          setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), newHour, 0));
+          setSelectedHour(newHour.toString());
+          setSelectedMinute('00');
+        } else {
+          alert('Giờ và phút không hợp lệ');
+        }
+      }
+    };
  
   const onDayPress = (day) => {
     setSelectedDate(day.dateString);
@@ -39,16 +68,6 @@ import { Dropdown } from 'react-native-element-dropdown';
   const formatDate = (dateString) => {
     const [year, month, day] = dateString.split('-');
     return `${day}/${month}/${year}`;
-  };
-
-  const onChangeTime = (event, selectedTime) => {
-    console.log("test")
-    const currentTime = selectedTime || time;
-    setTime(currentTime);
-  };
-
-  const getAMPM = (hour) => {
-    return hour >= 12 ? 'PM' : 'AM';
   };
 
   const numbersArray = Array.from({ length: 20 }, (_, index) => index + 1);
@@ -116,10 +135,10 @@ import { Dropdown } from 'react-native-element-dropdown';
         <StyledContainer>
           <HeaderContainer>
             <TitleContainer>
-              <BackContainer onPress={handleBack}>
-                <ButtonBack resizeMode="cover" source={require('../../assets/back.png')} />
-              </BackContainer>
-              <MainTitle> Lên lịch </MainTitle>
+                <BackContainer onPress={handleBack}>
+                  <ButtonBack resizeMode="cover" source={require('../../assets/back.png')} />
+                </BackContainer>
+                <MainTitle> Lên lịch </MainTitle>
             </TitleContainer>
           </HeaderContainer>
           <View style={{ flex: 1 }}>
@@ -129,6 +148,9 @@ import { Dropdown } from 'react-native-element-dropdown';
               markedDates={{ [selectedDate]: { selected: true, selectedColor: 'green' } }}
             />
           </View>
+          <DecorContainer>
+            <ImgDecor resizeMode="contain" source={require('../../assets/ImgDecor.png')} /> 
+          </DecorContainer>
         </StyledContainer>
       </ScrollView>
       <Modal
@@ -147,7 +169,7 @@ import { Dropdown } from 'react-native-element-dropdown';
           activeOpacity={1}
           onPress={() => setShowModal(false)}
         >
-          <View style={{ backgroundColor: '#FFF', width: '100%', height: '60%', borderRadius: 35 }}>
+          <View style={{ backgroundColor: '#FFF', width: '100%', height: '65%',   borderTopLeftRadius: 35, borderTopRightRadius: 35,}}>
             <Text1>Chi tiết</Text1>
             {/* Nội dung khác trong modal */}
             <NoteContainer>
@@ -164,20 +186,25 @@ import { Dropdown } from 'react-native-element-dropdown';
                   <DetailImage resizeMode="contain" source={require('../../assets/detail.png')}/> 
                   <StartContainer>
                       <TextStart>Bắt đầu</TextStart>
-                       <TextTime>{`${getAMPM(time.getHours())}`}</TextTime>
+                       {/* Hiển thị input field cho giờ và phút */}
+                      <InputTimeCon>
+                          <TextInputHours
+                            placeholder="HH"
+                            keyboardType="numeric"
+                            defaultValue={selectedHour}
+                            onChangeText={onHourChange}
+                          />
+                          <TextSpace>:</TextSpace>
+                          <TextInputMin
+                            placeholder="MM"
+                            keyboardType="numeric"
+                            defaultValue={selectedMinute}
+                            onChangeText={onMinuteChange}
+                          />
+                        </InputTimeCon>
+                        <TextTime>{time.getHours() >= 12 ? 'PM' : 'AM'}</TextTime>
                   </StartContainer>
 
-                  {showTimepicker && (
-                      <DateTimePicker
-                        style={{right: 40, zIndex: 1, top: 30, width: 65, height: 90 }}
-                        value={time}
-                        mode="time"
-                        is24Hour={false} // Set is24Hour thành false để hiển thị AM/PM
-                        display="compact"
-                        show={false}
-                        onChange={onChangeTime}
-                      />
-                    )}
                   <DateContainer>
                       <TextDate>Ngày</TextDate>
                       <InputDate
@@ -260,5 +287,4 @@ import { Dropdown } from 'react-native-element-dropdown';
 };
 
 export default Schedule;
-
 
