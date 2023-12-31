@@ -71,6 +71,7 @@ export default class MQTT{
           var action=updateLed(Number(entry.payloadString))
           store.dispatch(action);
     }
+    console.log("test")
   }
 
 
