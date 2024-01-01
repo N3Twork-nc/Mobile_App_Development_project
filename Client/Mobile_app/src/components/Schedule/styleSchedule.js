@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Dimensions, Platform } from 'react-native';
+import { Dimensions, Platform, StatusBar } from 'react-native';
 
 //Lấy kích thước thah status
 const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 0;
