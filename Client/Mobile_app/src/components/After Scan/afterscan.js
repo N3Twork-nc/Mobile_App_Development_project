@@ -1,5 +1,5 @@
 import React,  {useState}from 'react';
-import {Alert, ScrollView, SafeAreaView, FlatList, View, Image, Text, TouchableOpacity } from 'react-native';
+import {Alert, StyleSheet, ScrollView, SafeAreaView, FlatList, View, Image, Text, TouchableOpacity } from 'react-native';
 import { 
   StyledContainer, HeaderContainer,MainTitle, ButtonBack,ImageContainer,ImagePlant,
   BodyContainer,Text1,Text2,ImgLogo, TagContainer,Tag, Text3,
@@ -14,15 +14,24 @@ import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
 import { plant } from '../../api/Plant.js';
 import { useSelector } from 'react-redux';
-import { AlertProProps } from 'react-native-alert-pro';
+import LottieView from 'lottie-react-native';
 const logoApp = logo;
- 
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+  }
+})
+
 const Afterscan = () => {
   const token = useSelector(state=>state.token)['payload'];
   const route = useRoute();
   const { info, photoURI } = route.params;
   const keywords = info[0].keyword.split(', ');
 
+  const [isLoading, setIsLoading] = useState(false);
    
   const [isAlertVisible, setAlertVisible] = useState(false);
 
@@ -41,12 +50,21 @@ const Afterscan = () => {
   const handleSavedtoRooms = async (roomName) => {
     try {
       setAlertVisible(false);
-
+      setIsLoading(true);
       const response = await plant(photoURI, roomName, info[0].plantName, token);
-      if (response=="Successfull") Alert.alert("Thêm cây thành công");
-      else Alert.alert("Thêm cây thất bại")
-    } catch (error) {
-      Alert.alert("Thêm cây thất bại")
+      if (response=="Successfull") 
+        {
+          Alert.alert("Thêm cây thành công");
+          setIsLoading(false);
+        }
+      else {
+        Alert.alert("Thêm cây thất bại");
+        setIsLoading(false);
+      }
+    } catch (error) 
+    {
+      Alert.alert("Thêm cây thất bại");
+      setIsLoading(false);
     }
   };
 
@@ -198,7 +216,16 @@ const Afterscan = () => {
                 </ParagraphContainer>
                 </BodyContainer>
       </ScrollView>
-
+      {isLoading ? (
+            <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+              <LottieView
+                resizeMode="contain"
+                source={require('../../assets/Animation-loading1.json')}
+                autoPlay
+                style={{ width: 100, height: 100 }}
+              />
+            </View>
+          ) : (
       <TaskbarView>
       <SaveButton onPress={handleSaved}>
           <SaveContainer>
@@ -214,7 +241,7 @@ const Afterscan = () => {
                 />                         
           </SaveContainer>
         </SaveButton>
-     </TaskbarView>
+     </TaskbarView>)}
     </SafeAreaView>
   );
 }
@@ -237,7 +264,9 @@ const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelected
 
   const showRoomSelectionAlert = () => {
     setRoomAlertVisible(true);
+    
   };
+
   return (
     <Modal isVisible={isVisible} onBackdropPress={onClose}>          
       <View style={{ backgroundColor: 'white', borderRadius: 15}}>

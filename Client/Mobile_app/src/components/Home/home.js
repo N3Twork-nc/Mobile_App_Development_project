@@ -182,9 +182,9 @@ const Home = () => {
                         <FirstRooms key={i}>
                           <LeftRoomContainer onPress={() => handleDashboard(gardenData[i])}>
                             <RoomContainer>
-                              <RoomContainer>
+                              <LivingroomContainer>
                                 <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'} />
-                              </RoomContainer>
+                              </LivingroomContainer>
                               <CategoryDetailText>
                                 <RoomName> Vườn {gardenData[i].gardenname}</RoomName>
                               </CategoryDetailText>
@@ -193,9 +193,9 @@ const Home = () => {
                           {gardenData[i + 1] && (
                             <LeftRoomContainer onPress={() => handleDashboard(gardenData[i + 1])}>
                               <RoomContainer>
-                                <RoomContainer>
+                                <LivingroomContainer>
                                   <Icon resizeMode="contain" source={require('../../assets/chard.png')} tintColor={'green'} />
-                                </RoomContainer>
+                                </LivingroomContainer>
                                 <CategoryDetailText>
                                   <RoomName> Vườn {gardenData[i + 1].gardenname}</RoomName>
                                 </CategoryDetailText>
