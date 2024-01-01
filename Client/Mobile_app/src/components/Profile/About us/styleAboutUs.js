@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { View, Text, Image, Platform } from 'react-native';
-import { Dimensions,  } from 'react-native';
+import { Dimensions, Platform} from 'react-native';
 
 // default color
 export const Colors = {
