@@ -44,7 +44,7 @@ return (
                                 <PlantName> {plantsInRoom[keys[i]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
-                                    <IconButton>
+                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
@@ -66,7 +66,7 @@ return (
                                 <PlantName> {plantsInRoom[keys[i + 1]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
-                                    <IconButton>
+                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i + 1]].plantName)}>
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
