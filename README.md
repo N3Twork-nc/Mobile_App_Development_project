@@ -1,6 +1,6 @@
 # MOBILE APP DEVELOPMENT PROJECT
-Trường Đại học Công Nghệ Thông Tin
-
+Trường Đại học Công Nghệ Thông Tin - ĐHQG.HCM
+Khoa Mạng máy tính & Truyền thông
 ## I. Thành viên thực hiện
 1. 21522613 - Nguyễn Cao Thi
 2. 21522371 - Nguyễn Trà Bảo Ngân
