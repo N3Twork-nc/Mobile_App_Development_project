@@ -181,7 +181,7 @@ export const TextDate = styled.Text`
 export const InputDate = styled.TextInput`
   position: absolute; 
   background-color: ${white};
-  font-size: ${vh(1.8)}px;
+  font-size: ${vh(2)}px;
   width: ${vw(25)}px;
   padding-top: ${vh(1.9)}px;
   left: ${vw(18)}px;
@@ -295,13 +295,11 @@ export const TextSpace = styled.Text`
 `;
 export const TextInputHours = styled.TextInput`
   margin-left: ${vw(2.5)}px;
-  placeholder-textColor: #111111;
-  font-size: ${vh(1.8)}px;
+  font-size: ${vh(2)}px;
 `;
 export const TextInputMin = styled.TextInput`
   margin-left: ${vw(1.5)}px;
-  placeholder-textColor: #111111;
-  font-size: ${vh(1.8)}px;
+  font-size: ${vh(2)}px;
 `;
 export const TextTime = styled.Text`
   position: absolute;

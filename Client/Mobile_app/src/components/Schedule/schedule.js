@@ -97,10 +97,10 @@ import { Dropdown } from 'react-native-element-dropdown';
 // Style Number Dropdown 
   const numbersStyles = StyleSheet.create({
     container: {
-      backgroundColor: 'white', width: 100, left: 45, bottom: 34,
+      backgroundColor: 'white', width: 60, left: 45, bottom: 30,
     },
     dropdown: {
-      height: 50,width: 60, borderRadius: 8, paddingHorizontal: 10,
+      height: 40,width: 60, borderRadius: 8, paddingHorizontal: 12,
     },
     selectedTextStyle: {
       fontSize: 16,
@@ -109,13 +109,13 @@ import { Dropdown } from 'react-native-element-dropdown';
  //Style Frequency Dropdown 
   const frequencyStyles = StyleSheet.create({
     container: {
-      backgroundColor: 'white', width: 70, left: 110, bottom: 85,
+      backgroundColor: 'white', width: 80, left: 105, bottom: 70,
     },
     dropdown: {
-      height: 50, width: 85, borderRadius: 8, paddingHorizontal: 10,
+      height: 40, width: 80, borderRadius: 8, paddingHorizontal: 6,
     },
     selectedTextStyle: { 
-      fontSize: 16,
+      fontSize: 17,
     },
   });
  //Style Work Dropdown 
@@ -123,13 +123,13 @@ import { Dropdown } from 'react-native-element-dropdown';
     container: { width: 100, left: 45, bottom: 34,
     },
     dropdown: {
-      height: 50, width: 150, borderRadius: 8, paddingHorizontal: 25,
+      height: 50, width: 155, borderRadius: 8, paddingHorizontal: 31,
     },
     placeholderStyle: {
-      fontSize: 16,
+      fontSize: 17,
     },
     selectedTextStyle: {
-      fontSize: 16,
+      fontSize: 17,
     },
   });
 
@@ -177,8 +177,8 @@ import { Dropdown } from 'react-native-element-dropdown';
             <Text1>Chi tiết</Text1>
             {/* Nội dung khác trong modal */}
             <NoteContainer>
-              <InputNote placeholder="Thêm ghi chú vào đây" placeholderTextColor="#D3DBD3"></InputNote>
-              <NoteImage resizeMode="contain" source={require('../../assets/note.png')}/> 
+            <InputNote placeholder="Thêm ghi chú vào đây"></InputNote>
+            <NoteImage resizeMode="contain" source={require('../../assets/note.png')}/> 
             </NoteContainer>
             <ReviewContainer> 
                 <TextReview>Nhắc nhở của bạn sẽ được gửi vào 10:00 mỗi 2 tuần vào Thứ hai, Thứ ba, Thứ tư</TextReview>
@@ -215,7 +215,6 @@ import { Dropdown } from 'react-native-element-dropdown';
                       <TextDate>Ngày</TextDate>
                       <InputDate
                       placeholder="02/10/2023"
-                      placeholderTextColor="#D3DBD3"
                       value={formatDate(selectedDate)} // Gán giá trị ngày được chọn vào InputDate
                       // onChangeText={(text) => setSelectedDate(text)} //Có thể nhập ngày thủ công 
                     ></InputDate>
@@ -282,7 +281,7 @@ import { Dropdown } from 'react-native-element-dropdown';
                 </WorkContainer>
               </FrequencyContainer>
               <ButtonCreateReminder onPress={handleBack}>
-                    <ButtonCreate> Tạo nhắc nhở</ButtonCreate>
+                    <ButtonCreate>Tạo nhắc nhở</ButtonCreate>
               </ButtonCreateReminder>
           </View>
         </TouchableOpacity>
