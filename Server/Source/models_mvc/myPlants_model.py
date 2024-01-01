@@ -45,7 +45,7 @@ class FrequencyType(Enum):
     YEAR = "Năm"
 
 class ActionType(Enum):
-    Watering="Tưới nước"
+    Watering="Tưới cây"
     Manure="Bón phân"
 
 class Schedule (BaseModel):
@@ -61,7 +61,7 @@ class Schedule (BaseModel):
 
     def inserSchedule(self):
         ref=db.reference(f'MyRoom/{self.username}/{self.roomName}/{self.id_plant}/Schedule')
-        ref.pushss({
+        ref.push({
             "timeStart":str(self.timeStart),
             "dateStart":str(self.dateStart),
             "frequency":self.frequency,

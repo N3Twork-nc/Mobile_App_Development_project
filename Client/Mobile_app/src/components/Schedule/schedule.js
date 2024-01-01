@@ -34,8 +34,19 @@ const Schedule = () => {
    const [selectedWork, setSelectedWork] = useState(null); // Biến state cho các công việc 
    const [selectedHour, setSelectedHour] = useState(''); // Thêm state cho giờ
    const [selectedMinute, setSelectedMinute] = useState(''); // Thêm state cho phút
+   const [note,setNote]=useState('')//ghi chú
    const handleSchedule = async ()=>{
-    schedule(token,idPlant,roomName,selectedHour+":"+selectedMinute,selectedDate,selectedNumber,selectedFrequency,selectedWork,null)
+    try {
+      const result= await schedule(token,idPlant,roomName,selectedHour+":"+String(selectedMinute).padStart(2, '0'),
+      selectedDate,selectedNumber,selectedFrequency,selectedWork,note)
+      if (result==200){
+        alert("Đặt lịch thành công");
+      }
+      else alert("Đặt lịch thất bại")
+    }
+    catch {
+      alert("Đặt lịch thất bại")
+    }
   }
 
     //Ràng buộc giờ
@@ -43,7 +54,7 @@ const Schedule = () => {
       const hour = parseInt(text);
       if (!isNaN(hour) && hour >= 0 && hour <= 23) {
         setSelectedHour(text);
-        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), hour, time.getMinutes()));
+        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), text, time.getMinutes()));
       } else {
         // Hiển thị thông báo không hợp lệ khi giờ nhập vượt quá 23
         alert('Giờ không hợp lệ');
@@ -54,7 +65,7 @@ const Schedule = () => {
       const minute = parseInt(text);
       if (!isNaN(minute) && minute >= 0 && minute <= 59) {
         setSelectedMinute(text);
-        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), time.getHours(), minute));
+        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), time.getHours(), text));
       }
     
       if (minute >= 60) {
@@ -186,7 +197,7 @@ const Schedule = () => {
             <Text1>Chi tiết</Text1>
             {/* Nội dung khác trong modal */}
             <NoteContainer>
-              <InputNote placeholder="Thêm ghi chú vào đây" placeholderTextColor="#D3DBD3"></InputNote>
+              <InputNote onChangeText={setNote}  placeholder="Thêm ghi chú vào đây" placeholderTextColor="#D3DBD3"></InputNote>
               <NoteImage resizeMode="contain" source={require('../../assets/note.png')}/> 
             </NoteContainer>
             <ReviewContainer> 
