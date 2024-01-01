@@ -57,14 +57,16 @@ class Schedule (BaseModel):
     frequency:int
     frequencyType:FrequencyType
     action:ActionType
+    note:str=None
 
     def inserSchedule(self):
         ref=db.reference(f'MyRoom/{self.username}/{self.roomName}/{self.id_plant}/Schedule')
-        ref.push({
+        ref.pushss({
             "timeStart":str(self.timeStart),
             "dateStart":str(self.dateStart),
             "frequency":self.frequency,
             "frequencyType":str(self.frequencyType.value),
-            "action":str(self.action.value)
+            "action":str(self.action.value),
+            "note":self.note
         })
         return True

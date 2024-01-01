@@ -14,7 +14,7 @@ const { plantsInRoom, roomName } = route.params;
     navigation.navigate('Home');
   };
   const handleSchedule = (idPlant) => {
-    navigation.navigate('Schedule',{idPlant});
+    navigation.navigate('Schedule',{idPlant,roomName});
     
   };
 return (

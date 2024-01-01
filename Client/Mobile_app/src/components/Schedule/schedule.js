@@ -5,16 +5,22 @@ import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTi
         TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
         TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor
         } from './styleSchedule';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
+import { schedule } from '../../api/Plant';
+import { useSelector } from 'react-redux';
 
 
-  const Schedule = () => {
+const Schedule = () => {
+  const token = useSelector(state=>state.token)['payload'];
+  const route=useRoute()
+  const {idPlant,roomName} =route.params
   const navigation = useNavigation();
   const handleBack = () => { navigation.navigate('Home'); }
+ 
 
   const [selectedDate, setSelectedDate] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -23,11 +29,14 @@ import { Dropdown } from 'react-native-element-dropdown';
    const [isFocusNumber, setIsFocusNumber] = useState(false);
    const [isFocusFrequency, setIsFocusFrequency] = useState(false);
    const [isFocusWork, setIsFocusWork] = useState(false);
-   const [selectedNumber, setSelectedNumber] = useState(null); // Biến state cho dropdown dãy số
+   const [selectedNumber, setSelectedNumber] = useState(1); // Biến state cho dropdown dãy số
    const [selectedFrequency, setSelectedFrequency] = useState(null); // Biến state cho dropdown "Ngày", "Tuần", "Tháng"
    const [selectedWork, setSelectedWork] = useState(null); // Biến state cho các công việc 
    const [selectedHour, setSelectedHour] = useState(''); // Thêm state cho giờ
    const [selectedMinute, setSelectedMinute] = useState(''); // Thêm state cho phút
+   const handleSchedule = async ()=>{
+    schedule(token,idPlant,roomName,selectedHour+":"+selectedMinute,selectedDate,selectedNumber,selectedFrequency,selectedWork,null)
+  }
 
     //Ràng buộc giờ
     const onHourChange = (text) => {
@@ -275,7 +284,7 @@ import { Dropdown } from 'react-native-element-dropdown';
                         </View>
                 </WorkContainer>
               </FrequencyContainer>
-              <ButtonCreateReminder onPress={handleBack}>
+              <ButtonCreateReminder onPress={handleSchedule}>
                     <ButtonCreate> Tạo nhắc nhở</ButtonCreate>
               </ButtonCreateReminder>
           </View>
