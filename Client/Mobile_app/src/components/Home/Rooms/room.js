@@ -81,7 +81,7 @@ return (
                                 <PlantName> {plantsInRoom[keys[i + 1]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
-                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
+                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i + 1]].plantName)}>
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
