@@ -1,21 +1,8 @@
 import styled from 'styled-components';
-import { View, Text, Image, Platform } from 'react-native';
+import {Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
 
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#FFFFFF",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
-  white_gray: "#F8F8F8",
-  gray_subtype: "#628093",
-  livingroom: "#EEF7E8",
-  kitchen: "#E6EAFA",
-  bedroom: "#FCF1E3",
-  backyard: "#F8E8F8",
-}
-
+const { vh, vw } = ScreenSize;
 const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
 
  //screen
@@ -23,7 +10,6 @@ const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple
  flex: 1;
  padding: 20px;
  background-color: ${white};
-
 `;
 
 export const Line = styled.View`

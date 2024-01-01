@@ -1,24 +1,7 @@
 import styled from 'styled-components';
-import { Dimensions } from 'react-native';
-
-// Lấy kích thước màn hình
-const { width, height } = Dimensions.get('window');
-
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#ffffff",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B",
-}
-
-const { maincolor, white, black, gray, green } = Colors;
+import { Colors, ScreenSize } from '../../store/styles';
+const { vh, vw} = ScreenSize;
+const { maincolor, white, black,} = Colors;
 
  //screen
  export const StyledContainer = styled.View`
@@ -50,8 +33,8 @@ padding-left: ${vh(3)}px;
 
 export const ButtonSignup = styled.TouchableOpacity`
   margin-top: ${vh(3)}px;
-  background-color: ${black};
   border-radius: 30px;
+  background-color: ${black};
   width: ${vw(60)}px;
   display: flex;
   align-items: center;

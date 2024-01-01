@@ -1,30 +1,8 @@
 import styled from 'styled-components';
-import { View, Text, Image, Platform } from 'react-native';
-import { Dimensions,  } from 'react-native';
-
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#ffffff",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
-  white_gray: "#F8F8F8",
-  maintitle: "#0B4F06",
-  gray_subtype: "#628093",
-  livingroom: "#EEF7E8",
-  kitchen: "#E6EAFA",
-  bedroom: "#FCF1E3",
-  backyard: "#F8E8F8",
-}
-
-const { width, height } = Dimensions.get('window');
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
-
+import { Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../../store/styles';
 const { maincolor, white, black, gray, maintitle} = Colors;
+const {vh, vw} = ScreenSize;
 
 //screen
 export const StyledContainer = styled.View`
@@ -34,7 +12,6 @@ export const StyledContainer = styled.View`
     height: 100%;
 
 `;
-
 
 //header
 export const HeaderContainer = styled.View`
