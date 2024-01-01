@@ -13,8 +13,8 @@ const { plantsInRoom, roomName } = route.params;
   const handleBack = () => {
     navigation.navigate('Home');
   };
-  const handleSchedule = () => {
-    navigation.navigate('Schedule');
+  const handleSchedule = (idPlant) => {
+    navigation.navigate('Schedule',{idPlant});
     
   };
 return (
@@ -48,7 +48,7 @@ return (
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton onPress={()=>handleSchedule(keys[i])}>
                                         <Icon source={require('../../../assets/water.png')} />
                                         <ButtonText>Đặt lịch</ButtonText>
                                     </IconButton>
@@ -70,7 +70,7 @@ return (
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton onPress={()=>handleSchedule(keys[i + 1])}>
                                         <Icon source={require('../../../assets/water.png')} />
                                         <ButtonText>Đặt lịch</ButtonText>
                                     </IconButton>

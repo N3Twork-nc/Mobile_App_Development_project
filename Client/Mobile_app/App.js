@@ -18,24 +18,14 @@ import PlantDetail from './src/components/Plant Detail/plantDetail';
 import 'react-native-gesture-handler';
 import Schedule from './src/components/Schedule/schedule';
 
-// const App = () =>
-// {
-//   return <Provider store={store}>
-//     <AppNavigator/>
-//   </Provider> 
-// }
-// export default App;
-
-
-export default function App() {
-return (
-<Provider store={store}>
- <NavigationContainer>
-    <Schedule/>
-   </NavigationContainer>
-  </Provider>
-);
+const App = () =>
+{
+  return <Provider store={store}>
+    <AppNavigator/>
+  </Provider> 
 }
+export default App;
+
 
 
 
