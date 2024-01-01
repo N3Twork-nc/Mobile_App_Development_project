@@ -26,11 +26,11 @@ const { maincolor, white, black, gray, green } = Colors;
 `;
 
 export const HeaderContainer = styled.View`
-        flex: 1;
+    flex: 1;
     width: ${vw(100)}px;
     height: ${vh(15)}px;
     background-color: ${maincolor};
-    margin-top: ${Platform.OS === 'android' ? `${statusBarHeight}px` : '0px'};
+    ${Platform.OS === 'android' ? 'margin-top: 10%' : 'margin-top: 0px;'}
 `;
 
 export const TitleContainer = styled.View`

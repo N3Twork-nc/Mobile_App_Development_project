@@ -92,7 +92,7 @@ const Home = () => {
           </TitleforContainers>
 
           <RecentlyPlantContainer>
-            <Plant1Container onPress={handlePlantDetail}>
+            <Plant1Container>
               <ImageFrame resizeMode="cover" source={require('../../assets/plant0.jpg')}/>
               <PlantName>Hoa Hướng Dương</PlantName>
             </Plant1Container> 

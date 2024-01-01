@@ -1,30 +1,8 @@
 import styled from 'styled-components';
-import { View, Text, Image, Platform } from 'react-native';
-import { Dimensions,  } from 'react-native';
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#FFFFFF",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B", 
-  containerprofile: "#EEF7E8",
-  white_gray: "#F8F8F8",
-  gray: "#4E4E4E",
-  sectiontitle: "#4E4E4E",
-  buttoncolor: "#1A5D1A",
-  maintext: "#164303",
-  line: "#B3B3B3",
-}
-
-
-const { width, height } = Dimensions.get('window');
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
-
-const { maincolor, maintext,line, buttoncolor,gray, white, black, containerprofile, sectiontitle, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
+import { Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
+const { maincolor, maintext,line, buttoncolor, white, black, containerprofile, sectiontitle, green,} = Colors;
+const { vh, vw} = ScreenSize;
 
  //screen
  export const StyledContainer = styled.View`
