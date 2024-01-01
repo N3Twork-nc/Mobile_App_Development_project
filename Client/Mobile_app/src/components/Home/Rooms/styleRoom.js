@@ -5,17 +5,17 @@ export const Colors = {
   maincolor: "#CEF1CF",
   white: "#ffffff",
   black: "#000000",
-  gray: "#D9D9D9",
+  gray: "#333333",
   green: "#61AF2B", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
   white_gray: "#F8F8F8",
   gray_subtype: "#628093",
-  livingroom: "#EEF7E8",
+  room: "#EEF7E8",
   kitchen: "#E6EAFA",
   bedroom: "#FCF1E3",
   backyard: "#F8E8F8",
 }
 
-const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
+const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple, white_gray, room, backyard, bedroom, kitchen } = Colors;
 
  //screen
  export const StyledContainer = styled.View`
@@ -31,7 +31,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 40px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 10%; margin-bottom: 10%' : 'margin-bottom: 10%;'}
 `;
 export const BackContainer = styled.TouchableOpacity`
   position: absolute;

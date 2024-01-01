@@ -92,6 +92,7 @@ export const NowBoardContainer = styled.View`
 
 export const NowBoard= styled.View`
   height: 35px;
+  width: 48%;
   border: 0.5px solid ${green};
   backgroundColor: ${maincolor};
   border-radius: 8px;
@@ -206,7 +207,6 @@ export const CircularProgressContainer = styled.View`
   height: 70%;
   border-radius: 10px;  
   align-items: center;
-  z-index: -1;
   justify-content: center;
 `;
 export const TextContainer = styled.TouchableOpacity`
@@ -216,15 +216,14 @@ export const TextContainer = styled.TouchableOpacity`
   margin-right: 0px;
 `;
 export const ItemText = styled.Text`
-  font-size: 10px;
-  font-weight: bold;
-  position: absolute;
-  z-index: 1;
+font-size: 10px;
+font-weight: bold;
+width: 50px;
+align-self: center;
+text-align: center;
+align-items: center;
+justify-content: center; 
 `;
-
-
-
-
 export const MainText = styled.Text`
   font-size: 20px;
   font-weight: bold;

@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime,timedelta
 from firebase_admin import db
+import random
 
 class UploadGarden(BaseModel):
     name_garden:str
@@ -45,6 +46,7 @@ class DataGarden():
             if 'Data' in data[key]:
                 del data[key]['Data']
         return data
+    
     def deleteGarden(self):
         ref=db.reference(f'MyGarden/{self.username}/{self.id_garden}')
         ref.delete()
@@ -55,6 +57,6 @@ class DataGarden():
             ref=db.reference(f'MyGarden/{path}')
             timestamp=datetime.now()
             timestamp=timestamp.strftime("%Y-%m-%d-%H:%M:%S")
-            ref.update({timestamp:int(data)})
+            ref.update({timestamp:float(data)})
         except Exception as e:
             print("Garden data update failed",str(e)) 

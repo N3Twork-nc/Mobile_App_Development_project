@@ -1,23 +1,71 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from firebase_admin import db
+from enum import Enum
+from datetime import time,date,datetime
 
-class MyPlants(BaseModel):
-    username: str
-    id: str
-    roomname: str = Field(alias="roomName")
-    plantname: str = Field(alias="plantName")
-    timeupload: str = Field(alias="timeUpload")
 
-def get_user_plants(username: str):
-    ref = db.reference(f'MyRoom/{username}')
-    user_room_data = ref.get()
-    all_user_plants = []
+class MyPlants():
+    def __init__(self,username,roomName=None,plantName=None,idPlant=None,timeUpload=None):
+        self.roomName=roomName
+        self.plantName=plantName
+        self.username=username
+        self.id=idPlant
+        self.timeUpload=timeUpload
 
-    if user_room_data:
-        for room_name, plants in user_room_data.items():
-            for plant_id, plant_data in plants.items():
-                plant_data.update({'username': username, 'roomName': room_name, 'id': plant_id})
-                user_plant = MyPlants(**plant_data)
-                all_user_plants.append(user_plant)
+    def getPlants(self):
+        ref=db.reference(f'MyRoom/{self.username}/{self.roomName}')
+        data=ref.get()
+        if data==None:
+            return {}
+        return data
+    def countPlant(self):
+        ref= ref=db.reference(f'MyRoom/{self.username}')
+        data=ref.get()
+        return {
+            'Phòng khách':len(data['Phòng khách']) if 'Phòng khách' in data else 0,
+            'Nhà bếp':len(data['Nhà bếp']) if 'Nhà bếp' in data else 0,
+            'Phòng ngủ':len(data['Phòng khách']) if 'Phòng ngủ' in data else 0,
+            'Sân vườn':len(data['Sân vườn']) if 'Sân vườn' in data else 0
+        }
+    def insertPlant(self):
+        ref=db.reference(f'MyRoom/{self.username}/{self.roomName}')
+        ref.update({self.id:{
+            "plantName":self.plantName,
+            "timeUpload":self.timeUpload,
+        }})
 
-    return all_user_plants
+    def deletePlant(self):
+        a=0
+
+
+class FrequencyType(Enum):
+    DATE = "Ngày"
+    WEEK = "Tuần"
+    MONTH="Tháng"
+    YEAR = "Năm"
+
+class ActionType(Enum):
+    Watering="Tưới nước"
+    Manure="Bón phân"
+
+class Schedule (BaseModel):
+    id_plant:str
+    username:str
+    roomName:str
+    timeStart:time
+    dateStart:date
+    frequency:int
+    frequencyType:FrequencyType
+    action:ActionType
+
+    def inserSchedule(self):
+        ref=db.reference(f'MyRoom/{self.username}/{self.roomName}/{self.id_plant}/Schedule')
+        key=datetime.now().strftime("%Y%m%d%H%M%S")
+        ref.update({key:{
+            "timeStart":str(self.timeStart),
+            "dateStart":str(self.dateStart),
+            "frequency":self.frequency,
+            "frequencyType":str(self.frequencyType.value),
+            "action":str(self.action.value)
+        }})
+        return key
