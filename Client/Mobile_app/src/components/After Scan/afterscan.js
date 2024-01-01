@@ -12,7 +12,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
-import { plant } from '../../api/uploadPlant.js';
+import { plant } from '../../api/Plant.js';
 import { useSelector } from 'react-redux';
 import LottieView from 'lottie-react-native';
 const logoApp = logo;
@@ -320,7 +320,7 @@ const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelected
 
             <View style={{height: 1, backgroundColor: '#D9D9D9', marginBottom: 13, marginTop: 13 }}/>
 
-            <TouchableOpacity onPress={() => handleRoomSelection('Vườn')}>
+            <TouchableOpacity onPress={() => handleRoomSelection('Sân vườn')}>
               <Text style={{ color: 'green', fontSize: 17, marginBottom: 15, textAlign: 'center' }}>Sân vườn</Text>
             </TouchableOpacity>
           </View>

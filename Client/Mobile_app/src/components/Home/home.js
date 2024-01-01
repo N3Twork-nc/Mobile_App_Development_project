@@ -11,16 +11,16 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { myPlant } from '../../api/uploadPlant.js';
+import { myPlant,countPlants} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
+import { updateQuantity } from '../../reducers/myplants.js';
 
 const Home = () => {
-  const [plantsData, setplantsData] = useState([]);
-  const [plantCount, setPlantCount] = useState({});
   const [selectedRoom, setSelectedRoom] = useState(null);
   const gardenData=useSelector(state=>state.garden)['payload'].slice(0,4);
+  const plantData=useSelector(state=>state.plant);
   const dispatch=useDispatch()
   const token = useSelector(state=>state.token)['payload'];
   const navigation = useNavigation();
@@ -32,8 +32,11 @@ const Home = () => {
   const savedPlants = async () => {
     try {
       const gardenDetails = await getDetailGardens(token);
-      const action=updateMyGarden(gardenDetails)
-      dispatch(action)
+      const action1=updateMyGarden(gardenDetails)
+      dispatch(action1)
+      const countP=await countPlants(token)
+      const action2=updateQuantity(countP)
+      dispatch(action2)
     } catch (error) {
       console.log(error);
     }
@@ -116,7 +119,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
                     <CategoryDetailText >
-                      <TotalPlant>0 plants</TotalPlant>
+                      <TotalPlant>{plantData['Phòng khách']['Count']} plants</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
                   </RoomContainer>                    
@@ -128,7 +131,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/kitchen.png')}/>
                     </KitchenContainer> 
                     <CategoryDetailText>
-                      <TotalPlant>0 plants</TotalPlant>
+                      <TotalPlant>{plantData['Nhà bếp']['Count']} plants</TotalPlant>
                       <RoomName>Nhà bếp</RoomName> 
                     </CategoryDetailText> 
                   </RoomContainer>          
@@ -141,18 +144,18 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/bedroom.png')}/>
                     </BedroomContainer>
                     <CategoryDetailText>
-                      <TotalPlant>0 plants</TotalPlant>                      
+                      <TotalPlant>{plantData['Phòng ngủ']['Count']} plants</TotalPlant>                      
                       <RoomName>Phòng ngủ</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>
                 </LeftRoomContainer>
-                <RightRoomContainer onPress={() => handleRoomPress('Vườn')}>
+                <RightRoomContainer onPress={() => handleRoomPress('Sân vườn')}>
                   <RoomContainer>
                     <BackyardContainer>
                       <Icon resizeMode="contain" source={require('../../assets/backyard.png')}/>
                     </BackyardContainer>
                     <CategoryDetailText>
-                      <TotalPlant>0 plants</TotalPlant>
+                      <TotalPlant>{plantData['Sân vườn']['Count']} plants</TotalPlant>
                       <RoomName>Sân vườn</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>          

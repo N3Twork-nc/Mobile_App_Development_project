@@ -152,14 +152,7 @@ export const TextStart = styled.Text`
   padding-top: ${vh(2)}px;
   left: ${vw(2)}px;
 `;
-export const TextTime = styled.Text`
-  width: ${vw(10)}px;
-  height: ${vh(5)}px;
-  font-size: ${vh(2)}px;
-  color: #1A5D1A;
-  left: ${vw(38)}px;
-  bottom: ${vh(2.4)}px;
-`;
+
 export const InputTime = styled.TextInput`
   position: absolute; 
   background-color: ${white};
@@ -191,7 +184,7 @@ export const InputDate = styled.TextInput`
   background-color: ${white};
   font-size: ${vh(1.8)}px;
   width: ${vw(25)}px;
-  padding-top: ${vh(2)}px;
+  padding-top: ${vh(1.9)}px;
   left: ${vw(18)}px;
 `;
 
@@ -239,7 +232,7 @@ export const WorkContainer = styled.View`
   border-radius: 10px;
   border: ${maincolor}; 
   left: ${vw(49)}px;
-  
+
 `;
 
 export const TextEach = styled.Text`
@@ -282,7 +275,7 @@ export const ButtonCreateReminder= styled.TouchableOpacity`
   align-self: center;
   justify-content: center;
   position: relative;
-  margin-top: 90px;
+  margin-top: ${vh(12)}px;
 `
 export const ButtonCreate = styled.Text`
   font-size: 20px;
@@ -290,3 +283,40 @@ export const ButtonCreate = styled.Text`
   font-weight: bold;
   text-align: center;
 `
+export const InputTimeCon = styled.View`
+  margin-left: ${vw(17)}px;
+  bottom: ${vh(3.7)}px;
+  width: ${vw(23)}px;
+  height: ${vh(5)}px;
+  flex-direction: row;
+`;
+export const TextSpace = styled.Text`
+  margin-left: ${vw(1.5)}px;
+  margin-top: ${vh(1.3)}px;
+`;
+export const TextInputHours = styled.TextInput`
+  margin-left: ${vw(2.5)}px;
+  placeholder-textColor: #111111;
+  font-size: ${vh(1.8)}px;
+`;
+export const TextInputMin = styled.TextInput`
+  margin-left: ${vw(1.5)}px;
+  placeholder-textColor: #111111;
+  font-size: ${vh(1.8)}px;
+`;
+export const TextTime = styled.Text`
+  position: absolute;
+  font-size: ${vh(2)}px;
+  color: #1A5D1A;
+  left: ${vw(38)}px;
+  margin-top: ${vh(2.2)}px;
+`;
+export const DecorContainer = styled.View`
+  position: relative;
+  width: 100%;  
+`;
+export const ImgDecor = styled.Image`
+  position: relative;
+  width: ${vw(100)}px;
+  height: ${vh(50)}px;
+`;
