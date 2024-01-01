@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
 // Lấy kích thước màn hình
 const { width, height } = Dimensions.get('window');
@@ -32,6 +32,7 @@ export const HeaderContainer = styled.View`
     width: ${vw(100)}px;
     height: ${vh(15)}px;
     background-color: ${maincolor};
+    ${Platform.OS === 'android' ? 'margin-top: 10%' : 'margin-top: 0px;'}
 `;
 
 export const TitleContainer = styled.View`
