@@ -5,18 +5,33 @@ import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
         } from './styleRoom'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, SafeAreaView } from 'react-native';
+import { useSelector } from 'react-redux';
+import { getPlant } from '../../../api/Plant.js';
 
 const Room = () => {
-const navigation = useNavigation();
-const route = useRoute();
-const { plantsInRoom, roomName } = route.params;
-  const handleBack = () => {
+    const token = useSelector(state=>state.token)['payload'];
+    const navigation = useNavigation();
+    const route = useRoute();
+    const { plantsInRoom, roomName } = route.params;
+
+    const handleInfo = async (plantname) => {
+        let info = [];
+        try {
+            info = await getPlant(token, plantname);
+        } catch (error) {
+        console.log(error);
+        }
+        navigation.navigate('PlantDetail', { info, plantname });
+    };
+
+    const handleBack = () => {
     navigation.navigate('Home');
-  };
-  const handleSchedule = () => {
+    };
+
+    const handleSchedule = () => {
     navigation.navigate('Schedule');
-    
-  };
+    };
+
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <ScrollView style={{ flex: 1 }}>
@@ -44,7 +59,7 @@ return (
                                 <PlantName> {plantsInRoom[keys[i]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
-                                    <IconButton>
+                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
@@ -66,11 +81,11 @@ return (
                                 <PlantName> {plantsInRoom[keys[i + 1]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
-                                    <IconButton>
+                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton onPress={handleSchedule}>
                                         <Icon source={require('../../../assets/water.png')} />
                                         <ButtonText>Đặt lịch</ButtonText>
                                     </IconButton>

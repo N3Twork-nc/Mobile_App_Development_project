@@ -30,3 +30,11 @@ async def prediectPlants(file: UploadFile):
         token=CustomFunctionAzure.generate_token_blob(blob)
         (info["cover"]).append(f'https://caothi.blob.core.windows.net/myplants/infoPlants/{result}_{i}.jpg?{token}')
     return info
+
+@app.get('/APIGetInfoPlant/{plantname}', dependencies=[Depends(Authentication().validate_token)])
+async def get_plant_info(plantname: str):
+    for index in range(50):  
+        plant_info = JsonInfo.get_info_plants(index)
+        if plant_info and plant_info.get("PlantName", "").lower() == plantname.lower():
+            return plant_info
+    return {"message": "Plant not found"}

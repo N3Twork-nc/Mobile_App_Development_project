@@ -68,3 +68,22 @@ export const countPlants=async (token) => {
     return null
   }
 }
+
+export const getPlant = async (token, plantname) => {
+  try {
+    const response = await axios.get(IPServer + `APIGetInfoPlant/${plantname}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    const plants = response.data;
+
+    console.log("Get info plants success");
+
+    return plants;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
