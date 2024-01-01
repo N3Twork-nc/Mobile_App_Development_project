@@ -6,10 +6,7 @@ import Signin from '../components/Sign in/signin';
 import Signup from '../components/Sign up/signup';
 import Home from '../components/Home/home';
 import Verifycode from '../components/Verify code/verifycode';
-import Bedroom from '../components/Home/Rooms/Bedroom/bedroom';
-import Kitchen from '../components/Home/Rooms/Kitchen/kitchen';
-import Backyard from '../components/Home/Rooms/Backyard/backyard';
-import Livingroom from '../components/Home/Rooms/Livingroom/livingroom';
+import Room from '../components/Home/Rooms/room';
 import Explore from '../components/Explore/explore';
 import Newspaper from '../components/Explore/News/news';
 import CameraScreen from '../components/Camera/camera';
@@ -21,6 +18,7 @@ import ForgotPassword from '../components/Forgot Password/forgotpassword';
 import DashBoard from '../components/Dashboard/dashboard';
 import Gardens from '../components/Home/Gardens/gardens';
 import Schedule from '../components/Schedule/schedule';
+import AboutUs from '../components/Profile/About us/aboutUs';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -33,10 +31,7 @@ const AppNavigator = () => {
         <Stack.Screen name="SignIn" component={Signin}  />
         <Stack.Screen name="SignUp" component={Signup} options={{animationEnabled: false}} />        
         <Stack.Screen name="VerifyCode" component={Verifycode}  />      
-        <Stack.Screen name="Bedroom" component={Bedroom} />
-        <Stack.Screen name="Kitchen" component={Kitchen} />
-        <Stack.Screen name="Backyard" component={Backyard} />
-        <Stack.Screen name="Livingroom" component={Livingroom} />
+        <Stack.Screen name="Room" component={Room} />
         <Stack.Screen name="Home" component={Home} options={{animationEnabled: false}}/>
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
         <Stack.Screen name="News" component={Newspaper} options={{animationEnabled: false}}/>
@@ -49,6 +44,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Dashboard" component={DashBoard} options={{animationEnabled: false}} />
         <Stack.Screen name="Gardens" component={Gardens} options={{animationEnabled: false}} />
         <Stack.Screen name="Schedule" component={Schedule}  />
+        <Stack.Screen name="AboutUs" component={AboutUs}  />
       </Stack.Navigator>
     </NavigationContainer>
   );

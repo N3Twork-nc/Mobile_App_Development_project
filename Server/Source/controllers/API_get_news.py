@@ -1,7 +1,5 @@
 from Source import app
 from Source.models_mvc.news_model import get_all_news_data
-from fastapi.responses import StreamingResponse
-import json
 from Source.config.config import container
 from Source.classes.azure_class import CustomFunctionAzure
 

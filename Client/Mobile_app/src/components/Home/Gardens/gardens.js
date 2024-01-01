@@ -202,7 +202,7 @@ const Garden = () => {
               pairs.push(
               <GardenContainer key={i}>
                 <EachGardenContainer>
-                    <ImageFrame  resizeMode="cover" source={require('../../../assets/plant3.jpg')}/>
+                    <ImageFrame  resizeMode="cover" source={require('../../../assets/placeholder.jpg')}/>
                     <GardenName>Vườn {gardensDetail[i].gardenname}</GardenName>
                     <ButtonContainerWrapper>
                         <ButtonContainer>
@@ -226,7 +226,7 @@ const Garden = () => {
 
                 {gardensDetail[i + 1] && (
                 <EachGardenContainer>
-                    <ImageFrame resizeMode="cover" source={require('../../../assets/plant4.jpg')}/>
+                    <ImageFrame resizeMode="cover" source={require('../../../assets/placeholder.jpg')}/>
                     <GardenName>Vườn {gardensDetail[i + 1].gardenname}</GardenName>
                     <ButtonContainerWrapper>
                         <ButtonContainer>

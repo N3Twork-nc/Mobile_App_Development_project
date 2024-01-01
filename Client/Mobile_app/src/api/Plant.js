@@ -35,9 +35,9 @@ export const plant = async (photo, roomName, plantName, token) => {
   }
 };
 
-export const myPlant = async (token) => {
+export const myPlant = async (token, roomName) => {
   try {
-    const response = await axios.get(IPServer + "APIMyPlant", {
+    const response = await axios.get(IPServer + `APIMyPlant/${roomName}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -45,22 +45,26 @@ export const myPlant = async (token) => {
     
     const getPlants = response.data;
 
-    const saving = [];
-
-    getPlants.forEach(plant => {
-      const plantimage = plant.id;
-      const plantname = plant.plantName;
-      const roomname = plant.roomName;
-      const time = plant.timeUpload;
-
-      saving.push({ plantimage, plantname, roomname, time });
-    });
-
     console.log("Get plants success");
 
-    return saving;
+    return getPlants;
   } catch (error) {
     console.log(error);
     return error;
   }
 };
+
+export const countPlants=async (token) => {
+  try {
+    const response = await axios.get(IPServer + 'API_get_count_plants', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  }
+  catch {
+    console.log(response.status)
+    return null
+  }
+}
