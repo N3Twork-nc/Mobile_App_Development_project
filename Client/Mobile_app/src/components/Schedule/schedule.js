@@ -68,7 +68,11 @@ const Schedule = () => {
         }
       }
     };
- 
+    //Hàm log giờ đã chọn 
+    const displaySelectedTime = () => {
+      console.log(`Giờ đã chọn: ${selectedHour}:${selectedMinute}`);
+    };
+    
   const onDayPress = (day) => {
     setSelectedDate(day.dateString);
     setShowModal(true);
@@ -202,6 +206,7 @@ const Schedule = () => {
                             keyboardType="numeric"
                             defaultValue={selectedHour}
                             onChangeText={onHourChange}
+                            onBlur={displaySelectedTime}
                           />
                           <TextSpace>:</TextSpace>
                           <TextInputMin
@@ -209,6 +214,7 @@ const Schedule = () => {
                             keyboardType="numeric"
                             defaultValue={selectedMinute}
                             onChangeText={onMinuteChange}
+                            onBlur={displaySelectedTime}
                           />
                         </InputTimeCon>
                         <TextTime>{time.getHours() >= 12 ? 'PM' : 'AM'}</TextTime>
