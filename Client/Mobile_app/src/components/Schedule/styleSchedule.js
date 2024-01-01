@@ -1,13 +1,11 @@
 import styled from 'styled-components';
-import { Dimensions, Platform } from 'react-native';
+import { Dimensions } from 'react-native';
 
+//Lấy kích thước thah status
+const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 0;
 // Lấy kích thước màn hình
 const { width, height } = Dimensions.get('window');
-
-// Chuyển đổi giá trị vh sang giá trị số
 const vh = percent => (percent * height) / 100;
-
-// Chuyển đổi giá trị vw sang giá trị số
 const vw = percent => (percent * width) / 100;
 // default color
 export const Colors = {
@@ -28,11 +26,10 @@ const { maincolor, white, black, gray, green } = Colors;
 `;
 
 export const HeaderContainer = styled.View`
-    flex: 1;
+        flex: 1;
     width: ${vw(100)}px;
     height: ${vh(15)}px;
     background-color: ${maincolor};
-    ${Platform.OS === 'android' ? 'margin-top: 10%' : 'margin-top: 0px;'}
 `;
 
 export const TitleContainer = styled.View`
@@ -314,7 +311,7 @@ export const TextTime = styled.Text`
 `;
 export const DecorContainer = styled.View`
   position: relative;
-  width: 100%;  
+  width: 100%;
 `;
 export const ImgDecor = styled.Image`
   position: relative;

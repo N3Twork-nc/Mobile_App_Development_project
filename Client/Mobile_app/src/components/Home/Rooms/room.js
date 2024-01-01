@@ -48,7 +48,7 @@ return (
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton onPress={handleSchedule}>
                                         <Icon source={require('../../../assets/water.png')} />
                                         <ButtonText>Đặt lịch</ButtonText>
                                     </IconButton>
