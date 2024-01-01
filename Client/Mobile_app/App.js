@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './src/store';
 import { StatusBar, Platform } from 'react-native';
 import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 import Schedule from './src/components/Schedule/schedule';
 class App extends Component
 {
