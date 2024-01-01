@@ -41,8 +41,8 @@ const Profile = () => {
       const handleEditProfile = () => {
         navigation.navigate('EditProfile', {animation: false});
       }
-      const handleDashboard = () => {
-        navigation.navigate('Dashboard', {animation: false});
+      const handleAboutUs = () => {
+        navigation.navigate('AboutUs', {animation: false});
       }
                 
 return (
@@ -121,7 +121,7 @@ return (
           <ChildSectionContainer>
               <ChildSectionIcon source={require('../../assets/info1.png')} tintColor={'#1A5D1A'} />
                 <ChildSectionText>Về Plantaholic</ChildSectionText> 
-                <ChildSectionButtonContainer>
+                <ChildSectionButtonContainer onPress={handleAboutUs}>
                   <ChildSectionButton source={require('../../assets/more.png')} tintColor={'#1A5D1A'} />
               </ChildSectionButtonContainer>               
           </ChildSectionContainer>

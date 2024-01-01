@@ -18,6 +18,7 @@ import ForgotPassword from '../components/Forgot Password/forgotpassword';
 import DashBoard from '../components/Dashboard/dashboard';
 import Gardens from '../components/Home/Gardens/gardens';
 import Schedule from '../components/Schedule/schedule';
+import AboutUs from '../components/Profile/About us/aboutUs';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -43,6 +44,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Dashboard" component={DashBoard} options={{animationEnabled: false}} />
         <Stack.Screen name="Gardens" component={Gardens} options={{animationEnabled: false}} />
         <Stack.Screen name="Schedule" component={Schedule}  />
+        <Stack.Screen name="AboutUs" component={AboutUs}  />
       </Stack.Navigator>
     </NavigationContainer>
   );

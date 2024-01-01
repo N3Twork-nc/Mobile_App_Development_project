@@ -53,3 +53,18 @@ export const myPlant = async (token, roomName) => {
     return error;
   }
 };
+
+export const countPlants=async (token) => {
+  try {
+    const response = await axios.get(IPServer + 'API_get_count_plants', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  }
+  catch {
+    console.log(response.status)
+    return null
+  }
+}
