@@ -40,7 +40,7 @@ export const HeaderContainer = styled.View`
   flexDirection: column;  
   height: ${vh(22)}px;
   background-color: ${maincolor}; 
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 5%;'}
+  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 5%;'}
 `;
 export const TitleContainer = styled.View`
   position: absolute;
