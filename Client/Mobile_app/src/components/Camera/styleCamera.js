@@ -104,34 +104,46 @@ export const ImageReweet = styled.Image`
 export const RetakeButton= styled.TouchableOpacity`
   width: ${vw(30)}px;
   height: ${vh(5)}px;
-  margin-right: ${vw(40)}px;
-  align-self: center;
+  margin-left: ${vw(10)}px;
+  align-self: flex-start;
+  border-radius:15px;
+  border-width: 1px; 
+  border-color: #111111;
+  align-items: center;
+  justify-content: center;
 `
 export const Text2 = styled.Text`
   font-size: ${vh(2.3)}px;
   font-weight: 600;
   color: ${black};
-  left: 35px;
-  top:5px;
 `;
 
 export const Text3 = styled.Text`
   font-size: ${vh(2.3)}px;
   font-weight: 600;
   color: ${black};
-  top: 5px;
 `;
 export const ResultButton = styled.TouchableOpacity`
   width: ${vw(30)}px;
   height: ${vh(5)}px;
-  align-self: center;
-
+  bottom: ${vh(5)}px;
+  align-self: flex-end;
+  margin-right: ${vw(10)}px;
+  border-radius:15px;
+  border-width: 1px; 
+  border-color: #111111;
+  align-items: center;
+  justify-content: center;
 `;
-export const FooterContainer = styled.TouchableOpacity`
-  background-color: #CEF1CF;
+export const FooterContainer = styled.View`
+  position: absolute;
+  top: ${vh(90)}px;
+  flex-direction: 'row';
   width: ${vw(100)}px;
-  height: ${vh(7)}px;
-  flex-direction: row;
+  height: ${vh(14)}px;
+  background-color: #CEF1CF;
+  align-items: center;
+  justify-content: center;
 `;
 export const HeaderContainer2 = styled.View`
   background-color: #CEF1CF;

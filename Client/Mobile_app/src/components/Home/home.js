@@ -54,10 +54,22 @@ const Home = () => {
     }
     navigation.navigate('Room', { plantsInRoom, roomName });
   };
+  
+  const handleSaved = async (roomName) => {
+    setSelectedRoom(roomName);
+    let plantsInRoom = [];
+    try {
+      if (roomName) {
+        plantsInRoom = await myPlant(token, roomName);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    navigation.navigate('Save', { plantsInRoom, roomName });
+  };
 
   const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
   const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
-  const handleSaved = () => {navigation.navigate('Saved', { animations: false });};
   const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
   const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
   const handleDashboard = (gardensDetail) => {
@@ -267,7 +279,7 @@ const Home = () => {
         <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
         <TaskbarButtonText>Scan</TaskbarButtonText>
       </ContainerButton>
-      <ContainerButton>
+      <ContainerButton onPress={() => handleRoomPress('Lưu trữ')}>
         <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
         <TaskbarButtonText>Đã lưu</TaskbarButtonText>
       </ContainerButton>
