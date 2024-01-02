@@ -135,31 +135,24 @@ export const DetailImage = styled.Image`
 `;
 
 export const StartContainer = styled.View`
-  z-index: 0; 
   position: absolute;
   top: ${vh(5)}px;
   width: ${vw(48)}px;
   background-color: ${white}; 
   height: ${vh(7)}px;
-  flex-direction: 'row';
   border-radius: 10px;
   border: ${maincolor}; 
+  flex-direction: 'row';
+  align-items: center;
+  justify-content: center;
 `;
 export const TextStart = styled.Text`
   font-size: ${vh(2)}px;
+  left:${vw(2)}px;
   color: #1A5D1A;
-  padding-top: ${vh(2)}px;
-  left: ${vw(2)}px;
+  align-self: flex-start;
 `;
 
-export const InputTime = styled.TextInput`
-  position: absolute; 
-  background-color: ${white};
-  font-size: ${vh(2)}px;
-  width: ${vw(25)}px;
-  padding-top: ${vh(2)}px;
-  left: ${vw(20)}px;
-`;
 export const DateContainer = styled.View`
   position: absolute;
   top: ${vh(5)}px;
@@ -170,21 +163,22 @@ export const DateContainer = styled.View`
   border-radius: 10px;
   border: ${maincolor}; 
   left: ${vw(49)}px;
+  align-items: center;
+  justify-content: center;
 `;
 export const TextDate = styled.Text`
   font-size: ${vh(2)}px;
+  left:${vw(2)}px;
   color: #1A5D1A;
-  align-items: flex-start;
-  padding-top: ${vh(2)}px;
-  margin-left: ${vw(2)}px;
+  align-self: flex-start;
 `;
 export const InputDate = styled.TextInput`
   position: absolute; 
   background-color: ${white};
   font-size: ${vh(2)}px;
   width: ${vw(25)}px;
-  padding-top: ${vh(1.9)}px;
-  left: ${vw(18)}px;
+  align-self: center;
+  left:${vw(15)}px;
 `;
 
 export const FrequencyContainer = styled.View`
@@ -220,6 +214,7 @@ export const EachContainer = styled.View`
   flex-direction: 'row';
   border-radius: 10px;
   border: ${maincolor}; 
+  
 `;
 export const WorkContainer = styled.View`
   position: absolute;
@@ -231,7 +226,6 @@ export const WorkContainer = styled.View`
   border-radius: 10px;
   border: ${maincolor}; 
   left: ${vw(49)}px;
-
 `;
 
 export const TextEach = styled.Text`
@@ -283,11 +277,12 @@ export const ButtonCreate = styled.Text`
   text-align: center;
 `
 export const InputTimeCon = styled.View`
-  margin-left: ${vw(17)}px;
-  bottom: ${vh(3.7)}px;
-  width: ${vw(23)}px;
-  height: ${vh(5)}px;
+  position: absolute;
+  left: ${vw(16)}px;
+  width: ${vw(19)}px;
+  height: ${vh(4)}px;
   flex-direction: row;
+  align-self: center;
 `;
 export const TextSpace = styled.Text`
   margin-left: ${vw(1.5)}px;
@@ -296,17 +291,20 @@ export const TextSpace = styled.Text`
 export const TextInputHours = styled.TextInput`
   margin-left: ${vw(2.5)}px;
   font-size: ${vh(2)}px;
+  align-self: center;
 `;
 export const TextInputMin = styled.TextInput`
   margin-left: ${vw(1.5)}px;
   font-size: ${vh(2)}px;
+  align-self: center;
 `;
 export const TextTime = styled.Text`
   position: absolute;
   font-size: ${vh(2)}px;
   color: #1A5D1A;
   left: ${vw(38)}px;
-  margin-top: ${vh(2.2)}px;
+  align-self: center;
+
 `;
 export const DecorContainer = styled.View`
   position: relative;

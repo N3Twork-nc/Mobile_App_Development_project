@@ -123,7 +123,7 @@ import { Dropdown } from 'react-native-element-dropdown';
     container: { width: 100, left: 45, bottom: 34,
     },
     dropdown: {
-      height: 50, width: 155, borderRadius: 8, paddingHorizontal: 31,
+      height: 50, width: 160, borderRadius: 8, paddingHorizontal: 31,
     },
     placeholderStyle: {
       fontSize: 17,
