@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Alert, View, Text, TouchableOpacity,Image,  TextInput } from 'react-native'
+import {Alert, View, Text, TouchableOpacity, Image,  TextInput } from 'react-native'
 import { StyledContainer, HeaderContainer, ButtonAdd, 
   ButtonBack,ButtonText, MainTitle, BackContainer, 
   AddContainer, GardenContainer, EachGardenContainer,
@@ -7,7 +7,7 @@ import { StyledContainer, HeaderContainer, ButtonAdd,
 Icon,  } from './styleGarden'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { SafeAreaView, ScrollView  } from 'react-native';
-import Modal, { ReactNativeModal } from 'react-native-modal';
+import Modal from 'react-native-modal';
 import { useSelector,useDispatch } from 'react-redux';
 import { myGarden } from '../../../api/Garden.js'
 import logo from '../../../assets/logo.png';
