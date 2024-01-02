@@ -1,29 +1,9 @@
 import styled from 'styled-components';
-import { Dimensions, Platform} from 'react-native';
+import {Platform} from 'react-native';
+import { Colors, ScreenSize } from '../../../store/styles';
 
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#ffffff",
-  black: "#000000",
-  gray: "#333333",
-  green: "#0B4F06", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
-  white_gray: "#F8F8F8",
-  maintitle: "#0B4F06",
-  gray_subtype: "#628093",
-  livingroom: "#EEF7E8",
-  kitchen: "#E6EAFA",
-  bedroom: "#FCF1E3",
-  backyard: "#F8E8F8",
-}
-
-const { width, height } = Dimensions.get('window');
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
-
-const { maincolor, white, black, green, gray} = Colors;
+const {white, black, maintitle, position} = Colors;
+const {vh, vw} = ScreenSize;
 
 //screen
 export const StyledContainer = styled.View`
@@ -69,7 +49,7 @@ export const MainTitleContainer = styled.View`
 
 export const MainTitle = styled.Text`
   fontSize: ${vh(3.6)}px;
-  color: ${green}; 
+  color: ${maintitle}; 
   font-weight: bold;
   text-align: center;
   align-items: center;
@@ -106,7 +86,7 @@ export const CoverImage = styled.Image`
 // member team
 export const TeamTitle = styled.Text`
   fontSize: ${vh(3.3)}px;
-  color: ${green}; 
+  color: ${maintitle}; 
   font-weight: bold;
   margin-bottom: 15px;
   margin-top: 10px;
@@ -126,7 +106,7 @@ export const EachMemContainer = styled.View`
   height: 290px;
   width: 49%;
   border-radius: 13px;
-  border: 0.3px solid ${green};
+  border: 0.3px solid ${maintitle};
   align-self: flex-start;
   justify-content: center;
   align-items: center;
@@ -149,7 +129,7 @@ export const Name = styled.Text`
 export const Position = styled.Text`
   font-size: 12px;
   font-weight: 400;
-  color: ${gray};
+  color: ${position};
   align-self: center;
 `
 export const Copyright = styled.Text`

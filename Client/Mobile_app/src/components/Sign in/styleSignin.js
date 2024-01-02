@@ -1,23 +1,8 @@
 import styled from 'styled-components';
-import { Dimensions,  } from 'react-native';
-
-// Lấy kích thước màn hìnhr
-const { width, height } = Dimensions.get('window');
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
-
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#ffffff",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B",
-}
+import { Colors, ScreenSize } from '../../store/styles';
 
 const { maincolor, white, black, } = Colors;
+const { vh, vw} = ScreenSize;
 
  //screen
  export const StyledContainer = styled.View`

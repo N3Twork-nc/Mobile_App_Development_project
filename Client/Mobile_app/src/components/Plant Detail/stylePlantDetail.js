@@ -1,24 +1,7 @@
 import styled from 'styled-components';
-import { Dimensions } from 'react-native';
-
-// Lấy kích thước màn hình
-const { width, height } = Dimensions.get('window');
-
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#ffffff",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B",
-}
-
-const { maincolor, white, black, gray, green } = Colors;
+import { Colors, ScreenSize } from '../../store/styles';
+const { vh, vw } = ScreenSize;
+const { maincolor, white, black,} = Colors;
 
  //screen
  export const StyledContainer = styled.View`
@@ -36,21 +19,24 @@ export const HeaderContainer = styled.View`
   ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'}
 `;
 export const TitleContainer = styled.View`
+  flex-direction: row;
   align-items: center;
-  justify-content: center; 
-  width: 100%;  
-
+  justify-content: center;
+  width: 100%;
+  position: relative;
 `;
 export const MainTitle = styled.Text`
-  font-size: 25px;
+  font-size: 22px;
   color: ${black};
   font-weight: bold;
+  flex: 1;
   align-self: center;
+  justify-content: center;
+  text-align: center;
 `;
 export const BackContainer = styled.TouchableOpacity`
-  position: absolute;
-  left: 0;
   align-items: flex-start;
+  z-index: 1;
 `;
 
 export const ButtonBack = styled.Image`

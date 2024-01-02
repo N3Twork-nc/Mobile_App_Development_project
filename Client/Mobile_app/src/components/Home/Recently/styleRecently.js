@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Colors } from '../../../store/styles';
-const { white, black, green,  white_gray} = Colors;
+const { white, black, green,  gray_subtype, containerprofile} = Colors;
 
  //screen
  export const StyledContainer = styled.View`
@@ -46,61 +46,49 @@ export const PlantContainer = styled.View`
   margin-bottom: 10px;
 `;
 
-export const Plant1Container = styled.View`
+export const Plant1Container = styled.TouchableOpacity`
   height: 250px;
   width: 48%;
   border-radius: 13px;
-  background-color: ${white_gray};
-  border: 0.3px solid ${green};
+  background-color: ${containerprofile};
+  border: 0.2px solid ${green};
   align-self: flex-start;
   justify-content: center;
   align-items: center;
 `;
 
 
-
 export const ImageFrame = styled.Image`
-  width: 70%;
-  height: 45%;
+  width: 90%;
+  height: 55%;
   border-radius: 13px;
 `;
 
 export const PlantName = styled.Text`
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: ${black};
   align-self: center;
   margin-top: 5%;
   text-align: center;
-  padding: 5px;
   overflow: hidden;
+  padding:10px;
 `
 
-export const ButtonContainerWrapper = styled.View`
-  align-self: center;
-`;
-
-export const ButtonContainer = styled.View`
+export const Info1 = styled.View`
+  width: 90%;
+  align-item: center;
+  justify-content: center;
   flex-direction: row;
-  justify-content: space-around;
-  margin-top: 13%;
-  margin-bottom: -10%;
-`;
-export const IconButton = styled.TouchableOpacity`
-  width: 55px;
-  height: 50px;
-  align-items: center;
-`;
-
-export const Icon = styled.Image`
-  width: 20px;
-  height: 20px;
-  tintColor: ${green};
-`;
-
-export const ButtonText = styled.Text`
-  font-size: 9px;
-  font-weight: 500;
-  color: ${black};
-  margin-top: 5px;
-`;
+`
+export const HistoryTitle = styled.Text`
+  font-size: 13px;
+ color: ${gray_subtype};
+  font-style: italic;
+`
+export const History = styled.Text`
+  font-size: 13px;
+  color: ${gray_subtype};
+  font-style: italic;
+  margin-left: 3px;
+`

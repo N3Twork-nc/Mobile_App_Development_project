@@ -1,29 +1,16 @@
 import styled from 'styled-components';
-import { Dimensions } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
 
-// Lấy kích thước màn hình
-const { width, height } = Dimensions.get('window');
+const {white, maintitle, border, black} = Colors;
+const { vh, vw} = ScreenSize;
 
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#ffffff",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B",
-}
 
  //screen
  export const StyledContainer = styled.View`
  flex: 1;
  justify-content: center;
  align-items: center;
- backgroundColor: #ffffff;
+ backgroundColor: ${white};
 
 `;
 export const HeaderContainer = styled.View`
@@ -49,18 +36,18 @@ export const Text1 = styled.Text`
 export const Text2 = styled.Text`
     margin-top:${vh(1)}px;
     font-size: ${vh(2)}px;
-    color: #5B5858;
+    color: ${black};
     align-self: flex-start;
     align-self: center; 
     justify-content: center;
 `;
 
 export const InputText1= styled.TextInput`
-  background-color: #ffffff;
+  background-color: ${white};
   border-radius: 25px;
   margin-top: ${vh(2)}px;
   width: ${vw(85)}px;
-  border: 0.4px solid #61AF2B;
+  border: 0.4px solid ${border};
   height: ${vw(14)}px;
   align-self: center; 
   justify-content: center;
@@ -71,11 +58,11 @@ export const InputText1= styled.TextInput`
 
 export const InputText2= styled.TextInput`
   top: ${vh(3)}px;
-  background-color: #ffffff;
+  background-color: ${white};
   border-radius: 25px;
   width: ${vw(85)}px;
   height: ${vw(14)}px;
-  border: 0.4px solid #61AF2B;
+  border: 0.4px solid ${border};
   align-self: center; 
   justify-content: center;
   padding: 5px 15px;
@@ -84,7 +71,7 @@ export const InputText2= styled.TextInput`
 `;
 
 export const ButtonSend = styled.TouchableOpacity`
-  background-color: #005C04;
+  background-color: ${maintitle};
   border-radius: 30px;
   width: ${vw(55)}px;
   align-self: center;
@@ -93,7 +80,7 @@ export const ButtonSend = styled.TouchableOpacity`
   margin-top: ${vh(10)}px; 
 `;
 export const ButtonText = styled.Text`
-  color: #ffffff;
+  color: ${white};
   align-self: center;
   justify-content: center;
   font-size: ${vw(5)}px;

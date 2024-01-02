@@ -46,8 +46,13 @@ def getPlants(roomName: str = Path(...), username=Depends(Authentication().valid
         
 
 @app.put("/API_schedule")
-def schedule(schedule:Schedule):
-    return schedule.inserSchedule()
+def schedule(schedule:Schedule,username=Depends(Authentication().validate_token)):
+    try:
+        schedule.username=username
+        schedule.inserSchedule()
+        return "Add successful scheduling"
+    except Exception as e:
+       raise HTTPException(status_code=400, detail="Add scheduling failed")
 
 @app.get('/API_get_count_plants')
 def countPlant(username=Depends(Authentication().validate_token)):
@@ -58,6 +63,22 @@ def countPlant(username=Depends(Authentication().validate_token)):
     except Exception as e:
         print(str(e))
         raise HTTPException(status_code=204, detail="Get count my plant fail")
+    
+@app.delete("/APIDeletePlant")
+def deletePlant(roomName:str,id:str,username=Depends(Authentication().validate_token)):
+    try:
+        plant = MyPlants(username,roomName,idPlant=id)
+        plant.deletePlant()
+        return{
+            "Status":True,
+            "Message":"Delete plant successfull"
+        }
+    except Exception as e:
+        print(str(e))
+        return{
+            "Status":False,
+            "Message":"Delete plant failed"
+        }
         
     
 

@@ -1,23 +1,12 @@
 import styled from 'styled-components';
-import { Dimensions,Platform } from 'react-native';
-import Constants from 'expo-constants';
+import { Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
 
-const { width, height } = Dimensions.get('window');
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
+const {vh, vw} = ScreenSize;
+const {black} = Colors;
 
-// default color
-export const Colors = {
-    maincolor: "#CEF1CF",
-    white: "#ffffff",
-    black: "#000000",
-    gray: "#D9D9D9",
-    green: "#61AF2B",
-  }
-  const { maincolor, white, black, gray, gray_subtype, green, maintitle} = Colors;
-export const StyleContainer=styled.View`
+
+export const StyleContainer = styled.View`
   flex:1;
 `
 export const HeaderContainer = styled.View`

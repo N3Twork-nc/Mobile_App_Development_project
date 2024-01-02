@@ -71,7 +71,7 @@ const Home = () => {
   const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
   const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
   const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
-  const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
+  const handleRecently = () => {navigation.navigate('Recently', )};
   const handleDashboard = (gardensDetail) => {
     navigation.navigate('Dashboard', { gardensDetail });
   };
@@ -101,11 +101,11 @@ const Home = () => {
            {/* Gần đây */}
           <TitleforContainers>
             <Title1>Gần đây</Title1>
-            <Title2>Xem tất cả</Title2>
+            <Title2 onPress={handleRecently}>Xem tất cả</Title2>
           </TitleforContainers>
 
           <RecentlyPlantContainer>
-            <Plant1Container onPress={handlePlantDetail}>
+            <Plant1Container>
               <ImageFrame resizeMode="cover" source={require('../../assets/plant0.jpg')}/>
               <PlantName>Hoa Hướng Dương</PlantName>
             </Plant1Container> 

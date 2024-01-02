@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IPServer } from ".";
+import { token } from "stylis";
 
 const createFormData = (uriPhoto) => {
   const formData = new FormData();
@@ -64,7 +65,64 @@ export const countPlants=async (token) => {
     return response.data;
   }
   catch {
-    console.log(response.status)
     return null
+  }
+}
+
+export const getPlant = async (token, plantname) => {
+  try {
+    const response = await axios.get(IPServer + `APIGetInfoPlant/${plantname}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+      
+    const plants = response.data;
+
+    console.log("Get info plants success");
+
+    return plants;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+      
+export const schedule= async (token,idPlant,roomName,timeStart,dateStart,frequency,frequencyType,action,note)=>{
+  try {
+    const data={
+      "id_plant": idPlant,
+      "roomName": roomName,
+      "timeStart":timeStart,
+      "dateStart": dateStart,
+      "frequency": frequency,
+      "frequencyType": frequencyType,
+      "action": action,
+      "note":note
+    }
+    const response = await axios.put(IPServer + 'API_schedule',data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.status;
+  }
+  catch {
+    return null
+  }
+}
+
+export const deletePlant = async (roomName,id,token) =>{
+  try {
+    const response = await axios.delete(IPServer+`APIDeletePlant?roomName=${roomName}&id=${id}`,
+    {headers: {
+      Authorization:`Bearer ${token}`}
+    });
+    
+    const result = response.data;
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
   }
 }
