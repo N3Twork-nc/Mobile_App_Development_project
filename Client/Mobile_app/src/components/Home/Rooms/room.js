@@ -86,7 +86,7 @@ return (
                         <PlantContainer key={i}>
                             <Plant1Container>
                                 <ImageFrame  resizeMode="cover" source={{uri:plantsInRoom[keys[i]].Img}}/>
-                                <PlantName>{plantsInRoom[keys[i]].plantName} </PlantName>
+                                <PlantName numberOfLines={2}>{plantsInRoom[keys[i]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
                                     <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
@@ -114,7 +114,7 @@ return (
                             
                             <Plant1Container>
                                 <ImageFrame  resizeMode="cover" source={{uri:plantsInRoom[keys[i + 1]].Img}}/>
-                                <PlantName>{plantsInRoom[keys[i + 1]].plantName} </PlantName>
+                                <PlantName numberOfLines={2}>{plantsInRoom[keys[i + 1]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
                                     <IconButton onPress={() => handleInfo(plantsInRoom[keys[i + 1]].plantName)}>

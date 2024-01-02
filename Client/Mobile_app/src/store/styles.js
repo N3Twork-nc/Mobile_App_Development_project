@@ -28,6 +28,7 @@ export const Colors = {
   containerprofile: "#EEF7E8",
   border: "#164303",
   position: "#333333",
+  recently: "#F3FEEC"
 }
 
 //Lấy kích thước màn hình
