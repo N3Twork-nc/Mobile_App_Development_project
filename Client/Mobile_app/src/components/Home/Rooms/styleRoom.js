@@ -71,6 +71,8 @@ export const PlantName = styled.Text`
   color: ${black};
   align-self: center;
   margin-top: 5%;
+  text-align: center;
+  padding: 2px;
 `
 
 export const ButtonContainerWrapper = styled.View`
