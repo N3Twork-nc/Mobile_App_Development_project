@@ -214,9 +214,9 @@ const styles = StyleSheet.create({
   slider: {
     width: '90%',
     alignSelf: 'center',
-    top: 550,
+    top: '73%',
     minimumTrackTintColor:"#FFFFFF",
-    maximumTrackTintColor:"#fffff",
+    maximumTrackTintColor:"#ffffff",
   }
 })
 export default CameraScreen;
