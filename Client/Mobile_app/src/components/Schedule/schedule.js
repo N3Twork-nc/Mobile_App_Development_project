@@ -5,16 +5,22 @@ import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTi
         TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
         TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor
         } from './styleSchedule';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
+import { schedule } from '../../api/Plant';
+import { useSelector } from 'react-redux';
 
 
-  const Schedule = () => {
+const Schedule = () => {
+  const token = useSelector(state=>state.token)['payload'];
+  const route=useRoute()
+  const {idPlant,roomName} =route.params
   const navigation = useNavigation();
   const handleBack = () => { navigation.navigate('Home'); }
+ 
 
   const [selectedDate, setSelectedDate] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -23,18 +29,32 @@ import { Dropdown } from 'react-native-element-dropdown';
    const [isFocusNumber, setIsFocusNumber] = useState(false);
    const [isFocusFrequency, setIsFocusFrequency] = useState(false);
    const [isFocusWork, setIsFocusWork] = useState(false);
-   const [selectedNumber, setSelectedNumber] = useState(null); // Biến state cho dropdown dãy số
+   const [selectedNumber, setSelectedNumber] = useState(1); // Biến state cho dropdown dãy số
    const [selectedFrequency, setSelectedFrequency] = useState(null); // Biến state cho dropdown "Ngày", "Tuần", "Tháng"
    const [selectedWork, setSelectedWork] = useState(null); // Biến state cho các công việc 
    const [selectedHour, setSelectedHour] = useState(''); // Thêm state cho giờ
    const [selectedMinute, setSelectedMinute] = useState(''); // Thêm state cho phút
+   const [note,setNote]=useState('')//ghi chú
+   const handleSchedule = async ()=>{
+    try {
+      const result= await schedule(token,idPlant,roomName,selectedHour+":"+String(selectedMinute).padStart(2, '0'),
+      selectedDate,selectedNumber,selectedFrequency,selectedWork,note)
+      if (result==200){
+        alert("Đặt lịch thành công");
+      }
+      else alert("Đặt lịch thất bại")
+    }
+    catch {
+      alert("Đặt lịch thất bại")
+    }
+  }
 
     //Ràng buộc giờ
     const onHourChange = (text) => {
       const hour = parseInt(text);
       if (!isNaN(hour) && hour >= 0 && hour <= 23) {
         setSelectedHour(text);
-        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), hour, time.getMinutes()));
+        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), text, time.getMinutes()));
       } else {
         // Hiển thị thông báo không hợp lệ khi giờ nhập vượt quá 23
         alert('Giờ không hợp lệ');
@@ -45,7 +65,7 @@ import { Dropdown } from 'react-native-element-dropdown';
       const minute = parseInt(text);
       if (!isNaN(minute) && minute >= 0 && minute <= 59) {
         setSelectedMinute(text);
-        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), time.getHours(), minute));
+        setTime(new Date(time.getFullYear(), time.getMonth(), time.getDate(), time.getHours(), text));
       }
     
       if (minute >= 60) {
@@ -59,7 +79,11 @@ import { Dropdown } from 'react-native-element-dropdown';
         }
       }
     };
- 
+    //Hàm log giờ đã chọn 
+    const displaySelectedTime = () => {
+      console.log(`Giờ đã chọn: ${selectedHour}:${selectedMinute}`);
+    };
+    
   const onDayPress = (day) => {
     setSelectedDate(day.dateString);
     setShowModal(true);
@@ -173,7 +197,7 @@ import { Dropdown } from 'react-native-element-dropdown';
             <Text1>Chi tiết</Text1>
             {/* Nội dung khác trong modal */}
             <NoteContainer>
-              <InputNote placeholder="Thêm ghi chú vào đây" placeholderTextColor="#D3DBD3"></InputNote>
+              <InputNote onChangeText={setNote}  placeholder="Thêm ghi chú vào đây" placeholderTextColor="#D3DBD3"></InputNote>
               <NoteImage resizeMode="contain" source={require('../../assets/note.png')}/> 
             </NoteContainer>
             <ReviewContainer> 
@@ -193,6 +217,7 @@ import { Dropdown } from 'react-native-element-dropdown';
                             keyboardType="numeric"
                             defaultValue={selectedHour}
                             onChangeText={onHourChange}
+                            onBlur={displaySelectedTime}
                           />
                           <TextSpace>:</TextSpace>
                           <TextInputMin
@@ -200,6 +225,7 @@ import { Dropdown } from 'react-native-element-dropdown';
                             keyboardType="numeric"
                             defaultValue={selectedMinute}
                             onChangeText={onMinuteChange}
+                            onBlur={displaySelectedTime}
                           />
                         </InputTimeCon>
                         <TextTime>{time.getHours() >= 12 ? 'PM' : 'AM'}</TextTime>
@@ -275,7 +301,7 @@ import { Dropdown } from 'react-native-element-dropdown';
                         </View>
                 </WorkContainer>
               </FrequencyContainer>
-              <ButtonCreateReminder onPress={handleBack}>
+              <ButtonCreateReminder onPress={handleSchedule}>
                     <ButtonCreate> Tạo nhắc nhở</ButtonCreate>
               </ButtonCreateReminder>
           </View>

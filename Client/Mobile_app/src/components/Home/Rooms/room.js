@@ -30,12 +30,11 @@ const Room = () => {
 
     const handleBack = () => {
     navigation.navigate('Home');
-    };
-
-    const handleSchedule = () => {
-    navigation.navigate('Schedule');
-    };
-
+  };
+  const handleSchedule = (idPlant) => {
+    navigation.navigate('Schedule',{idPlant,roomName});
+    
+  };
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <ScrollView style={{ flex: 1 }}>
@@ -67,7 +66,7 @@ return (
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton onPress={handleSchedule}>
+                                    <IconButton onPress={()=>handleSchedule(keys[i])}>
                                         <Icon source={require('../../../assets/water.png')} />
                                         <ButtonText>Đặt lịch</ButtonText>
                                     </IconButton>
@@ -89,7 +88,7 @@ return (
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton onPress={handleSchedule}>
+                                    <IconButton onPress={()=>handleSchedule(keys[i + 1])}>
                                         <Icon source={require('../../../assets/water.png')} />
                                         <ButtonText>Đặt lịch</ButtonText>
                                     </IconButton>
