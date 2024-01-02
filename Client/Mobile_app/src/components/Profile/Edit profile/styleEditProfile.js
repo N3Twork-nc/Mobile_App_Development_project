@@ -1,30 +1,9 @@
 import styled from 'styled-components';
 import { Platform } from 'react-native';
-import { Dimensions,  } from 'react-native';
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#FFFFFF",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B", 
-  containerprofile: "#EEF7E8",
-  white_gray: "#F8F8F8",
-  gray: "#4E4E4E",
-  sectiontitle: "#4E4E4E",
-  buttoncolor: "#1A5D1A",
-  maintext: "#164303",
-  border: "#164303",
-}
-
-
-const { width, height } = Dimensions.get('window');
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
+import { Colors, ScreenSize } from '../../../store/styles';
 
 const { maincolor, maintext, border , buttoncolor, white, black, sectiontitle } = Colors;
+const { vh, vw} = ScreenSize;
 
  //screen
  export const StyledContainer = styled.View`
@@ -129,7 +108,7 @@ export const TaskbarView = styled.View`
   width: 100%;
   height: 55px;
   background-color: ${white};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -2px 1px rgba(0, 0, 0, 0.05);
   position: relative;
   flex-direction: row;
   align-items: flex-start;

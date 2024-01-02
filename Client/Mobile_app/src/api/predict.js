@@ -20,7 +20,26 @@ export const predictPlant= async(photo,token)=>{
       'Content-Type': 'multipart/form-data',
       Authorization:`Bearer ${token}`,}
     },)
-    console.log(response.data)
+
+    const plant = response.data;
+
+    const results = [];
+
+    const plantName = plant.PlantName;
+    const keyword = plant.Keyword;
+    const fertilize = plant.Fertilize;
+    const watering = plant.Watering;
+    const repotting = plant.Repotting;
+    const light = plant.Light;
+    const temperature = plant.Temperature;
+    const humidity = plant.Humidity;
+    const information = plant.Info;
+    const cover=plant.cover;
+
+    results.push({ plantName, keyword, fertilize, watering, repotting, light, temperature, humidity, information,cover});
+
+    console.log("Predict successfull")
+    return results
   }
   catch (error){
     console.log(error)

@@ -1,21 +1,8 @@
 import styled from 'styled-components';
-import { View, Text, Image, Platform } from 'react-native';
+import {Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
 
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#FFFFFF",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
-  white_gray: "#F8F8F8",
-  gray_subtype: "#628093",
-  livingroom: "#EEF7E8",
-  kitchen: "#E6EAFA",
-  bedroom: "#FCF1E3",
-  backyard: "#F8E8F8",
-}
-
+const { vh, vw } = ScreenSize;
 const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
 
  //screen
@@ -23,7 +10,6 @@ const { maincolor, white, black, gray, gray_subtype, green, blue, orange, purple
  flex: 1;
  padding: 20px;
  background-color: ${white};
-
 `;
 
 export const Line = styled.View`
@@ -39,11 +25,12 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center; 
   margin-bottom: 5%;
-  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 5%;'}
+  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-top: 0;'}
 `;
 export const MainTitle = styled.Text`
   font-size: 25px;
   color: ${black};
+  top:0;
   font-weight: bold;
   align-self: flex-start;
 `;
@@ -105,7 +92,6 @@ export const TitleforContainers= styled.View`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  margin-top: 10px;
   margin-bottom: 10px;
 `;
 
@@ -218,7 +204,7 @@ export const SecondRooms = styled.View`
   align-items: center;
 `;
 
-export const LivingroomContainer = styled.TouchableOpacity`
+export const LivingroomContainer = styled.View`
   height: 50px;
   width: 50px;
   position: relative;
@@ -230,7 +216,7 @@ export const LivingroomContainer = styled.TouchableOpacity`
   align-self: flex-start;  
 `;
 
-export const KitchenContainer = styled.TouchableOpacity`
+export const KitchenContainer = styled.View`
   height: 50px;
   width: 50px;
   position: relative;
@@ -243,7 +229,7 @@ export const KitchenContainer = styled.TouchableOpacity`
 `;
 
 
-export const BedroomContainer = styled.TouchableOpacity`
+export const BedroomContainer = styled.View`
   height: 50px;
   width: 50px;
   position: relative;
@@ -255,7 +241,7 @@ export const BedroomContainer = styled.TouchableOpacity`
   align-self: flex-start;
 `;
 
-export const BackyardContainer = styled.TouchableOpacity`
+export const BackyardContainer = styled.View`
   height: 50px;
   width: 50px;
   position: relative;
@@ -267,7 +253,7 @@ export const BackyardContainer = styled.TouchableOpacity`
   align-self: flex-start;
 `;
 
-export const CategoryDetailText = styled.TouchableOpacity`
+export const CategoryDetailText = styled.View`
   flex-direction: column;
   justify-content: center;
   left: 17%;
@@ -341,12 +327,11 @@ export const MoreNotifyContainer = styled.Image`
 
 
 export const TaskbarView = styled.View`
-  position: fixed;
   bottom: 0;
   width: 100%;
   height: 55px;
   background-color: ${white};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -2px 1px rgba(0, 0, 0, 0.05);
   position: relative;
   flex-direction: row;
   align-items: flex-start;

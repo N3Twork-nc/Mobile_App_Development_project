@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import { StyledContainer, InnerContainer,ButtonTextContainer, PasswordInputContainer, ButtonTextFB, IconButtonFB, EyeIcon, ButtonTextGG, IconButtonGG, InputContainer, Slogan, IconButton, ButtonSigninwFB, ButtonText1, ButtonSigninwGG, ButtonText, OthersText1, OthersText2, OthersText3, ButtonSignin, InputTextusername, InputTextpw } from './styleSignin';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
-import { Platform, TouchableOpacity, Alert, KeyboardAvoidingView,StyleSheet } from 'react-native';
+import { Platform, View, TouchableOpacity, Alert, Animated ,StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView,  } from 'react-native-keyboard-aware-scroll-view';
 import { signin } from '../../api/signin_signup'
 import { updateToken } from '../../reducers/token';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { height } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
+import { updateMyGarden } from '../../reducers/mygarden';
+
 
 
 const Signin = () => {
@@ -22,6 +23,11 @@ const Signin = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   }
+  
+  useEffect(() => {  
+    const action=updateMyGarden([]);
+    dispatch(action)
+   }, []);
 
   const handleSignIn = async () => {
     setIsLoading(true); 
@@ -34,7 +40,11 @@ const Signin = () => {
       dispatch(acUpdateInfo)
       return navigation.navigate('Home')
     }
-    else Alert.alert('Tài khoản hoặc mật khẩu không chính xác');
+    else 
+    {
+      Alert.alert('Tài khoản hoặc mật khẩu không chính xác');
+      setIsLoading(false);
+      return navigation.navigate('SignIn')}
   };
   
   const handleForgotPassword = () => {
@@ -44,9 +54,19 @@ const Signin = () => {
   const handleSignUp = () => {
     navigation.navigate('SignUp');
   };
+  
+  //Sự kiện lùi màn hình
+  const animatedValue = useRef(new Animated.Value(0)).current;
+
+  const handleAnimatedValueUpdate = () => {
+    navigation.navigate('Welcome')
+  };
+
+  animatedValue.addListener(handleAnimatedValueUpdate);
 
   return (
     <KeyboardAwareScrollView 
+    backgroundColor="#CEF1CF"
     contentContainerStyle={{ flex: 1 }}
     behavior={Platform.OS === 'ios' ? 'padding' : null}
     keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
@@ -55,8 +75,9 @@ const Signin = () => {
         <View style={[StyleSheet.absoluteFillObject, styles.container]}>
         <LottieView
                 resizeMode="contain"
-                source={require('../../assets/logo.png')} 
+                source={require('../../assets/Animation-loading1.json')} 
                 autoPlay
+                style={{ width: 100, height: 100 }}
               />
         </View>
            
@@ -109,7 +130,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#CEF1CF',
+    zIndex: 1,
   }
 })
 export default Signin;

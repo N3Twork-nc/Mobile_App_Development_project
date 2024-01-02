@@ -1,35 +1,102 @@
-import React from 'react';
-import { ScrollView, SafeAreaView,TouchableOpacity,FlatList } from 'react-native';
+import React,  {useState}from 'react';
+import {Alert, StyleSheet, ScrollView, SafeAreaView, FlatList, View, Image, Text, TouchableOpacity } from 'react-native';
 import { 
   StyledContainer, HeaderContainer,MainTitle, ButtonBack,ImageContainer,ImagePlant,
-  BodyContainer,Text1,Text2,ImgLogo, TagContainer,Tag1, Tag2,Tag3,Text3,InfoContainer,Box1,Box2,Box3,Box4,Box5,Box6,
-  Box1Container,Box2Container,Box3Container,Title1,Info1,Title2,Info2,Title3,Info3,TextContainer1,TextContainer2,TextContainer3,TextContainer4,
-  Box4Container,Title4,Info4, Box5Container,Title5,Info5,TextContainer5,Box6Container,Title6,Info6,TextContainer6,
-  ParagraphContainer,CreText,Line,MainText,TopContainer,TaskbarView, ContainerButton,SaveIcon,SaveText
-} from './styleAfterscan';
-import { useNavigation } from '@react-navigation/native';
+  BodyContainer,Text1,Text2,ImgLogo, TagContainer,Tag, Text3,
+  ParagraphContainer,CreText,Line,MainText,TopContainer,TaskbarView,
+   SaveButton, SaveContainer, Save, SaveButtonText, BackContainer, 
+   TitleContainer, SectionsContainer, BoxContainer, FirstSection, 
+   Icon, LeftContainer, EachSectionContainer, SectionDetailText, 
+   SectionName, SubSectionText, RightContainer, SecondSection, BoxesContainer,
+} from './styleAfterscan.js';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import Modal from 'react-native-modal';
+import logo from '../../assets/logo.png';
+import { plant } from '../../api/Plant.js';
+import { useSelector } from 'react-redux';
+import LottieView from 'lottie-react-native';
+const logoApp = logo;
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+  }
+})
 
 const Afterscan = () => {
+  const token = useSelector(state=>state.token)['payload'];
+  const route = useRoute();
+  const { info, photoURI } = route.params;
+  const keywords = info[0].keyword.split(', ');
+
+  const [isLoading, setIsLoading] = useState(false);
+   
+  const [isAlertVisible, setAlertVisible] = useState(false);
+
+    // Các navigate chuyển màn hình
   const navigation = useNavigation();
-  const handleScan = () => {
-    navigation.navigate('CameraScreen', { animations: false });
+
+  const handleSaved = () => {
+    setAlertVisible(true);
   };
+  const handleCloseAlert = () => {
+    setAlertVisible(false);
+  };
+    
+  const [selectedRoom, setSelectedRoom] = useState('');
+
+  const handleSavedtoRooms = async (roomName) => {
+    try {
+      setAlertVisible(false);
+      setIsLoading(true);
+      const response = await plant(photoURI, roomName, info[0].plantName, token);
+      if (response=="Successfull") 
+        {
+          Alert.alert("Thêm cây thành công");
+          setIsLoading(false);
+        }
+      else {
+        Alert.alert("Thêm cây thất bại");
+        setIsLoading(false);
+      }
+    } catch (error) 
+    {
+      Alert.alert("Thêm cây thất bại");
+      setIsLoading(false);
+    }
+  };
+
+  const handleSavedtoStorage = () => {
+    // Lưu vào mục Đã lưu
+    setAlertVisible(false);
+  };
+  
+  const handleBack = () => {
+    navigation.navigate('CameraScreen', {animations: false});
+  }
+
     // Danh sách các nguồn ảnh
   const images = [
-    require('../../assets/img1.jpg'),
-    require('../../assets/img2.jpg'),
-    require('../../assets/img3.jpg'),
+    {uri:info[0].cover[0]},
+    {uri:info[0].cover[1]},
+    {uri:info[0].cover[2]},
   ];
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
-        <StyledContainer>
+    <SafeAreaView  style={{ flex: 1, backgroundColor: 'white' }}>
+    <ScrollView style={{ flex: 1, backgroundColor: 'white'}}>
+        <StyledContainer style={{ flex: 1}}>
         {/* TIÊU ĐỀ */}
-        <HeaderContainer onPress = {handleScan}>
-        <ButtonBack resizeMode="cover" source={require('../../assets/back.png')}/>
-        <MainTitle>
-              Kết quả
-        </MainTitle>
+        <HeaderContainer>
+          <TitleContainer>
+            <BackContainer onPress={handleBack}>
+              <ButtonBack resizeMode="cover" source={require('../../assets/back.png')}/>
+            </BackContainer>          
+            <MainTitle>
+                  Kết quả
+            </MainTitle>
+          </TitleContainer>          
         </HeaderContainer>
         {/* ẢNH CỦA CÂY */}
         <TopContainer></TopContainer>
@@ -44,80 +111,221 @@ const Afterscan = () => {
               )}
         />
         </ImageContainer>
+        </StyledContainer> 
         {/* PHẦN THÔNG TIN */}
         <BodyContainer>
                 <ImgLogo resizeMode="cover" source={require('../../assets/logo.png')}/>
                 <Text1> Cây của bạn đã được nhận diện!</Text1>
-                <Text2> Hoa hướng dương</Text2>
+                <Text2> {info[0].plantName} </Text2>
                 <TagContainer>
-                  <Tag1> Ngoài trời </Tag1>
-                  <Tag2> Trang trí </Tag2>
-                  <Tag3> Thực phẩm </Tag3>
+                  {keywords.map((keyword, index) => (
+                  <Tag key={index}>{keyword}</Tag> ))}
                 </TagContainer>
                 <Text3> Thông tin</Text3> 
-                <InfoContainer>
-                  <Box1Container>
-                    <Box1 resizeMode="cover" source={require('../../assets/bonphan.png')}/>
-                    <TextContainer1>
-                      <Title1> Bón phân </Title1>
-                      <Info1> Mùa xuân hè, mỗi 4-6 tuần</Info1>
-                    </TextContainer1>
-                  </Box1Container>
-                  <Box2Container>
-                    <Box2 resizeMode="cover" source={require('../../assets/tuoinuoc.png')}/>
-                    <TextContainer2>
-                      <Title2> Tưới nước </Title2>
-                      <Info2> Mỗi 5-7 ngày</Info2>
-                    </TextContainer2>
-                  </Box2Container>
-                  <Box3Container>
-                  <Box3 resizeMode="cover" source={require('../../assets/thaydat.png')}/>
-                  <TextContainer3>
-                    <Title3> Thay đất </Title3>
-                    <Info3> Mỗi 2-3 năm</Info3>
-                  </TextContainer3>
-                  </Box3Container>
-                  <Box4Container>
-                    <Box4 resizeMode="cover" source={require('../../assets/nhietdo.png')}/>
-                    <TextContainer4>
-                      <Title4> Nhiệt độ </Title4>
-                      <Info4> 25-40°C </Info4>
-                    </TextContainer4>
-                  </Box4Container>
-                  <Box5Container>
-                    <Box5 resizeMode="cover" source={require('../../assets/anhsang.png')}/>
-                    <TextContainer5>
-                      <Title5> Ánh sáng </Title5>
-                      <Info5> Cao </Info5>
-                    </TextContainer5>
-                  </Box5Container>
-                  <Box6Container>
-                    <Box6 resizeMode="cover" source={require('../../assets/doam.png')}/>
-                    <TextContainer6>
-                      <Title6> Độ ẩm </Title6>
-                      <Info6> Vừa </Info6>
-                    </TextContainer6>
-                  </Box6Container>
-                </InfoContainer>
-                <Line></Line>
+                <SectionsContainer>
+                  <BoxesContainer>                  
+                    <FirstSection>
+
+                      <LeftContainer>
+                        <BoxContainer>  
+                          <EachSectionContainer>                                                                          
+                            <Icon resizeMode="cover" source={require('../../assets/bonphan.png')}/>
+                          </EachSectionContainer> 
+                          <SectionDetailText>
+                                <SectionName>Bón phân </SectionName>
+                                <SubSectionText>{info[0].fertilize}</SubSectionText>
+                          </SectionDetailText>                            
+                        </BoxContainer>
+                      </LeftContainer>
+                      
+                      <RightContainer>
+                        <BoxContainer>  
+                          <EachSectionContainer>                                                                          
+                            <Icon resizeMode="cover" source={require('../../assets/tuoinuoc.png')}/>
+                          </EachSectionContainer> 
+                          <SectionDetailText>
+                                <SectionName>Tưới nước </SectionName>
+                                <SubSectionText>{info[0].watering} </SubSectionText>
+                          </SectionDetailText>                            
+                        </BoxContainer>
+                      </RightContainer>  
+
+                    </FirstSection>
+                    <SecondSection>
+
+                      <LeftContainer>
+                          <BoxContainer>  
+                            <EachSectionContainer>                                                                          
+                              <Icon resizeMode="cover" source={require('../../assets/thaydat.png')}/>
+                            </EachSectionContainer> 
+                            <SectionDetailText>
+                                  <SectionName>Thay đất </SectionName>
+                                  <SubSectionText>{info[0].fertilize} </SubSectionText>
+                            </SectionDetailText>                            
+                          </BoxContainer>
+                        </LeftContainer>
+                        
+                        <RightContainer>
+                          <BoxContainer>  
+                            <EachSectionContainer>                                                                          
+                              <Icon resizeMode="cover" source={require('../../assets/nhietdo.png')}/>
+                            </EachSectionContainer> 
+                            <SectionDetailText>
+                                  <SectionName>Nhiệt độ </SectionName>
+                                  <SubSectionText>{info[0].temperature} </SubSectionText>
+                            </SectionDetailText>                            
+                          </BoxContainer>
+                        </RightContainer> 
+
+                    </SecondSection>
+                    <SecondSection>
+
+                      <LeftContainer>
+                          <BoxContainer>  
+                            <EachSectionContainer>                                                                          
+                              <Icon resizeMode="cover" source={require('../../assets/anhsang.png')}/>
+                            </EachSectionContainer> 
+                            <SectionDetailText>
+                                  <SectionName>Ánh sáng </SectionName>
+                                  <SubSectionText>{info[0].light} </SubSectionText>
+                            </SectionDetailText>                            
+                          </BoxContainer>
+                        </LeftContainer>
+                        
+                        <RightContainer>
+                          <BoxContainer>  
+                            <EachSectionContainer>                                                                          
+                              <Icon resizeMode="cover" source={require('../../assets/doam.png')}/>
+                            </EachSectionContainer> 
+                            <SectionDetailText>
+                                  <SectionName>Độ ẩm </SectionName>
+                                  <SubSectionText>{info[0].humidity} </SubSectionText>
+                            </SectionDetailText>                            
+                          </BoxContainer>
+                        </RightContainer> 
+
+                    </SecondSection>                    
+                  </BoxesContainer>
+                </SectionsContainer>
+                <Line/>
+              
                 {/* ĐOẠN VĂN */}
                 <ParagraphContainer>
-                  <CreText> Nguồn Wikipedia</CreText>
-                  <MainText>
-                  Hoa hướng dương (Sunflower) là một loài cây thân thảo có hoa, có đặc điểm nổi bật là luôn quay về hướng mặt trời. Cây có thân mảnh mai, cao từ 1 đến 3 mét, với lá hình trái tim có cạnh răng cưa. Loài này sinh trưởng mạnh mẽ và phân bố rộng khắp vùng nhiệt đới và cận nhiệt đới, cũng như trong các vùng ôn đới. Hoa hướng dương không chỉ được trồng vì vẻ đẹp của nó, mà còn có nhiều ứng dụng hữu ích khác. Các hạt của hoa hướng dương là nguồn cung cấp dưỡng chất quý giá, thường được sử dụng trong ẩm thực và chế biến thực phẩm. Để chăm sóc cây hoa hướng dương, cần cung cấp đủ ánh sáng mặt trời, tưới nước đều đặn và đảm bảo thoát nước tốt. Thay đất mỗi 2-3 năm để đảm bảo rễ cây có đủ không gian để phát triển. Hơn nữa, hãy chú ý rằng cây này cần hỗ trợ hoặc giá để phát triển vững vàng do thân cây mảnh dẻ và cao.
-                  </MainText>
+                  <CreText>Nguồn Wikipedia</CreText>
+                  <MainText>{info[0].information}</MainText>
                 </ParagraphContainer>
-        </BodyContainer>
-        </StyledContainer> 
+                </BodyContainer>
       </ScrollView>
+      {isLoading ? (
+            <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+              <LottieView
+                resizeMode="contain"
+                source={require('../../assets/Animation-loading1.json')}
+                autoPlay
+                style={{ width: 100, height: 100 }}
+              />
+            </View>
+          ) : (
       <TaskbarView>
-      <ContainerButton>
-        <SaveIcon resizeMode="cover" source={require('../../assets/saved.png')}/>
-        <SaveText> Lưu </SaveText>
-      </ContainerButton>
-     </TaskbarView>
+      <SaveButton onPress={handleSaved}>
+          <SaveContainer>
+            <Save resizeMode="cover" source={require('../../assets/saved.png')}/>
+                <SaveButtonText>Lưu</SaveButtonText>
+                <CustomAlert
+                      isVisible={isAlertVisible}
+                      message="Chọn nơi để lưu cây"
+                      onSaved={handleSavedtoStorage}
+                      onRoom={handleSavedtoRooms}
+                      onClose={handleCloseAlert}
+                      setSelectedRoom={setSelectedRoom}
+                />                         
+          </SaveContainer>
+        </SaveButton>
+     </TaskbarView>)}
     </SafeAreaView>
   );
 }
 
 export default Afterscan; 
+
+// Alert options khi nhấn LƯU
+const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelectedRoom}) => {
+  const [isRoomAlertVisible, setRoomAlertVisible] = useState(false);
+
+  const handleRoomAlert = () => {
+    setRoomAlertVisible(true);
+  };
+
+  const handleRoomSelection = (room) => {
+    setRoomAlertVisible(false);
+    setSelectedRoom(room); // Lưu selectedRoom khi chọn phòng
+    onRoom(room);
+  };
+
+  const showRoomSelectionAlert = () => {
+    setRoomAlertVisible(true);
+    
+  };
+
+  return (
+    <Modal isVisible={isVisible} onBackdropPress={onClose}>          
+      <View style={{ backgroundColor: 'white', borderRadius: 15}}>
+        <View style={{ 
+          flexDirection: 'row', alignItems: 'center',
+          backgroundColor: '#CEF1CF', marginBottom: 20, height: 50, 
+          borderTopLeftRadius: 15, borderTopRightRadius: 15 }}>
+
+          <Image source={logoApp} style={{ width: 30, height: 30, marginLeft: 10,marginRight: 5, marginBottom: 5 }} />
+          <Text style={{ fontSize: 18, flex: 1, fontWeight: '500' }}>{message}</Text>
+          <TouchableOpacity onPress={onClose}></TouchableOpacity>
+
+        </View>
+        <View style={{ padding: 10, zIndex: 1, bottom: 7}}>              
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 10 }}>
+          <TouchableOpacity onPress={onSaved} style={{ marginRight: 25 }}>
+            <Text style={{ color: 'green', fontSize: 17 }}>Lưu trữ</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={showRoomSelectionAlert}>
+            <Text style={{ color: 'green', fontSize: 17 }}>Đặt vào phòng</Text>
+          </TouchableOpacity>
+        </View>
+        </View>        
+      </View>
+      {isRoomAlertVisible && (
+        <Modal isVisible={true} onBackdropPress={() => setRoomAlertVisible(false)}>
+          <View style={{ backgroundColor: 'white', borderRadius: 15}}>
+            <View style={{ 
+              flexDirection: 'row', alignItems: 'center',
+              backgroundColor: '#CEF1CF', marginBottom: 13, height: 50,
+              borderTopLeftRadius: 15, borderTopRightRadius: 15 }}>
+              <Image source={logoApp} style={{ width: 30, height: 30, marginLeft: 10,marginRight: 5, marginBottom: 5 }} />
+              <Text style={{ fontSize: 18, flex: 1, fontWeight: '500', }}>Chọn phòng</Text>
+              <TouchableOpacity onPress={onClose}></TouchableOpacity>
+            </View>
+            <TouchableOpacity onPress={() => handleRoomSelection('Phòng khách')}>
+              <Text style={{ color: 'green', fontSize: 17, textAlign: 'center' }}>Phòng khách</Text>
+            </TouchableOpacity>
+
+            <View style={{height: 1, backgroundColor: '#D9D9D9', marginBottom: 13, marginTop: 13 }}/>
+
+            <TouchableOpacity onPress={() => handleRoomSelection('Nhà bếp')}>
+              <Text style={{ color: 'green', fontSize: 17, textAlign: 'center' }}>Nhà bếp</Text>
+            </TouchableOpacity>
+
+            <View style={{height: 1, backgroundColor: '#D9D9D9', marginBottom: 13, marginTop: 13 }}/>
+
+            <TouchableOpacity onPress={() => handleRoomSelection('Phòng ngủ')}>
+              <Text style={{ color: 'green', fontSize: 17, textAlign: 'center' }}>Phòng ngủ</Text>
+            </TouchableOpacity>
+
+            <View style={{height: 1, backgroundColor: '#D9D9D9', marginBottom: 13, marginTop: 13 }}/>
+
+            <TouchableOpacity onPress={() => handleRoomSelection('Sân vườn')}>
+              <Text style={{ color: 'green', fontSize: 17, marginBottom: 15, textAlign: 'center' }}>Sân vườn</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
+      )}
+    </Modal>
+  );
+};

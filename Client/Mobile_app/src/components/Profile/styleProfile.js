@@ -1,30 +1,8 @@
 import styled from 'styled-components';
-import { View, Text, Image, Platform } from 'react-native';
-import { Dimensions,  } from 'react-native';
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#FFFFFF",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B", 
-  containerprofile: "#EEF7E8",
-  white_gray: "#F8F8F8",
-  gray: "#4E4E4E",
-  sectiontitle: "#4E4E4E",
-  buttoncolor: "#1A5D1A",
-  maintext: "#164303",
-  line: "#B3B3B3",
-}
-
-
-const { width, height } = Dimensions.get('window');
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
-
-const { maincolor, maintext,line, buttoncolor,gray, white, black, containerprofile, sectiontitle, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
+import { Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
+const { maincolor, maintext,line, buttoncolor, white, black, containerprofile, sectiontitle, green,} = Colors;
+const { vh, vw} = ScreenSize;
 
  //screen
  export const StyledContainer = styled.View`
@@ -35,12 +13,12 @@ const { maincolor, maintext,line, buttoncolor,gray, white, black, containerprofi
 `;
 //Header
 export const HeaderContainer = styled.View`
-  position: relative;
   align-items: center;
   justify-content: center; 
+  flexDirection: column;  
   height: ${vh(22)}px;
   background-color: ${maincolor}; 
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 5%;'}
+  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 5%;'}
 `;
 export const TitleContainer = styled.View`
   position: absolute;
@@ -74,20 +52,18 @@ export const AvatarContainer = styled.View`
 `
 export const AvatarImage = styled.Image`
   backgroundColor: ${white};
-  width: ${vh(20)}px;
-  height: ${vh(20)}px;
+  width: 130px;
+  height: 130px;
 `
 
 
 //style container
 export const Name = styled.Text`
   align-self: center;
-  position: relative;
   color: ${black};
   fontSize: ${vw(4.5)}px;
-  margin-top: ${vw(8)}px;
   font-weight: bold;
-  ${Platform.OS === 'android' ? 'margin-top: 16%' : 'margin-bottom: 0px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 17%' : 'margin-top: 15%;'}
 `
 export const ButtonEditProfile = styled.TouchableOpacity`
   background-color: ${buttoncolor};
@@ -97,7 +73,6 @@ export const ButtonEditProfile = styled.TouchableOpacity`
   align-self: center;
   justify-content: center;
   position: relative;
-  margin-top: 8px;
 `
 export const EditButtonText = styled.Text`
   font-size: 15px;
@@ -116,34 +91,49 @@ export const SectionTitle = styled.Text`
 `
 export const SectionContainer = styled.View`
   width: 100%;
-  height: ${vh(17)}px;
+  height: auto;
   margin-top: ${vh(1)}px;
   border: 0.3px solid ${green};
   borderRadius: 12px;
   backgroundColor: ${containerprofile};
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  
+`
+export const SectionContainer1 = styled.View`
+  width: 100%;
+  height: auto;
+  margin-top: ${vh(1)}px;
+  border: 0.3px solid ${green};
+  borderRadius: 12px;
+  backgroundColor: ${containerprofile};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
 `
 
 export const ChildSectionContainer = styled.View`
-  height: ${vh(6)}px;
   padding: 10px;
   width: 100%;
-  z-index: 1;
   flexDirection: row;
-  align-items: center;
+  align-self: center;
+
 `
 export const ChildSectionText = styled.Text`
   font-size: 17px;
   color: ${maintext};
   font-weight: 500;
   flex: 1;
+  justify-content: center;
+  align-self:center;
   margin-left: ${vw(2)}px;
   `
 export const ChildSectionIcon = styled.Image`
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
+  align-self: center;
   align-items: flex-start;
 `
 export const ChildSectionInfo = styled.Text`
@@ -154,9 +144,9 @@ export const ChildSectionInfo = styled.Text`
 export const Line = styled.View`
   height: 1px;
   background-color: ${line};
-  margin-vertical: 6px;
   width: 93%;
   align-self: center;
+  margin-vertical: 1px;
 `
 export const ChildSectionButtonContainer = styled.TouchableOpacity`
   width: 30px;
@@ -193,7 +183,7 @@ export const TaskbarView = styled.View`
   width: 100%;
   height: 55px;
   background-color: ${white};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -2px 1px rgba(0, 0, 0, 0.05);
   position: relative;
   flex-direction: row;
   align-items: flex-start;

@@ -13,7 +13,7 @@ const News = () => {
     };
   
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#CEF1CF' }}>
         <ScrollView style={{ flex: 1 }}>
           <StyledContainer>
             <HeaderImageContainer resizeMode="cover" source={require('../../../assets/vines.png')} />
@@ -28,7 +28,7 @@ const News = () => {
   
             <NewspaperMaintitle>{selectedNews.title}</NewspaperMaintitle>
             <SubtitleContainer>
-              <NewspaperThumbnailContainer resizeMode="cover" source={{uri:selectedNews.thumbnaillinknp}} />
+              <NewspaperThumbnailContainer resizeMode="cover" source={{uri:selectedNews.thumbnaillink}} />
               <TextNewspaper>
                 <SubText>{selectedNews.introduction}</SubText>
               </TextNewspaper>

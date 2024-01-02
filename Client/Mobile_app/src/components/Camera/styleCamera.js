@@ -1,23 +1,12 @@
 import styled from 'styled-components';
-import { Dimensions,Platform } from 'react-native';
-import Constants from 'expo-constants';
+import { Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
 
-const { width, height } = Dimensions.get('window');
-// Chuyển đổi giá trị vh sang giá trị số
-const vh = percent => (percent * height) / 100;
-// Chuyển đổi giá trị vw sang giá trị số
-const vw = percent => (percent * width) / 100;
+const {vh, vw} = ScreenSize;
+const {black} = Colors;
 
-// default color
-export const Colors = {
-    maincolor: "#CEF1CF",
-    white: "#ffffff",
-    black: "#000000",
-    gray: "#D9D9D9",
-    green: "#61AF2B",
-  }
-  const { maincolor, white, black, gray, gray_subtype, green, maintitle} = Colors;
-export const StyleContainer=styled.View`
+
+export const StyleContainer = styled.View`
   flex:1;
 `
 export const HeaderContainer = styled.View`
@@ -33,7 +22,6 @@ export const Text1 = styled.Text`
   font-size: 22px;
   font-weight: 600;
   color: #ffffff;
-  align-items: center;
   justify-content: center;
   position: absolute;
   align-items: center;
@@ -102,18 +90,59 @@ export const ImageReweet = styled.Image`
   height: 30px;
   top: 3px;
 `;
-export const RetakeSaveButtons= styled.TouchableOpacity`
-
+export const RetakeButton= styled.TouchableOpacity`
+  width: ${vw(30)}px;
+  height: ${vh(5)}px;
+  margin-right: ${vw(40)}px;
+  align-self: center;
 `
-
 export const Text2 = styled.Text`
-  font-size: 20px;
+  font-size: ${vh(2.3)}px;
   font-weight: 600;
-  color: ${white};
+  color: ${black};
+  left: 35px;
+  top:5px;
 `;
 
 export const Text3 = styled.Text`
-  font-size: 20px;
+  font-size: ${vh(2.3)}px;
   font-weight: 600;
-  color: ${white};
+  color: ${black};
+  top: 5px;
+`;
+export const ResultButton = styled.TouchableOpacity`
+  width: ${vw(30)}px;
+  height: ${vh(5)}px;
+  align-self: center;
+
+`;
+export const FooterContainer = styled.TouchableOpacity`
+  background-color: #CEF1CF;
+  width: ${vw(100)}px;
+  height: ${vh(7)}px;
+  flex-direction: row;
+`;
+export const HeaderContainer2 = styled.View`
+  background-color: #CEF1CF;
+  width: ${vw(100)}px;
+  height: ${vh(18)}px;
+  top: ${vh(4)}px;
+`;
+
+export const ActionContainer = styled.View`
+    background-color: #CEF1CF;
+    width: ${vw(100)}px;
+    height: ${vh(18)}px;
+    flex-direction: row;
+`;
+export const Action1Container = styled.TouchableOpacity`
+  width: ${vw(50)}px;
+  align-items: flex-start;
+  top:  ${vh(2)}px;
+`;
+export const Action2Container = styled.TouchableOpacity`
+  width: ${vw(50)}px;
+  align-items: flex-end;
+  right:  ${vw(9)}px;
+  top:  ${vh(2)}px;
 `;

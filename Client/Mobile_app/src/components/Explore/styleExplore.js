@@ -1,20 +1,8 @@
 import styled from 'styled-components';
-import { View, Text, Image, Platform } from 'react-native';
-import Constants from 'expo-constants';
+import { Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
 
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#ffffff",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B", blue: "#5676DC", orange: "#E6B44C", purple: "#A559D9",
-  white_gray: "#F8F8F8",
-  gray_subtype: "#628093",
-  explore: "#E7FFE8"
-}
-
-const { maincolor, white, black, explore, gray_subtype, green, blue, orange, purple, white_gray, livingroom, backyard, bedroom, kitchen } = Colors;
+const { white, black,  gray_subtype, green, } = Colors;
 
 //screen
 export const StyledContainer = styled.View`
@@ -25,13 +13,12 @@ export const StyledContainer = styled.View`
 
 `;
 
-
 //header
 export const HeaderContainer = styled.View` 
   position: relative;
   align-items: center;
   justify-content: center;
-  ${Platform.OS === 'android' ? 'margin-top: 10%;' : 'margin-bottom: 10px;'}
+  ${Platform.OS === 'android' ? 'margin-top: 5%;' : 'margin-bottom: 10px;'}
 `;
 
 export const MainTitle = styled.Text`
@@ -101,7 +88,7 @@ export const TaskbarView = styled.View`
   width: 100%;
   height: 55px;
   background-color: ${white};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -2px 1px rgba(0, 0, 0, 0.05);
   position: relative;
   flex-direction: row;
   align-items: flex-start;

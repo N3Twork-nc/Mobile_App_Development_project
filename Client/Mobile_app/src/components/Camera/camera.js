@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity,Image, Modal } from 'react-native';
+import { View, Text, TouchableOpacity,Image, Modal,  StyleSheet} from 'react-native';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
-import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet,StyleContainer,ButtonClose, ImageGallery, ImageClose,
+import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,ActionContainer, Action1Container,Action2Container
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
+import LottieView from 'lottie-react-native';
 
 const CameraScreen = () => {
   const token = useSelector(state=>state.token)['payload']
@@ -18,8 +19,12 @@ const CameraScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false); 
   const cameraRef = useRef(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const handleHome = () => {
     navigation.navigate('Home', { animations: false });
+  };
+  const handleAfterscan = () => {
+    navigation.navigate('Afterscan', { animations: false });
   };
   //Yêu cầu quyền truy cập camera
   useEffect(() => {
@@ -48,12 +53,10 @@ const CameraScreen = () => {
       }
     }
   };  
-
   // Hàm xử lý việc chụp ảnh
   const handleTakePhoto = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-      predictPlant(photo,token)
       setCapturedPhoto(photo);
       setIsModalVisible(true); // Hiển thị cửa sổ modal với nút "Chụp lại" và "Nhận diện"
     }
@@ -66,18 +69,36 @@ const CameraScreen = () => {
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images, 
       allowsEditing: true,
-      aspect: [4, 3],
       quality: 1,
+      multiple: false,
     });
   
-    if (!result.cancelled && result.assets!=null) {
+    if (!result.canceled) {
       setCapturedPhoto(result.assets[0]);
       setIsModalVisible(true);
     }
   };
-  
+
+
+const [info, setInfoData] = useState([]);
+
+useEffect(() => {}, []);
+
+const Predicted = async () => {
+  setIsLoading(true);
+  try {
+    const predictedInfo = await predictPlant(capturedPhoto, token);
+    setInfoData(predictedInfo);
+    navigation.replace('Afterscan', { info: predictedInfo, photoURI: capturedPhoto ? capturedPhoto.uri : null});
+    setIsLoading(false);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
   // Hàm để đóng cửa sổ modal
   const closePhotoPreview = () => {
     setIsModalVisible(false);
@@ -93,30 +114,30 @@ const CameraScreen = () => {
   }
 
   return (
-    <StyleContainer>
+    <StyleContainer >
       <Camera
         ref={cameraRef}
-        style={{ flex: 1 }}
+        style={{ flex: 1}}
         type={type}
         flashMode={flash}
       >
         <HeaderContainer>
-          <FlashButton onPress={toggleFlash}>
+            <FlashButton onPress={toggleFlash}>
             {flash === Camera.Constants.FlashMode.off ? (
                   <ImageFlash resizeMode="contain" source={require('../../assets/flashoff.png')}  />
                 ) : (
                   <ImageFlash resizeMode="contain" source={require('../../assets/flashon.png')} />
                 )}
             </FlashButton>
-          <Text1> Nhận diện cây </Text1>   
-          <ButtonClose onPress={handleHome}>
-           <ImageClose resizeMode="contain" source={require('../../assets/close.png')} tintColor={'white'} />
-          </ButtonClose>
+            <Text1> Nhận diện cây </Text1>   
+            <ButtonClose onPress={handleHome}>
+              <ImageClose resizeMode="contain" source={require('../../assets/close.png')} tintColor={'white'} />
+            </ButtonClose>
         </HeaderContainer>
         <Container >
-        <GalleryButton onPress={handleChooseFromLibrary}>
-          <ImageGallery resizeMode="cover" source={require('../../assets/gallery.png')} />          
-        </GalleryButton>
+          <GalleryButton onPress={handleChooseFromLibrary}>
+            <ImageGallery resizeMode="cover" source={require('../../assets/gallery.png')} />          
+          </GalleryButton>
           <TakePhotoButton onPress={handleTakePhoto}>
             <ImageCircle resizeMode="cover" source={require('../../assets/takephoto.png')} />
           </TakePhotoButton>  
@@ -125,24 +146,32 @@ const CameraScreen = () => {
             </ButtonReweet>   
         </Container>
       </Camera>
-
       {/* Cửa sổ modal để hiển thị ảnh đã chụp và nút "Chụp lại" và "Lưu" */}
       <Modal
         visible={isModalVisible}
         transparent={true}
         animationType="slide"
       >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor: '#CEF1CF' }}>
           <Image
             style={{ width: '100%', height: '100%' }}
             source={{ uri: capturedPhoto ? capturedPhoto.uri : null }}
           />
+          {isLoading ? (
+            <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+              <LottieView
+                resizeMode="contain"
+                source={require('../../assets/Animation-loading1.json')}
+                autoPlay
+                style={{ width: 100, height: 100 }}
+              />
+            </View>
+          ) : (
           <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
          
           {/* Xử lý Chụp lại */}
           <TouchableOpacity onPress={closePhotoPreview}>
-             <Text2>Chụp lại</Text2>
-         
+             <Text2>Chụp lại</Text2>         
           </TouchableOpacity>
 
           {/* Xử lý Lưu */}
@@ -150,15 +179,20 @@ const CameraScreen = () => {
             // Xử lý việc lưu ảnh ở đây
             closePhotoPreview();
           }}>
-           <Text3>Nhận diện</Text3>
-           
+           <Text3 onPress={Predicted}>Nhận diện</Text3>           
           </TouchableOpacity>
-
-          </View>
+        </View>
+        )}
         </View>
       </Modal>
     </StyleContainer>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+  }
+})
 export default CameraScreen;
