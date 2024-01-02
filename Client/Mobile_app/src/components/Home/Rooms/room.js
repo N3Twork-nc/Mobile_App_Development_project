@@ -5,27 +5,30 @@ import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
         } from './styleRoom'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Text, ScrollView, SafeAreaView, StyleSheet, View, Alert, Image, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
-import { getPlant } from '../../../api/Plant.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { myPlant, getPlant, deletePlant } from '../../../api/Plant.js';
 import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modal';
 import logo from '../../../assets/logo.png';
+import { updateLivingRoomData, updateKitchenData, updateBedroomData, updateBackyardData } from '../../../reducers/myplants.js'
+
 const logoApp = logo;
 
 const Room = () => {
     const [isLoading, setIsLoading] = useState(false);
     const token = useSelector(state=>state.token)['payload'];
     const navigation = useNavigation();
+    const dispatch=useDispatch()
     const route = useRoute();
     const { plantsInRoom, roomName } = route.params;
 
     // Xử lý xóa cây
     const [isAlertVisible, setAlertVisible] = useState(false);
-    const [deleteGardenId,setDeleteGardenId]=useState(null)
+    const [deletePlantId,setDeletePlantId]=useState(null)
     
-    const handleDelete = (garden) => {
+    const handleDelete = (idPlant) => {
         setAlertVisible(true);
-        setDeleteGardenId(garden.gardenId)
+        setDeletePlantId(idPlant)
     };
 
     const handleCancel = () => {
@@ -34,13 +37,33 @@ const Room = () => {
 
     const handleConfirmDelete = async () => {
         setAlertVisible(false);
-        const result = await deleteGarden(deleteGardenId,token);
-        const gardenDetails = await getDetailGardens(token);
-        const action=updateMyGarden(gardenDetails)
-        dispatch(action)
-        if (result==true) Alert.alert ("Xóa vườn thành công");
-        else Alert.alert ("Xóa vườn thất bại");
-    };
+        const result = await deletePlant(roomName, deletePlantId, token);
+        const plantDetails = await myPlant(token, roomName);
+        let action = null;
+        switch (roomName) {
+            case 'Phòng khách':
+              action = updateLivingRoomData(plantDetails);
+              break;
+            case 'Nhà bếp':
+              action = updateKitchenData(plantDetails);
+              break;
+            case 'Phòng ngủ':
+              action = updateBedroomData(plantDetails);
+              break;
+            case 'Sân vườn':
+              action = updateBackyardData(plantDetails);
+              break;
+            default:
+              break;
+          }
+        dispatch(action);
+        if (result==true) {
+          Alert.alert("Xóa cây thành công");
+        } else {
+          Alert.alert("Xóa cây thất bại");
+        }
+      };
+      
     
 
     const handleInfo = async (plantname) => {
@@ -97,7 +120,7 @@ return (
                                         <Icon source={require('../../../assets/water.png')} />
                                         <ButtonText>Đặt lịch</ButtonText>
                                     </IconButton>
-                                    <IconButton onPress={handleDelete}>
+                                    <IconButton onPress={()=>handleDelete(keys[i])}>
                                         <Icon source={require('../../../assets/bin.png')} />
                                         <ButtonText>Xóa</ButtonText>
                                         <CustomAlert
@@ -125,7 +148,7 @@ return (
                                         <Icon source={require('../../../assets/water.png')} />
                                         <ButtonText>Đặt lịch</ButtonText>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton onPress={()=>handleDelete(keys[i + 1])}>
                                         <Icon source={require('../../../assets/bin.png')} />
                                         <ButtonText>Xóa</ButtonText>
                                     </IconButton>
