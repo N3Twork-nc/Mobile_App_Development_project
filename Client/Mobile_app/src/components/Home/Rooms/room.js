@@ -4,17 +4,20 @@ import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
          ButtonContainer, IconButton, Icon, ButtonText, ButtonContainerWrapper,
         } from './styleRoom'
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { ScrollView, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { getPlant } from '../../../api/Plant.js';
+import LottieView from 'lottie-react-native';
 
 const Room = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const token = useSelector(state=>state.token)['payload'];
     const navigation = useNavigation();
     const route = useRoute();
     const { plantsInRoom, roomName } = route.params;
 
     const handleInfo = async (plantname) => {
+        setIsLoading(true);
         let info = [];
         try {
             info = await getPlant(token, plantname);
@@ -22,6 +25,7 @@ const Room = () => {
         console.log(error);
         }
         navigation.navigate('PlantDetail', { info, plantname });
+        setIsLoading(false);
     };
 
     const handleBack = () => {
@@ -56,7 +60,7 @@ return (
                         <PlantContainer key={i}>
                             <Plant1Container>
                                 <ImageFrame  resizeMode="cover" source={{uri:plantsInRoom[keys[i]].Img}}/>
-                                <PlantName> {plantsInRoom[keys[i]].plantName} </PlantName>
+                                <PlantName>{plantsInRoom[keys[i]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
                                     <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
@@ -78,10 +82,10 @@ return (
                             
                             <Plant1Container>
                                 <ImageFrame  resizeMode="cover" source={{uri:plantsInRoom[keys[i + 1]].Img}}/>
-                                <PlantName> {plantsInRoom[keys[i + 1]].plantName} </PlantName>
+                                <PlantName>{plantsInRoom[keys[i + 1]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
-                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
+                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i + 1]].plantName)}>
                                         <Icon source={require('../../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
@@ -105,9 +109,25 @@ return (
                 
             </StyledContainer>
         </ScrollView>
+        {isLoading && (
+            <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+                <LottieView
+                    resizeMode="contain"
+                    source={require('../../../assets/Animation-loading1.json')}
+                    autoPlay
+                    style={{ width: 100, height: 100 }}
+                />
+            </View>
+        )}
     </SafeAreaView>
-
-
 )
 }
 export default Room;
+
+const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 1,
+    },
+  });
