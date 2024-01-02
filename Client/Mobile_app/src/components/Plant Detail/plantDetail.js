@@ -16,7 +16,7 @@ const PlantDetail = () => {
   const keywords = info.Keyword.split(', ');
 
   const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });  };
-  const handleBack = () => {navigation.navigate('Home')}
+  const handleBack = () => {navigation.goBack();}
   // Danh sách các nguồn ảnh
   const images = [
     require('../../assets/img1.jpg'),
@@ -33,9 +33,7 @@ const PlantDetail = () => {
               <BackContainer onPress={handleBack}>
                 <ButtonBack resizeMode="cover" source={require('../../assets/back.png')}/>
               </BackContainer>          
-              <MainTitle>
-                    {plantname}
-              </MainTitle>
+              <MainTitle>{plantname}</MainTitle>
             </TitleContainer>          
           </HeaderContainer>
           {/* ẢNH CỦA CÂY */}

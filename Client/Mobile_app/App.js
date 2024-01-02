@@ -6,7 +6,6 @@ import { StatusBar, Platform } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import Schedule from './src/components/Schedule/schedule';
-
 class App extends Component
 {
   componentDidMount() {
@@ -34,6 +33,7 @@ export default App;
 //   </Provider>
 // );
 // }
+
 
 
 

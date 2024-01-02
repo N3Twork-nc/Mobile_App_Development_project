@@ -26,7 +26,7 @@ plantsReducer=createSlice({
         },
         updateQuantity(state,data){
             livingroom=data.payload['Phòng khách']
-            kitchen=data.payload['Phòng khách']
+            kitchen=data.payload['Nhà bếp']
             garden=data.payload['Sân vườn']
             bedroom=data.payload['Phòng ngủ']
             return {

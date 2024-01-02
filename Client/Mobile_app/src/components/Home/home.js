@@ -57,7 +57,6 @@ const Home = () => {
 
   const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
   const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
-  const handleSaved = () => {navigation.navigate('Saved', { animations: false });};
   const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
   const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
   const handleDashboard = (gardensDetail) => {
