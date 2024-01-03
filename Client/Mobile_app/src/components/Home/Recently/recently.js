@@ -58,7 +58,7 @@ return (
                                     <PlantName numberOfLines={1}>{allPlants[i].plant.plantName}</PlantName>
                                     <Info1>
                                         <HistoryTitle>Thời gian:</HistoryTitle>
-                                        <History>{allPlants[i].plant.timeUpload}</History>
+                                        <History>{formatDate(allPlants[i].plant.timeUpload)}</History>
                                     </Info1>
                                     <Info1>
                                         <HistoryTitle>Vị trí:</HistoryTitle>
@@ -72,7 +72,7 @@ return (
                                         <PlantName numberOfLines={1}>{allPlants[i + 1].plant.plantName}</PlantName>
                                         <Info1>
                                             <HistoryTitle>Thời gian:</HistoryTitle>
-                                            <History>{allPlants[i + 1].plant.timeUpload}</History>
+                                            <History>{formatDate(allPlants[i].plant.timeUpload)}</History>
                                         </Info1>
                                         <Info1>
                                             <HistoryTitle>Vị trí:</HistoryTitle>
@@ -93,3 +93,10 @@ return (
 }
 export default Recently;
 
+const formatDate = (dateString) => {
+    const dateObj = new Date(dateString);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+    const day = dateObj.getDate();
+    return `${day}/${month}/${year}`;
+  };
