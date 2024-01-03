@@ -344,7 +344,7 @@ const Schedule = () => {
                         </View>
                 </WorkContainer>
               </FrequencyContainer>
-              <ButtonCreateReminder onPress={handleBack}>
+              <ButtonCreateReminder onPress={handleSchedule}>
                     <ButtonCreate>Tạo nhắc nhở</ButtonCreate>
               </ButtonCreateReminder>
           </View>

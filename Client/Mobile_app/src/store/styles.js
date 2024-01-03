@@ -39,3 +39,4 @@ export const ScreenSize = {
    vh: percent => (percent * height) / 100,
    vw: percent => (percent * width) / 100,
 }
+
