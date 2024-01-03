@@ -151,6 +151,12 @@ return (
                                     <IconButton onPress={()=>handleDelete(keys[i + 1])}>
                                         <Icon source={require('../../../assets/bin.png')} />
                                         <ButtonText>Xóa</ButtonText>
+                                        <CustomAlert
+                                            isVisible={isAlertVisible}
+                                            message="Bạn có chắc chắn muốn xóa cây này không?"
+                                            onCancel={handleCancel}
+                                            onDelete={handleConfirmDelete}
+                                            />
                                     </IconButton>
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        

@@ -28,7 +28,7 @@ async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depe
                  "room":roomName,
                  "plantname":plantName}
 
-@app.get("/APIMyPlant/{roomName}")  # Sử dụng Path để lấy roomName từ URL
+@app.get("/APIMyPlant/{roomName}")
 def getPlants(roomName: str = Path(...), username=Depends(Authentication().validate_token)):
     try:
         garden = MyPlants(username, roomName)
@@ -43,8 +43,17 @@ def getPlants(roomName: str = Path(...), username=Depends(Authentication().valid
     except Exception as e:
         print(str(e))
         raise HTTPException(status_code=204, detail="Get my plant fail")
+    
+@app.get("/APIAllPlant")
+def getPlants(username=Depends(Authentication().validate_token)):
+    try:
+        garden = MyPlants(username)
+        data = garden.getAllPlants()
+        return data
+    except Exception as e:
+        print(str(e))
+        raise HTTPException(status_code=204, detail="Get my plant fail")
         
-
 @app.put("/API_schedule")
 def schedule(schedule:Schedule,username=Depends(Authentication().validate_token)):
     try:

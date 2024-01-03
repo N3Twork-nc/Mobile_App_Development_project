@@ -10,6 +10,7 @@ import { ScrollView, SafeAreaView,Image,Text, View, TouchableOpacity} from 'reac
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteAll } from '../../reducers/infoUser';
+import { myPlant } from '../../api/Plant.js';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
 import * as Location from 'expo-location';
@@ -19,6 +20,7 @@ const logoApp = logo;
 const Profile = () => { 
     const navigation = useNavigation();
     const dispatch=useDispatch();
+    const token = useSelector(state=>state.token)['payload'];
     const userInfo = useSelector(state => state.infoUser);
     const [isAlertVisible, setAlertVisible] = useState(false);
 
@@ -74,8 +76,17 @@ const Profile = () => {
       const handleScan = () => {
         navigation.navigate('CameraScreen', { animations: false });
       };
-      const handleSaved = () => {
-        navigation.navigate('Saved', { animations: false });
+      const handleSaved = async (roomName) => {
+        setSelectedRoom(roomName);
+        let plantsInRoom = [];
+        try {
+          if (roomName) {
+            plantsInRoom = await myPlant(token, roomName);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+        navigation.navigate('Saved', { plantsInRoom, roomName });
       };
       const handleProfile= () => {
         navigation.navigate('Profile', { animations: false });
@@ -207,7 +218,7 @@ return (
           <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
           <TaskbarButtonText>Scan</TaskbarButtonText>
         </ContainerButton>
-        <ContainerButton onPress={handleSaved}>
+        <ContainerButton onPress={() => handleSaved('Lưu trữ')}>
           <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
           <TaskbarButtonText>Đã lưu</TaskbarButtonText>
         </ContainerButton>
