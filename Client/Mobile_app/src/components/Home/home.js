@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, SafeAreaView,} from 'react-native';
 import { 
   StyledContainer, 
-  MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
+  MainTitle, HeaderContainer, ButtonAdd,ScanButton, ScanButtonText,ScanContainer,Scan,
   Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
   Line,Icon, ImageFrame,  FirstRooms, RoomsContainer, RightRoomContainer, LeftRoomContainer,
   KitchenContainer, RoomContainer, LivingroomContainer, BackyardContainer, BedroomContainer, CategoryPlantRoom, RoomName,
@@ -97,8 +97,7 @@ const Home = () => {
         {/* TIÊU ĐỀ */}
           <HeaderContainer>
             <MainTitle>Vườn của tôi</MainTitle>
-            <ButtonSearch resizeMode="cover" source={require('../../assets/search.png')}/>
-            <ButtonAdd resizeMode="cover" source={require('../../assets/add.png')}/>
+            <ButtonAdd resizeMode="cover" source={require('../../assets/logo2.png')}/>
           </HeaderContainer>   
         {/* Scan */}
         <ScanButton onPress={handleScan}>
