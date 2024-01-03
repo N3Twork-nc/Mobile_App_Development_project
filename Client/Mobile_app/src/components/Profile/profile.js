@@ -148,7 +148,7 @@ return (
           <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
           <TaskbarButtonText>Scan</TaskbarButtonText>
         </ContainerButton>
-        <ContainerButton>
+        <ContainerButton onPress={handleSaved}>
           <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
           <TaskbarButtonText>Đã lưu</TaskbarButtonText>
         </ContainerButton>

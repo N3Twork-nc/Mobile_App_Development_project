@@ -42,7 +42,16 @@ export const ButtonBack = styled.Image`
   align-self: flex-start;
   left: 20px;
 `;
+export const CloseContainer = styled.TouchableOpacity`
+  position: absolute;
+  align-items: flex-end;
+  right: 20px;
+`
+export const CloseButton = styled.Image`
+  width: 18px;
+  height: 18px;
 
+`
 export const ImageContainer = styled.View`
   flex-direction: row;
 `;
