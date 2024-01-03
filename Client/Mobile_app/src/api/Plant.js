@@ -112,6 +112,22 @@ export const schedule= async (token,idPlant,roomName,timeStart,dateStart,frequen
   }
 }
 
+export const getSchedule= async (token,roomName,idPlant)=>{
+  try {
+    const response = await axios.get(IPServer + `API_get_schedule?roomName=${roomName}&idPlant=${idPlant}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+      
+    const schedule = response.data;
+    return schedule;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 export const deletePlant = async (roomName,id,token) =>{
   try {
     const response = await axios.delete(IPServer+`APIDeletePlant?roomName=${roomName}&id=${id}`,

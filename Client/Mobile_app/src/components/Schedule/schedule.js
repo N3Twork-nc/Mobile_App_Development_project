@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
         TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
@@ -12,6 +12,8 @@ import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { schedule } from '../../api/Plant';
 import { useSelector } from 'react-redux';
+import { getSchedule } from '../../api/Plant';
+import { element } from 'prop-types';
 
 
 const Schedule = () => {
@@ -152,22 +154,13 @@ const Schedule = () => {
       fontSize: 17,
     },
   });
-  const markedDates = {};
-  markedDates[selectedDate]= { selected: true, selectedColor: 'green' }
-  const getMarkedDatesWithFrequency = (startDate, frequency, numberOfDays,color) => {
-    let currentDate = new Date(startDate); // Ngày bắt đầu
-    for (let i = 0; i < numberOfDays; i++) {
-      const dateString = currentDate.toISOString().split('T')[0]; // Lấy ngày dưới dạng chuỗi 'YYYY-MM-DD'
-      markedDates[dateString] = { marked: true, dotColor: color };
-      
-      // Tăng ngày theo tần suất
-      currentDate.setDate(currentDate.getDate() + frequency);
-    }
-  
-    return markedDates;
-  };
-  getMarkedDatesWithFrequency('2024-01-03', 3, 10,'red');
-  getMarkedDatesWithFrequency('2024-01-04', 3, 10,'green');
+  const handleMonthChange=(date)=>{
+    const { year, month } = date;
+  }
+
+  useEffect(()=>{
+    // schedule()
+  },[])
 
 
   return (
@@ -186,7 +179,10 @@ const Schedule = () => {
             {/* Hiển thị lịch */}
             <Calendar
               onDayPress={onDayPress}
-              markedDates={ markedDates}
+              markedDates={{
+                '2024-01-01': { selected: true, selectedColor: 'green', note: 'Ghi chú cho ngày này' },
+                [selectedDate]:{ selected: true, selectedColor: 'green' }}}
+              onMonthChange={handleMonthChange}
             />
           </View>
           <DecorContainer>
@@ -317,7 +313,7 @@ const Schedule = () => {
                         </View>
                 </WorkContainer>
               </FrequencyContainer>
-              <ButtonCreateReminder onPress={handleBack}>
+              <ButtonCreateReminder onPress={handleSchedule}>
                     <ButtonCreate>Tạo nhắc nhở</ButtonCreate>
               </ButtonCreateReminder>
           </View>
