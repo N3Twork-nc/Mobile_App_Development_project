@@ -51,10 +51,10 @@ export const ImageClose = styled.Image`
 
 //
 export const Container = styled.View`
-   position: relative;
+  position: relative;
   align-items: center;
   justify-content: center;
-  top: ${vh(70)}px;
+  top: ${vh(74)}px;
   ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'}
 `;
 
@@ -72,6 +72,7 @@ export const TakePhotoButton = styled.TouchableOpacity`
   border-radius: 50px;
   align-items: center;
   justify-content: center;
+  height: ${vh(10)}px;
 `;
 export const ImageCircle = styled.Image`
   width: 70px;
