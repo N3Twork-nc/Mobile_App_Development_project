@@ -57,8 +57,12 @@ return (
                                     <ImageFrame resizeMode="cover" source={require('../../../assets/plant0.jpg')} />
                                     <PlantName numberOfLines={1}>{allPlants[i].plant.plantName}</PlantName>
                                     <Info1>
-                                        <HistoryTitle>Thời gian:</HistoryTitle>
+                                        <HistoryTitle>Ngày:</HistoryTitle>
                                         <History>{formatDate(allPlants[i].plant.timeUpload)}</History>
+                                    </Info1>
+                                    <Info1>
+                                        <HistoryTitle>Thời gian:</HistoryTitle>
+                                        <History>{formatTime(allPlants[i].plant.timeUpload)}</History>
                                     </Info1>
                                     <Info1>
                                         <HistoryTitle>Vị trí:</HistoryTitle>
@@ -71,8 +75,12 @@ return (
                                         <ImageFrame resizeMode="cover" source={require('../../../assets/plant1.jpg')} />
                                         <PlantName numberOfLines={1}>{allPlants[i + 1].plant.plantName}</PlantName>
                                         <Info1>
-                                            <HistoryTitle>Thời gian:</HistoryTitle>
+                                            <HistoryTitle>Ngày:</HistoryTitle>
                                             <History>{formatDate(allPlants[i].plant.timeUpload)}</History>
+                                        </Info1>
+                                        <Info1>
+                                            <HistoryTitle>Thời gian:</HistoryTitle>
+                                            <History>{formatTime(allPlants[i].plant.timeUpload)}</History>
                                         </Info1>
                                         <Info1>
                                             <HistoryTitle>Vị trí:</HistoryTitle>
@@ -93,10 +101,17 @@ return (
 }
 export default Recently;
 
-const formatDate = (dateString) => {
-    const dateObj = new Date(dateString);
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth() + 1;
-    const day = dateObj.getDate();
+const formatDate= (dateTimeString) => {
+    const dateTimeObj = new Date(dateTimeString);
+    const year = dateTimeObj.getFullYear();
+    const month = dateTimeObj.getMonth() + 1;
+    const day = dateTimeObj.getDate();
     return `${day}/${month}/${year}`;
   };
+const formatTime = (dateTimeString) => {
+    const dateTimeObj = new Date(dateTimeString);
+    const hour = dateTimeObj.getHours();
+    const minute = dateTimeObj.getMinutes();
+    const second = dateTimeObj.getSeconds();
+    return `${hour}:${minute}:${second}`;
+}
