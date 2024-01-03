@@ -28,7 +28,7 @@ export default App;
 // return (
 // <Provider store={store}>
 //  <NavigationContainer>
-//     <Schedule/>
+//     <CameraScreen/>
 //    </NavigationContainer>
 //   </Provider>
 // );

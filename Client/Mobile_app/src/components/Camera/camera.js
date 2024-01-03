@@ -3,12 +3,13 @@ import { View, Text, TouchableOpacity,Image, Modal,  StyleSheet} from 'react-nat
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose,ActionContainer, Action1Container,Action2Container
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
 import LottieView from 'lottie-react-native';
+import Slider from '@react-native-community/slider';
 
 const CameraScreen = () => {
   const token = useSelector(state=>state.token)['payload']
@@ -20,6 +21,8 @@ const CameraScreen = () => {
   const cameraRef = useRef(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(0); // Thêm state để lưu trữ mức độ zoom
+
   const handleHome = () => {
     navigation.navigate('Home', { animations: false });
   };
@@ -82,22 +85,21 @@ const CameraScreen = () => {
   };
 
 
-const [info, setInfoData] = useState([]);
+  const [info, setInfoData] = useState([]);
 
-useEffect(() => {}, []);
+  useEffect(() => {}, []);
 
-const Predicted = async () => {
-  setIsLoading(true);
-  try {
-    const predictedInfo = await predictPlant(capturedPhoto, token);
-    setInfoData(predictedInfo);
-    navigation.replace('Afterscan', { info: predictedInfo, photoURI: capturedPhoto ? capturedPhoto.uri : null});
-    setIsLoading(false);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
+  const Predicted = async () => {
+    setIsLoading(true);
+    try {
+      const predictedInfo = await predictPlant(capturedPhoto, token);
+      setInfoData(predictedInfo);
+      navigation.replace('Afterscan', { info: predictedInfo, photoURI: capturedPhoto ? capturedPhoto.uri : null});
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // Hàm để đóng cửa sổ modal
   const closePhotoPreview = () => {
@@ -112,14 +114,21 @@ const Predicted = async () => {
   if (hasCameraPermission === false) {
     return <View><Text>No access to camera</Text></View>;
   }
-
+  // Hàm xử lý khi người dùng thay đổi mức độ zoom trên thanh trượt
+  const handleZoomChange = (zoomValue) => {
+    setZoomLevel(zoomValue);
+    if (cameraRef.current) {
+      cameraRef.current.zoom = zoomValue; // Áp dụng mức độ zoom vào camera
+    }
+  };
   return (
     <StyleContainer >
       <Camera
         ref={cameraRef}
-        style={{ flex: 1}}
+        style={{ flex: 1 }} 
         type={type}
         flashMode={flash}
+        zoom={zoomLevel}
       >
         <HeaderContainer>
             <FlashButton onPress={toggleFlash}>
@@ -134,6 +143,14 @@ const Predicted = async () => {
               <ImageClose resizeMode="contain" source={require('../../assets/close.png')} tintColor={'white'} />
             </ButtonClose>
         </HeaderContainer>
+        {/* Thanh trượt zoom ảnh */}
+        <Slider
+          style={styles.slider}
+          minimumValue={0}
+          maximumValue={1}
+          value={zoomLevel}
+          onValueChange={handleZoomChange}
+        />
         <Container >
           <GalleryButton onPress={handleChooseFromLibrary}>
             <ImageGallery resizeMode="cover" source={require('../../assets/gallery.png')} />          
@@ -167,21 +184,20 @@ const Predicted = async () => {
               />
             </View>
           ) : (
-          <View style={{ position: 'absolute', bottom: 20, left: 20, right: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
-         
+         <FooterContainer> 
           {/* Xử lý Chụp lại */}
-          <TouchableOpacity onPress={closePhotoPreview}>
+          <RetakeButton onPress={closePhotoPreview}>
              <Text2>Chụp lại</Text2>         
-          </TouchableOpacity>
+          </RetakeButton>
 
           {/* Xử lý Lưu */}
-          <TouchableOpacity onPress={() => {
+          <ResultButton onPress={() => {
             // Xử lý việc lưu ảnh ở đây
             closePhotoPreview();
           }}>
            <Text3 onPress={Predicted}>Nhận diện</Text3>           
-          </TouchableOpacity>
-        </View>
+          </ResultButton>
+          </FooterContainer>
         )}
         </View>
       </Modal>
@@ -190,9 +206,17 @@ const Predicted = async () => {
 };
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1,
+  },
+  slider: {
+    width: '90%',
+    alignSelf: 'center',
+    top: '70%',
+    minimumTrackTintColor:"#FFFFFF",
+    maximumTrackTintColor:"#ffffff",
   }
 })
 export default CameraScreen;

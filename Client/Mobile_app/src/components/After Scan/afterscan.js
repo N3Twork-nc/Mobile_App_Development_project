@@ -68,10 +68,6 @@ const Afterscan = () => {
     }
   };
 
-  const handleSavedtoStorage = () => {
-    // Lưu vào mục Đã lưu
-    setAlertVisible(false);
-  };
   
   const handleBack = () => {
     navigation.navigate('CameraScreen', {animations: false});
@@ -234,7 +230,7 @@ const Afterscan = () => {
                 <CustomAlert
                       isVisible={isAlertVisible}
                       message="Chọn nơi để lưu cây"
-                      onSaved={handleSavedtoStorage}
+                      // onSaved={handleSavedtoStorage}
                       onRoom={handleSavedtoRooms}
                       onClose={handleCloseAlert}
                       setSelectedRoom={setSelectedRoom}
@@ -282,7 +278,7 @@ const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelected
         </View>
         <View style={{ padding: 10, zIndex: 1, bottom: 7}}>              
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 10 }}>
-          <TouchableOpacity onPress={onSaved} style={{ marginRight: 25 }}>
+          <TouchableOpacity  onPress={() => handleRoomSelection('Lưu trữ')} style={{ marginRight: 25 }}>
             <Text style={{ color: 'green', fontSize: 17 }}>Lưu trữ</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={showRoomSelectionAlert}>

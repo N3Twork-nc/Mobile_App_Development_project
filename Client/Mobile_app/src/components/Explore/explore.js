@@ -24,9 +24,7 @@ const Explore = () => {
     const handleHome = () => {
       navigation.navigate('Home', { animations: false });
     };
-    const handleScan = () => {
-      navigation.navigate('Scan', { animations: false });
-    };
+    const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
     const handleSaved = () => {
       navigation.navigate('Saved', { animations: false });
     };
@@ -73,11 +71,11 @@ const Explore = () => {
             <TaskbarIcon resizeMode="contain" source={require('../../assets/mygarden.png')} />
             <TaskbarButtonText>Vườn của tôi</TaskbarButtonText>
           </ContainerButton>
-          <ContainerButton>
+          <ContainerButton onPress={handleScan}>
             <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')} />
             <TaskbarButtonText>Scan</TaskbarButtonText>
           </ContainerButton>
-          <ContainerButton>
+          <ContainerButton onPress={handleSaved}>
             <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')} />
             <TaskbarButtonText>Đã lưu</TaskbarButtonText>
           </ContainerButton>
