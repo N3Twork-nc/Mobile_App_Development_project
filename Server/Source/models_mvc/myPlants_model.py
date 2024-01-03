@@ -47,6 +47,8 @@ class FrequencyType(Enum):
 class ActionType(Enum):
     Watering="Tưới cây"
     Manure="Bón phân"
+    soilReplacement="Thay đất"
+    leafPruning="Tỉa lá"
 
 class Schedule (BaseModel):
     id_plant:str

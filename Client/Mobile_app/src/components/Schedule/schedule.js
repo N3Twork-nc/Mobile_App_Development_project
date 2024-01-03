@@ -152,6 +152,23 @@ const Schedule = () => {
       fontSize: 16,
     },
   });
+  const markedDates = {};
+  markedDates[selectedDate]= { selected: true, selectedColor: 'green' }
+  const getMarkedDatesWithFrequency = (startDate, frequency, numberOfDays,color) => {
+    let currentDate = new Date(startDate); // Ngày bắt đầu
+    for (let i = 0; i < numberOfDays; i++) {
+      const dateString = currentDate.toISOString().split('T')[0]; // Lấy ngày dưới dạng chuỗi 'YYYY-MM-DD'
+      markedDates[dateString] = { marked: true, dotColor: color };
+      
+      // Tăng ngày theo tần suất
+      currentDate.setDate(currentDate.getDate() + frequency);
+    }
+  
+    return markedDates;
+  };
+  getMarkedDatesWithFrequency('2024-01-03', 3, 10,'red');
+  getMarkedDatesWithFrequency('2024-01-04', 3, 10,'green');
+
 
   return (
 <SafeAreaView style={{ flex: 1, backgroundColor: '#CEF1CF' }}>   
@@ -169,7 +186,7 @@ const Schedule = () => {
             {/* Hiển thị lịch */}
             <Calendar
               onDayPress={onDayPress}
-              markedDates={{ [selectedDate]: { selected: true, selectedColor: 'green' } }}
+              markedDates={ markedDates}
             />
           </View>
           <DecorContainer>
