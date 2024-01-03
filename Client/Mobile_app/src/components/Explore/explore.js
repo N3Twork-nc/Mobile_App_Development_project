@@ -4,11 +4,16 @@ import { StyledContainer, HeaderContainer, MainTitle, SearchContainer, ButtonSea
   NewspaperContainer, NewspaperImageContainer, MainText, SubText, MoreContainer, TextNewspaper, 
   TaskbarButtonText, TaskbarIcon, TaskbarView, ContainerButton } from './styleExplore.js';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import { data } from '../../api/getNews';
+import { myPlant } from '../../api/Plant.js';
+
 
 const Explore = () => {
+    const token = useSelector(state=>state.token)['payload'];
     const navigation = useNavigation();
     const [newsData, setNewsData] = useState([]);
+    const [selectedRoom, setSelectedRoom] = useState(null);
 
     useEffect(() => { NewsData(); }, []);
 
@@ -25,9 +30,20 @@ const Explore = () => {
       navigation.navigate('Home', { animations: false });
     };
     const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
-    const handleSaved = () => {
-      navigation.navigate('Saved', { animations: false });
+    
+    const handleSaved = async (roomName) => {
+      setSelectedRoom(roomName);
+      let plantsInRoom = [];
+      try {
+        if (roomName) {
+          plantsInRoom = await myPlant(token, roomName);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      navigation.navigate('Saved', { plantsInRoom, roomName });
     };
+
     const handleProfile = () => {
       navigation.navigate('Profile', { animations: false });
     };
@@ -75,7 +91,7 @@ const Explore = () => {
             <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')} />
             <TaskbarButtonText>Scan</TaskbarButtonText>
           </ContainerButton>
-          <ContainerButton onPress={handleSaved}>
+          <ContainerButton onPress={() => handleSaved('Lưu trữ')}>
             <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')} />
             <TaskbarButtonText>Đã lưu</TaskbarButtonText>
           </ContainerButton>

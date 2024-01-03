@@ -11,7 +11,7 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { myPlant,countPlants} from '../../api/Plant.js';
+import { allPlant, myPlant,countPlants} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
@@ -65,13 +65,22 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-    navigation.navigate('Save', { plantsInRoom, roomName });
+    navigation.navigate('Saved', { plantsInRoom, roomName });
   };
 
   const handleExplore = () => {navigation.navigate('Explore',);};
   const handleScan = () => {navigation.navigate('CameraScreen',);};
   const handleProfile= () => {navigation.navigate('Profile',);};
-  const handleRecently = () => {navigation.navigate('Recently', )};
+  
+  const handleRecently = async () => {
+    try {
+      const allPlants = await allPlant(token);
+      navigation.navigate('Recently', { plantData: allPlants });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   const handleDashboard = (gardensDetail) => {
     navigation.navigate('Dashboard', { gardensDetail });
   };
@@ -279,7 +288,7 @@ const Home = () => {
         <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
         <TaskbarButtonText>Scan</TaskbarButtonText>
       </ContainerButton>
-      <ContainerButton onPress={() => handleRoomPress('Lưu trữ')}>
+      <ContainerButton onPress={() => handleSaved('Lưu trữ')}>
         <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
         <TaskbarButtonText>Đã lưu</TaskbarButtonText>
       </ContainerButton>

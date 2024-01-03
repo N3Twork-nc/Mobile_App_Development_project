@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
+import { myPlant, getPlant, deletePlant } from '../../api/Plant.js';
 
 const logoApp = logo;
 
@@ -91,17 +92,24 @@ return (
                 </HeaderContainer>
 
                 {/* Plants */}
-                        <PlantContainer >
+                {plantsInRoom && Object.keys(plantsInRoom).length >= 1 && (
+                    <React.Fragment>
+                        {(() => {
+                            const pairs = [];
+                            const keys = Object.keys(plantsInRoom);
+                            for (let i = 0; i < keys.length; i += 2) {
+                            pairs.push(
+                        <PlantContainer key={i}>
                             <Plant1Container>
-                                <ImageFrame  resizeMode="cover" source={require('../../assets/plant1.jpg')} />
-                                <PlantName numberOfLines={2}>Hôho</PlantName>
+                                <ImageFrame  resizeMode="cover" source={{uri:plantsInRoom[keys[i]].Img}}/>
+                                <PlantName numberOfLines={2}>{plantsInRoom[keys[i]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
-                                    <IconButton onPress={handleInfo}>
+                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
                                         <Icon source={require('../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton onPress={handleDelete}>
+                                    <IconButton onPress={()=>handleDelete(keys[i])}>
                                         <Icon source={require('../../assets/bin.png')} />
                                         <ButtonText>Xóa</ButtonText>
                                         <CustomAlert
@@ -114,29 +122,31 @@ return (
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
                             </Plant1Container>
+                    {keys[i + 1] && (
+                            
                             <Plant1Container>
-                                <ImageFrame  resizeMode="cover" source={require('../../assets/plant1.jpg')} />
-                                <PlantName numberOfLines={2}>Hehe</PlantName>
+                                <ImageFrame  resizeMode="cover" source={{uri:plantsInRoom[keys[i + 1]].Img}}/>
+                                <PlantName numberOfLines={2}>{plantsInRoom[keys[i + 1]].plantName} </PlantName>
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
-                                    <IconButton onPress={handleInfo}>
+                                    <IconButton onPress={() => handleInfo(plantsInRoom[keys[i + 1]].plantName)}>
                                         <Icon source={require('../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton onPress={handleDelete}>
+                                    <IconButton onPress={()=>handleDelete(keys[i + 1])}>
                                         <Icon source={require('../../assets/bin.png')} />
                                         <ButtonText>Xóa</ButtonText>
-                                        <CustomAlert
-                                            isVisible={isAlertVisible}
-                                            message="Bạn có chắc chắn muốn xóa cây này không?"
-                                            onCancel={handleCancel}
-                                            onDelete={handleConfirmDelete}
-                                            />
                                     </IconButton>
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
                             </Plant1Container>
+                            )}
                         </PlantContainer>
+                        );} return pairs;
+                    })()}
+                    </React.Fragment>
+                )}
+                
             </StyledContainer>
         </ScrollView>
         {isLoading && (
