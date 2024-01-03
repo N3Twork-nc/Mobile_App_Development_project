@@ -63,6 +63,22 @@ def countPlant(username=Depends(Authentication().validate_token)):
     except Exception as e:
         print(str(e))
         raise HTTPException(status_code=204, detail="Get count my plant fail")
+    
+@app.delete("/APIDeletePlant")
+def deletePlant(roomName:str,id:str,username=Depends(Authentication().validate_token)):
+    try:
+        plant = MyPlants(username,roomName,idPlant=id)
+        plant.deletePlant()
+        return{
+            "Status":True,
+            "Message":"Delete plant successfull"
+        }
+    except Exception as e:
+        print(str(e))
+        return{
+            "Status":False,
+            "Message":"Delete plant failed"
+        }
         
     
 

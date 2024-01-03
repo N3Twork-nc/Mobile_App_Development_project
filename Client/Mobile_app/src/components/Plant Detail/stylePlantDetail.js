@@ -19,21 +19,24 @@ export const HeaderContainer = styled.View`
   ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'}
 `;
 export const TitleContainer = styled.View`
+  flex-direction: row;
   align-items: center;
-  justify-content: center; 
-  width: 100%;  
-
+  justify-content: center;
+  width: 100%;
+  position: relative;
 `;
 export const MainTitle = styled.Text`
-  font-size: 25px;
+  font-size: 22px;
   color: ${black};
   font-weight: bold;
+  flex: 1;
   align-self: center;
+  justify-content: center;
+  text-align: center;
 `;
 export const BackContainer = styled.TouchableOpacity`
-  position: absolute;
-  left: 0;
   align-items: flex-start;
+  z-index: 1;
 `;
 
 export const ButtonBack = styled.Image`

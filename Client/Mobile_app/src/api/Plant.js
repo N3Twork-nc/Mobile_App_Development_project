@@ -111,3 +111,18 @@ export const schedule= async (token,idPlant,roomName,timeStart,dateStart,frequen
     return null
   }
 }
+
+export const deletePlant = async (roomName,id,token) =>{
+  try {
+    const response = await axios.delete(IPServer+`APIDeletePlant?roomName=${roomName}&id=${id}`,
+    {headers: {
+      Authorization:`Bearer ${token}`}
+    });
+    
+    const result = response.data;
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}

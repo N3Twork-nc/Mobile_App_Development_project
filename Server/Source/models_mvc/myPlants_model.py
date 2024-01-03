@@ -35,7 +35,9 @@ class MyPlants():
         }})
 
     def deletePlant(self):
-        a=0
+        ref=db.reference(f'MyRoom/{self.username}/{self.roomName}/{self.id}')
+        print(f'MyRoom/{self.username}/{self.roomName}/{self.id}')
+        ref.delete()
 
 
 class FrequencyType(Enum):

@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import { StyledContainer,ButtonTextGG, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1, IconButtonFB, ButtonTextFB, IconButtonGG, InputTextpw, EyeIcon, ButtonTextContainer } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
-import { Platform, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { Platform, TouchableOpacity, ScrollView, Alert, Animated } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
@@ -50,8 +50,14 @@ const Signup = () => {
 
       const handleSignIn = () => {
         navigation.navigate('SignIn');
-
       };
+            //Sự kiện lùi màn hình
+    const animatedValue = useRef(new Animated.Value(0)).current;
+    const handleAnimatedValueUpdate = () => {
+        navigation.goBack();
+    };
+    animatedValue.addListener(handleAnimatedValueUpdate);
+
     return(
         <KeyboardAwareScrollView
          backgroundColor="#CEF1CF"
