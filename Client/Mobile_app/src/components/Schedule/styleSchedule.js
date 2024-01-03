@@ -37,6 +37,7 @@ export const TitleContainer = styled.View`
   align-items: center;
   justify-content: center; 
   width: 100%;  
+  margin-top: 10px;
 `;
 export const MainTitle = styled.Text`
   font-size: 25px;
@@ -315,103 +316,78 @@ export const ImgDecor = styled.Image`
   height: ${vh(50)}px;
 `;
 export const AllNoteContainer = styled.View`
-position: absolute;
-width: ${vw(100)}px;
-flex-direction: row;
-top: ${vh(45)}px;
+  margin-bottom: 20px;
 `;
 export const TitleNoteContainer = styled.View`
   align-items: center;
   justify-content: center; 
-  width: ${vw(100)}px;
-  height: ${vh(3)}px; 
-  margin-top: ${vh(2)}px;
+  margin-top: ${vh(3)}px;
+  margin-bottom: 10px;
 `;
 export const TitleMainNote = styled.Text`
   font-size: 20px;
   color: #274227;
   font-weight: bold;
   align-self: flex-start;
-  left:${vw(3)}px;
+  left:15px;
 `;
 
 export const NoteImg = styled.Image`
   position: absolute;
-  width: ${vw(10)}px;
-  height: ${vh(4)}px;
-  left:${vw(46)}px; 
+  width: 30px;
+  height: 30px;
+  align-self: flex-end;
+  right: 15px;
  `;
  
  export const Note1Con = styled.View`
- position: absolute;
  width: ${vw(100)}px;
- height: ${vh(10)}px; 
- top: ${vh(7)}px;
+ margin-top: 10px;
  align-self: center;
  justify-content: center;
+ margin-bottom: 5px;
 `;
 export const CheckboxContainer = styled.View`
   position: absolute;
   border-radius: 15px;   
   background-color: '#ffffff';
-  left:${vw(4)}px; 
+  left:${vw(2)}px; 
 `;
 export const CheckboxButton= styled.TouchableOpacity`
-  position: absolute;
   border-radius: 20px;
   width: ${vw(8)}px;
-  height: ${vh(5)}px; 
 `
 export const NoteBoxCon = styled.View`
   align-self: center;
-  width: ${vw(82)}px;
-  height: ${vh(8)}px; 
-  left:${vw(5)}px; 
-  border-radius: 20px; 
+  width: ${vw(85)}px;
+  height: 70px;
+  left:${vw(3)}px; 
+  border-top-right-radius: 10px; 
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px; 
+  border-bottom-left-radius: 10px;
   background-color: #ffffff;
 `;
 export const Line = styled.View`
-  width: ${vw(5)}px;
-  height: ${vh(8)}px; 
+  width: ${vw(2)}px;
+  height: 70px; 
   border-top-left-radius: 30px; 
   border-bottom-left-radius: 30px;
   background-color:  #076F0C;
 `;
+export const ContentBox= styled.View`
+position: absolute;
+margin-left: 20px;
+width: ${vw(80)}px;
+margin-top: 5px;
+`;
 export const TitleBoxNote = styled.Text`
-  position: absolute;
-  font-size: 20px;
+  font-size: 15px;
   color: #1A5D1A;
   font-weight: bold;
-  align-self: flex-start;
-  left:${vw(8)}px;
-  top: ${vh(0.5)}px;
 `;
 
- export const ContentBox= styled.View`
-  position: absolute;
-  align-self: center;
-  width: ${vw(70)}px;
-  height: ${vh(5)}px; 
-  top: ${vh(3)}px;
-`;
-export const BoxNoteImg = styled.Image`
-  position: absolute;
-  width: ${vw(10)}px;
-  height: ${vh(4)}px;
-  align-self: flex-start;
- `;
 export const ContentText = styled.Text`
-  position: absolute;
-  font-size: 16px;
+  font-size: 15px;
   color: #111111;
-  align-self: center;
-  left:${vw(9)}px;
-`;
-export const Note2Con = styled.View`
-position: absolute;
-width: ${vw(100)}px;
-height: ${vh(10)}px; 
-top: ${vh(18)}px;
-align-self: center;
-justify-content: center;
 `;

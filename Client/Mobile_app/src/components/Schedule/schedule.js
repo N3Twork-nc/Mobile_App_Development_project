@@ -4,7 +4,7 @@ import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTi
         TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
         TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
         TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor,TitleMainNote,AllNoteContainer,
-        TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,BoxNoteImg,ContentText,ContentBox,Note2Con, Note3Con
+        TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
         } from './styleSchedule';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
@@ -165,7 +165,7 @@ const Schedule = () => {
                 <MainTitle> Lên lịch </MainTitle>
             </TitleContainer>
           </HeaderContainer>
-          <View style={{ flex: 1 }}>
+          <View>
             {/* Hiển thị lịch */}
             <Calendar
               onDayPress={onDayPress}
@@ -173,53 +173,56 @@ const Schedule = () => {
             />
           </View>
           {/* ADD NOTE */}
-          <AllNoteContainer>
+          
+        {/*END ADD NOTE */}
+        </StyledContainer>
+        <AllNoteContainer>
               <TitleNoteContainer>
                 <NoteImg resizeMode="contain" source={require('../../assets/tick.png')}/> 
                 <TitleMainNote>Những việc cần làm</TitleMainNote>
               </TitleNoteContainer>
+
+              {/* Note */}
               <Note1Con>
                   <CheckboxButton onPress={() => setChecked(!checked)}>
                       <CheckboxContainer>
                         {checked ? (
-                          <Ionicons name="checkmark-circle" size={30} color="green" />
+                          <Ionicons name="checkmark-circle" size={25} color="green" />
                         ) : (
-                          <Ionicons name="ellipse-outline" size={30} color="white"/>
+                          <Ionicons name="ellipse-outline" size={25} color="white"/>
                         )}
                       </CheckboxContainer>
                   </CheckboxButton>
                   <NoteBoxCon> 
-                    <Line></Line>
-                    <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>
-                    <ContentBox>
-                        <BoxNoteImg resizeMode="contain" source={require('../../assets/boxnote.png')}/> 
+                    <Line></Line>                    
+                    <ContentBox>            
+                        <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>           
                         <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
                     </ContentBox>
                   </NoteBoxCon> 
               </Note1Con>
 
-              <Note2Con>
+              {/* Note */}
+              <Note1Con>
                   <CheckboxButton onPress={() => setChecked(!checked)}>
                       <CheckboxContainer>
                         {checked ? (
-                          <Ionicons name="checkmark-circle" size={30} color="green" />
+                          <Ionicons name="checkmark-circle" size={25} color="green" />
                         ) : (
-                          <Ionicons name="ellipse-outline" size={30} color="white"/>
+                          <Ionicons name="ellipse-outline" size={25} color="white"/>
                         )}
                       </CheckboxContainer>
                   </CheckboxButton>
                   <NoteBoxCon> 
-                    <Line></Line>
-                    <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>
-                    <ContentBox>
-                      <BoxNoteImg resizeMode="contain" source={require('../../assets/boxnote.png')}/> 
-                      <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
+                    <Line></Line>                    
+                    <ContentBox>            
+                        <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>           
+                        <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
                     </ContentBox>
                   </NoteBoxCon> 
-              </Note2Con>
+              </Note1Con>
+              
           </AllNoteContainer>
-        {/*END ADD NOTE */}
-        </StyledContainer>
       </ScrollView>
       <Modal
         visible={showModal}
