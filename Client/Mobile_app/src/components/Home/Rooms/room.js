@@ -79,7 +79,7 @@ const Room = () => {
     };
 
     const handleBack = () => {
-    navigation.navigate('Home');
+      navigation.goBack();
     };
     const handleSchedule = (idPlant) => {
         navigation.navigate('Schedule',{idPlant,roomName});

@@ -23,6 +23,7 @@ const Profile = () => {
     const token = useSelector(state=>state.token)['payload'];
     const userInfo = useSelector(state => state.infoUser);
     const [isAlertVisible, setAlertVisible] = useState(false);
+    const [selectedRoom, setSelectedRoom] = useState(null);
 
     //Khi người dùng nhấn gửi phản hồi
     const SendFeedback = () => {setAlertVisible(true);}
