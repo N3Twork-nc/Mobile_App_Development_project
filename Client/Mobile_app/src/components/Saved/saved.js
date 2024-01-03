@@ -164,7 +164,7 @@ return (
          <TaskbarView>
           <ContainerButton onPress={handleExplore}>
             <TaskbarIcon resizeMode="contain" source={require('../../assets/explore.png')}/>
-            <TaskbarButtonText style={{ color: 'green' }}>Khám phá</TaskbarButtonText>
+            <TaskbarButtonText>Khám phá</TaskbarButtonText>
           </ContainerButton>
           <ContainerButton onPress={handleHome}>
             <TaskbarIcon resizeMode="contain" source={require('../../assets/mygarden.png')} />
@@ -176,7 +176,7 @@ return (
           </ContainerButton>
           <ContainerButton>
             <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}  tintColor={'green'} />
-            <TaskbarButtonText>Đã lưu</TaskbarButtonText>
+            <TaskbarButtonText style={{ color: 'green' }}>Đã lưu</TaskbarButtonText>
           </ContainerButton>
           <ContainerButton onPress={handleProfile}>
             <TaskbarIcon resizeMode="contain" source={require('../../assets/profile.png')} />
