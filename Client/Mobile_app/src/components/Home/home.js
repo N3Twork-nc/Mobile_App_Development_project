@@ -68,9 +68,9 @@ const Home = () => {
     navigation.navigate('Save', { plantsInRoom, roomName });
   };
 
-  const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
-  const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
-  const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
+  const handleExplore = () => {navigation.navigate('Explore',);};
+  const handleScan = () => {navigation.navigate('CameraScreen',);};
+  const handleProfile= () => {navigation.navigate('Profile',);};
   const handleRecently = () => {navigation.navigate('Recently', )};
   const handleDashboard = (gardensDetail) => {
     navigation.navigate('Dashboard', { gardensDetail });
@@ -131,7 +131,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
                     <CategoryDetailText >
-                      <TotalPlant>{plantData['Phòng khách']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Phòng khách']['Count']} cây</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
                   </RoomContainer>                    
@@ -143,7 +143,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/kitchen.png')}/>
                     </KitchenContainer> 
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Nhà bếp']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Nhà bếp']['Count']} cây</TotalPlant>
                       <RoomName>Nhà bếp</RoomName> 
                     </CategoryDetailText> 
                   </RoomContainer>          
@@ -156,7 +156,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/bedroom.png')}/>
                     </BedroomContainer>
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Phòng ngủ']['Count']} plants</TotalPlant>                      
+                      <TotalPlant>{plantData['Phòng ngủ']['Count']} cây</TotalPlant>                      
                       <RoomName>Phòng ngủ</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>
@@ -167,7 +167,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/backyard.png')}/>
                     </BackyardContainer>
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Sân vườn']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Sân vườn']['Count']} cây</TotalPlant>
                       <RoomName>Sân vườn</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>          
