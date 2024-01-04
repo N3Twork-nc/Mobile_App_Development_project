@@ -21,6 +21,7 @@ import Schedule from '../components/Schedule/schedule';
 import Recently from '../components/Home/Recently/recently';
 import AboutUs from '../components/Profile/About us/aboutUs';
 import Saved from '../components/Saved/saved';
+import ResetPass from '../components/Profile/Reset Pass/resetpass';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -49,6 +50,7 @@ const AppNavigator = () => {
         <Stack.Screen name="AboutUs" component={AboutUs} options={{animationEnabled: false}} />
         <Stack.Screen name="Recently" component={Recently} options={{animationEnabled: false}} />
         <Stack.Screen name="Saved" component={Saved} options={{animationEnabled: false}} />
+        <Stack.Screen name="ResetPass" component={ResetPass} options={{animationEnabled: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

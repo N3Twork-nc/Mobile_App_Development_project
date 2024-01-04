@@ -6,6 +6,7 @@ import { StatusBar, Platform } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import Schedule from './src/components/Schedule/schedule';
+import ResetPass from './src/components/Profile/Reset Pass/resetpass';
 
 class App extends Component
 {
@@ -29,7 +30,7 @@ export default App;
 // return (
 // <Provider store={store}>
 //  <NavigationContainer>
-//     <Schedule />
+//     <ResetPass />
 //    </NavigationContainer>
 //   </Provider>
 // );
