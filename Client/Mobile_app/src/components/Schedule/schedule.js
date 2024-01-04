@@ -13,13 +13,12 @@ import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { schedule } from '../../api/Plant';
 import { useSelector } from 'react-redux';
-import { getSchedule } from '../../api/Plant';
 import { element } from 'prop-types';
 import { Ionicons } from '@expo/vector-icons'; 
 const Schedule = () => {
   const token = useSelector(state=>state.token)['payload'];
   const route=useRoute()
-  const {idPlant,roomName} =route.params
+  const {scheduled, idPlant, roomName} =route.params
   const navigation = useNavigation();
   const handleBack = () => { navigation.navigate('Home'); }
  
@@ -37,6 +36,7 @@ const Schedule = () => {
    const [selectedHour, setSelectedHour] = useState(''); // Thêm state cho giờ
    const [selectedMinute, setSelectedMinute] = useState(''); // Thêm state cho phút
    const [note,setNote]=useState('')//ghi chú
+   
    const handleSchedule = async ()=>{
     try {
       const result= await schedule(token,idPlant,roomName,selectedHour+":"+String(selectedMinute).padStart(2, '0'),
@@ -196,7 +196,8 @@ const Schedule = () => {
               </TitleNoteContainer>
 
               {/* Note */}
-              <Note1Con>
+              {Object.values(scheduled).map((calender, index) => (
+              <Note1Con key={index}>
                   <CheckboxButton onPress={() => setChecked(!checked)}>
                       <CheckboxContainer>
                         {checked ? (
@@ -209,32 +210,13 @@ const Schedule = () => {
                   <NoteBoxCon> 
                     <Line></Line>                    
                     <ContentBox>            
-                        <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>           
-                        <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
+                        <TitleBoxNote>{calender.note}</TitleBoxNote>           
+                        <ContentText>Cách {calender.frequency} {calender.frequencyType} bạn có lịch {calender.action} lúc {calender.timeStart} kể từ {calender.dateStart} </ContentText>
                     </ContentBox>
                   </NoteBoxCon> 
               </Note1Con>
+              ))}
 
-              {/* Note */}
-              <Note1Con>
-                  <CheckboxButton onPress={() => setChecked(!checked)}>
-                      <CheckboxContainer>
-                        {checked ? (
-                          <Ionicons name="checkmark-circle" size={25} color="green" />
-                        ) : (
-                          <Ionicons name="ellipse-outline" size={25} color="white"/>
-                        )}
-                      </CheckboxContainer>
-                  </CheckboxButton>
-                  <NoteBoxCon> 
-                    <Line></Line>                    
-                    <ContentBox>            
-                        <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>           
-                        <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
-                    </ContentBox>
-                  </NoteBoxCon> 
-              </Note1Con>
-              
           </AllNoteContainer>
       </ScrollView>
       <Modal
