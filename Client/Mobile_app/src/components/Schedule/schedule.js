@@ -357,7 +357,7 @@ const Schedule = () => {
                                   setSelectedFrequency(item.value); // Cập nhật giá trị đã chọn cho dropdown "Ngày", "Tuần", "Tháng"
                                    }}
                               />
-                        </View>
+                        </View> 
                 </EachContainer>
                 <WorkContainer>
                   <TextDay>Việc</TextDay>

@@ -7,6 +7,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import Schedule from './src/components/Schedule/schedule';
 import ResetPass from './src/components/Profile/Reset Pass/resetpass';
+import CameraScreen from './src/components/Camera/camera';
 
 class App extends Component
 {
@@ -30,7 +31,7 @@ export default App;
 // return (
 // <Provider store={store}>
 //  <NavigationContainer>
-//     <ResetPass />
+//     <CameraScreen />
 //    </NavigationContainer>
 //   </Provider>
 // );
