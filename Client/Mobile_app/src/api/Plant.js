@@ -27,12 +27,12 @@ export const plant = async (photo, roomName, plantName, token) => {
 
     console.log("Add successful!");
 
-    if (response.data.id!=null) return "Successfull"
-    return "Failure"
+    if (response.status==200) return true
+    else return false
     
   } catch (error) {
     console.log(error);
-    return error;
+    return false
   }
 };
 

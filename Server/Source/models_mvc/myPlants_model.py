@@ -36,12 +36,14 @@ class MyPlants():
         if data==None:
             return {}
         return data
+    
     def getAllPlants(self):
         ref=db.reference(f'MyRoom/{self.username}')
         data=ref.get()
         if data==None:
             return {}
         return data
+    
     def countPlant(self):
         ref= ref=db.reference(f'MyRoom/{self.username}')
         data=ref.get()
