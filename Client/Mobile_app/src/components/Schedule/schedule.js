@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View} from 'react-native';
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
         TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
         TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
@@ -13,15 +13,16 @@ import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { schedule } from '../../api/Plant';
 import { useSelector } from 'react-redux';
-import { getSchedule } from '../../api/Plant';
 import { element } from 'prop-types';
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Schedule = () => {
   const token = useSelector(state=>state.token)['payload'];
-  // const route=useRoute()
-  // const {idPlant,roomName} =route.params
+  const route=useRoute()
+  const {scheduled, idPlant, roomName} =route.params
   const navigation = useNavigation();
-  const handleBack = () => { navigation.navigate('Home'); }
+  const handleBack = () => { navigation.goBack() }
  
   const [checked, setChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
@@ -37,6 +38,7 @@ const Schedule = () => {
    const [selectedHour, setSelectedHour] = useState(''); // Thêm state cho giờ
    const [selectedMinute, setSelectedMinute] = useState(''); // Thêm state cho phút
    const [note,setNote]=useState('')//ghi chú
+   const [checkedItems, setCheckedItems] = useState([]);
    const handleSchedule = async ()=>{
     try {
       const result= await schedule(token,idPlant,roomName,selectedHour+":"+String(selectedMinute).padStart(2, '0'),
@@ -162,7 +164,41 @@ const Schedule = () => {
     // schedule()
   },[])
 
+  // Hàm để lưu trạng thái checkbox vào AsyncStorage
+  const saveCheckedItems = async () => {
+    try {
+      await AsyncStorage.setItem('checkedItems', JSON.stringify(checkedItems));
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
 
+  // Hàm để load trạng thái checkbox từ AsyncStorage khi component được mount
+  const loadCheckedItems = async () => {
+    try {
+      const value = await AsyncStorage.getItem('checkedItems');
+      if (value !== null) {
+        setCheckedItems(JSON.parse(value));
+      }
+    } catch (error) {
+      console.error('Error loading data:', error);
+    }
+  };
+
+  useEffect(() => {
+    loadCheckedItems(); // Load trạng thái checkbox khi component được mount
+  }, []);
+
+  useEffect(() => {
+    saveCheckedItems(); // Lưu trạng thái checkbox mỗi khi có thay đổi
+  }, [checkedItems]);
+
+  const handleCheck = (index) => {
+    const newCheckedItems = [...checkedItems];
+    newCheckedItems[index] = !newCheckedItems[index];
+    setCheckedItems(newCheckedItems);
+  };
+  
   return (
 <SafeAreaView style={{ flex: 1, backgroundColor: '#CEF1CF' }}>   
      <ScrollView style={{ flex: 1 }}>
@@ -190,51 +226,34 @@ const Schedule = () => {
         {/*END ADD NOTE */}
         </StyledContainer>
         <AllNoteContainer>
-              <TitleNoteContainer>
-                <NoteImg resizeMode="contain" source={require('../../assets/tick.png')}/> 
-                <TitleMainNote>Những việc cần làm</TitleMainNote>
-              </TitleNoteContainer>
+          {scheduled ? (
+            <TitleNoteContainer>
+              <NoteImg resizeMode="contain" source={require('../../assets/tick.png')}/> 
+              <TitleMainNote>Những việc cần làm</TitleMainNote>
+            </TitleNoteContainer>
+          ) : null}
 
-              {/* Note */}
-              <Note1Con>
-                  <CheckboxButton onPress={() => setChecked(!checked)}>
-                      <CheckboxContainer>
-                        {checked ? (
-                          <Ionicons name="checkmark-circle" size={25} color="green" />
-                        ) : (
-                          <Ionicons name="ellipse-outline" size={25} color="white"/>
-                        )}
-                      </CheckboxContainer>
-                  </CheckboxButton>
-                  <NoteBoxCon> 
-                    <Line></Line>                    
-                    <ContentBox>            
-                        <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>           
-                        <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
-                    </ContentBox>
-                  </NoteBoxCon> 
-              </Note1Con>
-
-              {/* Note */}
-              <Note1Con>
-                  <CheckboxButton onPress={() => setChecked(!checked)}>
-                      <CheckboxContainer>
-                        {checked ? (
-                          <Ionicons name="checkmark-circle" size={25} color="green" />
-                        ) : (
-                          <Ionicons name="ellipse-outline" size={25} color="white"/>
-                        )}
-                      </CheckboxContainer>
-                  </CheckboxButton>
-                  <NoteBoxCon> 
-                    <Line></Line>                    
-                    <ContentBox>            
-                        <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>           
-                        <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
-                    </ContentBox>
-                  </NoteBoxCon> 
-              </Note1Con>
-              
+          {/* Note */}
+          {scheduled && Object.values(scheduled).map((calender, index) => (
+            <Note1Con key={index}>
+                              <CheckboxButton onPress={() => handleCheck(index)}>
+                <CheckboxContainer>
+                  {checkedItems[index] ? (
+                    <Ionicons name="checkmark-circle" size={25} color="green" />
+                  ) : (
+                    <Ionicons name="ellipse-outline" size={25} color="white" />
+                  )}
+                </CheckboxContainer>
+              </CheckboxButton>
+                <NoteBoxCon> 
+                  <Line></Line>                    
+                  <ContentBox>            
+                      <TitleBoxNote>{calender.note}</TitleBoxNote>           
+                      <ContentText>Cách {calender.frequency} {calender.frequencyType} bạn có lịch {calender.action} lúc {calender.timeStart} kể từ {calender.dateStart} </ContentText>
+                  </ContentBox>
+                </NoteBoxCon> 
+            </Note1Con>
+          ))}
           </AllNoteContainer>
       </ScrollView>
       <Modal
@@ -257,7 +276,7 @@ const Schedule = () => {
             <Text1>Chi tiết</Text1>
             {/* Nội dung khác trong modal */}
             <NoteContainer>
-            <InputNote placeholder="Thêm ghi chú vào đây"></InputNote>
+            <InputNote placeholder="Thêm ghi chú vào đây"  onChangeText={setNote}/>
             <NoteImage resizeMode="contain" source={require('../../assets/note.png')}/> 
             </NoteContainer>
             <ReviewContainer> 

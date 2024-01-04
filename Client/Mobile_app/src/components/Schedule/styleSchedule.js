@@ -1,23 +1,9 @@
 import styled from 'styled-components';
-import { Dimensions, Platform, StatusBar } from 'react-native';
+import { Platform } from 'react-native';
+import { Colors, ScreenSize } from '../../store/styles';
 
-//Lấy kích thước thah status
-const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 0;
-// Lấy kích thước màn hình
-const { width, height } = Dimensions.get('window');
-const vh = percent => (percent * height) / 100;
-const vw = percent => (percent * width) / 100;
-// default color
-export const Colors = {
-  maincolor: "#CEF1CF",
-  white: "#ffffff",
-  black: "#000000",
-  gray: "#D9D9D9",
-  green: "#61AF2B",
-}
-
-const { maincolor, white, black, gray, green } = Colors;
-
+const { maincolor, white, black} = Colors;
+const { vh, vw } = ScreenSize;
  //screen
  export const StyledContainer = styled.View`
     flex: 1;
