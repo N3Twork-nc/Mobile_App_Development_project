@@ -59,7 +59,7 @@ const Explore = () => {
             <HeaderContainer>
               <MainTitle>Khám phá</MainTitle>
               <SearchContainer>
-                <ButtonSearch resizeMode="contain" source={require('../../assets/search.png')} />
+                <ButtonSearch resizeMode="contain" source={require('../../assets/logo2.png')} />
               </SearchContainer>
             </HeaderContainer>
             

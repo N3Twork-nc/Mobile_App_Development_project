@@ -21,14 +21,13 @@ const { maincolor, white, black, gray, green } = Colors;
  //screen
  export const StyledContainer = styled.View`
     flex: 1;
-    height: 100%;
     background-color: ${white};
 `;
 
 export const HeaderContainer = styled.View`
     flex: 1;
     width: ${vw(100)}px;
-    height: ${vh(15)}px;
+    height: ${vh(10)}px;
     background-color: ${maincolor};
     ${Platform.OS === 'android' ? 'margin-top: 10%' : 'margin-top: 0px;'}
 `;
@@ -38,6 +37,7 @@ export const TitleContainer = styled.View`
   align-items: center;
   justify-content: center; 
   width: 100%;  
+  margin-top: 10px;
 `;
 export const MainTitle = styled.Text`
   font-size: 25px;
@@ -314,4 +314,80 @@ export const ImgDecor = styled.Image`
   position: relative;
   width: ${vw(100)}px;
   height: ${vh(50)}px;
+`;
+export const AllNoteContainer = styled.View`
+  margin-bottom: 20px;
+`;
+export const TitleNoteContainer = styled.View`
+  align-items: center;
+  justify-content: center; 
+  margin-top: ${vh(3)}px;
+  margin-bottom: 10px;
+`;
+export const TitleMainNote = styled.Text`
+  font-size: 20px;
+  color: #274227;
+  font-weight: bold;
+  align-self: flex-start;
+  left:15px;
+`;
+
+export const NoteImg = styled.Image`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  align-self: flex-end;
+  right: 15px;
+ `;
+ 
+ export const Note1Con = styled.View`
+ width: ${vw(100)}px;
+ margin-top: 10px;
+ align-self: center;
+ justify-content: center;
+ margin-bottom: 5px;
+`;
+export const CheckboxContainer = styled.View`
+  position: absolute;
+  border-radius: 15px;   
+  background-color: '#ffffff';
+  left:${vw(2)}px; 
+`;
+export const CheckboxButton= styled.TouchableOpacity`
+  border-radius: 20px;
+  width: ${vw(8)}px;
+`
+export const NoteBoxCon = styled.View`
+  align-self: center;
+  width: ${vw(85)}px;
+  height: 70px;
+  left:${vw(3)}px; 
+  border-top-right-radius: 10px; 
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px; 
+  border-bottom-left-radius: 10px;
+  background-color: #ffffff;
+`;
+export const Line = styled.View`
+  width: ${vw(2)}px;
+  height: 70px; 
+  border-top-left-radius: 30px; 
+  border-bottom-left-radius: 30px;
+  background-color:  #076F0C;
+`;
+export const ContentBox= styled.View`
+position: absolute;
+margin-left: 20px;
+width: ${vw(80)}px;
+margin-top: 5px;
+`;
+export const TitleBoxNote = styled.Text`
+  font-size: 15px;
+  color: #1A5D1A;
+  font-weight: bold;
+`;
+
+export const ContentText = styled.Text`
+  font-size: 15px;
+  color: #111111;
 `;
