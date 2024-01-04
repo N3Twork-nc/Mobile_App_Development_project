@@ -62,7 +62,6 @@ class MyPlants():
 
     def deletePlant(self):
         ref=db.reference(f'MyRoom/{self.username}/{self.roomName}/{self.id}')
-        # print(f'MyRoom/{self.username}/{self.roomName}/{self.id}')
         ref.delete()
 
     def getSchedule(self):

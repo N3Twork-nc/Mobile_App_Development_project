@@ -15,7 +15,6 @@ const createFormData = (uriPhoto) => {
 export const plant = async (photo, roomName, plantName, token) => {
   try {
     const data = createFormData(photo);
-
     const encodedRoomName = encodeURIComponent(roomName);
     const encodedPlantName = encodeURIComponent(plantName);
 
