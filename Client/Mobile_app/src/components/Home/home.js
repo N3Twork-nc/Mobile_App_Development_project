@@ -73,7 +73,7 @@ const Home = () => {
   const handleExplore = () => {navigation.navigate('Explore',);};
   const handleScan = () => {navigation.navigate('CameraScreen',);};
   const handleProfile= () => {navigation.navigate('Profile',);};
-  
+  const handleAllNotify = () => {navigation.navigate('AllNotifications')};
   const handleRecently = async () => {
     try {
       const allPlants = await allPlant(token);
@@ -241,7 +241,7 @@ const Home = () => {
 
          <TitleforContainers>
             <Title1>Thông báo</Title1>
-            <Title2>Xem tất cả</Title2>
+            <Title2 onPress={handleAllNotify}>Xem tất cả</Title2>
           </TitleforContainers>
 
           {/* Thông báo 1 */}
