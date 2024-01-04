@@ -54,7 +54,7 @@ export const Container = styled.View`
   position: relative;
   align-items: center;
   justify-content: center;
-  margin-top: ${vh(65)}px;
+  margin-top: ${vh(71)}px;
   z-index: 0;
   ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'}
 `;

@@ -16,8 +16,8 @@ import { useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons'; 
 const Schedule = () => {
   const token = useSelector(state=>state.token)['payload'];
-  // const route=useRoute()
-  // const {idPlant,roomName} =route.params
+  const route=useRoute()
+  const {idPlant,roomName} =route.params
   const navigation = useNavigation();
   const handleBack = () => { navigation.navigate('Home'); }
  
