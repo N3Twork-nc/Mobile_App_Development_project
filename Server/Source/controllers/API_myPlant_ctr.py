@@ -49,6 +49,13 @@ def getPlants(username=Depends(Authentication().validate_token)):
     try:
         garden = MyPlants(username)
         data = garden.getAllPlants()
+        for roomName in data:
+            for key in data[roomName]:
+                path=f'myroom/{username}/{key}.jpg'
+                blob=container.get_blob_client(path)
+                token=CustomFunctionAzure.generate_token_blob(blob)
+                data[roomName][key]["img"]=f'https://caothi.blob.core.windows.net/myplants/{path}?{token}'
+        print(data)
         return data
     except Exception as e:
         print(str(e))
