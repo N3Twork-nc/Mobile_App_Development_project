@@ -8,33 +8,33 @@ import { NavigationContainer } from '@react-navigation/native';
 import Schedule from './src/components/Schedule/schedule';
 import ResetPass from './src/components/Profile/Reset Pass/resetpass';
 
-// class App extends Component
-// {
-//   componentDidMount() {
-//     if (Platform.OS === 'android') {
-//       StatusBar.setBackgroundColor('white');
-//     }
-//   };
-//   render()
-//   {
-//     return <Provider store={store}>
-//     <AppNavigator/>
-//   </Provider> 
-//   }
+class App extends Component
+{
+  componentDidMount() {
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor('white');
+    }
+  };
+  render()
+  {
+    return <Provider store={store}>
+    <AppNavigator/>
+  </Provider> 
+  }
   
-// }
-// export default App;
+}
+export default App;
 
 
-export default function App() {
-return (
-<Provider store={store}>
- <NavigationContainer>
-    <ResetPass />
-   </NavigationContainer>
-  </Provider>
-);
-};  
+// export default function App() {
+// return (
+// <Provider store={store}>
+//  <NavigationContainer>
+//     <ResetPass />
+//    </NavigationContainer>
+//   </Provider>
+// );
+// };  
 
 
 
