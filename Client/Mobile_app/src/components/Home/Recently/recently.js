@@ -80,7 +80,7 @@ return (
                         pairs.push(
                             <PlantContainer key={i}>
                                 <Plant1Container onPress={() => handlePress(allPlants[i].roomName)}>
-                                    <ImageFrame resizeMode="cover" source={require('../../../assets/plant0.jpg')} />
+                                    <ImageFrame resizeMode="cover" source={{uri:allPlants[i].plant.img}} />
                                     <PlantName numberOfLines={1}>{allPlants[i].plant.plantName}</PlantName>
                                     <Info1>
                                         <HistoryTitle>Ngày:</HistoryTitle>
@@ -98,7 +98,7 @@ return (
 
                                 {allPlants[i + 1] && (
                                     <Plant1Container onPress={() => handlePress(allPlants[i + 1].roomName)}>
-                                        <ImageFrame resizeMode="cover" source={require('../../../assets/plant1.jpg')} />
+                                        <ImageFrame resizeMode="cover" source={{uri:allPlants[i+1].plant.img}} />
                                         <PlantName numberOfLines={1}>{allPlants[i + 1].plant.plantName}</PlantName>
                                         <Info1>
                                             <HistoryTitle>Ngày:</HistoryTitle>
