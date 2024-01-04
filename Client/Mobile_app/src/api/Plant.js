@@ -55,6 +55,25 @@ export const myPlant = async (token, roomName) => {
   }
 };
 
+export const allPlant = async (token) => {
+  try {
+    const response = await axios.get(IPServer + 'APIAllPlant', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    const getPlants = response.data;
+
+    console.log("Get all plants success");
+
+    return getPlants;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 export const countPlants=async (token) => {
   try {
     const response = await axios.get(IPServer + 'API_get_count_plants', {

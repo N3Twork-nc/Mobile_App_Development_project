@@ -7,7 +7,7 @@ import {
    SaveButton, SaveContainer, Save, SaveButtonText, BackContainer, 
    TitleContainer, SectionsContainer, BoxContainer, FirstSection, 
    Icon, LeftContainer, EachSectionContainer, SectionDetailText, 
-   SectionName, SubSectionText, RightContainer, SecondSection, BoxesContainer,
+   SectionName, SubSectionText, RightContainer, SecondSection, BoxesContainer, CloseContainer, CloseButton,
 } from './styleAfterscan.js';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Modal from 'react-native-modal';
@@ -76,6 +76,7 @@ const Afterscan = () => {
   const handleBack = () => {
     navigation.navigate('CameraScreen', {animations: false});
   }
+  const handleClose = () => {navigation.navigate('Home')};
 
     // Danh sách các nguồn ảnh
   const images = [
@@ -96,6 +97,9 @@ const Afterscan = () => {
             <MainTitle>
                   Kết quả
             </MainTitle>
+            <CloseContainer onPress={handleClose}>
+              <CloseButton resizeMode="cover" source={require('../../assets/close.png')}/>
+            </CloseContainer>
           </TitleContainer>          
         </HeaderContainer>
         {/* ẢNH CỦA CÂY */}
@@ -115,13 +119,13 @@ const Afterscan = () => {
         {/* PHẦN THÔNG TIN */}
         <BodyContainer>
                 <ImgLogo resizeMode="cover" source={require('../../assets/logo.png')}/>
-                <Text1> Cây của bạn đã được nhận diện!</Text1>
-                <Text2> {info[0].plantName} </Text2>
+                <Text1>Cây của bạn đã được nhận diện!</Text1>
+                <Text2>{info[0].plantName} </Text2>
                 <TagContainer>
                   {keywords.map((keyword, index) => (
                   <Tag key={index}>{keyword}</Tag> ))}
                 </TagContainer>
-                <Text3> Thông tin</Text3> 
+                <Text3>Thông tin</Text3> 
                 <SectionsContainer>
                   <BoxesContainer>                  
                     <FirstSection>

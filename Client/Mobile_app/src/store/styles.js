@@ -39,3 +39,16 @@ export const ScreenSize = {
    vh: percent => (percent * height) / 100,
    vw: percent => (percent * width) / 100,
 }
+
+// Bộ từ điển dịch mô tả thời tiết
+const weatherDescriptionTranslations = {
+  "clear sky": "trời quang",
+  "few clouds": "ít mây",
+  "scattered clouds": "mây rải rác",
+  "broken clouds": "nhiều mây",
+  "shower rain": "mưa rào",
+  "rain": "mưa",
+  "thunderstorm": "mưa giông",
+  "snow": "tuyết",
+  "mist": "sương mù",
+};

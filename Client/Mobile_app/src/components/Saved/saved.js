@@ -1,29 +1,25 @@
 import React, {useState} from 'react'
-import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
-         Plant1Container, Plant2Container, ImageFrame, PlantName, PlantContainer,
-         ButtonContainer, IconButton, Icon, ButtonText, ButtonContainerWrapper,
-        } from './styleRoom'
+import { StyledContainer, HeaderContainer, MainTitle, ContainerButton,
+         Plant1Container, ImageFrame, PlantName, PlantContainer, TaskbarButtonText, TaskbarView,
+         ButtonContainer, IconButton, Icon, ButtonText, ButtonContainerWrapper, TaskbarIcon
+        } from './styleSaved.js'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Text, ScrollView, SafeAreaView, StyleSheet, View, Alert, Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { myPlant, getPlant, deletePlant } from '../../../api/Plant.js';
 import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modal';
-import logo from '../../../assets/logo.png';
-import {deleteMyPlant} from '../../../reducers/myplants.js' 
+import logo from '../../assets/logo.png';
+import { myPlant, getPlant, deletePlant } from '../../api/Plant.js';
 
 const logoApp = logo;
 
-const Room = () => {
+const Saved = () => {
     const [isLoading, setIsLoading] = useState(false);
     const token = useSelector(state=>state.token)['payload'];
-    
     const navigation = useNavigation();
     const dispatch=useDispatch()
     const route = useRoute();
-    const {roomName } = route.params;
-    const plantsInRoom=useSelector(state=>state.plant)[roomName]['Data'];
-
+    const { plantsInRoom, roomName } = route.params;
 
     // Xử lý xóa cây
     const [isAlertVisible, setAlertVisible] = useState(false);
@@ -41,15 +37,31 @@ const Room = () => {
     const handleConfirmDelete = async () => {
         setAlertVisible(false);
         const result = await deletePlant(roomName, deletePlantId, token);
-        let action = deleteMyPlant({"roomName":roomName,"idPlant":deletePlantId})
+        const plantDetails = await myPlant(token, roomName);
+        let action = null;
+        switch (roomName) {
+            case 'Phòng khách':
+              action = updateLivingRoomData(plantDetails);
+              break;
+            case 'Nhà bếp':
+              action = updateKitchenData(plantDetails);
+              break;
+            case 'Phòng ngủ':
+              action = updateBedroomData(plantDetails);
+              break;
+            case 'Sân vườn':
+              action = updateBackyardData(plantDetails);
+              break;
+            default:
+              break;
+          }
         dispatch(action);
         if (result==true) {
           Alert.alert("Xóa cây thành công");
         } else {
           Alert.alert("Xóa cây thất bại");
         }
-      };
-      
+      };     
     
 
     const handleInfo = async (plantname) => {
@@ -64,24 +76,19 @@ const Room = () => {
         setIsLoading(false);
     };
 
-    const handleBack = () => {
-      navigation.goBack();
-    };
-    const handleSchedule = (idPlant) => {
-        navigation.navigate('Schedule',{idPlant,roomName});
-        
-    };
+    const handleHome = () => {navigation.navigate('Home');};
+    const handleExplore = () => {navigation.navigate('Explore');};
+    const handleProfile = () => {navigation.navigate('Profile');};
+    const handleScan = () => {navigation.navigate('CameraScreen');};
+
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <ScrollView style={{ flex: 1 }}>
             <StyledContainer >
                 
                 {/*Header*/}
-                <HeaderContainer>
-                    <BackContainer onPress={handleBack}>
-                        <ButtonBack  resizeMode="cover" source={require('../../../assets/back.png')} />
-                    </BackContainer>                    
-                    <MainTitle>{roomName}</MainTitle>
+                <HeaderContainer>                    
+                    <MainTitle>Đã lưu</MainTitle>
                 </HeaderContainer>
 
                 {/* Plants */}
@@ -99,15 +106,11 @@ return (
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
                                     <IconButton onPress={() => handleInfo(plantsInRoom[keys[i]].plantName)}>
-                                        <Icon source={require('../../../assets/info.png')} />
+                                        <Icon source={require('../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton onPress={()=>handleSchedule(keys[i])}>
-                                        <Icon source={require('../../../assets/water.png')} />
-                                        <ButtonText>Đặt lịch</ButtonText>
-                                    </IconButton>
                                     <IconButton onPress={()=>handleDelete(keys[i])}>
-                                        <Icon source={require('../../../assets/bin.png')} />
+                                        <Icon source={require('../../assets/bin.png')} />
                                         <ButtonText>Xóa</ButtonText>
                                         <CustomAlert
                                             isVisible={isAlertVisible}
@@ -127,22 +130,12 @@ return (
                                 <ButtonContainerWrapper>
                                     <ButtonContainer>
                                     <IconButton onPress={() => handleInfo(plantsInRoom[keys[i + 1]].plantName)}>
-                                        <Icon source={require('../../../assets/info.png')} />
+                                        <Icon source={require('../../assets/info.png')} />
                                         <ButtonText>Chi tiết</ButtonText>
                                     </IconButton>
-                                    <IconButton onPress={()=>handleSchedule(keys[i + 1])}>
-                                        <Icon source={require('../../../assets/water.png')} />
-                                        <ButtonText>Đặt lịch</ButtonText>
-                                    </IconButton>
                                     <IconButton onPress={()=>handleDelete(keys[i + 1])}>
-                                        <Icon source={require('../../../assets/bin.png')} />
+                                        <Icon source={require('../../assets/bin.png')} />
                                         <ButtonText>Xóa</ButtonText>
-                                        <CustomAlert
-                                            isVisible={isAlertVisible}
-                                            message="Bạn có chắc chắn muốn xóa cây này không?"
-                                            onCancel={handleCancel}
-                                            onDelete={handleConfirmDelete}
-                                            />
                                     </IconButton>
                                     </ButtonContainer>
                                 </ButtonContainerWrapper>                        
@@ -160,16 +153,40 @@ return (
             <View style={[StyleSheet.absoluteFillObject, styles.container]}>
                 <LottieView
                     resizeMode="contain"
-                    source={require('../../../assets/Animation-loading1.json')}
+                    source={require('../../assets/Animation-loading1.json')}
                     autoPlay
                     style={{ width: 100, height: 100 }}
                 />
             </View>
         )}
+
+         {/* Taskbar */}
+         <TaskbarView>
+          <ContainerButton onPress={handleExplore}>
+            <TaskbarIcon resizeMode="contain" source={require('../../assets/explore.png')}/>
+            <TaskbarButtonText>Khám phá</TaskbarButtonText>
+          </ContainerButton>
+          <ContainerButton onPress={handleHome}>
+            <TaskbarIcon resizeMode="contain" source={require('../../assets/mygarden.png')} />
+            <TaskbarButtonText>Vườn của tôi</TaskbarButtonText>
+          </ContainerButton>
+          <ContainerButton onPress={handleScan}>
+            <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')} />
+            <TaskbarButtonText>Scan</TaskbarButtonText>
+          </ContainerButton>
+          <ContainerButton>
+            <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}  tintColor={'green'} />
+            <TaskbarButtonText style={{ color: 'green' }}>Đã lưu</TaskbarButtonText>
+          </ContainerButton>
+          <ContainerButton onPress={handleProfile}>
+            <TaskbarIcon resizeMode="contain" source={require('../../assets/profile.png')} />
+            <TaskbarButtonText>Cá nhân</TaskbarButtonText>
+          </ContainerButton>
+        </TaskbarView>
     </SafeAreaView>
 )
 }
-export default Room;
+export default Saved;
 
 const styles = StyleSheet.create({
     container: {
@@ -180,7 +197,6 @@ const styles = StyleSheet.create({
   });
 // Alert cảnh báo khi nhấn XÓA
 const CustomAlert = ({ isVisible, message, onCancel, onDelete }) => {
-
   
     return (
       <Modal isVisible={isVisible}>
