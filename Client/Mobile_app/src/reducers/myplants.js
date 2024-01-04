@@ -21,8 +21,16 @@ plantsReducer=createSlice({
         },
     },
     reducers: {
-        updateDataMyPlant(state, data) {
-            return data.payload;
+        updateDataMyPlant(state,data) {
+            const roomName=Object.keys(data.payload)[0]
+            const value=data.payload[roomName]
+            return {
+                ...state,
+                [roomName]:{
+                    ...state[roomName],
+                    'Data':value
+                }
+            }
         },
         updateQuantity(state, data) {
             const { 'Phòng khách': livingroom, 'Nhà bếp': kitchen, 'Sân vườn': garden, 'Phòng ngủ': bedroom } = data.payload;
@@ -47,45 +55,29 @@ plantsReducer=createSlice({
                 },
             }
         },
-        updateLivingRoomData(state, data) {
+        deleteMyPlant(state,data){
+            const roomName=data.payload["roomName"]
+            const idPlant=data.payload['idPlant']
+            const count=state[roomName]['Count']
+            console.log(state)
+            delete state[roomName]["Data"][idPlant]
+            state[roomName]["Count"]=count-1
+            return state
+        },
+        addMyPlant(state,data){
+            const roomName=data.payload
+            const count=state[roomName]["Count"]
             return {
                 ...state,
-                'Phòng khách': {
-                    ...state['Phòng khách'],
-                    'Data': data.payload, 
+                [roomName]:{
+                    ...state[roomName],
+                    "Count":count+1,
                 }
             }
-        },
-        updateKitchenData(state, data) {
-            return {
-                ...state,
-                'Nhà bếp': {
-                    ...state['Nhà bếp'],
-                    'Data': data.payload, 
-                }
-            }
-        },
-        updateBedroomData(state, data) {
-            return {
-                ...state,
-                'Phòng ngủ': {
-                    ...state['Phòng ngủ'],
-                    'Data': data.payload, 
-                }
-            }
-        },
-        updateBackyardData(state, data) {
-            return {
-                ...state,
-                'Sân vườn': {
-                    ...state['Sân vườn'],
-                    'Data': data.payload, 
-                }
-            }
-        },
+        }
     }
 })
 
 export const { actions, reducer } = plantsReducer
-export const { updateDataMyPlant, updateQuantity, updateLivingRoomData, updateKitchenData, updateBedroomData, updateBackyardData } = actions
+export const { updateDataMyPlant, updateQuantity,deleteMyPlant,addMyPlant } = actions
 export default reducer

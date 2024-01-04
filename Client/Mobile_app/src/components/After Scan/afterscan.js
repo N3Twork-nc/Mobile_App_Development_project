@@ -13,8 +13,9 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
 import { plant } from '../../api/Plant.js';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
+import { addMyPlant } from '../../reducers/myplants.js';
 const logoApp = logo;
 
 const styles = StyleSheet.create({
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
 
 const Afterscan = () => {
   const token = useSelector(state=>state.token)['payload'];
+  dispatch=useDispatch()
   const route = useRoute();
   const { info, photoURI } = route.params;
   const keywords = info[0].keyword.split(', ');
@@ -55,6 +57,8 @@ const Afterscan = () => {
       if (response=="Successfull") 
         {
           Alert.alert("Thêm cây thành công");
+          const action=addMyPlant(roomName)
+          dispatch(action)
           setIsLoading(false);
         }
       else {

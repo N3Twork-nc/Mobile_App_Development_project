@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity,Image, Modal,  StyleSheet} from 'react-native';
+import { View, Text, TouchableOpacity,Image, Modal,  StyleSheet, Alert} from 'react-native';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose, ContainerWrapper
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
@@ -93,11 +93,15 @@ const CameraScreen = () => {
     setIsLoading(true);
     try {
       const predictedInfo = await predictPlant(capturedPhoto, token);
+      setIsLoading(false);
+      if (predictedInfo==false){
+        Alert.alert("Cây không thể nhận diện");
+        return;
+      }
       setInfoData(predictedInfo);
       navigation.replace('Afterscan', { info: predictedInfo, photoURI: capturedPhoto ? capturedPhoto.uri : null});
-      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      Alert.alert(error)
     }
   };
 
@@ -144,6 +148,8 @@ const CameraScreen = () => {
             </ButtonClose>
         </HeaderContainer>
         {/* Thanh trượt zoom ảnh */}
+        
+        <ContainerWrapper>
         <Slider
           style={styles.slider}
           minimumValue={0}
@@ -162,6 +168,8 @@ const CameraScreen = () => {
               <ImageReweet resizeMode="cover" source={require('../../assets/rotation.png')} tintColor={'white'} />
             </ButtonReweet>   
         </Container>
+        </ContainerWrapper>
+        
       </Camera>
       {/* Cửa sổ modal để hiển thị ảnh đã chụp và nút "Chụp lại" và "Lưu" */}
       <Modal
@@ -214,8 +222,8 @@ const styles = StyleSheet.create({
   slider: {
     width: '90%',
     alignSelf: 'center',
-    top: '68%',
-    zIndex: '2',
+    zIndex: 2,
+    marginBottom: 10,
     minimumTrackTintColor:"#FFFFFF",
     maximumTrackTintColor:"#ffffff",
   }

@@ -1,5 +1,5 @@
 from Source import app
-from fastapi import UploadFile
+from fastapi import UploadFile,HTTPException
 import numpy as np
 from io import BytesIO
 from PIL import Image
@@ -23,6 +23,8 @@ async def prediectPlants(file: UploadFile):
     img_array = np.expand_dims(img_array, axis=0)
     #Dự đoán
     result=Model.PredictPlants(img_array)
+    if result==-1:
+        raise HTTPException(status_code=204, detail="Can't predict")
     info=JsonInfo.get_info_plants(result)
     info["cover"]=[]
     for i in range(1,4):
