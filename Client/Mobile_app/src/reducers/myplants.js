@@ -37,6 +37,7 @@ plantsReducer=createSlice({
                 }
             }
         },
+      
         updateAllPlants(state, data) {
             const dataLivingroom= data.payload.hasOwnProperty("Phòng khách") ? data.payload["Phòng khách"] :{};
             const countLivingroom=Object.keys(dataLivingroom).length
@@ -69,6 +70,7 @@ plantsReducer=createSlice({
                     "Data":dataStore,
                     "Count":countStore
                 }
+
             }
         },
         deleteMyPlant(state,data){
