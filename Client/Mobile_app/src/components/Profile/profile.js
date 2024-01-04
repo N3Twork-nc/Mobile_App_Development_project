@@ -24,7 +24,7 @@ const Profile = () => {
     const userInfo = useSelector(state => state.infoUser);
     const [isAlertVisible, setAlertVisible] = useState(false);
     const [selectedRoom, setSelectedRoom] = useState(null);
-
+  
     //Khi người dùng nhấn gửi phản hồi
     const SendFeedback = () => {setAlertVisible(true);}
     const PressOK = () => {setAlertVisible(false)};
@@ -77,6 +77,7 @@ const Profile = () => {
       const handleScan = () => {
         navigation.navigate('CameraScreen', { animations: false });
       };
+      
       const handleSaved = async (roomName) => {
         setSelectedRoom(roomName);
         let plantsInRoom = [];
@@ -89,6 +90,7 @@ const Profile = () => {
         }
         navigation.navigate('Saved', { plantsInRoom, roomName });
       };
+
       const handleProfile= () => {
         navigation.navigate('Profile', { animations: false });
       };
