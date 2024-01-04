@@ -10,9 +10,7 @@ export const info = async (username, fullName, gender, phoneNumber, address) => 
         "phoneNumber": `${phoneNumber}`,
         "address": `${address}`
     };
-    console.log(username, fullName, gender, phoneNumber, address)
     const response = await axios.put(IPServer + 'editProfile', data);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
