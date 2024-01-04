@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
         TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
@@ -12,6 +12,8 @@ import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { schedule } from '../../api/Plant';
 import { useSelector } from 'react-redux';
+import { getSchedule } from '../../api/Plant';
+import { element } from 'prop-types';
 
 
 const Schedule = () => {
@@ -152,6 +154,14 @@ const Schedule = () => {
       fontSize: 17,
     },
   });
+  const handleMonthChange=(date)=>{
+    const { year, month } = date;
+  }
+
+  useEffect(()=>{
+    // schedule()
+  },[])
+
 
   return (
 <SafeAreaView style={{ flex: 1, backgroundColor: '#CEF1CF' }}>   
@@ -169,7 +179,10 @@ const Schedule = () => {
             {/* Hiển thị lịch */}
             <Calendar
               onDayPress={onDayPress}
-              markedDates={{ [selectedDate]: { selected: true, selectedColor: 'green' } }}
+              markedDates={{
+                '2024-01-01': { selected: true, selectedColor: 'green', note: 'Ghi chú cho ngày này' },
+                [selectedDate]:{ selected: true, selectedColor: 'green' }}}
+              onMonthChange={handleMonthChange}
             />
           </View>
           <DecorContainer>

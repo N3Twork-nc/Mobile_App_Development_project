@@ -20,8 +20,10 @@ export const predictPlant= async(photo,token)=>{
       'Content-Type': 'multipart/form-data',
       Authorization:`Bearer ${token}`,}
     },)
+    if (response.status==204) return false
 
     const plant = response.data;
+   
 
     const results = [];
 
@@ -38,10 +40,10 @@ export const predictPlant= async(photo,token)=>{
 
     results.push({ plantName, keyword, fertilize, watering, repotting, light, temperature, humidity, information,cover});
 
-    console.log("Predict successfull")
     return results
   }
   catch (error){
     console.log(error)
+    throw new Error("Quá trình nhận diện đã xảy ra lỗi")
   }
 }
