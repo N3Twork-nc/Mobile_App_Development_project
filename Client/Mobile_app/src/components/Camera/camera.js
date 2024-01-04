@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     top: '68%',
-    zIndex: '2',
+    zIndex: 2,
     minimumTrackTintColor:"#FFFFFF",
     maximumTrackTintColor:"#ffffff",
   }
