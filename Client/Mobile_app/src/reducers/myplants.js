@@ -19,6 +19,10 @@ plantsReducer=createSlice({
             'Count':0,
             "Data":"",
         },
+        'Lưu trữ':{
+            'Count':0,
+            "Data":"",
+        },
     },
     reducers: {
         updateDataMyPlant(state,data) {
@@ -33,7 +37,7 @@ plantsReducer=createSlice({
             }
         },
         updateQuantity(state, data) {
-            const { 'Phòng khách': livingroom, 'Nhà bếp': kitchen, 'Sân vườn': garden, 'Phòng ngủ': bedroom } = data.payload;
+            const { 'Phòng khách': livingroom, 'Nhà bếp': kitchen, 'Sân vườn': garden, 'Phòng ngủ': bedroom, 'Lưu trữ': saved } = data.payload;
 
             return {
                 ...state,
@@ -52,6 +56,10 @@ plantsReducer=createSlice({
                 'Sân vườn': {
                     ...state['Sân vườn'],
                     'Count': garden,
+                },
+                'Lưu trữ': {
+                    ...state['Lưu trữ'],
+                    'Count': saved,
                 },
             }
         },
