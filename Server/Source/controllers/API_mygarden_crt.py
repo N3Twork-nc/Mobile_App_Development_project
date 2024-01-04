@@ -39,7 +39,7 @@ def getDataGarden(idGarden:str,type:TypeData,interval:Interval,username=Depends(
     try: 
         garden=DataGarden(username,idGarden,str(type.value),int(interval.value))
         data=garden.getData()
-        grouped_data = {}
+        grouped_data = {}   
         for date_str, value in data.items():
             if interval==Interval.DAY:
                 date_obj = datetime.strptime(date_str,"%Y-%m-%d-%H:%M:%S")

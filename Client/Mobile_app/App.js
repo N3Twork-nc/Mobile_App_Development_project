@@ -1,11 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component,useEffect} from 'react';
 import AppNavigator from './src/navigators/AppNavigator';
 import { Provider } from 'react-redux';
 import store from './src/store';
-import { StatusBar, Platform } from 'react-native';
+import { StatusBar, Platform} from 'react-native';
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import Schedule from './src/components/Schedule/schedule';
+import * as Notifications from 'expo-notifications'
+
+
+
+
 class App extends Component
 {
   componentDidMount() {
@@ -13,9 +16,13 @@ class App extends Component
       StatusBar.setBackgroundColor('white');
     }
   };
+  
+
+  // Handle incoming notifications when the app is in the foreground
+  
   render()
   {
-    return <Provider store={store}>
+  return <Provider store={store}>
     <AppNavigator/>
   </Provider> 
   }
