@@ -125,14 +125,14 @@ const Home = () => {
           <RecentlyPlantContainer>
             {sortedKeys.length>0 && (
               <Plant1Container>
-                <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[0]]["Img"]}}/>
-                <PlantName>{plantDataAll[sortedKeys[0]]["plantName"]} </PlantName>
+                <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[sortedKeys.length-1]]["Img"]}}/>
+                <PlantName>{plantDataAll[sortedKeys[sortedKeys.length-1]]["plantName"]} </PlantName>
               </Plant1Container> 
             )} 
-            {sortedKeys.length>1 && (
+            {sortedKeys.length>0 && (
             <Plant2Container>
-              <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[1]]["Img"]}}/>
-              <PlantName> {plantDataAll[sortedKeys[1]]["plantName"]} </PlantName>
+              <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[0]]["Img"]}}/>
+              <PlantName> {plantDataAll[sortedKeys[0]]["plantName"]} </PlantName>
             </Plant2Container>
             )}
           </RecentlyPlantContainer>
