@@ -117,7 +117,7 @@ export const schedule= async (token,idPlant,roomName,timeStart,dateStart,frequen
       "frequency": frequency,
       "frequencyType": frequencyType,
       "action": action,
-      "note":note
+      "note": note
     }
     const response = await axios.put(IPServer + 'API_schedule',data, {
       headers: {
