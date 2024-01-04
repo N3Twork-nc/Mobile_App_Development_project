@@ -20,7 +20,7 @@ const Schedule = () => {
   const route=useRoute()
   const {scheduled, idPlant, roomName} =route.params
   const navigation = useNavigation();
-  const handleBack = () => { navigation.navigate('Home'); }
+  const handleBack = () => { navigation.goBack() }
  
   const [checked, setChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
@@ -190,32 +190,34 @@ const Schedule = () => {
         {/*END ADD NOTE */}
         </StyledContainer>
         <AllNoteContainer>
-              <TitleNoteContainer>
-                <NoteImg resizeMode="contain" source={require('../../assets/tick.png')}/> 
-                <TitleMainNote>Những việc cần làm</TitleMainNote>
-              </TitleNoteContainer>
+          {scheduled ? (
+            <TitleNoteContainer>
+              <NoteImg resizeMode="contain" source={require('../../assets/tick.png')}/> 
+              <TitleMainNote>Những việc cần làm</TitleMainNote>
+            </TitleNoteContainer>
+          ) : null}
 
-              {/* Note */}
-              {Object.values(scheduled).map((calender, index) => (
-              <Note1Con key={index}>
-                  <CheckboxButton onPress={() => setChecked(!checked)}>
-                      <CheckboxContainer>
-                        {checked ? (
-                          <Ionicons name="checkmark-circle" size={25} color="green" />
-                        ) : (
-                          <Ionicons name="ellipse-outline" size={25} color="white"/>
-                        )}
-                      </CheckboxContainer>
-                  </CheckboxButton>
-                  <NoteBoxCon> 
-                    <Line></Line>                    
-                    <ContentBox>            
-                        <TitleBoxNote>{calender.note}</TitleBoxNote>           
-                        <ContentText>Cách {calender.frequency} {calender.frequencyType} bạn có lịch {calender.action} lúc {calender.timeStart} kể từ {calender.dateStart} </ContentText>
-                    </ContentBox>
-                  </NoteBoxCon> 
-              </Note1Con>
-              ))}
+          {/* Note */}
+          {scheduled && Object.values(scheduled).map((calender, index) => (
+            <Note1Con key={index}>
+                <CheckboxButton onPress={() => setChecked(!checked)}>
+                    <CheckboxContainer>
+                      {checked ? (
+                        <Ionicons name="checkmark-circle" size={25} color="green" />
+                      ) : (
+                        <Ionicons name="ellipse-outline" size={25} color="white"/>
+                      )}
+                    </CheckboxContainer>
+                </CheckboxButton>
+                <NoteBoxCon> 
+                  <Line></Line>                    
+                  <ContentBox>            
+                      <TitleBoxNote>{calender.note}</TitleBoxNote>           
+                      <ContentText>Cách {calender.frequency} {calender.frequencyType} bạn có lịch {calender.action} lúc {calender.timeStart} kể từ {calender.dateStart} </ContentText>
+                  </ContentBox>
+                </NoteBoxCon> 
+            </Note1Con>
+          ))}
 
           </AllNoteContainer>
       </ScrollView>
