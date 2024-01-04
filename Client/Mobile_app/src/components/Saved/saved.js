@@ -3,7 +3,7 @@ import { StyledContainer, HeaderContainer, MainTitle, ContainerButton,
          Plant1Container, ImageFrame, PlantName, PlantContainer, TaskbarButtonText, TaskbarView,
          ButtonContainer, IconButton, Icon, ButtonText, ButtonContainerWrapper, TaskbarIcon
         } from './styleSaved.js'
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
 import { Text, ScrollView, SafeAreaView, StyleSheet, View, Alert, Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
@@ -17,11 +17,9 @@ const logoApp = logo;
 const Saved = () => {
     const [isLoading, setIsLoading] = useState(false);
     const token = useSelector(state=>state.token)['payload'];
+    const plantsInRoom=useSelector(state=>state.plant)["Lưu trữ"]["Data"]
     const navigation = useNavigation();
     const dispatch=useDispatch()
-    const route = useRoute();
-    const { roomName } = route.params;
-    const plantsInRoom=useSelector(state=>state.plant)[roomName]['Data'];
 
     // Xử lý xóa cây
     const [isAlertVisible, setAlertVisible] = useState(false);

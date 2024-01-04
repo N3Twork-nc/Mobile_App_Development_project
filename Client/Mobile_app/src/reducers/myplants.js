@@ -21,71 +21,69 @@ plantsReducer=createSlice({
         },
         'Lưu trữ':{
             'Count':0,
-            "Data":"",
-        },
+            "Data":""
+        }
     },
     reducers: {
-        updateDataMyPlant(state,data) {
+        addMyPlant(state,data) {
             const roomName=Object.keys(data.payload)[0]
             const value=data.payload[roomName]
+            const count=Object.keys(value).length
             return {
                 ...state,
                 [roomName]:{
-                    ...state[roomName],
-                    'Data':value
+                    'Data':value,
+                    "Count":count
                 }
             }
         },
-        updateQuantity(state, data) {
-            const { 'Phòng khách': livingroom, 'Nhà bếp': kitchen, 'Sân vườn': garden, 'Phòng ngủ': bedroom, 'Lưu trữ': saved } = data.payload;
-
+      
+        updateAllPlants(state, data) {
+            const dataLivingroom= data.payload.hasOwnProperty("Phòng khách") ? data.payload["Phòng khách"] :{};
+            const countLivingroom=Object.keys(dataLivingroom).length
+            const dataBedroom=data.payload.hasOwnProperty("Phòng ngủ") ? data.payload["Phòng ngủ"] :{};
+            const countBedroom=Object.keys(dataBedroom).length
+            const dataKitchen=data.payload.hasOwnProperty("Nhà bếp") ? data.payload["Nhà bếp"] :{};
+            const countKitchen=Object.keys(dataKitchen).length
+            const dataGarden=data.payload.hasOwnProperty("Sân vườn") ? data.payload["Sân vườn"] :{};
+            const countGarden=Object.keys(dataGarden).length
+            const dataStore=data.payload.hasOwnProperty("Lưu trữ") ? data.payload["Lưu trữ"] :{};
+            const countStore=Object.keys(dataGarden).length
             return {
-                ...state,
                 'Phòng khách': {
-                    ...state['Phòng khách'],
-                    'Count': livingroom, 
+                    "Data":dataLivingroom,
+                    'Count': countLivingroom, 
                 },
                 'Phòng ngủ': {
-                    ...state['Phòng ngủ'],
-                    'Count': bedroom,
+                    "Data":dataBedroom,
+                    'Count': countBedroom,
                 },
                 'Nhà bếp': {
-                    ...state['Nhà bếp'],
-                    'Count': kitchen,
+                    "Data":dataKitchen,
+                    'Count': countKitchen,
                 },
                 'Sân vườn': {
-                    ...state['Sân vườn'],
-                    'Count': garden,
+                    "Data":dataGarden,
+                    'Count': countGarden,
                 },
-                'Lưu trữ': {
-                    ...state['Lưu trữ'],
-                    'Count': saved,
-                },
+                "Lưu trữ":{
+                    "Data":dataStore,
+                    "Count":countStore
+                }
+
             }
         },
         deleteMyPlant(state,data){
             const roomName=data.payload["roomName"]
             const idPlant=data.payload['idPlant']
             const count=state[roomName]['Count']
-            console.log(state)
             delete state[roomName]["Data"][idPlant]
             state[roomName]["Count"]=count-1
             return state
         },
-        addMyPlant(state,data){
-            const roomName=data.payload
-            const count=state[roomName]["Count"]
-            return {
-                ...state,
-                [roomName]:{
-                    ...state[roomName],
-                    "Count":count+1,
-                }
-            }
-        }
     }
 })
 
 export const { actions, reducer } = plantsReducer
-export const { updateDataMyPlant, updateQuantity,deleteMyPlant,addMyPlant } = actions
+export const {updateAllPlants,deleteMyPlant,addMyPlant } = actions
 export default reducer

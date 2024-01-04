@@ -11,20 +11,18 @@ import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import { schedule } from '../../api/Plant';
+import { getSchedule,schedule} from '../../api/Plant';
 import { useSelector } from 'react-redux';
-import { element } from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Schedule = () => {
   const token = useSelector(state=>state.token)['payload'];
   const route=useRoute()
-  const {scheduled, idPlant, roomName} =route.params
+  const {idPlant, roomName} =route.params
   const navigation = useNavigation();
   const handleBack = () => { navigation.goBack() }
- 
-  const [checked, setChecked] = useState(false);
+
   const [selectedDate, setSelectedDate] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(new Date()); // Giá trị thời gian được chọn
@@ -39,16 +37,21 @@ const Schedule = () => {
    const [selectedMinute, setSelectedMinute] = useState(''); // Thêm state cho phút
    const [note,setNote]=useState('')//ghi chú
    const [checkedItems, setCheckedItems] = useState([]);
+   const [dataschedule,setDataSchedule]=useState()
+
    const handleSchedule = async ()=>{
     try {
-      const result= await schedule(token,idPlant,roomName,selectedHour+":"+String(selectedMinute).padStart(2, '0'),
+      const result= await schedule(token,idPlant,roomName,String(selectedHour).padStart(2, '0')+":"+String(selectedMinute).padStart(2, '0'),
       selectedDate,selectedNumber,selectedFrequency,selectedWork,note)
       if (result==200){
+        setShowModal(false);
         alert("Đặt lịch thành công");
+        setDataSchedule(await getSchedule(token, roomName, idPlant));
       }
       else alert("Đặt lịch thất bại")
     }
-    catch {
+    catch (e) {
+      console.log("Erro: ",e)
       alert("Đặt lịch thất bại")
     }
   }
@@ -156,13 +159,14 @@ const Schedule = () => {
       fontSize: 17,
     },
   });
-  const handleMonthChange=(date)=>{
-    const { year, month } = date;
-  }
 
-  useEffect(()=>{
-    // schedule()
-  },[])
+  const scheduleget=async ()=>{
+    try {
+        setDataSchedule(await getSchedule(token, roomName, idPlant));
+    } catch (error) {
+        console.log(error);
+    }
+  }
 
   // Hàm để lưu trạng thái checkbox vào AsyncStorage
   const saveCheckedItems = async () => {
@@ -187,6 +191,7 @@ const Schedule = () => {
 
   useEffect(() => {
     loadCheckedItems(); // Load trạng thái checkbox khi component được mount
+    scheduleget()
   }, []);
 
   useEffect(() => {
@@ -216,9 +221,7 @@ const Schedule = () => {
             <Calendar
               onDayPress={onDayPress}
               markedDates={{
-                '2024-01-01': { selected: true, selectedColor: 'green', note: 'Ghi chú cho ngày này' },
                 [selectedDate]:{ selected: true, selectedColor: 'green' }}}
-              onMonthChange={handleMonthChange}
             />
           </View>
           {/* ADD NOTE */}
@@ -226,7 +229,7 @@ const Schedule = () => {
         {/*END ADD NOTE */}
         </StyledContainer>
         <AllNoteContainer>
-          {scheduled ? (
+          {dataschedule? (
             <TitleNoteContainer>
               <NoteImg resizeMode="contain" source={require('../../assets/tick.png')}/> 
               <TitleMainNote>Những việc cần làm</TitleMainNote>
@@ -234,7 +237,7 @@ const Schedule = () => {
           ) : null}
 
           {/* Note */}
-          {scheduled && Object.values(scheduled).map((calender, index) => (
+          {dataschedule && Object.values(dataschedule).map((calender, index) => (
             <Note1Con key={index}>
                               <CheckboxButton onPress={() => handleCheck(index)}>
                 <CheckboxContainer>
