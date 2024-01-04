@@ -11,7 +11,7 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { allPlant} from '../../api/Plant.js';
+import { allPlant, allSchedule, myPlant,countPlants} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
@@ -72,6 +72,15 @@ const Home = () => {
   const handleExplore = () => {navigation.navigate('Explore',);};
   const handleScan = () => {navigation.navigate('CameraScreen',);};
   const handleProfile= () => {navigation.navigate('Profile',);};
+  
+  const handleAllNotify = async() => {
+    try {
+      const allPlants = await allSchedule(token);
+      navigation.navigate('AllNotifications', { plantData: allPlants });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
   const handleRecently = async () => {
     try {
@@ -244,7 +253,7 @@ const Home = () => {
 
          <TitleforContainers>
             <Title1>Thông báo</Title1>
-            <Title2>Xem tất cả</Title2>
+            <Title2 onPress={handleAllNotify}>Xem tất cả</Title2>
           </TitleforContainers>
 
           {/* Thông báo 1 */}

@@ -51,7 +51,8 @@ class MyPlants():
             'Phòng khách':len(data['Phòng khách']) if 'Phòng khách' in data else 0,
             'Nhà bếp':len(data['Nhà bếp']) if 'Nhà bếp' in data else 0,
             'Phòng ngủ':len(data['Phòng ngủ']) if 'Phòng ngủ' in data else 0,
-            'Sân vườn':len(data['Sân vườn']) if 'Sân vườn' in data else 0
+            'Sân vườn':len(data['Sân vườn']) if 'Sân vườn' in data else 0,
+            'Lưu trữ':len(data['Lưu trữ']) if 'Lưu trữ' in data else 0
         }
     def insertPlant(self):
         ref=db.reference(f'MyRoom/{self.username}/{self.roomName}')

@@ -27,8 +27,8 @@ const Schedule = () => {
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(new Date()); // Giá trị thời gian được chọn
 
-   const [isFocusNumber, setIsFocusNumber] = useState(false);
-   const [isFocusFrequency, setIsFocusFrequency] = useState(false);
+   const [isFocusNumber, ] = useState(false);
+   const [isFocusFrequency, ] = useState(false);
    const [isFocusWork, setIsFocusWork] = useState(false);
    const [selectedNumber, setSelectedNumber] = useState(1); // Biến state cho dropdown dãy số
    const [selectedFrequency, setSelectedFrequency] = useState(null); // Biến state cho dropdown "Ngày", "Tuần", "Tháng"

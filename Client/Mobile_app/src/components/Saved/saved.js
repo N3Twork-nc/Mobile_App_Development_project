@@ -12,6 +12,7 @@ import logo from '../../assets/logo.png';
 import { getPlant, deletePlant } from '../../api/Plant.js';
 import { deleteMyPlant } from '../../reducers/myplants.js';
 
+
 const logoApp = logo;
 
 const Saved = () => {
@@ -45,7 +46,6 @@ const Saved = () => {
           Alert.alert("Xóa cây thất bại");
         }
       };     
-    
 
     const handleInfo = async (plantname) => {
         setIsLoading(true);
