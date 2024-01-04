@@ -15,7 +15,7 @@ import { allPlant, myPlant,countPlants} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
-import { updateQuantity } from '../../reducers/myplants.js';
+import { updateQuantity,updateDataMyPlant } from '../../reducers/myplants.js';
 
 const Home = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
@@ -48,11 +48,13 @@ const Home = () => {
     try {
       if (roomName) {
         plantsInRoom = await myPlant(token, roomName);
+        const action=updateDataMyPlant({[roomName]:plantsInRoom})
+        dispatch(action)
       }
     } catch (error) {
       console.log(error);
     }
-    navigation.navigate('Room', { plantsInRoom, roomName });
+    navigation.navigate('Room', {roomName});
   };
   
   const handleSaved = async (roomName) => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity,Image, Modal,  StyleSheet} from 'react-native';
+import { View, Text, TouchableOpacity,Image, Modal,  StyleSheet, Alert} from 'react-native';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
@@ -93,11 +93,15 @@ const CameraScreen = () => {
     setIsLoading(true);
     try {
       const predictedInfo = await predictPlant(capturedPhoto, token);
+      setIsLoading(false);
+      if (predictedInfo==false){
+        Alert.alert("Cây không thể nhận diện");
+        return;
+      }
       setInfoData(predictedInfo);
       navigation.replace('Afterscan', { info: predictedInfo, photoURI: capturedPhoto ? capturedPhoto.uri : null});
-      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      Alert.alert(error)
     }
   };
 
