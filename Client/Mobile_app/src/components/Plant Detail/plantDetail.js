@@ -14,14 +14,15 @@ const PlantDetail = () => {
   const route = useRoute();
   const { info, plantname } = route.params;
   const keywords = info.Keyword.split(', ');
+ 
 
   const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });  };
   const handleBack = () => {navigation.goBack();}
   // Danh sách các nguồn ảnh
   const images = [
-    require('../../assets/img1.jpg'),
-    require('../../assets/img2.jpg'),
-    require('../../assets/img3.jpg'),
+    {uri:info.cover[0]},
+    {uri:info.cover[1]},
+    {uri:info.cover[2]},
   ];
   return (
     <SafeAreaView  style={{ flex: 1, backgroundColor: 'white' }}>

@@ -126,7 +126,7 @@ return (
               <AvatarImage
                 resizeMode="contain"
                 style={{ borderRadius: 85, borderWidth: 3, borderColor: 'white' }}
-                source={require('../../assets/placeholder.png')} tintColor={'#164303'}
+                source={{uri:userInfo["avata"]}}
               />
           </AvatarContainer>
                 

@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component,useEffect} from 'react';
 import AppNavigator from './src/navigators/AppNavigator';
 import { Provider } from 'react-redux';
 import store from './src/store';
-import { StatusBar, Platform } from 'react-native';
+import { StatusBar, Platform} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import Schedule from './src/components/Schedule/schedule';

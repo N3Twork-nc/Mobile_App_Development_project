@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState,useRef} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator , TransitionPresets } from '@react-navigation/stack';
 import Welcome from '../components/Welcome/welcome';
@@ -22,6 +22,7 @@ import Recently from '../components/Home/Recently/recently';
 import AboutUs from '../components/Profile/About us/aboutUs';
 import Saved from '../components/Saved/saved';
 import ResetPass from '../components/Profile/Reset Pass/resetpass';
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
