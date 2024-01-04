@@ -124,7 +124,7 @@ return (
               <AvatarImage
                 resizeMode="contain"
                 style={{ borderRadius: 85, borderWidth: 3, borderColor: 'white' }}
-                source={require('../../assets/placeholder.png')} tintColor={'#164303'}
+                source={{uri:userInfo["avata"]}}
               />
           </AvatarContainer>
                 
@@ -158,7 +158,7 @@ return (
         </SectionContainer>
 
 
-        <SectionTitle>Thông báo</SectionTitle>
+        <SectionTitle>Cá nhân</SectionTitle>
         <SectionContainer>
           <ChildSectionContainer>           
             <ChildSectionIcon source={require('../../assets/calendar.png')} tintColor={'#1A5D1A'} />
@@ -169,10 +169,10 @@ return (
           </ChildSectionContainer>
           <Line />
           <ChildSectionContainer>
-              <ChildSectionIcon source={require('../../assets/weather.png')} tintColor={'#1A5D1A'} />
-                <ChildSectionText></ChildSectionText>
+              <ChildSectionIcon source={require('../../assets/changepw.png')} tintColor={'#1A5D1A'} />
+                <ChildSectionText>Đổi mật khẩu</ChildSectionText>
                 <ChildSectionButtonContainer>
-                  <ChildSectionButton source={require('../../assets/btnoff.png')} tintColor={'#1A5D1A'} />
+                  <ChildSectionButton source={require('../../assets/more.png')} tintColor={'#1A5D1A'} />
                 </ChildSectionButtonContainer>    
           </ChildSectionContainer>
         </SectionContainer>
@@ -258,6 +258,7 @@ const CustomAlert = ({ isVisible, onOK }) => {
     </Modal>
   );
 };
+
 // Bộ từ điển dịch mô tả thời tiết
 const weatherDescriptionTranslations = {
   "clear sky": "Trời quang",
