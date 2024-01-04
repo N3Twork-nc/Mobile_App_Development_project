@@ -6,14 +6,40 @@ import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Text, ScrollView, SafeAreaView, StyleSheet, View, Alert, Image, TouchableOpacity } from 'react-native';
+import { myPlant } from '../../../api/Plant.js';
+
 
 const Recently = () => {
     const navigation = useNavigation();
     const route = useRoute();
+    const token = useSelector(state=>state.token)['payload'];
     const { plantData } = route.params;
+    const [selectedRoom, setSelectedRoom] = useState(null);
+    
     const handleBack = () => {
     navigation.goBack();
     };
+
+    const handlePress = async (roomName) => {
+        setSelectedRoom(roomName);
+        let plantsInRoom = [];
+        let destinationRoute = 'Room';
+    
+        try {
+            if (roomName === 'Lưu trữ') {
+                destinationRoute = 'Saved';
+            }
+    
+            if (roomName) {
+                plantsInRoom = await myPlant(token, roomName);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        
+        navigation.navigate(destinationRoute, { plantsInRoom, roomName });
+    };
+    
     
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
@@ -53,7 +79,7 @@ return (
                     for (let i = 0; i < allPlants.length; i += 2) {
                         pairs.push(
                             <PlantContainer key={i}>
-                                <Plant1Container>
+                                <Plant1Container onPress={() => handlePress(allPlants[i].roomName)}>
                                     <ImageFrame resizeMode="cover" source={require('../../../assets/plant0.jpg')} />
                                     <PlantName numberOfLines={1}>{allPlants[i].plant.plantName}</PlantName>
                                     <Info1>
@@ -71,7 +97,7 @@ return (
                                 </Plant1Container>
 
                                 {allPlants[i + 1] && (
-                                    <Plant1Container>
+                                    <Plant1Container onPress={() => handlePress(allPlants[i + 1].roomName)}>
                                         <ImageFrame resizeMode="cover" source={require('../../../assets/plant1.jpg')} />
                                         <PlantName numberOfLines={1}>{allPlants[i + 1].plant.plantName}</PlantName>
                                         <Info1>

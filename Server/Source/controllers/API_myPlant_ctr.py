@@ -1,5 +1,5 @@
 from Source import app
-from Source.models_mvc.myPlants_model import MyPlants,Schedule
+from Source.models_mvc.myPlants_model import MyPlants,Schedule,RoomName
 from fastapi import UploadFile, Depends, Path, HTTPException
 from Source.security import Authentication
 from datetime import datetime
@@ -54,6 +54,8 @@ def getPlants(username=Depends(Authentication().validate_token)):
         print(str(e))
         raise HTTPException(status_code=204, detail="Get my plant fail")
         
+
+#schedule
 @app.put("/API_schedule")
 def schedule(schedule:Schedule,username=Depends(Authentication().validate_token)):
     try:
@@ -62,6 +64,16 @@ def schedule(schedule:Schedule,username=Depends(Authentication().validate_token)
         return "Add successful scheduling"
     except Exception as e:
        raise HTTPException(status_code=400, detail="Add scheduling failed")
+    
+@app.get("/API_get_schedule")
+def getSchedule(roomName:RoomName,idPlant:str,username=Depends(Authentication().validate_token)):
+    try:
+        plant=MyPlants(username=username,roomName=roomName.value,idPlant=idPlant)
+        data=plant.getSchedule()
+        return data
+    except Exception as e:
+        print("Erro: ",str(e))
+        raise HTTPException(status_code=204, detail="Get schedule fail")
 
 @app.get('/API_get_count_plants')
 def countPlant(username=Depends(Authentication().validate_token)):

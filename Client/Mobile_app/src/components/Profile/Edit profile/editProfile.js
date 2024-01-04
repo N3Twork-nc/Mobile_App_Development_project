@@ -76,7 +76,7 @@ const EditProfile = () => {
   }
 
   const handleBack= () => {
-    navigation.navigate('Profile', { animations: false });
+    navigation.goBack();
   };
 
       
