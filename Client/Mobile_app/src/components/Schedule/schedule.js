@@ -3,7 +3,8 @@ import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View } from 'r
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
         TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
         TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
-        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor
+        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor,TitleMainNote,AllNoteContainer,
+        TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
         } from './styleSchedule';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
@@ -14,16 +15,15 @@ import { schedule } from '../../api/Plant';
 import { useSelector } from 'react-redux';
 import { getSchedule } from '../../api/Plant';
 import { element } from 'prop-types';
-
-
+import { Ionicons } from '@expo/vector-icons'; 
 const Schedule = () => {
   const token = useSelector(state=>state.token)['payload'];
-  const route=useRoute()
-  const {idPlant,roomName} =route.params
+  // const route=useRoute()
+  // const {idPlant,roomName} =route.params
   const navigation = useNavigation();
   const handleBack = () => { navigation.navigate('Home'); }
  
-
+  const [checked, setChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(new Date()); // Giá trị thời gian được chọn
@@ -175,7 +175,7 @@ const Schedule = () => {
                 <MainTitle> Lên lịch </MainTitle>
             </TitleContainer>
           </HeaderContainer>
-          <View style={{ flex: 1 }}>
+          <View>
             {/* Hiển thị lịch */}
             <Calendar
               onDayPress={onDayPress}
@@ -185,10 +185,57 @@ const Schedule = () => {
               onMonthChange={handleMonthChange}
             />
           </View>
-          <DecorContainer>
-            <ImgDecor resizeMode="contain" source={require('../../assets/ImgDecor.png')} /> 
-          </DecorContainer>
+          {/* ADD NOTE */}
+          
+        {/*END ADD NOTE */}
         </StyledContainer>
+        <AllNoteContainer>
+              <TitleNoteContainer>
+                <NoteImg resizeMode="contain" source={require('../../assets/tick.png')}/> 
+                <TitleMainNote>Những việc cần làm</TitleMainNote>
+              </TitleNoteContainer>
+
+              {/* Note */}
+              <Note1Con>
+                  <CheckboxButton onPress={() => setChecked(!checked)}>
+                      <CheckboxContainer>
+                        {checked ? (
+                          <Ionicons name="checkmark-circle" size={25} color="green" />
+                        ) : (
+                          <Ionicons name="ellipse-outline" size={25} color="white"/>
+                        )}
+                      </CheckboxContainer>
+                  </CheckboxButton>
+                  <NoteBoxCon> 
+                    <Line></Line>                    
+                    <ContentBox>            
+                        <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>           
+                        <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
+                    </ContentBox>
+                  </NoteBoxCon> 
+              </Note1Con>
+
+              {/* Note */}
+              <Note1Con>
+                  <CheckboxButton onPress={() => setChecked(!checked)}>
+                      <CheckboxContainer>
+                        {checked ? (
+                          <Ionicons name="checkmark-circle" size={25} color="green" />
+                        ) : (
+                          <Ionicons name="ellipse-outline" size={25} color="white"/>
+                        )}
+                      </CheckboxContainer>
+                  </CheckboxButton>
+                  <NoteBoxCon> 
+                    <Line></Line>                    
+                    <ContentBox>            
+                        <TitleBoxNote>Tưới cây phòng khách</TitleBoxNote>           
+                        <ContentText>Cách 5 ngày bạn có lịch tưới cây lúc 13:00 kể từ 3/11/2023 </ContentText>
+                    </ContentBox>
+                  </NoteBoxCon> 
+              </Note1Con>
+              
+          </AllNoteContainer>
       </ScrollView>
       <Modal
         visible={showModal}

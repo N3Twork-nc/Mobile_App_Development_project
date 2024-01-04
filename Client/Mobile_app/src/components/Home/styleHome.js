@@ -44,8 +44,8 @@ export const ButtonSearch = styled.Image`
 `;
 
 export const ButtonAdd = styled.Image`
-  width: 22px;
-  height: 22px;
+  width: 40px;
+  height: 40px;
   align-self: flex-end;
   position: absolute;
 `;
