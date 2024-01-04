@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity,Image, Modal,  StyleSheet, Alert} from 're
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import { ImageCircle, TakePhotoButton, Container,ButtonReweet,Text1,Text2,Text3,GalleryButton,ResultButton,FooterContainer,
-        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose
+        HeaderContainer,FlashButton,ImageFlash, ImageReweet, RetakeButton,StyleContainer,ButtonClose, ImageGallery, ImageClose, ContainerWrapper
 } from './styleCamera'
 import { predictPlant } from '../../api/predict';
 import { useSelector } from 'react-redux';
@@ -148,6 +148,8 @@ const CameraScreen = () => {
             </ButtonClose>
         </HeaderContainer>
         {/* Thanh trượt zoom ảnh */}
+        
+        <ContainerWrapper>
         <Slider
           style={styles.slider}
           minimumValue={0}
@@ -166,6 +168,8 @@ const CameraScreen = () => {
               <ImageReweet resizeMode="cover" source={require('../../assets/rotation.png')} tintColor={'white'} />
             </ButtonReweet>   
         </Container>
+        </ContainerWrapper>
+        
       </Camera>
       {/* Cửa sổ modal để hiển thị ảnh đã chụp và nút "Chụp lại" và "Lưu" */}
       <Modal
@@ -218,8 +222,8 @@ const styles = StyleSheet.create({
   slider: {
     width: '90%',
     alignSelf: 'center',
-    top: '70%',
-    zIndex: '2',
+    zIndex: 2,
+    marginBottom: 10,
     minimumTrackTintColor:"#FFFFFF",
     maximumTrackTintColor:"#ffffff",
   }
