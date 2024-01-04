@@ -14,7 +14,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center;
   margin-top: ${vh(7)}px;
-  ${Platform.OS === 'android' ? 'margin-top: 13%;' : 'margin-bottom: 5%;'}
+  ${Platform.OS === 'android' ? 'margin-top: 20%;' : ''}
 `;
 
 export const Text1 = styled.Text`
@@ -49,14 +49,17 @@ export const ImageClose = styled.Image`
   height: 20px;
 `;
 
-//
+export const ContainerWrapper = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+`;
+
 export const Container = styled.View`
   position: relative;
   align-items: center;
   justify-content: center;
-  margin-top: ${vh(65)}px;
+  margin-bottom: 15px;
   z-index: 0;
-  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'}
 `;
 
 export const GalleryButton = styled.TouchableOpacity`
