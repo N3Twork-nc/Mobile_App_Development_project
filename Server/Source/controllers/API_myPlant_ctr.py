@@ -28,7 +28,7 @@ async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depe
                  "room":roomName,
                  "plantname":plantName}
 
-@app.get("/APIMyPlant/{roomName}")  # Sử dụng Path để lấy roomName từ URL
+@app.get("/APIMyPlant/{roomName}")
 def getPlants(roomName: str = Path(...), username=Depends(Authentication().validate_token)):
     try:
         garden = MyPlants(username, roomName)
@@ -39,6 +39,16 @@ def getPlants(roomName: str = Path(...), username=Depends(Authentication().valid
             token=CustomFunctionAzure.generate_token_blob(blob)
             data[id]['Img']=f'https://caothi.blob.core.windows.net/myplants/{path}?{token}'
         # Xử lý dữ liệu ở đây nếu cần thiết trước khi trả về (ví dụ: loại bỏ thông tin không cần thiết)
+        return data
+    except Exception as e:
+        print(str(e))
+        raise HTTPException(status_code=204, detail="Get my plant fail")
+    
+@app.get("/APIAllPlant")
+def getPlants(username=Depends(Authentication().validate_token)):
+    try:
+        garden = MyPlants(username)
+        data = garden.getAllPlants()
         return data
     except Exception as e:
         print(str(e))

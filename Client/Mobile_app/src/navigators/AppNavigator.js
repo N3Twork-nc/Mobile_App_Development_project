@@ -22,6 +22,8 @@ import Recently from '../components/Home/Recently/recently';
 import AboutUs from '../components/Profile/About us/aboutUs';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import Saved from '../components/Saved/saved';
+
 const Stack = createStackNavigator();
 
 Notifications.setNotificationHandler({
@@ -98,7 +100,8 @@ const AppNavigator = () => {
          <Stack.Screen name="Welcome" component={Welcome} /> 
         <Stack.Screen name="SignIn" component={Signin}  />
         <Stack.Screen name="SignUp" component={Signup}/>        
-        <Stack.Screen name="VerifyCode" component={Verifycode}  />      
+        <Stack.Screen name="VerifyCode" component={Verifycode}  /> 
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>     
         <Stack.Screen name="Room" component={Room} options={{animationEnabled: false}}/>
         <Stack.Screen name="Home" component={Home} options={{animationEnabled: false}}/>
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
@@ -108,12 +111,12 @@ const AppNavigator = () => {
         <Stack.Screen name="Profile" component={Profile} options={{animationEnabled: false}} />
         <Stack.Screen name="EditProfile" component={EditProfile} options={{animationEnabled: false}} />
         <Stack.Screen name="PlantDetail" component={PlantDetail} options={{animationEnabled: false}} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword}  />
         <Stack.Screen name="Dashboard" component={DashBoard} options={{animationEnabled: false}} />
         <Stack.Screen name="Gardens" component={Gardens} options={{animationEnabled: false}} />
         <Stack.Screen name="Schedule" component={Schedule}  options={{animationEnabled: false}}/>
         <Stack.Screen name="AboutUs" component={AboutUs} options={{animationEnabled: false}} />
         <Stack.Screen name="Recently" component={Recently} options={{animationEnabled: false}} />
+        <Stack.Screen name="Saved" component={Saved} options={{animationEnabled: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

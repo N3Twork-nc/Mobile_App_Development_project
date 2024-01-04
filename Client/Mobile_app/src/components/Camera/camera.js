@@ -218,7 +218,8 @@ const styles = StyleSheet.create({
   slider: {
     width: '90%',
     alignSelf: 'center',
-    top: '73%',
+    top: '68%',
+    zIndex: '2',
     minimumTrackTintColor:"#FFFFFF",
     maximumTrackTintColor:"#ffffff",
   }

@@ -11,7 +11,7 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { myPlant,countPlants} from '../../api/Plant.js';
+import { allPlant, myPlant,countPlants} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
@@ -67,13 +67,22 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-    navigation.navigate('Save', { plantsInRoom, roomName });
+    navigation.navigate('Saved', { plantsInRoom, roomName });
   };
 
-  const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
-  const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
-  const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
-  const handleRecently = () => {navigation.navigate('Recently', )};
+  const handleExplore = () => {navigation.navigate('Explore',);};
+  const handleScan = () => {navigation.navigate('CameraScreen',);};
+  const handleProfile= () => {navigation.navigate('Profile',);};
+  
+  const handleRecently = async () => {
+    try {
+      const allPlants = await allPlant(token);
+      navigation.navigate('Recently', { plantData: allPlants });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   const handleDashboard = (gardensDetail) => {
     navigation.navigate('Dashboard', { gardensDetail });
   };
@@ -133,7 +142,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
                     <CategoryDetailText >
-                      <TotalPlant>{plantData['Phòng khách']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Phòng khách']['Count']} cây</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
                   </RoomContainer>                    
@@ -145,7 +154,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/kitchen.png')}/>
                     </KitchenContainer> 
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Nhà bếp']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Nhà bếp']['Count']} cây</TotalPlant>
                       <RoomName>Nhà bếp</RoomName> 
                     </CategoryDetailText> 
                   </RoomContainer>          
@@ -158,7 +167,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/bedroom.png')}/>
                     </BedroomContainer>
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Phòng ngủ']['Count']} plants</TotalPlant>                      
+                      <TotalPlant>{plantData['Phòng ngủ']['Count']} cây</TotalPlant>                      
                       <RoomName>Phòng ngủ</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>
@@ -169,7 +178,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/backyard.png')}/>
                     </BackyardContainer>
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Sân vườn']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Sân vườn']['Count']} cây</TotalPlant>
                       <RoomName>Sân vườn</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>          
@@ -281,7 +290,7 @@ const Home = () => {
         <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
         <TaskbarButtonText>Scan</TaskbarButtonText>
       </ContainerButton>
-      <ContainerButton onPress={() => handleRoomPress('Lưu trữ')}>
+      <ContainerButton onPress={() => handleSaved('Lưu trữ')}>
         <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
         <TaskbarButtonText>Đã lưu</TaskbarButtonText>
       </ContainerButton>

@@ -82,12 +82,12 @@ export const Info1 = styled.View`
   flex-direction: row;
 `
 export const HistoryTitle = styled.Text`
-  font-size: 13px;
+  font-size: 12px;
  color: ${gray_subtype};
   font-style: italic;
 `
 export const History = styled.Text`
-  font-size: 13px;
+  font-size: 12px;
   color: ${gray_subtype};
   font-style: italic;
   margin-left: 3px;
