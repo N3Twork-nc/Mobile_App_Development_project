@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from firebase_admin import db
 
 class UpdateUserInfo(BaseModel):
-    username: str
+    username: str=None
     fullName: str
     gender: str
     phoneNumber: str
