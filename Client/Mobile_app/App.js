@@ -5,6 +5,9 @@ import store from './src/store';
 import { StatusBar, Platform} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
+import Schedule from './src/components/Schedule/schedule';
+import ResetPass from './src/components/Profile/Reset Pass/resetpass';
+import CameraScreen from './src/components/Camera/camera';
 
 class App extends Component
 {
@@ -21,7 +24,18 @@ class App extends Component
   }
   
 }
-export default App;  
+export default App;
+
+
+// export default function App() {
+// return (
+// <Provider store={store}>
+//  <NavigationContainer>
+//     <CameraScreen />
+//    </NavigationContainer>
+//   </Provider>
+// );
+// };  
 
 
 
