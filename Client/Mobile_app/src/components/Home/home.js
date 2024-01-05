@@ -129,7 +129,7 @@ const Home = () => {
                 <PlantName>{plantDataAll[sortedKeys[sortedKeys.length-1]]["plantName"]} </PlantName>
               </Plant1Container> 
             )} 
-            {sortedKeys.length>0 && (
+            {sortedKeys.length>1 && (
             <Plant2Container>
               <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[0]]["Img"]}}/>
               <PlantName> {plantDataAll[sortedKeys[0]]["plantName"]} </PlantName>
