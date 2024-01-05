@@ -11,7 +11,7 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { allPlant, allSchedule, myPlant,countPlants} from '../../api/Plant.js';
+import { allPlant, myPlant,countPlants} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
@@ -75,7 +75,7 @@ const Home = () => {
   
   const handleAllNotify = async() => {
     try {
-      const allPlants = await allSchedule(token);
+      const allPlants = await allPlant(token);
       navigation.navigate('AllNotifications', { plantData: allPlants });
     } catch (error) {
       console.log(error);
