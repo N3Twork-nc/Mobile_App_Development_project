@@ -129,10 +129,10 @@ const Home = () => {
               </Plant1Container> 
             )} 
             {sortedKeys.length>1 && (
-            <Plant2Container>
+            <Plant1Container>
               <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[0]]["Img"]}}/>
               <PlantName> {plantDataAll[sortedKeys[0]]["plantName"]} </PlantName>
-            </Plant2Container>
+            </Plant1Container>
             )}
           </RecentlyPlantContainer>
 
