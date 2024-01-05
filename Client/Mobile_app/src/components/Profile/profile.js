@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { TaskbarView, ContainerButton, TaskbarIcon,  TaskbarButtonText, 
-  StyledContainer, HeaderContainer, ButtonNotification, MainTitle, 
-  TitleContainer, NotificationContainer, AvatarContainer, Name, 
-  ButtonEditProfile, EditButtonText, SectionTitle,  ChildSectionContainer, ChildSectionText, 
-  ChildSectionIcon, ChildSectionInfo, Line, SectionContainer, 
-  ChildSectionButton, ChildSectionButtonContainer, AvatarImage, 
-  ButtonSignOut, SignoutButtonText } from './styleProfile';
+import { TaskbarView, ContainerButton, TaskbarIcon, TaskbarButtonText, StyledContainer, HeaderContainer, MainTitle, TitleContainer, 
+  AvatarContainer, Name, ButtonEditProfile, EditButtonText, SectionTitle, ChildSectionContainer, ChildSectionText, ChildSectionIcon, 
+  ChildSectionInfo, Line, SectionContainer, ChildSectionButton, ChildSectionButtonContainer, AvatarImage, ButtonSignOut, SignoutButtonText 
+} from './styleProfile';
 import { ScrollView, SafeAreaView,Image,Text, View, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,22 +20,19 @@ const Profile = () => {
     const token = useSelector(state=>state.token)['payload'];
     const userInfo = useSelector(state => state.infoUser);
     const [isAlertVisible, setAlertVisible] = useState(false);
-    const [selectedRoom, setSelectedRoom] = useState(null);
-  
-    //Khi người dùng nhấn gửi phản hồi
-    const SendFeedback = () => {setAlertVisible(true);}
-    const PressOK = () => {setAlertVisible(false)};
-
     const [weatherData, setWeatherData] = useState(null);
-
+    const [, setSelectedRoom] = useState(null);
     useEffect(() => {
       requestLocationPermission();
     }, []);
+
+    //Khi người dùng nhấn gửi phản hồi
+    const SendFeedback = () => {setAlertVisible(true);}
+    const PressOK = () => {setAlertVisible(false)};
   
     const requestLocationPermission = async () => {
       try {
-        const { status } = await Location.requestForegroundPermissionsAsync();
-  
+        const { status } = await Location.requestForegroundPermissionsAsync();  
         if (status === 'granted') {
           getLocation();
         } else {
@@ -71,12 +65,8 @@ const Profile = () => {
     };
   
 // các navigate chuyển màn hình
-    const handleExplore = () => {
-        navigation.navigate('Explore', { animations: false }, {transitions: false});
-      };
-      const handleScan = () => {
-        navigation.navigate('CameraScreen', { animations: false });
-      };
+    const handleExplore = () => {navigation.navigate('Explore', { animations: false })};
+    const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
       
       const handleSaved = async (roomName) => {
         setSelectedRoom(roomName);
@@ -113,10 +103,7 @@ return (
   <SafeAreaView  style={{ flex: 1, backgroundColor:  'white' }}>
     <ScrollView  style={{ flex: 1, backgroundColor: 'white' }}>
         <HeaderContainer>
-          <TitleContainer>
-            <NotificationContainer>
-              <ButtonNotification resizeMode="contain" source={require('../../assets/notification.png')} tintColor={'#164303'}/>
-            </NotificationContainer>        
+          <TitleContainer>      
             <MainTitle>Hồ sơ</MainTitle>
             
           </TitleContainer>

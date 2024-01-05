@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View} from 'react-native';
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
-        TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
-        TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
-        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor,TitleMainNote,AllNoteContainer,
-        TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
+        TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, DateContainer, TextDate, 
+        InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
+        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,TitleMainNote,
+        AllNoteContainer, TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
         } from './styleSchedule';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
+import { Calendar } from 'react-native-calendars'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { schedule } from '../../api/Plant';
 import { useSelector } from 'react-redux';
-import { element } from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -24,7 +23,6 @@ const Schedule = () => {
   const navigation = useNavigation();
   const handleBack = () => { navigation.goBack() }
  
-  const [checked, setChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(new Date()); // Giá trị thời gian được chọn
@@ -216,7 +214,7 @@ const Schedule = () => {
             <Calendar
               onDayPress={onDayPress}
               markedDates={{
-                '2024-01-01': { selected: true, selectedColor: 'green', note: 'Ghi chú cho ngày này' },
+                '': { selected: true, selectedColor: 'green', note: 'Ghi chú cho ngày này' },
                 [selectedDate]:{ selected: true, selectedColor: 'green' }}}
               onMonthChange={handleMonthChange}
             />
