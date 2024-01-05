@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View} from 'react-native';
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
-        TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
-        TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
-        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor,TitleMainNote,AllNoteContainer,
-        TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
+        TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, DateContainer, TextDate, 
+        InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
+        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,TitleMainNote,
+        AllNoteContainer, TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
         } from './styleSchedule';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
+import { Calendar } from 'react-native-calendars'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
@@ -360,7 +360,7 @@ const Schedule = () => {
                                   setSelectedFrequency(item.value); // Cập nhật giá trị đã chọn cho dropdown "Ngày", "Tuần", "Tháng"
                                    }}
                               />
-                        </View>
+                        </View> 
                 </EachContainer>
                 <WorkContainer>
                   <TextDay>Việc</TextDay>

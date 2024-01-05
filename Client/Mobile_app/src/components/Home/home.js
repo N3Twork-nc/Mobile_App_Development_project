@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, SafeAreaView,} from 'react-native';
-import { 
-  StyledContainer, 
-  MainTitle, HeaderContainer, ButtonAdd,ScanButton, ScanButtonText,ScanContainer,Scan,
+import { StyledContainer, MainTitle, HeaderContainer, ButtonAdd,ScanButton, ScanButtonText,ScanContainer,Scan,
   Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
-  Line,Icon, ImageFrame,  FirstRooms, RoomsContainer, RightRoomContainer, LeftRoomContainer,
+  Line,Icon, ImageFrame, FirstRooms, RoomsContainer, RightRoomContainer, LeftRoomContainer,
   KitchenContainer, RoomContainer, LivingroomContainer, BackyardContainer, BedroomContainer, CategoryPlantRoom, RoomName,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, 
   MainTextNotify, TotalPlant, CategoryDetailText, TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
-
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
 import { allPlant, myPlant,countPlants} from '../../api/Plant.js';
@@ -18,6 +15,10 @@ import { updateMyGarden } from '../../reducers/mygarden';
 import { updateAllPlants} from '../../reducers/myplants.js';
 
 const Home = () => {
+<<<<<<< HEAD
+  const [, setSelectedRoom] = useState(null);
+=======
+>>>>>>> 439c150ca9af3b1a7ad4641df06a6eab1cc13b9e
   const gardenData=useSelector(state=>state.garden)['payload'].slice(0,4);
   var plantData=useSelector(state=>state.plant);
   var plantDataAll={
