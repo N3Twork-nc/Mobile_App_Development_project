@@ -54,8 +54,7 @@ def getPlants(username=Depends(Authentication().validate_token)):
                 path=f'myroom/{username}/{key}.jpg'
                 blob=container.get_blob_client(path)
                 token=CustomFunctionAzure.generate_token_blob(blob)
-                data[roomName][key]["img"]=f'https://caothi.blob.core.windows.net/myplants/{path}?{token}'
-        print(data)
+                data[roomName][key]["Img"]=f'https://caothi.blob.core.windows.net/myplants/{path}?{token}'
         return data
     except Exception as e:
         print(str(e))
@@ -97,6 +96,8 @@ def deletePlant(roomName:str,id:str,username=Depends(Authentication().validate_t
     try:
         plant = MyPlants(username,roomName,idPlant=id)
         plant.deletePlant()
+        path=f'myroom/{username}/{id}.jpg'
+        container.get_blob_client(path).delete_blob()
         return{
             "Status":True,
             "Message":"Delete plant successfull"

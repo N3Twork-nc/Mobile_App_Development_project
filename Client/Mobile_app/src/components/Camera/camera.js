@@ -101,7 +101,8 @@ const CameraScreen = () => {
       setInfoData(predictedInfo);
       navigation.replace('Afterscan', { info: predictedInfo, photoURI: capturedPhoto ? capturedPhoto.uri : null});
     } catch (error) {
-      Alert.alert(error)
+      Alert.alert("Đã xảy ra lỗi")
+      setIsLoading(false);
     }
   };
 
