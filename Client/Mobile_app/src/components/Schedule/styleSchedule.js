@@ -272,7 +272,7 @@ export const InputTimeCon = styled.View`
 `;
 export const TextSpace = styled.Text`
   margin-left: ${vw(1.5)}px;
-  margin-top: ${vh(1.3)}px;
+  margin-top: ${vh(0.5)}px;
 `;
 export const TextInputHours = styled.TextInput`
   margin-left: ${vw(2.5)}px;
