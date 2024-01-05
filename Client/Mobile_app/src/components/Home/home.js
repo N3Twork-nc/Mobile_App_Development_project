@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, SafeAreaView,} from 'react-native';
-import { StyledContainer, MainTitle, HeaderContainer, ButtonAdd,ScanButton, ScanButtonText,ScanContainer,Scan,
-  Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
+import { StyledContainer, MainTitle, HeaderContainer, ButtonNotify, NotifyContainer,ScanButton, ScanButtonText,ScanContainer,Scan,
+  Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,PlantName,
   Line,Icon, ImageFrame, FirstRooms, RoomsContainer, RightRoomContainer, LeftRoomContainer,
   KitchenContainer, RoomContainer, LivingroomContainer, BackyardContainer, BedroomContainer, CategoryPlantRoom, RoomName,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, 
   MainTextNotify, TotalPlant, CategoryDetailText, TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { allPlant, myPlant,countPlants} from '../../api/Plant.js';
+import { allPlant,} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
 import { updateAllPlants} from '../../reducers/myplants.js';
 
 const Home = () => {
-<<<<<<< HEAD
-  const [, setSelectedRoom] = useState(null);
-=======
->>>>>>> 439c150ca9af3b1a7ad4641df06a6eab1cc13b9e
   const gardenData=useSelector(state=>state.garden)['payload'].slice(0,4);
   var plantData=useSelector(state=>state.plant);
   var plantDataAll={
@@ -108,7 +104,9 @@ const Home = () => {
         {/* TIÊU ĐỀ */}
           <HeaderContainer>
             <MainTitle>Vườn của tôi</MainTitle>
-            <ButtonAdd resizeMode="cover" source={require('../../assets/logo2.png')}/>
+            <NotifyContainer onPress={handleAllNotify}>
+              <ButtonNotify resizeMode="cover" source={require('../../assets/notification.png')}/>
+            </NotifyContainer>
           </HeaderContainer>   
         {/* Scan */}
         <ScanButton onPress={handleScan}>
@@ -131,10 +129,10 @@ const Home = () => {
               </Plant1Container> 
             )} 
             {sortedKeys.length>0 && (
-            <Plant2Container>
+            <Plant1Container>
               <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[0]]["Img"]}}/>
               <PlantName> {plantDataAll[sortedKeys[0]]["plantName"]} </PlantName>
-            </Plant2Container>
+            </Plant1Container>
             )}
           </RecentlyPlantContainer>
 
@@ -247,45 +245,6 @@ const Home = () => {
               )}
             </RoomsContainer>
           </CategoryPlantRoom>
-
-
-          <Line/>
-         {/* Thông báo */}         
-
-         <TitleforContainers>
-            <Title1>Thông báo</Title1>
-            <Title2 onPress={handleAllNotify}>Xem tất cả</Title2>
-          </TitleforContainers>
-
-          {/* Thông báo 1 */}
-          <NotificationContainer>
-            <NotificationImageContainer resizeMode="cover" source={require('../../assets/welcome.png')}/>
-            <TextNotification>
-              <MainTextNotify numberOfLines={1} ellipsizeMode="tail">Khát nước quá Ngân ơi cho xin mín nước</MainTextNotify>
-              <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Ngồi hút trà sữa rột rột mà không thấy áy náy hả</SubTextNotify>
-            </TextNotification>
-            <MoreNotifyContainer resizeMode="contain" source={require('../../assets/more.png')}/>
-          </NotificationContainer>
-
-          {/* Thông báo 2 */}
-          <NotificationContainer>
-            <NotificationImageContainer resizeMode="cover" source={require('../../assets/plant1.jpg')}/>
-            <TextNotification>
-              <MainTextNotify numberOfLines={1} ellipsizeMode="tail">Khát nước quá Ngân ơi cho xin mín nước</MainTextNotify>
-              <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Đã 2 tuần rồi bạn không tưới nước</SubTextNotify>
-            </TextNotification>
-            <MoreNotifyContainer resizeMode="contain" source={require('../../assets/more.png')}/>
-          </NotificationContainer>
-
-          {/* Thông báo 3 */}
-          <NotificationContainer>
-            <NotificationImageContainer resizeMode="cover" source={require('../../assets/plant2.jpg')}/>
-            <TextNotification>
-              <MainTextNotify numberOfLines={1} ellipsizeMode="tail">Khát nước quá Ngân ơi cho xin mín nước</MainTextNotify>
-              <SubTextNotify numberOfLines={1} ellipsizeMode="tail">Đã 2 tuần rồi bạn không tưới nước</SubTextNotify>
-            </TextNotification>
-            <MoreNotifyContainer resizeMode="contain" source={require('../../assets/more.png')}/>
-          </NotificationContainer>
         </StyledContainer>        
       </ScrollView>
 
