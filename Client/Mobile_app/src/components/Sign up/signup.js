@@ -1,24 +1,22 @@
 import React, {useState, useRef} from 'react'
 import { StyledContainer,ButtonTextGG, InnerContainer, Slogan, ButtonSignupwFB,ButtonSignupwGG, ButtonText, OthersText, ButtonCreateAccount, InputText,CheckboxContainer, OthersCheckbox, CheckboxText,ButtonText1, IconButtonFB, ButtonTextFB, IconButtonGG, InputTextpw, EyeIcon, ButtonTextContainer } from './styleSignup'
 import { useNavigation } from '@react-navigation/native';
-import { Platform, TouchableOpacity, ScrollView, Alert, Animated } from 'react-native';
+import { Platform, TouchableOpacity, ScrollView, Alert, Animated, View, StyleSheet  } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { signup } from '../../api/signin_signup'
 import { useDispatch } from 'react-redux';
 import { updateAll } from '../../reducers/infoUser';
+import LottieView from 'lottie-react-native';
 
 const Signup = () => {
-    const [isChecked, setIsChecked] = useState(false);
     const dispatch=useDispatch()
-    const toggleCheckbox = () => {
-      setIsChecked(!isChecked);}
     const [showPassword, setShowPassword] = useState(false);    
       const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
       }
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [, setIsPasswordMatch] = useState(true);
-
+    const [isLoading, setIsLoading] = useState(false);
     const navigation = useNavigation();
     const [textFullname, setTextFullname] = useState('');
     const [textPassword, setTextPassword] = useState('');
@@ -27,10 +25,11 @@ const Signup = () => {
       
 
     const handleSignUp = async () => {
+        setIsLoading(true)
         if (textPassword != passwordConfirm) {
             setIsPasswordMatch(false); 
-            return Alert.alert('Mật khẩu không khớp!');           
-          
+            setIsLoading(false);
+            return Alert.alert('Mật khẩu không khớp!');     
         }
         else {
             const data={
@@ -43,6 +42,7 @@ const Signup = () => {
             if (response=="Enter OTP"){
                 const action=updateAll(data) 
                 dispatch(action)
+                setIsLoading(false)
                 return navigation.navigate('VerifyCode')
             }
         }
@@ -122,8 +122,26 @@ const Signup = () => {
             </InnerContainer>
         </StyledContainer>
         </ScrollView>
+        {isLoading && (
+            <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+                <LottieView
+                    resizeMode="contain"
+                    source={require('../../assets/Animation-loading1.json')}
+                    autoPlay
+                    style={{ width: 100, height: 100 }}
+                />
+            </View>
+        )}
     </KeyboardAwareScrollView>
     );
     };
 
 export default Signup;
+
+const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 1,
+    },
+  });
