@@ -239,7 +239,7 @@ const Schedule = () => {
           {/* Note */}
           {dataschedule && Object.values(dataschedule).map((calender, index) => (
             <Note1Con key={index}>
-                              <CheckboxButton onPress={() => handleCheck(index)}>
+                <CheckboxButton onPress={() => handleCheck(index)}>
                 <CheckboxContainer>
                   {checkedItems[index] ? (
                     <Ionicons name="checkmark-circle" size={25} color="green" />
