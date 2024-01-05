@@ -12,10 +12,11 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
-import { plant } from '../../api/Plant.js';
+import { plant,myPlant } from '../../api/Plant.js';
 import { useSelector,useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
-import { addMyPlant } from '../../reducers/myplants.js';
+import { addMyPlant} from '../../reducers/myplants.js';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry.js';
 const logoApp = logo;
 
 const styles = StyleSheet.create({
@@ -54,19 +55,19 @@ const Afterscan = () => {
       setAlertVisible(false);
       setIsLoading(true);
       const response = await plant(photoURI, roomName, info[0].plantName, token);
-      if (response=="Successfull") 
-        {
-          Alert.alert("Thêm cây thành công");
-          const action=addMyPlant(roomName)
-          dispatch(action)
+      if (response==true) 
+      {
           setIsLoading(false);
-        }
+          const getPlantUpdate=await myPlant(token,roomName)
+          const action=addMyPlant({[roomName]:getPlantUpdate})
+          dispatch(action)
+          Alert.alert("Thêm cây thành công");
+      }
       else {
         Alert.alert("Thêm cây thất bại");
         setIsLoading(false);
       }
-    } catch (error) 
-    {
+    } catch (error) {
       Alert.alert("Thêm cây thất bại");
       setIsLoading(false);
     }
@@ -253,15 +254,23 @@ const Afterscan = () => {
 export default Afterscan; 
 
 // Alert options khi nhấn LƯU
-const CustomAlert = ({ isVisible, message, onRoom, onClose, setSelectedRoom}) => {
+const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelectedRoom}) => {
   const [isRoomAlertVisible, setRoomAlertVisible] = useState(false);
+
+  const handleRoomAlert = () => {
+    setRoomAlertVisible(true);
+  };
 
   const handleRoomSelection = (room) => {
     setRoomAlertVisible(false);
     setSelectedRoom(room); // Lưu selectedRoom khi chọn phòng
-    onRoom(room);  };
+    onRoom(room);
+  };
 
-  const showRoomSelectionAlert = () => {setRoomAlertVisible(true);};
+  const showRoomSelectionAlert = () => {
+    setRoomAlertVisible(true);
+    
+  };
 
   return (
     <Modal isVisible={isVisible} onBackdropPress={onClose}>          
@@ -287,7 +296,6 @@ const CustomAlert = ({ isVisible, message, onRoom, onClose, setSelectedRoom}) =>
         </View>
         </View>        
       </View>
-
       {isRoomAlertVisible && (
         <Modal isVisible={true} onBackdropPress={() => setRoomAlertVisible(false)}>
           <View style={{ backgroundColor: 'white', borderRadius: 15}}>

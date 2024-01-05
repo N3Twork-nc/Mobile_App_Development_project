@@ -42,12 +42,13 @@ export const ButtonSearch = styled.Image`
   position: absolute;  
   right: 40px;
 `;
-
-export const ButtonAdd = styled.Image`
-  width: 40px;
-  height: 40px;
-  align-self: flex-end;
-  position: absolute;
+export const NotifyContainer = styled.TouchableOpacity`
+    position: absolute;
+    align-self: flex-end;
+`
+export const ButtonNotify = styled.Image`
+  width: 25px;
+  height: 25px;
 `;
 
 //button Scan
@@ -127,21 +128,11 @@ export const Plant1Container = styled.TouchableOpacity`
   border-radius: 13px;
   background-color: ${white_gray};
   border: 0.3px solid ${green};
-  align-self: flex-start;
   justify-content: center;
   align-items: center;
+  padding: 2px;
 `;
 
-export const Plant2Container = styled.TouchableOpacity`
-  height: 170px;
-  width: 48%;
-  border-radius: 13px;
-  background-color: ${white_gray};
-  border: 0.3px solid ${green};
-  align-self: flex-start;
-  justify-content: center; 
-  align-items: center;
-`;
 
 export const ImageFrame = styled.Image`
   width: 70%;
@@ -154,7 +145,8 @@ export const PlantName = styled.Text`
   font-weight: 600;
   color: ${black};
   align-self: center;
-  margin-top:5%;
+  margin-top: 5%;
+  text-align: center;
 `
 
 // Category

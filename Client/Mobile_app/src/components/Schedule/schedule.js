@@ -124,25 +124,25 @@ const Schedule = () => {
 // Style Number Dropdown 
   const numbersStyles = StyleSheet.create({
     container: {
-      backgroundColor: 'white', width: 60, left: 45, bottom: 30,
+      backgroundColor: 'white', width: 60, left: 35, bottom: 25,
     },
     dropdown: {
-      height: 40,width: 60, borderRadius: 8, paddingHorizontal: 12,
+     borderRadius: 8, paddingHorizontal: 12,
     },
     selectedTextStyle: {
-      fontSize: 16,
+      fontSize: 15,
     },
   });
  //Style Frequency Dropdown 
   const frequencyStyles = StyleSheet.create({
     container: {
-      backgroundColor: 'white', width: 80, left: 105, bottom: 70,
+      backgroundColor: 'white', width: 80, left: 90, bottom: 60,
     },
     dropdown: {
-      height: 40, width: 80, borderRadius: 8, paddingHorizontal: 6,
+     borderRadius: 8, paddingHorizontal: 6,
     },
     selectedTextStyle: { 
-      fontSize: 17,
+      fontSize: 15,
     },
   });
  //Style Work Dropdown 
