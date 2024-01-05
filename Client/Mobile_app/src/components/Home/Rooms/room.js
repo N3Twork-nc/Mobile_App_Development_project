@@ -6,7 +6,7 @@ import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Text, ScrollView, SafeAreaView, StyleSheet, View, Alert, Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSchedule, myPlant, getPlant, deletePlant } from '../../../api/Plant.js';
+import {getPlant, deletePlant } from '../../../api/Plant.js';
 import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modal';
 import logo from '../../../assets/logo.png';
@@ -69,13 +69,7 @@ const Room = () => {
     };
 
     const handleSchedule = async (idPlant) => {
-        let scheduled = [];
-        try {
-            scheduled = await getSchedule(token, roomName, idPlant);
-        } catch (error) {
-            console.log(error);
-        }
-        navigation.navigate('Schedule', { scheduled, idPlant, roomName });
+        navigation.navigate('Schedule', {idPlant, roomName });
     };
 
 return (

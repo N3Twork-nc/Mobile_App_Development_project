@@ -3,23 +3,24 @@ import { StyledContainer, HeaderContainer, MainTitle, ContainerButton,
          Plant1Container, ImageFrame, PlantName, PlantContainer, TaskbarButtonText, TaskbarView,
          ButtonContainer, IconButton, Icon, ButtonText, ButtonContainerWrapper, TaskbarIcon
         } from './styleSaved.js'
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
 import { Text, ScrollView, SafeAreaView, StyleSheet, View, Alert, Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
-import { myPlant, getPlant, deletePlant } from '../../api/Plant.js';
+import { getPlant, deletePlant } from '../../api/Plant.js';
+import { deleteMyPlant } from '../../reducers/myplants.js';
+
 
 const logoApp = logo;
 
 const Saved = () => {
     const [isLoading, setIsLoading] = useState(false);
     const token = useSelector(state=>state.token)['payload'];
+    const plantsInRoom=useSelector(state=>state.plant)["Lưu trữ"]["Data"]
     const navigation = useNavigation();
     const dispatch=useDispatch()
-    const route = useRoute();
-    const { plantsInRoom, roomName } = route.params;
 
     // Xử lý xóa cây
     const [isAlertVisible, setAlertVisible] = useState(false);
@@ -36,33 +37,15 @@ const Saved = () => {
 
     const handleConfirmDelete = async () => {
         setAlertVisible(false);
-        const result = await deletePlant(roomName, deletePlantId, token);
-        const plantDetails = await myPlant(token, roomName);
-        let action = null;
-        switch (roomName) {
-            case 'Phòng khách':
-              action = updateLivingRoomData(plantDetails);
-              break;
-            case 'Nhà bếp':
-              action = updateKitchenData(plantDetails);
-              break;
-            case 'Phòng ngủ':
-              action = updateBedroomData(plantDetails);
-              break;
-            case 'Sân vườn':
-              action = updateBackyardData(plantDetails);
-              break;
-            default:
-              break;
-          }
-        dispatch(action);
+        const result = await deletePlant('Lưu trữ',deletePlantId, token);
         if (result==true) {
+          let action = deleteMyPlant({"roomName":"Lưu trữ","idPlant":deletePlantId})
+          dispatch(action);
           Alert.alert("Xóa cây thành công");
         } else {
           Alert.alert("Xóa cây thất bại");
         }
       };     
-    
 
     const handleInfo = async (plantname) => {
         setIsLoading(true);

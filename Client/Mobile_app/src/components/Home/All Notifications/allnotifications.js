@@ -3,14 +3,33 @@ import { ScrollView, SafeAreaView } from 'react-native';
 import { StyledContainer, HeaderContainer, MainTitle, BackContainer,
 ButtonBack, NotifyContainer, NotifyImageContainer, MainText1, MainText,
 SubText, MoreContainer, TextNotify, } from './styledAllnotification.js';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { myPlant } from '../../../api/Plant.js';
 
 const AllNotifications = () => {
     const navigation = useNavigation(); 
+    const route = useRoute();
+    const token = useSelector(state=>state.token)['payload'];
+    const { plantData } = route.params;
+    //console.log(plantData)
     const handleBack = () => { navigation.goBack() }
 
-    const data = 'Hoa hướng dương (sunflower)';
-    const plantName= data.replace(/\(.*?\)/g, '');
+    const extractedSchedules = {};
+    Object.keys(plantData).forEach((room) => {
+      if (room !== "Lưu trữ") {
+        extractedSchedules[room] = {};
+        Object.keys(plantData[room]).forEach((key) => {
+          if ("Schedule" in plantData[room][key]) {
+            const plantName = plantData[room][key]["plantName"]; // Lấy tên cây
+            extractedSchedules[room][key] = {
+              plantName: plantName,
+              Schedule: plantData[room][key]["Schedule"],
+            };
+          }
+        });
+      }
+    });
     
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
@@ -25,24 +44,28 @@ const AllNotifications = () => {
             </HeaderContainer>
             
             {/* NotifyContainers */}
-              <NotifyContainer>
-                <NotifyImageContainer resizeMode="cover" source={require('../../../assets/logo2.png')} />
-                <TextNotify>
-                  <MainText1>{plantName}- Phòng khách</MainText1>
-                  <MainText>Tưới cây đeeee</MainText>
-                  <SubText>Tới giờ tưới cây gòiiiii eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</SubText>
-                </TextNotify>
-              </NotifyContainer>
+            {Object.keys(extractedSchedules).map((room) => (
+              Object.keys(extractedSchedules[room]).map((key) => {
+                const schedule = extractedSchedules[room][key];
+                return (
+                  <React.Fragment key={key}>
+                    <MainText1>{schedule.plantName.replace(/\(.*?\)/g, '')} - {room}</MainText1>
+                    {Object.keys(schedule.Schedule).map((eventKey) => (
+                      <NotifyContainer key={eventKey}>
+                        <NotifyImageContainer resizeMode="cover" source={require('../../../assets/logo2.png')} />
+                        <TextNotify>
+                          <MainText>{schedule.Schedule[eventKey].note}</MainText>
+                          <SubText>Cách {schedule.Schedule[eventKey].frequency} {schedule.Schedule[eventKey].frequencyType} bạn có lịch {schedule.Schedule[eventKey].action} lúc {schedule.Schedule[eventKey].timeStart} kể từ {schedule.Schedule[eventKey].dateStart}</SubText>
+                        </TextNotify>
+                      </NotifyContainer>
+                    ))}
+                  </React.Fragment>
+                );
+              })
+            ))}
 
-              {/* NotifyContainers */}
-              <NotifyContainer>
-                <NotifyImageContainer resizeMode="cover" source={require('../../../assets/logo2.png')} />
-                <TextNotify>
-                  <MainText1>Tên cây ở phòng nào đó</MainText1>
-                  <MainText numberOfLines={2} ellipsizeMode="tail">Tưới cây đeeee</MainText>
-                  <SubText numberOfLines={5} ellipsizeMode="tail">Tới giờ tưới cây gòiiiii</SubText>
-                </TextNotify>
-              </NotifyContainer>
+
+
           </StyledContainer>
         </ScrollView>
         

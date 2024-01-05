@@ -97,7 +97,9 @@ const Profile = () => {
       const handleAboutUs = () => {
         navigation.navigate('AboutUs', {animation: false});
       }
-                
+      const handleResetPass = () => {
+        navigation.navigate('ResetPass', {animation: false});
+      }    
 return (
 
   <SafeAreaView  style={{ flex: 1, backgroundColor:  'white' }}>
@@ -158,7 +160,7 @@ return (
           <ChildSectionContainer>
               <ChildSectionIcon source={require('../../assets/changepw.png')} tintColor={'#1A5D1A'} />
                 <ChildSectionText>Đổi mật khẩu</ChildSectionText>
-                <ChildSectionButtonContainer>
+                <ChildSectionButtonContainer  onPress={handleResetPass}>
                   <ChildSectionButton source={require('../../assets/more.png')} tintColor={'#1A5D1A'} />
                 </ChildSectionButtonContainer>    
           </ChildSectionContainer>
