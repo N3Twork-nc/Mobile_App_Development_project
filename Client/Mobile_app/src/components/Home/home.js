@@ -11,16 +11,23 @@ import {
 
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { allPlant, myPlant,countPlants} from '../../api/Plant.js';
+import { allPlant, allSchedule, myPlant,countPlants} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
-import { updateQuantity,updateDataMyPlant } from '../../reducers/myplants.js';
+import { updateAllPlants} from '../../reducers/myplants.js';
 
 const Home = () => {
-  const [selectedRoom, setSelectedRoom] = useState(null);
   const gardenData=useSelector(state=>state.garden)['payload'].slice(0,4);
-  const plantData=useSelector(state=>state.plant);
+  var plantData=useSelector(state=>state.plant);
+  var plantDataAll={
+    ...plantData["Phòng khách"]["Data"],
+    ...plantData["Phòng ngủ"]["Data"],
+    ...plantData["Nhà bếp"]["Data"],
+    ...plantData["Sân vườn"]["Data"],
+    ...plantData["Lưu trữ"]["Data"]
+  }
+  const sortedKeys = Object.keys(plantDataAll).sort().slice(-2);;
   const dispatch=useDispatch()
   const token = useSelector(state=>state.token)['payload'];
   const navigation = useNavigation();
@@ -34,50 +41,51 @@ const Home = () => {
       const gardenDetails = await getDetailGardens(token);
       const action1=updateMyGarden(gardenDetails)
       dispatch(action1)
-      const countP=await countPlants(token)
-      const action2=updateQuantity(countP)
+      const allPlants = await allPlant(token);
+      const action2=updateAllPlants(allPlants)
       dispatch(action2)
+      plantDataAll={
+        ...plantData["Phòng khách"]["Data"],
+        ...plantData["Phòng ngủ"]["Data"],
+        ...plantData["Nhà bếp"]["Data"],
+        ...plantData["Sân vườn"]["Data"],
+        ...plantData["Lưu trữ"]["Data"]
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleRoomPress = async (roomName) => {
-    setSelectedRoom(roomName);
-    let plantsInRoom = [];
     try {
-      if (roomName) {
-        plantsInRoom = await myPlant(token, roomName);
-        const action=updateDataMyPlant({[roomName]:plantsInRoom})
-        dispatch(action)
-      }
+      navigation.navigate('Room', {roomName});
     } catch (error) {
       console.log(error);
     }
-    navigation.navigate('Room', {roomName});
+   
   };
   
-  const handleSaved = async (roomName) => {
-    setSelectedRoom(roomName);
-    let plantsInRoom = [];
-    try {
-      if (roomName) {
-        plantsInRoom = await myPlant(token, roomName);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    navigation.navigate('Saved', { plantsInRoom, roomName });
+  const handleSaved = async () => {
+    navigation.navigate('Saved');
   };
 
   const handleExplore = () => {navigation.navigate('Explore',);};
   const handleScan = () => {navigation.navigate('CameraScreen',);};
   const handleProfile= () => {navigation.navigate('Profile',);};
-  const handleAllNotify = () => {navigation.navigate('AllNotifications')};
+  
+  const handleAllNotify = async() => {
+    try {
+      const allPlants = await allSchedule(token);
+      navigation.navigate('AllNotifications', { plantData: allPlants });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   const handleRecently = async () => {
     try {
-      const allPlants = await allPlant(token);
-      navigation.navigate('Recently', { plantData: allPlants });
+      
+      navigation.navigate('Recently');
     } catch (error) {
       console.log(error);
     }
@@ -115,14 +123,18 @@ const Home = () => {
           </TitleforContainers>
 
           <RecentlyPlantContainer>
-            <Plant1Container>
-              <ImageFrame resizeMode="cover" source={require('../../assets/plant0.jpg')}/>
-              <PlantName>Hoa Hướng Dương</PlantName>
-            </Plant1Container> 
+            {sortedKeys.length>0 && (
+              <Plant1Container>
+                <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[sortedKeys.length-1]]["Img"]}}/>
+                <PlantName>{plantDataAll[sortedKeys[sortedKeys.length-1]]["plantName"]} </PlantName>
+              </Plant1Container> 
+            )} 
+            {sortedKeys.length>0 && (
             <Plant2Container>
-              <ImageFrame resizeMode="cover" source={require('../../assets/plant2.jpg')}/>
-              <PlantName> Lan Ý </PlantName>
+              <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[0]]["Img"]}}/>
+              <PlantName> {plantDataAll[sortedKeys[0]]["plantName"]} </PlantName>
             </Plant2Container>
+            )}
           </RecentlyPlantContainer>
 
           <Line />
@@ -289,7 +301,7 @@ const Home = () => {
         <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
         <TaskbarButtonText>Scan</TaskbarButtonText>
       </ContainerButton>
-      <ContainerButton onPress={() => handleSaved('Lưu trữ')}>
+      <ContainerButton onPress={() => handleSaved()}>
         <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
         <TaskbarButtonText>Đã lưu</TaskbarButtonText>
       </ContainerButton>

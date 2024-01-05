@@ -3,7 +3,7 @@ import { StyledContainer, HeaderContainer, MainTitle, ButtonBack, BackContainer,
          Plant1Container, ImageFrame, PlantName, PlantContainer, History,Info1,
          Info2, InfoPlant, Position, HistoryTitle,
         } from './styleRecently.js'
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Text, ScrollView, SafeAreaView, StyleSheet, View, Alert, Image, TouchableOpacity } from 'react-native';
 import { myPlant } from '../../../api/Plant.js';
@@ -11,33 +11,32 @@ import { myPlant } from '../../../api/Plant.js';
 
 const Recently = () => {
     const navigation = useNavigation();
-    const route = useRoute();
     const token = useSelector(state=>state.token)['payload'];
-    const { plantData } = route.params;
-    const [selectedRoom, setSelectedRoom] = useState(null);
+    const plants=useSelector(state=>state.plant)
+    const plantData={
+                    "Phòng khách":plants["Phòng khách"]["Data"],
+                    "Phòng ngủ":plants["Phòng ngủ"]["Data"],
+                    "Nhà bếp":plants["Nhà bếp"]["Data"],
+                    "Sân vườn":plants["Sân vườn"]["Data"],
+                    "Lưu trữ":plants["Lưu trữ"]["Data"]
+                    }
     
     const handleBack = () => {
     navigation.goBack();
     };
 
     const handlePress = async (roomName) => {
-        setSelectedRoom(roomName);
-        let plantsInRoom = [];
         let destinationRoute = 'Room';
     
         try {
             if (roomName === 'Lưu trữ') {
                 destinationRoute = 'Saved';
             }
-    
-            if (roomName) {
-                plantsInRoom = await myPlant(token, roomName);
-            }
         } catch (error) {
             console.log(error);
         }
         
-        navigation.navigate(destinationRoute, { plantsInRoom, roomName });
+        navigation.navigate(destinationRoute, {roomName });
     };
     
     
@@ -80,7 +79,7 @@ return (
                         pairs.push(
                             <PlantContainer key={i}>
                                 <Plant1Container onPress={() => handlePress(allPlants[i].roomName)}>
-                                    <ImageFrame resizeMode="cover" source={{uri:allPlants[i].plant.img}} />
+                                    <ImageFrame resizeMode="cover" source={{uri:allPlants[i].plant.Img}} />
                                     <PlantName numberOfLines={1}>{allPlants[i].plant.plantName}</PlantName>
                                     <Info1>
                                         <HistoryTitle>Ngày:</HistoryTitle>
@@ -98,7 +97,7 @@ return (
 
                                 {allPlants[i + 1] && (
                                     <Plant1Container onPress={() => handlePress(allPlants[i + 1].roomName)}>
-                                        <ImageFrame resizeMode="cover" source={{uri:allPlants[i+1].plant.img}} />
+                                        <ImageFrame resizeMode="cover" source={{uri:allPlants[i+1].plant.Img}} />
                                         <PlantName numberOfLines={1}>{allPlants[i + 1].plant.plantName}</PlantName>
                                         <Info1>
                                             <HistoryTitle>Ngày:</HistoryTitle>
