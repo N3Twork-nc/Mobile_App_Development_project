@@ -1,5 +1,5 @@
 from Source import app
-from fastapi import UploadFile
+from fastapi import UploadFile,HTTPException
 import numpy as np
 from io import BytesIO
 from PIL import Image
@@ -23,6 +23,8 @@ async def prediectPlants(file: UploadFile):
     img_array = np.expand_dims(img_array, axis=0)
     #Dự đoán
     result=Model.PredictPlants(img_array)
+    if result==-1:
+        raise HTTPException(status_code=204, detail="Can't predict")
     info=JsonInfo.get_info_plants(result)
     info["cover"]=[]
     for i in range(1,4):
@@ -33,8 +35,15 @@ async def prediectPlants(file: UploadFile):
 
 @app.get('/APIGetInfoPlant/{plantname}', dependencies=[Depends(Authentication().validate_token)])
 async def get_plant_info(plantname: str):
-    for index in range(50):  
+    try:
+        index=JsonInfo.get_index_plant(plantname)
         plant_info = JsonInfo.get_info_plants(index)
-        if plant_info and plant_info.get("PlantName", "").lower() == plantname.lower():
-            return plant_info
-    return {"message": "Plant not found"}
+        plant_info["cover"]=[]
+        for i in range(1,4):
+            blob=container.get_blob_client(f"infoPlants/{index}_{i}.jpg")
+            token=CustomFunctionAzure.generate_token_blob(blob)
+            (plant_info["cover"]).append(f'https://caothi.blob.core.windows.net/myplants/infoPlants/{index}_{i}.jpg?{token}')
+        return plant_info
+    except Exception as e:
+        print("Lỗi: ",e)
+        raise HTTPException(status_code=204, detail="Get detail fail")

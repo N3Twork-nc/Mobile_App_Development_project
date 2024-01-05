@@ -18,33 +18,42 @@ import ForgotPassword from '../components/Forgot Password/forgotpassword';
 import DashBoard from '../components/Dashboard/dashboard';
 import Gardens from '../components/Home/Gardens/gardens';
 import Schedule from '../components/Schedule/schedule';
+import Recently from '../components/Home/Recently/recently';
 import AboutUs from '../components/Profile/About us/aboutUs';
+import Saved from '../components/Saved/saved';
+import ResetPass from '../components/Profile/Reset Pass/resetpass';
+import AllNotifications from '../components/Home/All Notifications/allnotifications';
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator  screenOptions={{ headerShown: false, ...TransitionPresets.SlideFromRightIOS,
+      <Stack.Navigator screenOptions={{ headerShown: false, ...TransitionPresets.SlideFromRightIOS,
       ...TransitionPresets.SlideFromRightAndroid,
         }}>
          <Stack.Screen name="Welcome" component={Welcome} /> 
         <Stack.Screen name="SignIn" component={Signin}  />
-        <Stack.Screen name="SignUp" component={Signup} options={{animationEnabled: false}} />        
-        <Stack.Screen name="VerifyCode" component={Verifycode}  />      
-        <Stack.Screen name="Room" component={Room} />
+        <Stack.Screen name="SignUp" component={Signup}/>        
+        <Stack.Screen name="VerifyCode" component={Verifycode}  /> 
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>     
+        <Stack.Screen name="Room" component={Room} options={{animationEnabled: false}}/>
         <Stack.Screen name="Home" component={Home} options={{animationEnabled: false}}/>
         <Stack.Screen name="Explore" component={Explore} options={{animationEnabled: false}}/>
         <Stack.Screen name="News" component={Newspaper} options={{animationEnabled: false}}/>
-        <Stack.Screen name="CameraScreen" component={CameraScreen} />
+        <Stack.Screen name="CameraScreen" component={CameraScreen} options={{animationEnabled: false}}/>
         <Stack.Screen name="Afterscan" component={Afterscan} options={{animationEnabled: false}} />
         <Stack.Screen name="Profile" component={Profile} options={{animationEnabled: false}} />
         <Stack.Screen name="EditProfile" component={EditProfile} options={{animationEnabled: false}} />
-        <Stack.Screen name="PlantDetail" component={PlantDetail}  />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword}  />
+        <Stack.Screen name="PlantDetail" component={PlantDetail} options={{animationEnabled: false}} />
         <Stack.Screen name="Dashboard" component={DashBoard} options={{animationEnabled: false}} />
         <Stack.Screen name="Gardens" component={Gardens} options={{animationEnabled: false}} />
-        <Stack.Screen name="Schedule" component={Schedule}  />
-        <Stack.Screen name="AboutUs" component={AboutUs}  />
+        <Stack.Screen name="Schedule" component={Schedule}  options={{animationEnabled: false}}/>
+        <Stack.Screen name="AboutUs" component={AboutUs} options={{animationEnabled: false}} />
+        <Stack.Screen name="Recently" component={Recently} options={{animationEnabled: false}} />
+        <Stack.Screen name="Saved" component={Saved} options={{animationEnabled: false}} />
+        <Stack.Screen name="ResetPass" component={ResetPass} options={{animationEnabled: false}} />
+        <Stack.Screen name="AllNotifications" component={AllNotifications} options={{animationEnabled: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

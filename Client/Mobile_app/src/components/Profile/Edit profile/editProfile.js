@@ -5,7 +5,7 @@ import {StyledContainer, HeaderContainer,
      InputText, ButtonSavechange, SavechangeButtonText } from './styleEditProfile.js';
 import { ScrollView, SafeAreaView} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { info } from '../../../api/editProfile.js'
+import { info,uploadAvata } from '../../../api/editProfile.js'
 import { updateAll } from '../../../reducers/infoUser';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
@@ -15,6 +15,7 @@ const EditProfile = () => {
   const navigation = useNavigation();
   const dispatch=useDispatch();  
   const userInfo = useSelector(state => state.infoUser);
+  const token =useSelector(state=>state.token)['payload']
 
   const [textFullname, setTextFullname] = useState(userInfo.fullname);
   const [textGender, setTextGender] = useState(userInfo.gender);
@@ -31,17 +32,19 @@ const EditProfile = () => {
     setTextGender(userInfo.gender);
     setTextPhoneNumber(userInfo.phoneNumber);
     setTextAddress(userInfo.address);
+    setCapturedPhoto(userInfo.avata)
   }, [userInfo]);
-
   const handleEditProfile = async () => {
-    const data={
-      "fullname":textFullname,
-      "gender":textGender,
-      "phoneNumber":textPhoneNumber,
-      "address":textAddress
-  }
-    const response = await info(userInfo.username, textFullname, textGender, textPhoneNumber, textAddress)
-    if (response === 'Update info successfully'){
+    const response = await info(token, textFullname, textGender, textPhoneNumber, textAddress)
+    const upAvata=await uploadAvata(token,capturedPhoto)
+    if (response ==true && upAvata==true){
+      const data={
+        "fullname":textFullname,
+        "gender":textGender,
+        "phoneNumber":textPhoneNumber,
+        "address":textAddress,
+        "avata":capturedPhoto
+      }
       const action=updateAll(data) 
       dispatch(action)
       navigation.navigate('Profile')
@@ -64,19 +67,14 @@ const EditProfile = () => {
     });
   
     if (!result.canceled) {
-      setCapturedPhoto(result.assets[0]);
+      setCapturedPhoto(result.assets[0]["uri"]);
     }
   };
   
-  let avatarSource;
-  if (isEditingAvatar) {
-    avatarSource = capturedPhoto ? { uri: capturedPhoto.uri } : placeholder;
-  } else {
-    avatarSource = placeholder;
-  }
 
+ 
   const handleBack= () => {
-    navigation.navigate('Profile', { animations: false });
+    navigation.goBack();
   };
 
       
@@ -100,7 +98,7 @@ return (
               <AvatarImage
                 resizeMode="contain"
                 style={{ borderRadius: 85, borderWidth: 3, borderColor: 'white' }}
-                source={avatarSource}
+                source={{uri:capturedPhoto}}
               />
           </AvatarContainer>   
               

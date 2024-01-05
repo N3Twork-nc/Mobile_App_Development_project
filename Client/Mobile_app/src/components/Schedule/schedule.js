@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
-import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View} from 'react-native';
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
-        TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
-        TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
-        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor
+        TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, DateContainer, TextDate, 
+        InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
+        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,TitleMainNote,
+        AllNoteContainer, TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
         } from './styleSchedule';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
+import { Calendar } from 'react-native-calendars'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import { schedule } from '../../api/Plant';
+import { getSchedule,schedule} from '../../api/Plant';
 import { useSelector } from 'react-redux';
-
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Schedule = () => {
   const token = useSelector(state=>state.token)['payload'];
   const route=useRoute()
-  const {idPlant,roomName} =route.params
+  const {idPlant, roomName} =route.params
   const navigation = useNavigation();
-  const handleBack = () => { navigation.navigate('Home'); }
- 
+  const handleBack = () => { navigation.goBack() }
 
   const [selectedDate, setSelectedDate] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(new Date()); // Giá trị thời gian được chọn
 
-   const [isFocusNumber, setIsFocusNumber] = useState(false);
-   const [isFocusFrequency, setIsFocusFrequency] = useState(false);
+   const [isFocusNumber, ] = useState(false);
+   const [isFocusFrequency, ] = useState(false);
    const [isFocusWork, setIsFocusWork] = useState(false);
    const [selectedNumber, setSelectedNumber] = useState(1); // Biến state cho dropdown dãy số
    const [selectedFrequency, setSelectedFrequency] = useState(null); // Biến state cho dropdown "Ngày", "Tuần", "Tháng"
@@ -35,16 +36,22 @@ const Schedule = () => {
    const [selectedHour, setSelectedHour] = useState(''); // Thêm state cho giờ
    const [selectedMinute, setSelectedMinute] = useState(''); // Thêm state cho phút
    const [note,setNote]=useState('')//ghi chú
+   const [checkedItems, setCheckedItems] = useState([]);
+   const [dataschedule,setDataSchedule]=useState()
+
    const handleSchedule = async ()=>{
     try {
-      const result= await schedule(token,idPlant,roomName,selectedHour+":"+String(selectedMinute).padStart(2, '0'),
+      const result= await schedule(token,idPlant,roomName,String(selectedHour).padStart(2, '0')+":"+String(selectedMinute).padStart(2, '0'),
       selectedDate,selectedNumber,selectedFrequency,selectedWork,note)
       if (result==200){
+        setShowModal(false);
         alert("Đặt lịch thành công");
+        setDataSchedule(await getSchedule(token, roomName, idPlant));
       }
       else alert("Đặt lịch thất bại")
     }
-    catch {
+    catch (e) {
+      console.log("Erro: ",e)
       alert("Đặt lịch thất bại")
     }
   }
@@ -117,10 +124,10 @@ const Schedule = () => {
 // Style Number Dropdown 
   const numbersStyles = StyleSheet.create({
     container: {
-      backgroundColor: 'white', width: 100, left: 45, bottom: 34,
+      backgroundColor: 'white', width: 60, left: 45, bottom: 30,
     },
     dropdown: {
-      height: 50,width: 60, borderRadius: 8, paddingHorizontal: 10,
+      height: 40,width: 60, borderRadius: 8, paddingHorizontal: 12,
     },
     selectedTextStyle: {
       fontSize: 16,
@@ -129,13 +136,13 @@ const Schedule = () => {
  //Style Frequency Dropdown 
   const frequencyStyles = StyleSheet.create({
     container: {
-      backgroundColor: 'white', width: 70, left: 110, bottom: 85,
+      backgroundColor: 'white', width: 80, left: 105, bottom: 70,
     },
     dropdown: {
-      height: 50, width: 85, borderRadius: 8, paddingHorizontal: 10,
+      height: 40, width: 80, borderRadius: 8, paddingHorizontal: 6,
     },
     selectedTextStyle: { 
-      fontSize: 16,
+      fontSize: 17,
     },
   });
  //Style Work Dropdown 
@@ -143,16 +150,60 @@ const Schedule = () => {
     container: { width: 100, left: 45, bottom: 34,
     },
     dropdown: {
-      height: 50, width: 150, borderRadius: 8, paddingHorizontal: 25,
+      height: 50, width: 160, borderRadius: 8, paddingHorizontal: 31,
     },
     placeholderStyle: {
-      fontSize: 16,
+      fontSize: 17,
     },
     selectedTextStyle: {
-      fontSize: 16,
+      fontSize: 17,
     },
   });
 
+  const scheduleget=async ()=>{
+    try {
+        setDataSchedule(await getSchedule(token, roomName, idPlant));
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+  // Hàm để lưu trạng thái checkbox vào AsyncStorage
+  const saveCheckedItems = async () => {
+    try {
+      await AsyncStorage.setItem('checkedItems', JSON.stringify(checkedItems));
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
+
+  // Hàm để load trạng thái checkbox từ AsyncStorage khi component được mount
+  const loadCheckedItems = async () => {
+    try {
+      const value = await AsyncStorage.getItem('checkedItems');
+      if (value !== null) {
+        setCheckedItems(JSON.parse(value));
+      }
+    } catch (error) {
+      console.error('Error loading data:', error);
+    }
+  };
+
+  useEffect(() => {
+    loadCheckedItems(); // Load trạng thái checkbox khi component được mount
+    scheduleget()
+  }, []);
+
+  useEffect(() => {
+    saveCheckedItems(); // Lưu trạng thái checkbox mỗi khi có thay đổi
+  }, [checkedItems]);
+
+  const handleCheck = (index) => {
+    const newCheckedItems = [...checkedItems];
+    newCheckedItems[index] = !newCheckedItems[index];
+    setCheckedItems(newCheckedItems);
+  };
+  
   return (
 <SafeAreaView style={{ flex: 1, backgroundColor: '#CEF1CF' }}>   
      <ScrollView style={{ flex: 1 }}>
@@ -165,17 +216,48 @@ const Schedule = () => {
                 <MainTitle> Lên lịch </MainTitle>
             </TitleContainer>
           </HeaderContainer>
-          <View style={{ flex: 1 }}>
+          <View>
             {/* Hiển thị lịch */}
             <Calendar
               onDayPress={onDayPress}
-              markedDates={{ [selectedDate]: { selected: true, selectedColor: 'green' } }}
+              markedDates={{
+                [selectedDate]:{ selected: true, selectedColor: 'green' }}}
             />
           </View>
-          <DecorContainer>
-            <ImgDecor resizeMode="contain" source={require('../../assets/ImgDecor.png')} /> 
-          </DecorContainer>
+          {/* ADD NOTE */}
+          
+        {/*END ADD NOTE */}
         </StyledContainer>
+        <AllNoteContainer>
+          {dataschedule? (
+            <TitleNoteContainer>
+              <NoteImg resizeMode="contain" source={require('../../assets/tick.png')}/> 
+              <TitleMainNote>Những việc cần làm</TitleMainNote>
+            </TitleNoteContainer>
+          ) : null}
+
+          {/* Note */}
+          {dataschedule && Object.values(dataschedule).map((calender, index) => (
+            <Note1Con key={index}>
+                <CheckboxButton onPress={() => handleCheck(index)}>
+                <CheckboxContainer>
+                  {checkedItems[index] ? (
+                    <Ionicons name="checkmark-circle" size={25} color="green" />
+                  ) : (
+                    <Ionicons name="ellipse-outline" size={25} color="white" />
+                  )}
+                </CheckboxContainer>
+              </CheckboxButton>
+                <NoteBoxCon> 
+                  <Line></Line>                    
+                  <ContentBox>            
+                      <TitleBoxNote>{calender.note}</TitleBoxNote>           
+                      <ContentText>Cách {calender.frequency} {calender.frequencyType} bạn có lịch {calender.action} lúc {calender.timeStart} kể từ {calender.dateStart} </ContentText>
+                  </ContentBox>
+                </NoteBoxCon> 
+            </Note1Con>
+          ))}
+          </AllNoteContainer>
       </ScrollView>
       <Modal
         visible={showModal}
@@ -197,8 +279,8 @@ const Schedule = () => {
             <Text1>Chi tiết</Text1>
             {/* Nội dung khác trong modal */}
             <NoteContainer>
-              <InputNote onChangeText={setNote}  placeholder="Thêm ghi chú vào đây" placeholderTextColor="#D3DBD3"></InputNote>
-              <NoteImage resizeMode="contain" source={require('../../assets/note.png')}/> 
+            <InputNote placeholder="Thêm ghi chú vào đây"  onChangeText={setNote}/>
+            <NoteImage resizeMode="contain" source={require('../../assets/note.png')}/> 
             </NoteContainer>
             <ReviewContainer> 
                 <TextReview>Nhắc nhở của bạn sẽ được gửi vào 10:00 mỗi 2 tuần vào Thứ hai, Thứ ba, Thứ tư</TextReview>
@@ -235,7 +317,6 @@ const Schedule = () => {
                       <TextDate>Ngày</TextDate>
                       <InputDate
                       placeholder="02/10/2023"
-                      placeholderTextColor="#D3DBD3"
                       value={formatDate(selectedDate)} // Gán giá trị ngày được chọn vào InputDate
                       // onChangeText={(text) => setSelectedDate(text)} //Có thể nhập ngày thủ công 
                     ></InputDate>
@@ -279,7 +360,7 @@ const Schedule = () => {
                                   setSelectedFrequency(item.value); // Cập nhật giá trị đã chọn cho dropdown "Ngày", "Tuần", "Tháng"
                                    }}
                               />
-                        </View>
+                        </View> 
                 </EachContainer>
                 <WorkContainer>
                   <TextDay>Việc</TextDay>
@@ -302,7 +383,7 @@ const Schedule = () => {
                 </WorkContainer>
               </FrequencyContainer>
               <ButtonCreateReminder onPress={handleSchedule}>
-                    <ButtonCreate> Tạo nhắc nhở</ButtonCreate>
+                    <ButtonCreate>Tạo nhắc nhở</ButtonCreate>
               </ButtonCreateReminder>
           </View>
         </TouchableOpacity>

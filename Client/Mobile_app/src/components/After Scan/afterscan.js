@@ -7,14 +7,15 @@ import {
    SaveButton, SaveContainer, Save, SaveButtonText, BackContainer, 
    TitleContainer, SectionsContainer, BoxContainer, FirstSection, 
    Icon, LeftContainer, EachSectionContainer, SectionDetailText, 
-   SectionName, SubSectionText, RightContainer, SecondSection, BoxesContainer,
+   SectionName, SubSectionText, RightContainer, SecondSection, BoxesContainer, CloseContainer, CloseButton,
 } from './styleAfterscan.js';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
 import { plant } from '../../api/Plant.js';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
+import { addMyPlant } from '../../reducers/myplants.js';
 const logoApp = logo;
 
 const styles = StyleSheet.create({
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
 
 const Afterscan = () => {
   const token = useSelector(state=>state.token)['payload'];
+  dispatch=useDispatch()
   const route = useRoute();
   const { info, photoURI } = route.params;
   const keywords = info[0].keyword.split(', ');
@@ -55,6 +57,8 @@ const Afterscan = () => {
       if (response=="Successfull") 
         {
           Alert.alert("Thêm cây thành công");
+          const action=addMyPlant(roomName)
+          dispatch(action)
           setIsLoading(false);
         }
       else {
@@ -68,14 +72,11 @@ const Afterscan = () => {
     }
   };
 
-  const handleSavedtoStorage = () => {
-    // Lưu vào mục Đã lưu
-    setAlertVisible(false);
-  };
   
   const handleBack = () => {
     navigation.navigate('CameraScreen', {animations: false});
   }
+  const handleClose = () => {navigation.navigate('Home')};
 
     // Danh sách các nguồn ảnh
   const images = [
@@ -96,6 +97,9 @@ const Afterscan = () => {
             <MainTitle>
                   Kết quả
             </MainTitle>
+            <CloseContainer onPress={handleClose}>
+              <CloseButton resizeMode="cover" source={require('../../assets/close.png')}/>
+            </CloseContainer>
           </TitleContainer>          
         </HeaderContainer>
         {/* ẢNH CỦA CÂY */}
@@ -115,13 +119,13 @@ const Afterscan = () => {
         {/* PHẦN THÔNG TIN */}
         <BodyContainer>
                 <ImgLogo resizeMode="cover" source={require('../../assets/logo.png')}/>
-                <Text1> Cây của bạn đã được nhận diện!</Text1>
-                <Text2> {info[0].plantName} </Text2>
+                <Text1>Cây của bạn đã được nhận diện!</Text1>
+                <Text2>{info[0].plantName} </Text2>
                 <TagContainer>
                   {keywords.map((keyword, index) => (
                   <Tag key={index}>{keyword}</Tag> ))}
                 </TagContainer>
-                <Text3> Thông tin</Text3> 
+                <Text3>Thông tin</Text3> 
                 <SectionsContainer>
                   <BoxesContainer>                  
                     <FirstSection>
@@ -234,7 +238,7 @@ const Afterscan = () => {
                 <CustomAlert
                       isVisible={isAlertVisible}
                       message="Chọn nơi để lưu cây"
-                      onSaved={handleSavedtoStorage}
+                      // onSaved={handleSavedtoStorage}
                       onRoom={handleSavedtoRooms}
                       onClose={handleCloseAlert}
                       setSelectedRoom={setSelectedRoom}
@@ -249,23 +253,15 @@ const Afterscan = () => {
 export default Afterscan; 
 
 // Alert options khi nhấn LƯU
-const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelectedRoom}) => {
+const CustomAlert = ({ isVisible, message, onRoom, onClose, setSelectedRoom}) => {
   const [isRoomAlertVisible, setRoomAlertVisible] = useState(false);
-
-  const handleRoomAlert = () => {
-    setRoomAlertVisible(true);
-  };
 
   const handleRoomSelection = (room) => {
     setRoomAlertVisible(false);
     setSelectedRoom(room); // Lưu selectedRoom khi chọn phòng
-    onRoom(room);
-  };
+    onRoom(room);  };
 
-  const showRoomSelectionAlert = () => {
-    setRoomAlertVisible(true);
-    
-  };
+  const showRoomSelectionAlert = () => {setRoomAlertVisible(true);};
 
   return (
     <Modal isVisible={isVisible} onBackdropPress={onClose}>          
@@ -282,7 +278,7 @@ const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelected
         </View>
         <View style={{ padding: 10, zIndex: 1, bottom: 7}}>              
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 10 }}>
-          <TouchableOpacity onPress={onSaved} style={{ marginRight: 25 }}>
+          <TouchableOpacity  onPress={() => handleRoomSelection('Lưu trữ')} style={{ marginRight: 25 }}>
             <Text style={{ color: 'green', fontSize: 17 }}>Lưu trữ</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={showRoomSelectionAlert}>
@@ -291,6 +287,7 @@ const CustomAlert = ({ isVisible, message, onSaved, onRoom, onClose, setSelected
         </View>
         </View>        
       </View>
+
       {isRoomAlertVisible && (
         <Modal isVisible={true} onBackdropPress={() => setRoomAlertVisible(false)}>
           <View style={{ backgroundColor: 'white', borderRadius: 15}}>

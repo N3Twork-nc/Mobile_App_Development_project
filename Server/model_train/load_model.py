@@ -7,4 +7,6 @@ class Model:
     def PredictPlants(img):
         resuft=model.predict(img)
         y_pred=np.argmax(resuft, axis=1)
+        if resuft[0][y_pred[0]]<0.7:
+            return -1
         return y_pred[0]

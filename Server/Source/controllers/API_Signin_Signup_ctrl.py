@@ -4,6 +4,8 @@ import random
 from Source.classes.mail_class import Mail
 from fastapi import HTTPException
 from Source.security import Authentication 
+from Source.config.config import container
+from Source.classes.azure_class import CustomFunctionAzure
 
 #Log in
 @app.post('/APIsignin')
@@ -12,8 +14,11 @@ async def signin(request: Account):
     if result==True:
         token = Authentication().generate_token(request.username)
         info=request.getInfoAccout()
+        path=f'avata/{request.username}.jpg'
+        blob=container.get_blob_client(path)
+        tokenBlob=CustomFunctionAzure.generate_token_blob(blob)
+        info["avata"]=f'https://caothi.blob.core.windows.net/myplants/{path}?{tokenBlob}'
         info.pop('password',None)
-        #info={key: value for key, value in info.items() if key != "password"}
         return {
             'info':info,
             'token': token

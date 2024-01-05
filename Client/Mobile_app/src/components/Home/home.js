@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, SafeAreaView,} from 'react-native';
-import { 
-  StyledContainer, 
-  MainTitle, HeaderContainer, ButtonAdd, ButtonSearch,ScanButton, ScanButtonText,ScanContainer,Scan,
+import { StyledContainer, MainTitle, HeaderContainer, ButtonAdd,ScanButton, ScanButtonText,ScanContainer,Scan,
   Title1, Title2,   TitleforContainers, RecentlyPlantContainer,Plant1Container,Plant2Container,PlantName,
-  Line,Icon, ImageFrame,  FirstRooms, RoomsContainer, RightRoomContainer, LeftRoomContainer,
+  Line,Icon, ImageFrame, FirstRooms, RoomsContainer, RightRoomContainer, LeftRoomContainer,
   KitchenContainer, RoomContainer, LivingroomContainer, BackyardContainer, BedroomContainer, CategoryPlantRoom, RoomName,
   NotificationContainer,MoreNotifyContainer, NotificationImageContainer, TextNotification, SubTextNotify, 
   MainTextNotify, TotalPlant, CategoryDetailText, TaskbarButtonText, TaskbarView, TaskbarIcon, ContainerButton,
-
 } from './styleHome';
 import { useNavigation } from '@react-navigation/native';
-import { myPlant,countPlants} from '../../api/Plant.js';
+import { allPlant, myPlant,countPlants} from '../../api/Plant.js';
 import {getDetailGardens} from '../../api/Garden.js'
 import { useSelector,useDispatch } from 'react-redux';
 import { updateMyGarden } from '../../reducers/mygarden';
-import { updateQuantity } from '../../reducers/myplants.js';
+import { updateAllPlants} from '../../reducers/myplants.js';
 
 const Home = () => {
-  const [selectedRoom, setSelectedRoom] = useState(null);
+<<<<<<< HEAD
+  const [, setSelectedRoom] = useState(null);
+=======
+>>>>>>> 439c150ca9af3b1a7ad4641df06a6eab1cc13b9e
   const gardenData=useSelector(state=>state.garden)['payload'].slice(0,4);
-  const plantData=useSelector(state=>state.plant);
+  var plantData=useSelector(state=>state.plant);
+  var plantDataAll={
+    ...plantData["Phòng khách"]["Data"],
+    ...plantData["Phòng ngủ"]["Data"],
+    ...plantData["Nhà bếp"]["Data"],
+    ...plantData["Sân vườn"]["Data"],
+    ...plantData["Lưu trữ"]["Data"]
+  }
+  const sortedKeys = Object.keys(plantDataAll).sort().slice(-2);;
   const dispatch=useDispatch()
   const token = useSelector(state=>state.token)['payload'];
   const navigation = useNavigation();
@@ -34,31 +42,56 @@ const Home = () => {
       const gardenDetails = await getDetailGardens(token);
       const action1=updateMyGarden(gardenDetails)
       dispatch(action1)
-      const countP=await countPlants(token)
-      const action2=updateQuantity(countP)
+      const allPlants = await allPlant(token);
+      const action2=updateAllPlants(allPlants)
       dispatch(action2)
+      plantDataAll={
+        ...plantData["Phòng khách"]["Data"],
+        ...plantData["Phòng ngủ"]["Data"],
+        ...plantData["Nhà bếp"]["Data"],
+        ...plantData["Sân vườn"]["Data"],
+        ...plantData["Lưu trữ"]["Data"]
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleRoomPress = async (roomName) => {
-    setSelectedRoom(roomName);
-    let plantsInRoom = [];
     try {
-      if (roomName) {
-        plantsInRoom = await myPlant(token, roomName);
-      }
+      navigation.navigate('Room', {roomName});
     } catch (error) {
       console.log(error);
     }
-    navigation.navigate('Room', { plantsInRoom, roomName });
+   
+  };
+  
+  const handleSaved = async () => {
+    navigation.navigate('Saved');
   };
 
-  const handleExplore = () => {navigation.navigate('Explore', { animations: false }, {transitions: false});};
-  const handleScan = () => {navigation.navigate('CameraScreen', { animations: false });};
-  const handleProfile= () => {navigation.navigate('Profile', { animations: false });};
-  const handlePlantDetail = () => {navigation.navigate('PlantDetail')};
+  const handleExplore = () => {navigation.navigate('Explore',);};
+  const handleScan = () => {navigation.navigate('CameraScreen',);};
+  const handleProfile= () => {navigation.navigate('Profile',);};
+  
+  const handleAllNotify = async() => {
+    try {
+      const allPlants = await allPlant(token);
+      navigation.navigate('AllNotifications', { plantData: allPlants });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const handleRecently = async () => {
+    try {
+      
+      navigation.navigate('Recently');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   const handleDashboard = (gardensDetail) => {
     navigation.navigate('Dashboard', { gardensDetail });
   };
@@ -75,8 +108,7 @@ const Home = () => {
         {/* TIÊU ĐỀ */}
           <HeaderContainer>
             <MainTitle>Vườn của tôi</MainTitle>
-            <ButtonSearch resizeMode="cover" source={require('../../assets/search.png')}/>
-            <ButtonAdd resizeMode="cover" source={require('../../assets/add.png')}/>
+            <ButtonAdd resizeMode="cover" source={require('../../assets/logo2.png')}/>
           </HeaderContainer>   
         {/* Scan */}
         <ScanButton onPress={handleScan}>
@@ -88,18 +120,22 @@ const Home = () => {
            {/* Gần đây */}
           <TitleforContainers>
             <Title1>Gần đây</Title1>
-            <Title2>Xem tất cả</Title2>
+            <Title2 onPress={handleRecently}>Xem tất cả</Title2>
           </TitleforContainers>
 
           <RecentlyPlantContainer>
-            <Plant1Container>
-              <ImageFrame resizeMode="cover" source={require('../../assets/plant0.jpg')}/>
-              <PlantName>Hoa Hướng Dương</PlantName>
-            </Plant1Container> 
+            {sortedKeys.length>0 && (
+              <Plant1Container>
+                <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[sortedKeys.length-1]]["Img"]}}/>
+                <PlantName>{plantDataAll[sortedKeys[sortedKeys.length-1]]["plantName"]} </PlantName>
+              </Plant1Container> 
+            )} 
+            {sortedKeys.length>0 && (
             <Plant2Container>
-              <ImageFrame resizeMode="cover" source={require('../../assets/plant2.jpg')}/>
-              <PlantName> Lan Ý </PlantName>
+              <ImageFrame resizeMode="cover" source={{uri:plantDataAll[sortedKeys[0]]["Img"]}}/>
+              <PlantName> {plantDataAll[sortedKeys[0]]["plantName"]} </PlantName>
             </Plant2Container>
+            )}
           </RecentlyPlantContainer>
 
           <Line />
@@ -118,7 +154,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/livingroom.png')}/>
                     </LivingroomContainer> 
                     <CategoryDetailText >
-                      <TotalPlant>{plantData['Phòng khách']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Phòng khách']['Count']} cây</TotalPlant>
                       <RoomName>Phòng khách</RoomName> 
                     </CategoryDetailText>                      
                   </RoomContainer>                    
@@ -130,7 +166,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/kitchen.png')}/>
                     </KitchenContainer> 
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Nhà bếp']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Nhà bếp']['Count']} cây</TotalPlant>
                       <RoomName>Nhà bếp</RoomName> 
                     </CategoryDetailText> 
                   </RoomContainer>          
@@ -143,7 +179,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/bedroom.png')}/>
                     </BedroomContainer>
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Phòng ngủ']['Count']} plants</TotalPlant>                      
+                      <TotalPlant>{plantData['Phòng ngủ']['Count']} cây</TotalPlant>                      
                       <RoomName>Phòng ngủ</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>
@@ -154,7 +190,7 @@ const Home = () => {
                       <Icon resizeMode="contain" source={require('../../assets/backyard.png')}/>
                     </BackyardContainer>
                     <CategoryDetailText>
-                      <TotalPlant>{plantData['Sân vườn']['Count']} plants</TotalPlant>
+                      <TotalPlant>{plantData['Sân vườn']['Count']} cây</TotalPlant>
                       <RoomName>Sân vườn</RoomName> 
                     </CategoryDetailText>
                   </RoomContainer>          
@@ -218,7 +254,7 @@ const Home = () => {
 
          <TitleforContainers>
             <Title1>Thông báo</Title1>
-            <Title2>Xem tất cả</Title2>
+            <Title2 onPress={handleAllNotify}>Xem tất cả</Title2>
           </TitleforContainers>
 
           {/* Thông báo 1 */}
@@ -266,7 +302,7 @@ const Home = () => {
         <TaskbarIcon resizeMode="contain" source={require('../../assets/scan.png')}/>
         <TaskbarButtonText>Scan</TaskbarButtonText>
       </ContainerButton>
-      <ContainerButton>
+      <ContainerButton onPress={() => handleSaved()}>
         <TaskbarIcon resizeMode="contain" source={require('../../assets/saved.png')}/>
         <TaskbarButtonText>Đã lưu</TaskbarButtonText>
       </ContainerButton>

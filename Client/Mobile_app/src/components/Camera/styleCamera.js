@@ -14,7 +14,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center;
   margin-top: ${vh(7)}px;
-  ${Platform.OS === 'android' ? 'margin-top: 13%;' : 'margin-bottom: 5%;'}
+  ${Platform.OS === 'android' ? 'margin-top: 20%;' : ''}
 `;
 
 export const Text1 = styled.Text`
@@ -49,13 +49,17 @@ export const ImageClose = styled.Image`
   height: 20px;
 `;
 
-//
+export const ContainerWrapper = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+`;
+
 export const Container = styled.View`
-   position: relative;
+  position: relative;
   align-items: center;
   justify-content: center;
-  top: ${vh(70)}px;
-  ${Platform.OS === 'android' ? 'margin-top: 7%;' : 'margin-bottom: 0%;'}
+  margin-bottom: 15px;
+  z-index: 0;
 `;
 
 export const GalleryButton = styled.TouchableOpacity`
@@ -72,6 +76,7 @@ export const TakePhotoButton = styled.TouchableOpacity`
   border-radius: 50px;
   align-items: center;
   justify-content: center;
+  height: ${vh(10)}px;
 `;
 export const ImageCircle = styled.Image`
   width: 70px;
@@ -93,34 +98,46 @@ export const ImageReweet = styled.Image`
 export const RetakeButton= styled.TouchableOpacity`
   width: ${vw(30)}px;
   height: ${vh(5)}px;
-  margin-right: ${vw(40)}px;
-  align-self: center;
+  margin-left: ${vw(10)}px;
+  align-self: flex-start;
+  border-radius:15px;
+  border-width: 1px; 
+  border-color: #111111;
+  align-items: center;
+  justify-content: center;
 `
 export const Text2 = styled.Text`
   font-size: ${vh(2.3)}px;
   font-weight: 600;
   color: ${black};
-  left: 35px;
-  top:5px;
 `;
 
 export const Text3 = styled.Text`
   font-size: ${vh(2.3)}px;
   font-weight: 600;
   color: ${black};
-  top: 5px;
 `;
 export const ResultButton = styled.TouchableOpacity`
   width: ${vw(30)}px;
   height: ${vh(5)}px;
-  align-self: center;
-
+  bottom: ${vh(5)}px;
+  align-self: flex-end;
+  margin-right: ${vw(10)}px;
+  border-radius:15px;
+  border-width: 1px; 
+  border-color: #111111;
+  align-items: center;
+  justify-content: center;
 `;
-export const FooterContainer = styled.TouchableOpacity`
-  background-color: #CEF1CF;
+export const FooterContainer = styled.View`
+  position: absolute;
+  top: ${vh(90)}px;
+  flex-direction: 'row';
   width: ${vw(100)}px;
-  height: ${vh(7)}px;
-  flex-direction: row;
+  height: ${vh(14)}px;
+  background-color: #CEF1CF;
+  align-items: center;
+  justify-content: center;
 `;
 export const HeaderContainer2 = styled.View`
   background-color: #CEF1CF;

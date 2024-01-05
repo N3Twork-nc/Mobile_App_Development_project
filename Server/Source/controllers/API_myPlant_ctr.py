@@ -1,5 +1,5 @@
 from Source import app
-from Source.models_mvc.myPlants_model import MyPlants,Schedule
+from Source.models_mvc.myPlants_model import MyPlants,Schedule,RoomName
 from fastapi import UploadFile, Depends, Path, HTTPException
 from Source.security import Authentication
 from datetime import datetime
@@ -28,7 +28,7 @@ async def uploadMyPlant(file:UploadFile,roomName:str,plantName:str,username=Depe
                  "room":roomName,
                  "plantname":plantName}
 
-@app.get("/APIMyPlant/{roomName}")  # Sử dụng Path để lấy roomName từ URL
+@app.get("/APIMyPlant/{roomName}")
 def getPlants(roomName: str = Path(...), username=Depends(Authentication().validate_token)):
     try:
         garden = MyPlants(username, roomName)
@@ -43,8 +43,25 @@ def getPlants(roomName: str = Path(...), username=Depends(Authentication().valid
     except Exception as e:
         print(str(e))
         raise HTTPException(status_code=204, detail="Get my plant fail")
+    
+@app.get("/APIAllPlant")
+def getPlants(username=Depends(Authentication().validate_token)):
+    try:
+        garden = MyPlants(username)
+        data = garden.getAllPlants()
+        for roomName in data:
+            for key in data[roomName]:
+                path=f'myroom/{username}/{key}.jpg'
+                blob=container.get_blob_client(path)
+                token=CustomFunctionAzure.generate_token_blob(blob)
+                data[roomName][key]["Img"]=f'https://caothi.blob.core.windows.net/myplants/{path}?{token}'
+        return data
+    except Exception as e:
+        print(str(e))
+        raise HTTPException(status_code=204, detail="Get my plant fail")
         
 
+#schedule
 @app.put("/API_schedule")
 def schedule(schedule:Schedule,username=Depends(Authentication().validate_token)):
     try:
@@ -53,6 +70,16 @@ def schedule(schedule:Schedule,username=Depends(Authentication().validate_token)
         return "Add successful scheduling"
     except Exception as e:
        raise HTTPException(status_code=400, detail="Add scheduling failed")
+    
+@app.get("/API_get_schedule")
+def getSchedule(roomName:RoomName,idPlant:str,username=Depends(Authentication().validate_token)):
+    try:
+        plant=MyPlants(username=username,roomName=roomName.value,idPlant=idPlant)
+        data=plant.getSchedule()
+        return data
+    except Exception as e:
+        print("Erro: ",str(e))
+        raise HTTPException(status_code=204, detail="Get schedule fail")
 
 @app.get('/API_get_count_plants')
 def countPlant(username=Depends(Authentication().validate_token)):
@@ -63,6 +90,24 @@ def countPlant(username=Depends(Authentication().validate_token)):
     except Exception as e:
         print(str(e))
         raise HTTPException(status_code=204, detail="Get count my plant fail")
+    
+@app.delete("/APIDeletePlant")
+def deletePlant(roomName:str,id:str,username=Depends(Authentication().validate_token)):
+    try:
+        plant = MyPlants(username,roomName,idPlant=id)
+        plant.deletePlant()
+        path=f'myroom/{username}/{id}.jpg'
+        container.get_blob_client(path).delete_blob()
+        return{
+            "Status":True,
+            "Message":"Delete plant successfull"
+        }
+    except Exception as e:
+        print(str(e))
+        return{
+            "Status":False,
+            "Message":"Delete plant failed"
+        }
         
     
 
