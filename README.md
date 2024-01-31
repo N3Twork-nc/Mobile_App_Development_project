@@ -16,14 +16,17 @@ Trường Đại học Công Nghệ Thông Tin - ĐHQG.HCM
 ![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/System%20structure%20diagram.png?raw=true)
 ### 3. Các ngôn ngữ lập trình và công nghệ sử dụng
 #### a) Các ngôn ngữ lập trình
-- Trên thiết bị di động: react native
-- Trên server: python
+- Trên thiết bị di động: React Native
+- Trên server: Python
 #### b) Các công nghệ sử dụng
-- Database: realtime database của firebase
-- Deeplearning: Sử dụng framework keras và tensorflow
+- Database: Realtime Database của Firebase
+- Dịch vụ lưu trữ: Azure Blob Storage của Microsoft Azure
+- Deeplearning: Framework Keras và Tensorflow
+- Giao thức truyền tin: MQTT và HTTPs
 ### 4. Nguyên lý hoạt động của hệ thống.
 ### 5. Hoạt động của mobile app.
 ![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/Mindset2.png?raw=true "Hướng đi của ứng dụng")
+![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/Mindset3.png?raw=true "Hướng tương tác chính")
 ## III. Quá trình thực hiện đề tài
 [Timeline công việc](https://docs.google.com/spreadsheets/d/16j22HNcVdV6S61sWJEH8DkvKuc123T_IAtb3bWZs8-M/)
 ### 1. Thiết kế giao diện.
