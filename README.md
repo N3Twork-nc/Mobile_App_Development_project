@@ -25,8 +25,8 @@ Trường Đại học Công Nghệ Thông Tin - ĐHQG.HCM
 - Giao thức truyền tin: MQTT và HTTPs
 ### 4. Nguyên lý hoạt động của hệ thống.
 ### 5. Hoạt động của mobile app.
-![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/Mindset2.png?raw=true "Hướng đi của ứng dụng")
-![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/Mindset3.png?raw=true "Hướng tương tác chính")
+![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/Picture3.png?raw=true "Hướng đi của ứng dụng")
+![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/Picture2.png?raw=true "Hướng tương tác chính")
 ## III. Quá trình thực hiện đề tài
 [Timeline công việc](https://docs.google.com/spreadsheets/d/16j22HNcVdV6S61sWJEH8DkvKuc123T_IAtb3bWZs8-M/)
 ### 1. Thiết kế giao diện.
