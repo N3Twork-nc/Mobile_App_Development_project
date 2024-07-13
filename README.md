@@ -1,38 +1,32 @@
-# MOBILE APP DEVELOPMENT PROJECT
-Trường Đại học Công Nghệ Thông Tin - ĐHQG.HCM
+# PLANTAHOLIC: A MOBILE APPLICATION FOR IDENTIFYING AND CARING HOUSEPLANTS
 
-## I. Thành viên thực hiện
-1. 21522613 - Nguyễn Cao Thi
-2. 21522371 - Nguyễn Trà Bảo Ngân
-3. 21521490 - Lê Huỳnh Anh Thư
-4. 21522648 - Thái Nhật Thư 
-## II. Giới thiệu đề tài.
-### 1. Mô tả
-- Trong những năm qua, việc chăm sóc cây cảnh đã trở thành một xu hướng và phát triển mạnh mẽ. Với sự tăng trưởng của đô thị hóa và cuộc sống hiện đại, việc sở hữu và chăm sóc cây cảnh trong không gian sống đã trở thành một xu hướng phổ biến. Tuy nhiên, nhiều người vẫn gặp khó khăn trong việc chăm sóc cây cảnh đúng cách.
-- Một trong những thách thức chính là thiếu kiến thức về cách chăm sóc cây cảnh. Người dùng thường không biết cách tưới nước, phân bón, kiểm soát ánh sáng, nhiệt độ và các yếu tố khác để đảm bảo sức khỏe và sự phát triển của cây cảnh. Điều này dẫn đến việc cây cảnh có thể bị chết hoặc không phát triển tốt.
-- Hơn nữa, việc xác định loại cây cảnh cũng là một vấn đề khó khăn đối với nhiều người. Không phải ai cũng có thể phân biệt chúng và điều này gây khó khăn trong việc tìm hiểu về yêu cầu chăm sóc cụ thể của từng loại cây cảnh.
-- Vì vậy, đề tài Plantaholic được nghiên cứu, khảo sát và thực hiện với mục đích áp dụng những kiến thức đã học để xây dựng, phát triển một ứng dụng di động nhằm hỗ trợ người dùng trong việc nhận diện, chăm sóc và quản lý cây cảnh. Ứng dụng sẽ sử dụng công nghệ nhận diện hình ảnh để nhận biết các loại cây cảnh và cung cấp thông tin về đặc điểm nổi bật, yêu cầu chăm sóc, tưới nước, phân bón, ánh sáng, và các yếu tố khác liên quan đến loại cây đó.
-### 2. Sơ đồ hoạt động
-![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/System%20structure%20diagram.png?raw=true)
-### 3. Các ngôn ngữ lập trình và công nghệ sử dụng
-#### a) Các ngôn ngữ lập trình
-- Trên thiết bị di động: React Native
-- Trên server: Python
-#### b) Các công nghệ sử dụng
-- Database: Realtime Database của Firebase
-- Dịch vụ lưu trữ: Azure Blob Storage của Microsoft Azure
-- Deeplearning: Framework Keras và Tensorflow
-- Giao thức truyền tin: MQTT và HTTPs
-### 4. Nguyên lý hoạt động của hệ thống.
-### 5. Hoạt động của mobile app.
-#### a) Hướng đi của ứng dụng
-![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/Picture3.png?raw=true "Hướng đi của ứng dụng")
-#### b) Hướng tương tác chính với ứng dụng
-![diagram](https://github.com/N3Twork-nc/Mobile_App_Development_project/blob/main/IMG%20README/Picture2.png?raw=true "Hướng tương tác chính")
-## III. Hiện thực đề tài
-[Timeline công việc](https://docs.google.com/spreadsheets/d/16j22HNcVdV6S61sWJEH8DkvKuc123T_IAtb3bWZs8-M/)
-### 1. Thiết kế giao diện.
-#### a) Logo ứng dụng
-#### b) Hệ thống màu sắc
+## I. Members
+1. 21522613 - Nguyen Cao Thi
+2. 21522371 - Nguyen Tra Bao Ngan
+3. 21521490 - Le Huynh Anh Thu
+4. 21522648 - Thai Nhat Thu
+## II. Overview
+### 1. Description
+Plantaholic was researched, surveyed and implemented with the purpose of applying the knowledge learned to build and develop a mobile application to support users in identifying, caring for and managing ornamental plants. The application will use image recognition technology to identify ornamental plants and provide information about outstanding characteristics, care requirements, watering, fertilizer, lighting, and other related factors. to that type of tree. There are also features that help users take care of plants more easily, such as setting care schedules for each type of plant, managing additions and deletions, etc.
+### 2. System architecture
+![image](https://github.com/user-attachments/assets/0abbeb05-6646-44b1-a5b7-26c4b7d0e862)
+### 3. Programing languages and Technologies
+#### a) Programing languages
+- Mobile app: React Native 
+- Server: Python
+#### b) Technologies
+- Database: Google Cloud - Firebase (for storing and querying garden's real-time data)
+- Storage service: Microsoft Azure - Azure Blob Storage (for storing application's images)
+- Deeplearning: Framework Keras, Tensorflow
+- Transmission protocols: MQTT, HTTPs
+### 4. Operating principle of the mobile app
+#### a) Mobile app workflow
+![image](https://github.com/user-attachments/assets/be2722e9-9d34-41e5-bf98-37e1364c1612)
+#### b) Mobile app interaction flow
+![image](https://github.com/user-attachments/assets/5f256941-64e8-4cb0-9793-046eae481853)
+### 5. Mobile app interface design.
+#### a) Logo
+![image](https://github.com/user-attachments/assets/dde9aeb9-7576-4bf1-a940-afa26a5f10a5)
+#### b) UI color system
+![image](https://github.com/user-attachments/assets/304cafaa-2b62-4f76-804a-51a4832e20c2)
 
-### 2. Xây dựng server
