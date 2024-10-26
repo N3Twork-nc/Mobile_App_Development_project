@@ -10,7 +10,8 @@ import LottieView from 'lottie-react-native';
 import Modal from 'react-native-modal';
 import logo from '../../assets/logo.png';
 import { getPlant, deletePlant } from '../../api/Plant.js';
-import {deleteMyPlant} from '../../reducers/myplants.js' 
+import { deleteMyPlant } from '../../reducers/myplants.js';
+
 
 const logoApp = logo;
 
@@ -35,17 +36,16 @@ const Saved = () => {
     };
 
     const handleConfirmDelete = async () => {
-      setAlertVisible(false);
-      const result = await deletePlant(roomName, deletePlantId, token);
-      let action = deleteMyPlant({"roomName":roomName,"idPlant":deletePlantId})
-      dispatch(action);
-      if (result==true) {
-        Alert.alert("Xóa cây thành công");
-      } else {
-        Alert.alert("Xóa cây thất bại");
-      }
-    };     
-    
+        setAlertVisible(false);
+        const result = await deletePlant('Lưu trữ',deletePlantId, token);
+        if (result==true) {
+          let action = deleteMyPlant({"roomName":"Lưu trữ","idPlant":deletePlantId})
+          dispatch(action);
+          Alert.alert("Xóa cây thành công");
+        } else {
+          Alert.alert("Xóa cây thất bại");
+        }
+      };     
 
     const handleInfo = async (plantname) => {
         setIsLoading(true);

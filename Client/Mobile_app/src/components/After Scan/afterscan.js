@@ -59,7 +59,7 @@ const Afterscan = () => {
       {
           setIsLoading(false);
           const getPlantUpdate=await myPlant(token,roomName)
-          const action=addMyPlant(getPlantUpdate)
+          const action=addMyPlant({[roomName]:getPlantUpdate})
           dispatch(action)
           Alert.alert("Thêm cây thành công");
       }

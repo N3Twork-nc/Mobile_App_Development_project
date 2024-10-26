@@ -96,6 +96,8 @@ def deletePlant(roomName:str,id:str,username=Depends(Authentication().validate_t
     try:
         plant = MyPlants(username,roomName,idPlant=id)
         plant.deletePlant()
+        path=f'myroom/{username}/{id}.jpg'
+        container.get_blob_client(path).delete_blob()
         return{
             "Status":True,
             "Message":"Delete plant successfull"

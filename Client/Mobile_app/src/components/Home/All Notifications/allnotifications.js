@@ -49,7 +49,7 @@ const AllNotifications = () => {
                 const schedule = extractedSchedules[room][key];
                 return (
                   <React.Fragment key={key}>
-                    <MainText1>{schedule.plantName.replace(/\(.*?\)/g, '')} - {room}</MainText1>
+                    <MainText1>{schedule.plantName.replace(/\(.*?\)/g, '')}- {room}</MainText1>
                     {Object.keys(schedule.Schedule).map((eventKey) => (
                       <NotifyContainer key={eventKey}>
                         <NotifyImageContainer resizeMode="cover" source={require('../../../assets/logo2.png')} />
