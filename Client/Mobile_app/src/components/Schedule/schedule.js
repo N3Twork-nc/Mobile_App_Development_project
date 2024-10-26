@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, SafeAreaView, Modal, Text, TouchableOpacity, View} from 'react-native';
 import { StyledContainer, HeaderContainer, TitleContainer, BackContainer, MainTitle, ButtonBack,Text1,InputNote,
-        TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, InputTime,DateContainer, 
-        TextDate, InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
-        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,DecorContainer,ImgDecor,TitleMainNote,AllNoteContainer,
-        TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
+        TextReview,ReviewContainer,DetailContainer,DetailText, DetailImage, StartContainer, TextStart, DateContainer, TextDate, 
+        InputDate, NoteImage, NoteContainer, FrequencyContainer, FrequencyText, FrequencyImage, EachContainer,WorkContainer,
+        TextEach, TextDay, TextTime, ButtonCreateReminder, ButtonCreate,TextInputHours,TextInputMin,InputTimeCon,TextSpace,TitleMainNote,
+        AllNoteContainer, TitleNoteContainer,NoteImg,Note1Con,CheckboxContainer,CheckboxButton,NoteBoxCon,Line,TitleBoxNote,ContentText,ContentBox,
         } from './styleSchedule';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Calendar } from 'react-native-calendars'; // Thêm Calendar từ react-native-calendars
+import { Calendar } from 'react-native-calendars'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Platform,StyleSheet,TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
@@ -124,25 +124,25 @@ const Schedule = () => {
 // Style Number Dropdown 
   const numbersStyles = StyleSheet.create({
     container: {
-      backgroundColor: 'white', width: 60, left: 45, bottom: 30,
+      backgroundColor: 'white', width: 60, left: 35, bottom: 25,
     },
     dropdown: {
-      height: 40,width: 60, borderRadius: 8, paddingHorizontal: 12,
+     borderRadius: 8, paddingHorizontal: 12,
     },
     selectedTextStyle: {
-      fontSize: 16,
+      fontSize: 15,
     },
   });
  //Style Frequency Dropdown 
   const frequencyStyles = StyleSheet.create({
     container: {
-      backgroundColor: 'white', width: 80, left: 105, bottom: 70,
+      backgroundColor: 'white', width: 80, left: 90, bottom: 60,
     },
     dropdown: {
-      height: 40, width: 80, borderRadius: 8, paddingHorizontal: 6,
+     borderRadius: 8, paddingHorizontal: 6,
     },
     selectedTextStyle: { 
-      fontSize: 17,
+      fontSize: 15,
     },
   });
  //Style Work Dropdown 

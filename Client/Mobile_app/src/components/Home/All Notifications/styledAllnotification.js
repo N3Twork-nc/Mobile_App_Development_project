@@ -48,8 +48,8 @@ export const NotifyContainer = styled.TouchableOpacity`
     align-items: center;
     justify-content: space-between;
     padding-horizontal: 10px;
-    margin-top: 7px;
     padding: 10px;
+    margin-bottom: 15px;
 `;
 
 export const NotifyImageContainer = styled.Image`
